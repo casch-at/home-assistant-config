@@ -1,0 +1,32 @@
+- platform: rpi_rf
+  gpio: 17
+  switches:
+    TV: # 5
+      code_on: 5534979 # (S)FF F0 F1 FF 00 01 -> 0101 0100 0111 0101 0000 0011
+      code_off: 5534988 # (S)FF F0 F1 FF 00 10 -> 0101 0100 0111 0101 0000 1100
+      pulselength: 165
+      signal_repetitions: 10
+    Printer: # 4
+      code_on: 5528835 # (S)FF F0 FF 1F 00 01 -> 0101 0100 0101 1101 0000 0011
+      code_off: 5528844 # (S)FF F0 FF 1F 00 10 -> 0101 0100 0101 1101 0000 1100
+      pulselength: 165
+      signal_repetitions: 10
+    Desk: # 3
+      code_on: 5527299 # (S)FF F0 FF F1 00 01 -> 0101 0100 0101 0111 0000 0011
+      code_off: 5527308 # (S)FF F0 FF F1 00 10 -> 0101 0100 0101 0111 0000 1100
+      pulselength: 165
+      signal_repetitions: 10
+    Tower: # 2
+      code_on: 5526979 # (S)FF F0 FF FF 10 01 -> 0101 0100 0101 0101 1100 0011
+      code_off: 5526988 # (S)FF F0 FF FF 10 10 -> 0101 0100 0101 0101 1100 1100
+      pulselength: 165
+      signal_repetitions: 10
+    Laptop: # 1
+      code_on: 5526835 # (S)FF F0 FF FF 01 01 -> 0101 0100 0101 0101 0011 0011
+      code_off: 5526844 # (S)FF F0 FF FF 01 10 -> 0101 0100 0101 0101 0011 1100
+      pulselength: 165
+      signal_repetitions: 10
+
+- platform: wake_on_lan
+  mac: !secret tower_mac
+  name: "Wake on LAN - Tower"

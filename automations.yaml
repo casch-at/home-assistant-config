@@ -1,0 +1,192 @@
+- id: '1602050820929'
+  alias: Turn on LED strips
+  description: Turns on LED stripes when sunset starts
+  trigger:
+  - platform: state
+    entity_id: sensor.daylight
+    from: solar_noon
+    to: golden_hour_2
+  condition:
+  - condition: or
+    conditions:
+    - condition: device
+      type: is_off
+      device_id: 064385de065911eb86921ff8f4822c34
+      entity_id: light.office_led
+      domain: light
+    - condition: device
+      type: is_off
+      device_id: 03baa6e6081411eb958e6b58c8805747
+      entity_id: light.stairs_led
+      domain: light
+  action:
+  - scene: scene.night
+  mode: single
+- id: '1602050996708'
+  alias: Turn on stairs LED
+  description: Turn on stairs LED in the morning
+  trigger:
+  - platform: time
+    at: 06:50:00
+  condition:
+  - condition: and
+    conditions:
+    - condition: or
+      conditions:
+      - condition: device
+        type: is_off
+        device_id: 03baa6e6081411eb958e6b58c8805747
+        entity_id: light.stairs_led
+        domain: light
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: sensor.daylight
+        state: sunrise_start
+      - condition: state
+        entity_id: sensor.daylight
+        state: sunrise_end
+      - condition: state
+        entity_id: sensor.daylight
+        state: dawn
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+  - scene: scene.stairs_cold
+  - service: automation.turn_off
+    data: {}
+    entity_id: automation.night_toilet_light
+  - service: automation.turn_on
+    data: {}
+    entity_id: automation.night_toilet_light
+  mode: single
+- id: '1602059477289'
+  alias: Turn off stairs LED
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.daylight
+    from: sunrise_end
+    to: golden_hour_1
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 03baa6e6081411eb958e6b58c8805747
+    entity_id: light.stairs_led
+    domain: light
+  action:
+  - type: turn_off
+    device_id: 03baa6e6081411eb958e6b58c8805747
+    entity_id: light.stairs_led
+    domain: light
+  mode: single
+- id: '1602353922519'
+  alias: Night Toilet Light
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: f7c1ba4c0c7711ebbb64492f5abb97c8
+    entity_id: binary_sensor.bedroom_motion
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: 03baa6e6081411eb958e6b58c8805747
+    entity_id: light.stairs_led
+    domain: light
+  - condition: template
+    value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+  action:
+  - service: scene.turn_on
+    data: {}
+    entity_id: scene.night_toilet
+  - delay: 00:01:00
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: device
+          type: is_on
+          device_id: 03baa6e6081411eb958e6b58c8805747
+          entity_id: light.stairs_led
+          domain: light
+        - condition: template
+          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
+            state_attr(''light.stairs_led'', ''brightness'') <= 14 and state_attr(''light.stairs_led'',
+            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
+            495 }}'
+      sequence:
+      - type: turn_on
+        device_id: 03baa6e6081411eb958e6b58c8805747
+        entity_id: light.stairs_led
+        domain: light
+        brightness_pct: 3
+      - delay: 00:01:00
+      - choose:
+        - conditions:
+          - condition: and
+            conditions:
+            - condition: device
+              type: is_on
+              device_id: 03baa6e6081411eb958e6b58c8805747
+              entity_id: light.stairs_led
+              domain: light
+            - condition: template
+              value_template: '{{ state_attr(''light.stairs_led'', ''brightness'')
+                and state_attr(''light.stairs_led'', ''brightness'') <= 8 and state_attr(''light.stairs_led'',
+                ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'')
+                == 495 }}'
+          sequence:
+          - type: turn_on
+            device_id: 03baa6e6081411eb958e6b58c8805747
+            entity_id: light.stairs_led
+            domain: light
+            brightness_pct: 2
+          - delay: 00:01:00
+          - choose:
+            - conditions:
+              - condition: and
+                conditions:
+                - condition: device
+                  type: is_on
+                  device_id: 03baa6e6081411eb958e6b58c8805747
+                  entity_id: light.stairs_led
+                  domain: light
+                - condition: template
+                  value_template: '{{ state_attr(''light.stairs_led'', ''brightness'')
+                    and state_attr(''light.stairs_led'', ''brightness'') <= 6 and
+                    state_attr(''light.stairs_led'', ''color_temp'') and state_attr(''light.stairs_led'',
+                    ''color_temp'') == 495 }}'
+              sequence:
+              - type: turn_on
+                device_id: 03baa6e6081411eb958e6b58c8805747
+                entity_id: light.stairs_led
+                domain: light
+                brightness_pct: 1
+              - delay: 00:01:00
+              - choose:
+                - conditions:
+                  - condition: and
+                    conditions:
+                    - condition: device
+                      type: is_on
+                      device_id: 03baa6e6081411eb958e6b58c8805747
+                      entity_id: light.stairs_led
+                      domain: light
+                    - condition: template
+                      value_template: '{{ state_attr(''light.stairs_led'', ''brightness'')
+                        and state_attr(''light.stairs_led'', ''brightness'') <= 3
+                        and state_attr(''light.stairs_led'', ''color_temp'') and state_attr(''light.stairs_led'',
+                        ''color_temp'') == 495 }}'
+                  sequence:
+                  - type: turn_off
+                    device_id: 03baa6e6081411eb958e6b58c8805747
+                    entity_id: light.stairs_led
+                    domain: light
+                default: []
+            default: []
+        default: []
+    default: []
+  mode: single

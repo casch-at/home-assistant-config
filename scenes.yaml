@@ -1,0 +1,107 @@
+- id: '1601832420345'
+  name: 'Night '
+  entities:
+    light.led_stripes:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 211
+      color_temp: 375
+      is_deconz_group: true
+      all_on: true
+      friendly_name: LED Stripes
+      supported_features: 63
+      state: 'on'
+  icon: mdi:led-strip
+- id: '1601908389461'
+  name: Chill
+  entities:
+    light.led_stripes:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 255
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      is_deconz_group: true
+      all_on: true
+      friendly_name: LED Stripes
+      supported_features: 63
+      state: 'on'
+- id: '1602060945201'
+  name: Stairs Cold
+  entities:
+    light.stairs_led:
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      brightness: 254
+      color_temp: 155
+      is_deconz_group: false
+      friendly_name: Stairs LED-Stripe
+      supported_features: 63
+      state: 'on'
+- id: '1602355780411'
+  name: Toilet
+  entities:
+    light.stairs_led:
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      brightness: 12
+      color_temp: 495
+      is_deconz_group: false
+      friendly_name: Stairs LED-Stripe
+      supported_features: 63
+      state: 'on'
+  icon: hass:toilet
+- id: '1602522741384'
+  name: 'Love 😍 '
+  entities:
+    light.stairs_led:
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Stairs-LED
+      supported_features: 63
+      state: 'on'
+  icon: mdi:head-heart
+- id: '1602776232032'
+  name: Regular
+  entities:
+    light.stairs_led:
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      brightness: 255
+      color_temp: 400
+      is_deconz_group: false
+      friendly_name: Stairs LED-Stripe
+      supported_features: 63
+      state: 'on'

@@ -1,0 +1,65 @@
+turn_switch_desk_and_laptop_on:
+  alias: Desk and laptop on
+  sequence:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.desk
+  - delay: '0.3'
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.laptop
+  mode: single
+  icon: hass:dip-switch
+turn_all_switches_off:
+  alias: Switches off
+  sequence:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.laptop
+  - delay: '0.3'
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.desk
+  - delay: '0.3'
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.printer
+  - delay: '0.3'
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.tower
+  - delay: '0.3'
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.tv
+  mode: single
+  icon: hass:dip-switch
+wake_tower:
+  alias: Wake Tower
+  sequence:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.tower
+  - delay: 00:00:05
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.wake_on_lan_tower
+  mode: single
+  icon: hass:desktop-tower
+all_lights_off:
+  alias: All Lights Off
+  sequence:
+  - type: turn_off
+    device_id: 6a0ab0530e0b11ebb293030875c32589
+    entity_id: light.bathroom
+    domain: light
+  - type: turn_off
+    device_id: 5e300c5a065f11ebb0d2291f45363241
+    entity_id: light.led_stripes
+    domain: light
+  - type: turn_off
+    device_id: 611cb71e0e0411ebbb5f87403d317985
+    entity_id: light.parlor
+    domain: light
+  mode: single
+  icon: mdi:lightbulb-group
