@@ -3,86 +3,174 @@ icon: mdi:home-assistant
 views:
   - path: default_view
     title: Switches
+    panel: true
     icon: 'mdi:dip-switch'
     badges: []
     cards:
-      - type: entities
-        entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.bathroom
-          - type: 'custom:slider-entity-row'
-            entity: light.bathroom_light_1
-            name: Light 1
-          - type: 'custom:slider-entity-row'
-            entity: light.bathroom_light_2
-            name: Light 2
-          - type: 'custom:slider-entity-row'
-            entity: light.bathroom_light_3
-            name: Light 3
-          - type: 'custom:slider-entity-row'
-            entity: light.bathroom_light_4
-            name: Light 4
-        title: Bathroom
-      - type: entities
-        entities:
-          - entity: binary_sensor.bedroom_motion
-            name: Motion
-        title: Bedroom
-      - type: entities
-        entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.stairs_led
-        title: Floor
-      - type: entities
-        entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.led_stripes
-          - type: 'custom:slider-entity-row'
-            entity: light.parlor
-        title: Home
-      - type: entities
-        entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.office_led
-        title: Office
-      - type: entities
-        entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.parlor_shelve_light
-            name: Shelve Light
-        title: Parlor
-      - type: entities
-        entities:
-          - entity: scene.bathroom_bath
-          - entity: scene.bathroom_morning
-          - entity: scene.chill
-          - entity: scene.love
-          - entity: scene.night
-          - entity: scene.regular
-          - entity: scene.stairs_morning_light
-          - entity: scene.night_toilet
-        title: Scene
-      - type: entities
-        entities:
-          - script.all_lights_off
-          - script.turn_switch_desk_and_laptop_on
-          - script.turn_all_switches_off
-          - script.wake_tower
-        title: Script
-      - type: entities
-        entities:
-          - switch.desk
-          - switch.laptop
-          - switch.printer
-          - switch.tv
-          - switch.tower
-          - switch.wake_on_lan_tower
-        title: Switch
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - switch.desk
+              - switch.laptop
+              - switch.printer
+              - switch.tv
+              - switch.tower
+            show_header_toggle: false
+          - type: glance
+            entities:
+              - entity: script.turn_switch_desk_and_laptop_on
+                tap_action:
+                  action: call-service
+                  service: script.turn_switch_desk_and_laptop_on
+              - entity: script.turn_all_switches_off
+                tap_action:
+                  action: call-service
+                  service: script.turn_all_switches_off
+                  confirmation:
+                    text: Turn all switches off?
+              - entity: script.wake_tower
+                tap_action:
+                  action: call-service
+                  service: script.wake_tower
+                  confirmation:
+                    text: Wake Tower?
+              - entity: script.tower_off
+                tap_action:
+                  action: call-service
+                  service: script.tower_off
+                  confirmation:
+                    text: Turn off Tower?
+            show_state: false
   - title: Lights
     path: lights
+    panel: true
     icon: 'mdi:lightbulb-group'
     badges: []
-    cards: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_1
+                name: Left Front
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_2
+                name: Left Back
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_3
+                name: Right Back
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_4
+                name: Right Front
+                toggle: true
+                hide_when_off: true
+            # title: Bathroom
+          - type: entities
+            entities:
+              - type: 'custom:slider-entity-row'
+                entity: light.led_stripes
+                toggle: true
+                hide_when_off: true
+                name: Stripes
+              - type: 'custom:slider-entity-row'
+                entity: light.stairs_led
+                toggle: true
+                hide_when_off: true
+                name: Stairs
+              - type: 'custom:slider-entity-row'
+                entity: light.office_led
+                toggle: true
+                hide_when_off: true
+                name: Office
+            # title: Stripes
+          - type: entities
+            entities:
+              - type: 'custom:slider-entity-row'
+                entity: light.parlor
+                toggle: true
+                hide_when_off: true
+                name: Parlor
+              - type: 'custom:slider-entity-row'
+                entity: light.parlor_shelve_light
+                name: Shelve Light
+                toggle: true
+                hide_when_off: true
+            # title: Parlor
+          - type: glance
+            entities:
+              - entity: scene.bathroom_bath
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bathroom_bath
+                name: Bath Warm
+              - entity: scene.bathroom_morning
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bathroom_morning
+                name: Bath Cold
+              - entity: scene.chill
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.chill
+              - entity: scene.love
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.love
+              - entity: scene.night
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.night
+              - entity: scene.regular
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.regular
+              - entity: scene.stairs_morning_light
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.stairs_morning_light
+                name: Morning Light
+              - entity: scene.night_toilet
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.night_toilet
+              - entity: script.all_lights_off
+                tap_action:
+                  action: call-service
+                  service: script.all_lights_off
+                  confirmation:
+                    text: Turn all lights off?
+                name: Lights Off
+            # title: Scene
+            # show_name: false
+            show_state: false
   - title: Status
     path: status
     icon: 'mdi:information'
@@ -103,6 +191,19 @@ views:
               - entity: person.sonia_avramidis
             state_color: true
             columns: 3
+          - type: horizontal-stack
+            cards:
+              - type: button
+              - type: button
+                name: Restart HA
+                icon: 'mdi:restart'
+                icon_height: 50px
+                tap_action:
+                  action: call-service
+                  service: homeassistant.restart
+                  confirmation:
+                    text: Restart Home Assistant?
+              - type: button
           - type: 'custom:battery-state-card'
             entities:
               - entity: sensor.tablet_battery_level

@@ -12,16 +12,45 @@ views:
             entities:
               - type: 'custom:slider-entity-row'
                 entity: light.bathroom
+                toggle: true
+                hide_when_off: true
               - type: 'custom:slider-entity-row'
                 entity: light.parlor_shelve_light
+                toggle: true
+                hide_when_off: true
               - type: 'custom:slider-entity-row'
                 entity: light.stairs_led
+                toggle: true
+                hide_when_off: true
               - entity: scene.bathroom_bath
+                tab_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bathroom_bath
               - entity: scene.bathroom_morning
+                tab_action:
+                  action: toggle
               - entity: scene.regular
+                tab_action:
+                  action: toggle
               - entity: switch.tv
+                tab_action:
+                  action: toggle
               - entity: switch.printer
+                tab_action:
+                  action: call-service
+                  service: switch.toggle
+                  service_data:
+                    entity: switch.printer
               - entity: input_boolean.presence
+              - entity: script.all_lights_off
+                tap_action:
+                  action: call-service
+                  service: script.all_lights_off
+                  confirmation:
+                    text: Are you sure you want to turn off all lights?
+                name: Lights Off
             show_header_toggle: false
             state_color: true
           - type: button
