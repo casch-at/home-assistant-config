@@ -14,10 +14,12 @@ views:
                 entity: light.parlor_shelve_light
                 toggle: true
                 hide_when_off: true
+                name: Parlor Shelve
               - type: 'custom:slider-entity-row'
                 entity: light.stairs_led
                 toggle: true
                 hide_when_off: true
+                name: Stairs
               - type: 'custom:slider-entity-row'
                 entity: light.bathroom
                 toggle: true
