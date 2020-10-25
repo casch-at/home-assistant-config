@@ -312,3 +312,22 @@
     data: {}
     entity_id: automation.night_toilet_light
   mode: single
+- id: '1603633705234'
+  alias: Tablet Battery Warning
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ states(''sensor.tablet_battery_level'')|int < 10 }}'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.tablet_is_charging
+    state: 'off'
+  action:
+  - service: persistent_notification.create
+    data:
+      message: 'The tablet battery level has dropped below 10 %, please recharge!
+
+        '
+      title: Critical Tablet Battery Level {{ states('sensor.tablet_battery_level')
+        }} %
+  mode: single
