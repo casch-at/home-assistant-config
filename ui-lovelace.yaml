@@ -169,34 +169,6 @@ views:
                         entity_id: scene.night
                     icon_height: 50px
                   - type: button
-                    entity: scene.regular
-                    tap_action:
-                      action: call-service
-                      service: scene.turn_on
-                      service_data:
-                        entity_id: scene.regular
-                    icon_height: 50px
-              - type: 'custom:vertical-stack-in-card'
-                horizontal: true
-                cards:
-                  - type: button
-                    entity: scene.stairs_morning_light
-                    tap_action:
-                      action: call-service
-                      service: scene.turn_on
-                      service_data:
-                        entity_id: scene.stairs_morning_light
-                    name: Morning Light
-                    icon_height: 50px
-                  - type: button
-                    entity: scene.night_toilet
-                    tap_action:
-                      action: call-service
-                      service: scene.turn_on
-                      service_data:
-                        entity_id: scene.night_toilet
-                    icon_height: 50px
-                  - type: button
           - type: entities
             title: Bathroom
             entities:
@@ -225,6 +197,15 @@ views:
                 name: Right Front
                 toggle: true
                 hide_when_off: true
+          - type: button
+            entity: script.lights_off
+            tap_action:
+              action: call-service
+              service: script.lights_off
+              confirmation:
+                text: Are you sure you want to turn off all lights?
+            name: Lights Off
+            icon_height: 50px
   - title: Status
     path: status
     icon: 'mdi:information'
