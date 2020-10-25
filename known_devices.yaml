@@ -27,7 +27,7 @@ laptop_sonia_router:
   picture:
   track: false
 
-huawei_p20_router_router:
+huawei_p20_router:
   name: HUAWEI_P20_router
   mac: F8:C3:9E:14:E4:80
   icon:

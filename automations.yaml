@@ -4,7 +4,6 @@
   trigger:
   - platform: state
     entity_id: sensor.daylight
-    from: golden_hour_2
     to: sunset_start
   condition:
   - condition: state
@@ -86,10 +85,6 @@
               supported_features: 63
               state: 'on'
     default: []
-  - service: input_select.select_option
-    data:
-      option: evening
-    entity_id: input_select.day_state
   mode: single
 - id: '1602050996708'
   alias: Turn on stairs LED
@@ -261,14 +256,16 @@
   - platform: time
     at: 06:45:00
   - platform: time
-    at: '22:00:00'
+    at: '18:00:00'
+  - platform: time
+    at: 08:00:00
   condition: []
   action:
   - choose:
     - conditions:
       - condition: time
-        before: '22:05:00'
-        after: '21:55:00'
+        before: 06:50:00
+        after: 06:44:00
       sequence:
       - service: input_select.select_option
         data:
@@ -278,8 +275,19 @@
   - choose:
     - conditions:
       - condition: time
-        before: '22:05:00'
-        after: '21:55:00'
+        before: 08:05:00
+        after: 07:55:00
+      sequence:
+      - service: input_select.select_option
+        data:
+          option: daytime
+        entity_id: input_select.day_state
+    default: []
+  - choose:
+    - conditions:
+      - condition: time
+        before: '18:05:00'
+        after: '17:55:00'
       sequence:
       - service: input_select.select_option
         data:
