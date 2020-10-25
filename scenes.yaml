@@ -51,7 +51,7 @@
       supported_features: 63
       state: 'on'
 - id: '1602060945201'
-  name: Stairs Cold
+  name: Stairs Morning Light
   entities:
     light.stairs_led:
       min_mireds: 155
@@ -64,6 +64,7 @@
       friendly_name: Stairs LED-Stripe
       supported_features: 63
       state: 'on'
+  icon: mdi:brightness-6
 - id: '1602355780411'
   name: Toilet
   entities:

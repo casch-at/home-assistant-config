@@ -1,9 +1,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# Enable python scripts
-python_script:
-
 # Enable themes
 frontend:
   themes: !include_dir_merge_named themes

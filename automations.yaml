@@ -6,7 +6,10 @@
     entity_id: sensor.daylight
     from: golden_hour_2
     to: sunset_start
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
   action:
   - choose:
     - conditions:
@@ -83,6 +86,10 @@
               supported_features: 63
               state: 'on'
     default: []
+  - service: input_select.select_option
+    data:
+      option: evening
+    entity_id: input_select.day_state
   mode: single
 - id: '1602050996708'
   alias: Turn on stairs LED
@@ -95,13 +102,6 @@
     conditions:
     - condition: or
       conditions:
-      - condition: device
-        type: is_off
-        device_id: 03baa6e6081411eb958e6b58c8805747
-        entity_id: light.stairs_led
-        domain: light
-    - condition: or
-      conditions:
       - condition: state
         entity_id: sensor.daylight
         state: sunrise_start
@@ -112,16 +112,16 @@
         entity_id: sensor.daylight
         state: dawn
     - condition: state
+      state: 'on'
+      entity_id: input_boolean.presence
+    - condition: state
+      entity_id: input_select.day_state
+      state: morning
+    - condition: state
       entity_id: binary_sensor.workday_sensor
       state: 'on'
   action:
-  - scene: scene.stairs_cold
-  - service: automation.turn_off
-    data: {}
-    entity_id: automation.night_toilet_light
-  - service: automation.turn_on
-    data: {}
-    entity_id: automation.night_toilet_light
+  - scene: scene.stairs_morning_light
   mode: single
 - id: '1602059477289'
   alias: Turn off stairs LED
@@ -131,17 +131,16 @@
     entity_id: sensor.daylight
     from: sunrise_end
     to: golden_hour_1
-  condition:
-  - condition: device
-    type: is_on
-    device_id: 03baa6e6081411eb958e6b58c8805747
-    entity_id: light.stairs_led
-    domain: light
+  condition: []
   action:
   - type: turn_off
     device_id: 03baa6e6081411eb958e6b58c8805747
     entity_id: light.stairs_led
     domain: light
+  - service: input_select.select_option
+    data:
+      option: daytime
+    entity_id: input_select.day_state
   mode: single
 - id: '1602353922519'
   alias: Night Toilet Light
@@ -160,6 +159,9 @@
     domain: light
   - condition: template
     value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+  - condition: state
+    entity_id: input_select.day_state
+    state: night
   action:
   - service: scene.turn_on
     data: {}
@@ -251,4 +253,54 @@
         entity_id: light.stairs_led
         domain: light
     default: []
+  mode: single
+- id: '1603389408650'
+  alias: Set Day State
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:45:00
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: time
+        before: '22:05:00'
+        after: '21:55:00'
+      sequence:
+      - service: input_select.select_option
+        data:
+          option: night
+        entity_id: input_select.day_state
+    default: []
+  - choose:
+    - conditions:
+      - condition: time
+        before: '22:05:00'
+        after: '21:55:00'
+      sequence:
+      - service: input_select.select_option
+        data:
+          option: night
+        entity_id: input_select.day_state
+    default: []
+  mode: single
+- id: '1603390848183'
+  alias: Night Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.day_state
+    to: night
+  condition: []
+  action:
+  - service: script.turn_all_switches_off
+    data: {}
+  - service: script.all_lights_off
+    data: {}
+  - service: automation.trigger
+    data: {}
+    entity_id: automation.night_toilet_light
   mode: single
