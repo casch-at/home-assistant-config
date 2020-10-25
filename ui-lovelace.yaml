@@ -15,6 +15,7 @@ views:
           - switch.tv
           - switch.tower
         show_header_toggle: false
+        title: Switches
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -52,10 +53,10 @@ views:
                     text: Turn off Tower?
                 icon_height: 80px
               - type: button
-                entity: script.day_state_night
+                entity: script.set_daytime_to_night
                 tap_action:
                   action: call-service
-                  service: script.day_state_night
+                  service: script.set_daytime_to_night
                   confirmation:
                     text: |
                       Do you really want to set the day state to night?
@@ -206,24 +207,50 @@ views:
     cards:
       - type: vertical-stack
         cards:
+          - type: horizontal-stack
+            cards:
+              - type: glance
+                entities:
+                  - entity: person.christian_schwarzgruber
+                state_color: true
+                columns: 1
+              - type: button
+                entity: input_boolean.presence
+                name: Presence
+                show_state: true
+                icon_height: 50px
+                tap_action:
+                  action: call-service
+                  service: input_boolean.toggle
+                  confirmation:
+                    text: Toggle presence?
+              - type: glance
+                entities:
+                  - entity: person.sonia_avramidis
+                state_color: true
+                columns: 1
           - type: glance
             entities:
-              - entity: person.christian_schwarzgruber
-              - entity: person.sonia_avramidis
+              - entity: input_select.daytime
+              - entity: sensor.daylight
+                name: Sun
+              - entity: sun.sun
+            state_color: true
+            columns: 3
+          - type: glance
+            entities:
+              - entity: binary_sensor.workday_sensor
+                name: Workday
+              - entity: binary_sensor.bedroom_motion
             state_color: true
             columns: 2
           - type: glance
             entities:
-              - entity: input_boolean.presence
-              - entity: input_select.day_state
-              - entity: sensor.daylight
-              - entity: binary_sensor.workday_sensor
-              - entity: sun.sun
-              - entity: binary_sensor.bedroom_motion
               - entity: sensor.hacs
+                name: HACS
               - entity: binary_sensor.updater
             state_color: true
-            columns: 3
+            columns: 2
           - type: horizontal-stack
             cards:
               - type: button

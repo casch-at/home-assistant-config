@@ -110,8 +110,8 @@
       state: 'on'
       entity_id: input_boolean.presence
     - condition: state
-      entity_id: input_select.day_state
-      state: morning
+      entity_id: input_select.daytime
+      state: Morning
     - condition: state
       entity_id: binary_sensor.workday_sensor
       state: 'on'
@@ -133,9 +133,9 @@
     entity_id: light.stairs_led
     domain: light
   - service: input_select.select_option
+    entity_id: input_select.daytime
     data:
-      option: daytime
-    entity_id: input_select.day_state
+      option: Daytimes
   mode: single
 - id: '1602353922519'
   alias: Night Toilet Light
@@ -150,8 +150,8 @@
   - condition: template
     value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
   - condition: state
-    entity_id: input_select.day_state
-    state: night
+    entity_id: input_select.daytime
+    state: Night
   - condition: device
     type: is_off
     device_id: 03baa6e6081411eb958e6b58c8805747
@@ -250,7 +250,7 @@
     default: []
   mode: single
 - id: '1603389408650'
-  alias: Set Day State
+  alias: Set Daytime
   description: ''
   trigger:
   - platform: time
@@ -268,9 +268,9 @@
         after: 06:44:00
       sequence:
       - service: input_select.select_option
+        entity_id: input_select.daytime
         data:
-          option: morning
-        entity_id: input_select.day_state
+          option: Morning
     default: []
   - choose:
     - conditions:
@@ -279,9 +279,9 @@
         after: 07:55:00
       sequence:
       - service: input_select.select_option
+        entity_id: input_select.daytime
         data:
-          option: daytime
-        entity_id: input_select.day_state
+          option: Daytimes
     default: []
   - choose:
     - conditions:
@@ -290,9 +290,9 @@
         after: '17:55:00'
       sequence:
       - service: input_select.select_option
+        entity_id: input_select.daytime
         data:
-          option: evening
-        entity_id: input_select.day_state
+          option: Evening
     default: []
   mode: single
 - id: '1603390848183'
@@ -300,8 +300,8 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: input_select.day_state
-    to: night
+    entity_id: input_select.daytime
+    to: Night
   condition: []
   action:
   - service: script.switches_off

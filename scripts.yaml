@@ -127,12 +127,12 @@ bathroom_demo:
     domain: light
   mode: single
   icon: mdi:shower
-day_state_night:
+set_daytime_to_night:
   alias: Set Day State to Night
   sequence:
   - service: input_select.select_option
     data:
       option: night
-    entity_id: input_select.day_state
+    entity_id: input_select.daytime
   mode: single
   icon: mdi:sleep
