@@ -89,10 +89,12 @@ views:
                 entity: input_boolean.presence
                 name: Presence
                 show_state: true
-                icon_height: 50px
+                icon_height: 40px
                 tap_action:
                   action: call-service
                   service: input_boolean.toggle
+                  service_data:
+                    entity_id: input_boolean.presence
                   confirmation:
                     text: Toggle presence?
               - type: glance
