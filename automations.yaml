@@ -152,21 +152,21 @@
     entity_id: binary_sensor.bedroom_motion
     domain: binary_sensor
   condition:
-  - condition: device
-    type: is_off
-    device_id: 03baa6e6081411eb958e6b58c8805747
-    entity_id: light.stairs_led
-    domain: light
   - condition: template
     value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
   - condition: state
     entity_id: input_select.day_state
     state: night
+  - condition: device
+    type: is_off
+    device_id: 03baa6e6081411eb958e6b58c8805747
+    entity_id: light.stairs_led
+    domain: light
   action:
   - service: scene.turn_on
     data: {}
     entity_id: scene.night_toilet
-  - delay: 00:01:00
+  - delay: 00:00:30
   - choose:
     - conditions:
       - condition: and
@@ -187,7 +187,7 @@
         entity_id: light.stairs_led
         domain: light
         brightness_pct: 3
-      - delay: 00:01:00
+      - delay: 00:00:30
     default: []
   - choose:
     - conditions:
@@ -283,7 +283,7 @@
       sequence:
       - service: input_select.select_option
         data:
-          option: night
+          option: evening
         entity_id: input_select.day_state
     default: []
   mode: single
