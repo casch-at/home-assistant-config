@@ -7,7 +7,7 @@ views:
     icon: 'mdi:dip-switch'
     badges: []
     cards:
-      - type: vertical-stack
+      - type: 'custom:vertical-stack-in-card'
         cards:
           - type: entities
             entities:
@@ -17,64 +17,81 @@ views:
               - switch.tv
               - switch.tower
             show_header_toggle: false
-          - type: glance
-            entities:
-              - entity: script.desk_and_laptop_on
-                tap_action:
-                  action: call-service
-                  service: script.desk_and_laptop_on
-              - entity: script.switches_off
-                tap_action:
-                  action: call-service
-                  service: script.switches_off
-                  confirmation:
-                    text: Turn all switches off?
-              - entity: script.wake_tower
-                tap_action:
-                  action: call-service
-                  service: script.wake_tower
-                  confirmation:
-                    text: Wake Tower?
-              - entity: script.tower_off
-                tap_action:
-                  action: call-service
-                  service: script.tower_off
-                  confirmation:
-                    text: Turn off Tower?
-              - entity: script.day_state_night
-                tap_action:
-                  action: call-service
-                  service: script.day_state_night
-                  confirmation:
-                    text: |
-                      Do you really want to set the day state to night?
+          - type: 'custom:vertical-stack-in-card'
+            cards:
+              - type: 'custom:vertical-stack-in-card'
+                horizontal: true
+                cards:
+                  - type: button
+                    entity: script.desk_and_laptop_on
+                    tap_action:
+                      action: call-service
+                      service: script.desk_and_laptop_on
+                    icon_height: 50px
+                  - type: button
+                    entity: script.switches_off
+                    tap_action:
+                      action: call-service
+                      service: script.switches_off
+                      confirmation:
+                        text: Turn all switches off?
+                    icon_height: 50px
+                  - type: button
+                    entity: script.wake_tower
+                    tap_action:
+                      action: call-service
+                      service: script.wake_tower
+                      confirmation:
+                        text: Wake Tower?
+                    icon_height: 50px
+              - type: 'custom:vertical-stack-in-card'
+                horizontal: true
+                cards:
+                  - type: button
+                    entity: script.tower_off
+                    tap_action:
+                      action: call-service
+                      service: script.tower_off
+                      confirmation:
+                        text: Turn off Tower?
+                    icon_height: 50px
+                  - type: button
+                    entity: script.day_state_night
+                    tap_action:
+                      action: call-service
+                      service: script.day_state_night
+                      confirmation:
+                        text: |
+                          Do you really want to set the day state to night?
 
-                      This turns lights and switches off!
-                name: State Night
-              - entity: script.lights_off
-                tap_action:
-                  action: call-service
-                  service: script.lights_off
-                  confirmation:
-                    text: Are you sure you want to turn off all lights?
-                name: Lights Off
-                icon_height: 50px
-            show_state: false
+                          This turns lights and switches off!
+                    name: State Night
+                    icon_height: 50px
+                  - type: button
+                    entity: script.lights_off
+                    tap_action:
+                      action: call-service
+                      service: script.lights_off
+                      confirmation:
+                        text: Are you sure you want to turn off all lights?
+                    name: Lights Off
+                    icon_height: 50px
   - title: Lights
     path: lights
     panel: true
     icon: 'mdi:lightbulb-group'
     badges: []
     cards:
-      - type: vertical-stack
+      - type: 'custom:vertical-stack-in-card'
         cards:
           - type: entities
+            title: Stripes (RGB)
             entities:
               - type: 'custom:slider-entity-row'
                 entity: light.led_stripes
                 toggle: true
                 hide_when_off: true
-                name: Stripes
+                name: All
               - type: 'custom:slider-entity-row'
                 entity: light.stairs_led
                 toggle: true
@@ -85,89 +102,109 @@ views:
                 toggle: true
                 hide_when_off: true
                 name: Office
-            # title: Stripes
           - type: entities
+            title: Parlor
             entities:
               - type: 'custom:slider-entity-row'
                 entity: light.parlor
                 toggle: true
                 hide_when_off: true
-                name: Parlor
+                name: All
               - type: 'custom:slider-entity-row'
                 entity: light.parlor_shelve_light
                 name: Shelve Light
                 toggle: true
                 hide_when_off: true
-            # title: Parlor
-          - type: glance
-            entities:
-              - entity: scene.bathroom_bath
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.bathroom_bath
-                name: Bath Warm
-              - entity: scene.bathroom_morning
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.bathroom_morning
-                name: Bath Cold
-              - entity: scene.chill
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.chill
-              - entity: scene.love
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.love
-              - entity: scene.night
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.night
-              - entity: scene.regular
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.regular
-              - entity: scene.stairs_morning_light
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.stairs_morning_light
-                name: Morning Light
-              - entity: scene.night_toilet
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.night_toilet
-              - entity: script.lights_off
-                tap_action:
-                  action: call-service
-                  service: script.lights_off
-                  confirmation:
-                    text: Turn all lights off?
-                name: Lights Off
-            # title: Scene
-            # show_name: false
-            show_state: false
+          - type: 'custom:vertical-stack-in-card'
+            title: Scences
+            cards:
+              - type: 'custom:vertical-stack-in-card'
+                horizontal: true
+                cards:
+                  - type: button
+                    entity: scene.bathroom_bath
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.bathroom_bath
+                    name: Bath Warm
+                    icon: 'mdi:hot-tub'
+                    icon_height: 50px
+                  - type: button
+                    entity: scene.bathroom_morning
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.bathroom_morning
+                    name: Bath Cold
+                    icon: 'mdi:shower'
+                    icon_height: 50px
+                  - type: button
+                    entity: scene.chill
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.chill
+                    icon_height: 50px
+              - type: 'custom:vertical-stack-in-card'
+                horizontal: true
+                cards:
+                  - type: button
+                    entity: scene.love
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.love
+                    icon_height: 50px
+                  - type: button
+                    entity: scene.night
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.night
+                    icon_height: 50px
+                  - type: button
+                    entity: scene.regular
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.regular
+                    icon_height: 50px
+              - type: 'custom:vertical-stack-in-card'
+                horizontal: true
+                cards:
+                  - type: button
+                    entity: scene.stairs_morning_light
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.stairs_morning_light
+                    name: Morning Light
+                    icon_height: 50px
+                  - type: button
+                    entity: scene.night_toilet
+                    tap_action:
+                      action: call-service
+                      service: scene.turn_on
+                      service_data:
+                        entity_id: scene.night_toilet
+                    icon_height: 50px
+                  - type: button
           - type: entities
+            title: Bathroom
             entities:
               - type: 'custom:slider-entity-row'
                 entity: light.bathroom
                 toggle: true
                 hide_when_off: true
+                name: All
               - type: 'custom:slider-entity-row'
                 entity: light.bathroom_light_1
                 name: Left Front
@@ -188,14 +225,13 @@ views:
                 name: Right Front
                 toggle: true
                 hide_when_off: true
-            # title: Bathroom
   - title: Status
     path: status
     icon: 'mdi:information'
     panel: true
     badges: []
     cards:
-      - type: vertical-stack
+      - type: 'custom:vertical-stack-in-card'
         cards:
           - type: glance
             entities:
@@ -209,7 +245,8 @@ views:
               - entity: person.sonia_avramidis
             state_color: true
             columns: 3
-          - type: horizontal-stack
+          - type: 'custom:vertical-stack-in-card'
+            horizontal: true
             cards:
               - type: button
               - type: button
