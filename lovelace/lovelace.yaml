@@ -22,10 +22,3 @@ dashboards:
     icon: mdi:home-account
     show_in_sidebar: true
     require_admin: false
-  lovelace-tablet:
-    mode: yaml
-    filename: lovelace/tablet.yaml
-    title: Tablet Lovelace
-    icon: mdi:tablet-android
-    show_in_sidebar: true
-    require_admin: false
