@@ -3,7 +3,7 @@ views:
   - path: default_view
     title: Home
     icon: 'mdi:home-assistant'
-    panel: true
+    panel: false
     badges: []
     cards:
       - type: 'custom:vertical-stack-in-card'
@@ -14,12 +14,10 @@ views:
                 entity: light.parlor_shelve_light
                 toggle: true
                 hide_when_off: true
-                name: Parlor Shelve
               - type: 'custom:slider-entity-row'
                 entity: light.stairs_led
                 toggle: true
                 hide_when_off: true
-                name: Stairs
               - type: 'custom:slider-entity-row'
                 entity: light.bathroom
                 toggle: true
@@ -85,14 +83,18 @@ views:
         cards:
           - type: glance
             entities:
+              - entity: person.christian_schwarzgruber
+              - entity: person.sonia_avramidis
+            state_color: true
+            columns: 2
+          - type: glance
+            entities:
               - entity: input_boolean.presence
               - entity: input_select.day_state
               - entity: sensor.daylight
               - entity: binary_sensor.workday_sensor
               - entity: sun.sun
               - entity: binary_sensor.bedroom_motion
-              - entity: person.christian_schwarzgruber
-              - entity: person.sonia_avramidis
             state_color: true
             columns: 3
           - type: 'custom:battery-state-card'
