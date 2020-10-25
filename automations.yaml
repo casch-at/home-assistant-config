@@ -304,9 +304,9 @@
     to: night
   condition: []
   action:
-  - service: script.turn_all_switches_off
+  - service: script.switches_off
     data: {}
-  - service: script.all_lights_off
+  - service: script.lights_off
     data: {}
   - service: automation.trigger
     data: {}

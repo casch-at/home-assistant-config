@@ -1,5 +1,5 @@
-turn_switch_desk_and_laptop_on:
-  alias: Desk and laptop on
+desk_and_laptop_on:
+  alias: Desk/Laptop On
   sequence:
   - service: switch.turn_on
     data: {}
@@ -10,7 +10,7 @@ turn_switch_desk_and_laptop_on:
     entity_id: switch.laptop
   mode: single
   icon: hass:dip-switch
-turn_all_switches_off:
+switches_off:
   alias: Switches off
   sequence:
   - service: switch.turn_off
@@ -46,8 +46,8 @@ wake_tower:
     entity_id: switch.wake_on_lan_tower
   mode: single
   icon: hass:desktop-tower
-all_lights_off:
-  alias: All Lights Off
+lights_off:
+  alias: Lights Off
   sequence:
   - type: turn_off
     device_id: 6a0ab0530e0b11ebb293030875c32589
@@ -127,3 +127,12 @@ bathroom_demo:
     domain: light
   mode: single
   icon: mdi:shower
+day_state_night:
+  alias: Set Day State to Night
+  sequence:
+  - service: input_select.select_option
+    data:
+      option: night
+    entity_id: input_select.day_state
+  mode: single
+  icon: mdi:sleep

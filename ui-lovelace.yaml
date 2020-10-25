@@ -19,14 +19,14 @@ views:
             show_header_toggle: false
           - type: glance
             entities:
-              - entity: script.turn_switch_desk_and_laptop_on
+              - entity: script.desk_and_laptop_on
                 tap_action:
                   action: call-service
-                  service: script.turn_switch_desk_and_laptop_on
-              - entity: script.turn_all_switches_off
+                  service: script.desk_and_laptop_on
+              - entity: script.switches_off
                 tap_action:
                   action: call-service
-                  service: script.turn_all_switches_off
+                  service: script.switches_off
                   confirmation:
                     text: Turn all switches off?
               - entity: script.wake_tower
@@ -41,6 +41,24 @@ views:
                   service: script.tower_off
                   confirmation:
                     text: Turn off Tower?
+              - entity: script.day_state_night
+                tap_action:
+                  action: call-service
+                  service: script.day_state_night
+                  confirmation:
+                    text: |
+                      Do you really want to set the day state to night?
+
+                      This turns lights and switches off!
+                name: State Night
+              - entity: script.lights_off
+                tap_action:
+                  action: call-service
+                  service: script.lights_off
+                  confirmation:
+                    text: Are you sure you want to turn off all lights?
+                name: Lights Off
+                icon_height: 50px
             show_state: false
   - title: Lights
     path: lights
@@ -50,33 +68,6 @@ views:
     cards:
       - type: vertical-stack
         cards:
-          - type: entities
-            entities:
-              - type: 'custom:slider-entity-row'
-                entity: light.bathroom
-                toggle: true
-                hide_when_off: true
-              - type: 'custom:slider-entity-row'
-                entity: light.bathroom_light_1
-                name: Left Front
-                toggle: true
-                hide_when_off: true
-              - type: 'custom:slider-entity-row'
-                entity: light.bathroom_light_2
-                name: Left Back
-                toggle: true
-                hide_when_off: true
-              - type: 'custom:slider-entity-row'
-                entity: light.bathroom_light_3
-                name: Right Back
-                toggle: true
-                hide_when_off: true
-              - type: 'custom:slider-entity-row'
-                entity: light.bathroom_light_4
-                name: Right Front
-                toggle: true
-                hide_when_off: true
-            # title: Bathroom
           - type: entities
             entities:
               - type: 'custom:slider-entity-row'
@@ -161,16 +152,43 @@ views:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.night_toilet
-              - entity: script.all_lights_off
+              - entity: script.lights_off
                 tap_action:
                   action: call-service
-                  service: script.all_lights_off
+                  service: script.lights_off
                   confirmation:
                     text: Turn all lights off?
                 name: Lights Off
             # title: Scene
             # show_name: false
             show_state: false
+          - type: entities
+            entities:
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_1
+                name: Left Front
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_2
+                name: Left Back
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_3
+                name: Right Back
+                toggle: true
+                hide_when_off: true
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom_light_4
+                name: Right Front
+                toggle: true
+                hide_when_off: true
+            # title: Bathroom
   - title: Status
     path: status
     icon: 'mdi:information'
