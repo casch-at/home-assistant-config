@@ -1,26 +1,88 @@
 - id: '1602050820929'
-  alias: Turn on LED strips
-  description: Turns on LED stripes when sunset starts
+  alias: Sun down Lights
+  description: Turn on lights when the sun goes down
   trigger:
   - platform: state
     entity_id: sensor.daylight
-    from: solar_noon
-    to: golden_hour_2
-  condition:
-  - condition: or
-    conditions:
-    - condition: device
-      type: is_off
-      device_id: 064385de065911eb86921ff8f4822c34
-      entity_id: light.office_led
-      domain: light
-    - condition: device
-      type: is_off
-      device_id: 03baa6e6081411eb958e6b58c8805747
-      entity_id: light.stairs_led
-      domain: light
+    from: golden_hour_2
+    to: sunset_start
+  condition: []
   action:
-  - scene: scene.night
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 03baa6e6081411eb958e6b58c8805747
+        entity_id: light.stairs_led
+        domain: light
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.stairs_led:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 210
+              color_temp: 375
+              is_deconz_group: false
+              friendly_name: Stairs LED-Stripe
+              supported_features: 63
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.tv
+        state: 'on'
+      - condition: device
+        type: is_off
+        device_id: 15f7180d0e0411eb814e538c319c793d
+        entity_id: light.parlor_shelve_light
+        domain: light
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.parlor_shelve_light:
+              min_mireds: 140
+              max_mireds: 600
+              effect_list:
+              - colorloop
+              brightness: 180
+              color_temp: 375
+              is_deconz_group: false
+              friendly_name: Parlor Shelve Light
+              supported_features: 43
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 064385de065911eb86921ff8f4822c34
+        entity_id: light.office_led
+        domain: light
+      - condition: state
+        entity_id: switch.desk
+        state: 'on'
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.office_led:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 210
+              color_temp: 375
+              is_deconz_group: false
+              friendly_name: Desk LED-Stripe
+              supported_features: 63
+              state: 'on'
+    default: []
   mode: single
 - id: '1602050996708'
   alias: Turn on stairs LED
@@ -97,8 +159,7 @@
     entity_id: light.stairs_led
     domain: light
   - condition: template
-    value_template: >-
-      {{ not state_attr('sensor.daylight', 'daylight') }}
+    value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
   action:
   - service: scene.turn_on
     data: {}
@@ -114,13 +175,10 @@
           entity_id: light.stairs_led
           domain: light
         - condition: template
-          value_template: >-
-            {{
-            state_attr('light.stairs_led', 'brightness') and
-            state_attr('light.stairs_led', 'brightness') <= 14 and
-            state_attr('light.stairs_led', 'color_temp') and
-            state_attr('light.stairs_led', 'color_temp') == 495
-            }}
+          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
+            state_attr(''light.stairs_led'', ''brightness'') <= 14 and state_attr(''light.stairs_led'',
+            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
+            495 }}'
       sequence:
       - type: turn_on
         device_id: 03baa6e6081411eb958e6b58c8805747
@@ -139,13 +197,10 @@
           entity_id: light.stairs_led
           domain: light
         - condition: template
-          value_template: >-
-            {{
-            state_attr('light.stairs_led', 'brightness') and
-            state_attr('light.stairs_led', 'brightness') <= 8 and
-            state_attr('light.stairs_led', 'color_temp') and
-            state_attr('light.stairs_led', 'color_temp') == 495
-            }}
+          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
+            state_attr(''light.stairs_led'', ''brightness'') <= 8 and state_attr(''light.stairs_led'',
+            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
+            495 }}'
       sequence:
       - type: turn_on
         device_id: 03baa6e6081411eb958e6b58c8805747
@@ -164,13 +219,10 @@
           entity_id: light.stairs_led
           domain: light
         - condition: template
-          value_template: >-
-            {{
-            state_attr('light.stairs_led', 'brightness') and
-            state_attr('light.stairs_led', 'brightness') <= 6 and
-            state_attr('light.stairs_led', 'color_temp') and
-            state_attr('light.stairs_led', 'color_temp') == 495
-            }}
+          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
+            state_attr(''light.stairs_led'', ''brightness'') <= 6 and state_attr(''light.stairs_led'',
+            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
+            495 }}'
       sequence:
       - type: turn_on
         device_id: 03baa6e6081411eb958e6b58c8805747
@@ -189,13 +241,10 @@
           entity_id: light.stairs_led
           domain: light
         - condition: template
-          value_template: >-
-            {{
-            state_attr('light.stairs_led', 'brightness') and
-            state_attr('light.stairs_led', 'brightness') <= 3 and
-            state_attr('light.stairs_led', 'color_temp') and
-            state_attr('light.stairs_led', 'color_temp') == 495
-            }}
+          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
+            state_attr(''light.stairs_led'', ''brightness'') <= 3 and state_attr(''light.stairs_led'',
+            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
+            495 }}'
       sequence:
       - type: turn_off
         device_id: 03baa6e6081411eb958e6b58c8805747

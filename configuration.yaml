@@ -1,6 +1,9 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# Enable python scripts
+python_script:
+
 # Enable themes
 frontend:
   themes: !include_dir_merge_named themes
@@ -10,7 +13,7 @@ frontend:
     - /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
     - /hacsfiles/rgb-light-card/card.js
     - /hacsfiles/mini-humidifier/mini-humidifier-bundle.js
-    - /hacsfiles/vacuum-card/vacuum-card.js
+    # - /hacsfiles/vacuum-card/vacuum-card.js
     - /hacsfiles/battery-state-card/battery-state-card.js
 
 # Enable WOL integration

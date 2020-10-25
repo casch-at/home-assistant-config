@@ -13,6 +13,18 @@
       friendly_name: LED Stripes
       supported_features: 63
       state: 'on'
+    light.parlor:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 114
+      color_temp: 370
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Parlor Lights
+      supported_features: 47
+      state: 'on'
   icon: mdi:led-strip
 - id: '1601908389461'
   name: Chill
