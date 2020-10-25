@@ -70,3 +70,60 @@ tower_off:
     data: {}
   mode: single
   icon: mdi:desktop-tower
+bathroom_demo:
+  alias: Bathroom Demo
+  sequence:
+  - type: turn_on
+    device_id: a70552270e0811ebac91ad60565192c3
+    entity_id: light.bathroom_light_1
+    domain: light
+  - delay: 00:00:01
+  - type: turn_on
+    device_id: b15d0e4c0e0811eba84271250acf1f2f
+    entity_id: light.bathroom_light_2
+    domain: light
+  - delay: 00:00:01
+  - type: turn_on
+    device_id: b91249340e0811eb8b2be5a133b9bf99
+    entity_id: light.bathroom_light_3
+    domain: light
+  - delay: 00:00:01
+  - type: turn_on
+    device_id: c0c5cde00e0811ebb52ec19e538eee1d
+    entity_id: light.bathroom_light_4
+    domain: light
+  - delay: 00:00:01
+  - type: turn_off
+    device_id: c0c5cde00e0811ebb52ec19e538eee1d
+    entity_id: light.bathroom_light_4
+    domain: light
+  - delay: 00:00:01
+  - type: turn_off
+    device_id: b91249340e0811eb8b2be5a133b9bf99
+    entity_id: light.bathroom_light_3
+    domain: light
+  - delay: 00:00:01
+  - type: turn_off
+    device_id: b15d0e4c0e0811eba84271250acf1f2f
+    entity_id: light.bathroom_light_2
+    domain: light
+  - delay: 00:00:01
+  - type: turn_off
+    device_id: a70552270e0811ebac91ad60565192c3
+    entity_id: light.bathroom_light_1
+    domain: light
+  - delay: 00:00:01
+  - service: scene.turn_on
+    data: {}
+    entity_id: scene.bathroom_bath
+  - delay: 00:00:01
+  - service: scene.turn_on
+    data: {}
+    entity_id: scene.bathroom_morning
+  - delay: 00:00:01
+  - type: turn_off
+    device_id: 6a0ab0530e0b11ebb293030875c32589
+    entity_id: light.bathroom
+    domain: light
+  mode: single
+  icon: mdi:shower
