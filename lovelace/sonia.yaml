@@ -3,7 +3,7 @@ views:
   - path: default_view
     title: Home
     icon: 'mdi:home-assistant'
-    panel: false
+    panel: true
     badges: []
     cards:
       - type: 'custom:vertical-stack-in-card'
