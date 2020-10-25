@@ -13,3 +13,4 @@
 /ssh/
 .storage/lovelace_resources
 .storage/http
+/secrets.yaml

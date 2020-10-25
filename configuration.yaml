@@ -19,6 +19,15 @@ shell_command:
 
 owntracks:
 
+device_tracker:
+  - platform: ddwrt
+    host: 192.168.1.1
+    username: !secret router_user
+    password: !secret router_password
+    ssl: true
+    verify_ssl: false
+    wireless_only: true
+
 lovelace: !include lovelace/lovelace.yaml
 switch: !include switch.yaml
 group: !include groups.yaml

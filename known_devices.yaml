@@ -1,0 +1,56 @@
+
+re450_router:
+  name: RE450_router
+  mac: 18:D6:C7:B0:AA:D0
+  icon:
+  picture:
+  track: false
+
+galaxy_a2_router:
+  name: Galaxy-A2_router
+  mac: 7C:38:AD:0E:AA:20
+  icon:
+  picture:
+  track: true
+
+laptop_sonia_router:
+  name: LAPTOP-SONIA_router
+  mac: 34:DE:1A:8C:D6:0B
+  icon:
+  picture:
+  track: false
+
+1e_d6_c7_b0_aa_d2_router:
+  name: 1e_d6_c7_b0_aa_d2_router
+  mac: 1E:D6:C7:B0:AA:D2
+  icon:
+  picture:
+  track: false
+
+huawei_p20_router_router:
+  name: HUAWEI_P20_router
+  mac: F8:C3:9E:14:E4:80
+  icon:
+  picture:
+  track: true
+
+soundbar_router:
+  name: soundbar_router
+  mac: 28:11:A5:93:C7:5D
+  icon:
+  picture:
+  track: false
+
+galaxy_tab_a10_router:
+  name: Galaxy-Tab-A10_router
+  mac: 56:7C:B4:27:CF:F1
+  icon:
+  picture:
+  track: false
+
+lap_02_router:
+  name: lap-02_router
+  mac: A4:C4:94:5C:BB:74
+  icon:
+  picture:
+  track: false
