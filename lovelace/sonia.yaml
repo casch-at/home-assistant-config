@@ -1,0 +1,78 @@
+title: Sonia's Lovelace
+views:
+  - path: default_view
+    title: Home
+    icon: 'mdi:home-assistant'
+    panel: false
+    badges: []
+    cards:
+      - type: 'custom:vertical-stack-in-card'
+        cards:
+          - type: entities
+            entities:
+              - type: 'custom:slider-entity-row'
+                entity: light.bathroom
+              - type: 'custom:slider-entity-row'
+                entity: light.parlor_shelve_light
+              - type: 'custom:slider-entity-row'
+                entity: light.stairs_led
+              - entity: scene.bathroom_bath
+              - entity: scene.bathroom_morning
+              - entity: scene.regular
+              - entity: switch.tv
+              - entity: switch.printer
+              - entity: input_boolean.presence
+            show_header_toggle: false
+            state_color: true
+          - type: button
+            tap_action:
+              action: call-service
+              service: script.all_lights_off
+              confirmation:
+                text: Are you sure you want to turn off all lights?
+            entity: script.all_lights_off
+            name: Lights Off
+            icon_height: 50px
+          - type: button
+            tap_action:
+              action: call-service
+              service: script.bathroom_demo
+              confirmation:
+                text: Are you sure you want to run the bathroom demo?
+            entity: script.bathroom_demo
+            name: Bathroom Demo
+            icon_height: 50px
+  - icon: 'mdi:blinds'
+    title: Blinds
+    path: blinds
+    panel: true
+    badges: []
+    cards: []
+  - title: Status
+    path: status
+    icon: 'mdi:information'
+    panel: true
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: glance
+            entities:
+              - entity: input_boolean.presence
+              - entity: input_select.day_state
+              - entity: sensor.daylight
+              - entity: binary_sensor.workday_sensor
+              - entity: sun.sun
+              - entity: binary_sensor.bedroom_motion
+              - entity: person.christian_schwarzgruber
+              - entity: person.sonia_avramidis
+            state_color: true
+            columns: 3
+          - type: 'custom:battery-state-card'
+            entities:
+              - entity: sensor.tablet_battery_level
+                name: Tablet Battery
+              - entity: sensor.bedroom_motion_battery_level
+                name: Bedroom Motion Battery
+              - entity: sensor.bath_switch_battery_level
+                name: Bath Switch Battery

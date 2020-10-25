@@ -1,0 +1,113 @@
+title: Home
+icon: mdi:home-assistant
+views:
+  - path: default_view
+    title: Switches
+    icon: 'mdi:dip-switch'
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.bathroom
+          - type: 'custom:slider-entity-row'
+            entity: light.bathroom_light_1
+            name: Light 1
+          - type: 'custom:slider-entity-row'
+            entity: light.bathroom_light_2
+            name: Light 2
+          - type: 'custom:slider-entity-row'
+            entity: light.bathroom_light_3
+            name: Light 3
+          - type: 'custom:slider-entity-row'
+            entity: light.bathroom_light_4
+            name: Light 4
+        title: Bathroom
+      - type: entities
+        entities:
+          - entity: binary_sensor.bedroom_motion
+            name: Motion
+        title: Bedroom
+      - type: entities
+        entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.stairs_led
+        title: Floor
+      - type: entities
+        entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.led_stripes
+          - type: 'custom:slider-entity-row'
+            entity: light.parlor
+        title: Home
+      - type: entities
+        entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.office_led
+        title: Office
+      - type: entities
+        entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.parlor_shelve_light
+            name: Shelve Light
+        title: Parlor
+      - type: entities
+        entities:
+          - entity: scene.bathroom_bath
+          - entity: scene.bathroom_morning
+          - entity: scene.chill
+          - entity: scene.love
+          - entity: scene.night
+          - entity: scene.regular
+          - entity: scene.stairs_morning_light
+          - entity: scene.night_toilet
+        title: Scene
+      - type: entities
+        entities:
+          - script.all_lights_off
+          - script.turn_switch_desk_and_laptop_on
+          - script.turn_all_switches_off
+          - script.wake_tower
+        title: Script
+      - type: entities
+        entities:
+          - switch.desk
+          - switch.laptop
+          - switch.printer
+          - switch.tv
+          - switch.tower
+          - switch.wake_on_lan_tower
+        title: Switch
+  - title: Lights
+    path: lights
+    icon: 'mdi:lightbulb-group'
+    badges: []
+    cards: []
+  - title: Status
+    path: status
+    icon: 'mdi:information'
+    panel: true
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: glance
+            entities:
+              - entity: input_boolean.presence
+              - entity: input_select.day_state
+              - entity: sensor.daylight
+              - entity: binary_sensor.workday_sensor
+              - entity: sun.sun
+              - entity: binary_sensor.bedroom_motion
+              - entity: person.christian_schwarzgruber
+              - entity: person.sonia_avramidis
+            state_color: true
+            columns: 3
+          - type: 'custom:battery-state-card'
+            entities:
+              - entity: sensor.tablet_battery_level
+                name: Tablet Battery
+              - entity: sensor.bedroom_motion_battery_level
+                name: Bedroom Motion Battery
+              - entity: sensor.bath_switch_battery_level
+                name: Bath Switch Battery

@@ -1,0 +1,31 @@
+mode: yaml
+resources:
+  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+    type: module
+  - url: /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
+    type: module
+  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+    type: module
+  - url: /hacsfiles/rgb-light-card/card.js
+    type: module
+  - url: /hacsfiles/mini-humidifier/mini-humidifier-bundle.js
+    type: module
+  # - url: /hacsfiles/vacuum-card/vacuum-card.js
+    # type: module
+  - url: /hacsfiles/battery-state-card/battery-state-card.js
+    type: module
+dashboards:
+  lovelace-sonia:
+    mode: yaml
+    filename: lovelace/sonia.yaml
+    title: Sonia's Lovelace
+    icon: mdi:home-account
+    show_in_sidebar: true
+    require_admin: false
+  lovelace-tablet:
+    mode: yaml
+    filename: lovelace/tablet.yaml
+    title: Tablet Lovelace
+    icon: mdi:tablet-android
+    show_in_sidebar: true
+    require_admin: false

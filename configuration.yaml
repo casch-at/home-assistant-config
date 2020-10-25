@@ -1,18 +1,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# Enable themes
-frontend:
-  themes: !include_dir_merge_named themes
-  extra_module_url:
-    - /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
-    - /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
-    - /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
-    - /hacsfiles/rgb-light-card/card.js
-    - /hacsfiles/mini-humidifier/mini-humidifier-bundle.js
-    # - /hacsfiles/vacuum-card/vacuum-card.js
-    - /hacsfiles/battery-state-card/battery-state-card.js
-
 # Enable WOL integration
 wake_on_lan:
 
@@ -26,9 +14,12 @@ binary_sensor:
 
 # Shell commands
 shell_command:
-  # Need specify IP (resolve doesn't work :-?),
+  # Need to specify IP (resolve doesn't work :-?),
   turn_off_tower: ssh -i /config/ssh/id_rsa root@192.168.1.17 systemctl poweroff
 
+owntracks:
+
+lovelace: !include lovelace/lovelace.yaml
 switch: !include switch.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
