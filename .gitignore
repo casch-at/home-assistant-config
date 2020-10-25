@@ -5,3 +5,7 @@
 /home-assistant_v2.db
 /storage/auth
 /.storage/auth
+/.storage/core.restore_state
+/.storage/hacs/
+/.storage/hacs.repositories
+/.storage/mobile_app
