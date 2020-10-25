@@ -7,7 +7,7 @@ views:
     icon: 'mdi:dip-switch'
     badges: []
     cards:
-      - type: custom:vertical-stack-in-card
+      - type: vertical-stack
         cards:
           - type: entities
             entities:
@@ -17,10 +17,9 @@ views:
               - switch.tv
               - switch.tower
             show_header_toggle: false
-          - type: 'custom:vertical-stack-in-card'
+          - type: vertical-stack
             cards:
-              - type: 'custom:vertical-stack-in-card'
-                horizontal: true
+              - type: horizontal-stack
                 cards:
                   - type: button
                     entity: script.desk_and_laptop_on
@@ -44,8 +43,7 @@ views:
                       confirmation:
                         text: Wake Tower?
                     icon_height: 50px
-              - type: 'custom:vertical-stack-in-card'
-                horizontal: true
+              - type: horizontal-stack
                 cards:
                   - type: button
                     entity: script.tower_off
@@ -82,7 +80,7 @@ views:
     icon: 'mdi:lightbulb-group'
     badges: []
     cards:
-      - type: 'custom:vertical-stack-in-card'
+      - type: vertical-stack
         cards:
           - type: entities
             title: Stripes (RGB)
@@ -115,11 +113,9 @@ views:
                 name: Shelve Light
                 toggle: true
                 hide_when_off: true
-          - type: 'custom:vertical-stack-in-card'
-            title: Scences
+          - type: vertical-stack
             cards:
-              - type: 'custom:vertical-stack-in-card'
-                horizontal: true
+              - type: horizontal-stack
                 cards:
                   - type: button
                     entity: scene.bathroom_bath
@@ -149,8 +145,7 @@ views:
                       service_data:
                         entity_id: scene.chill
                     icon_height: 50px
-              - type: 'custom:vertical-stack-in-card'
-                horizontal: true
+              - type: horizontal-stack
                 cards:
                   - type: button
                     entity: scene.love
@@ -197,8 +192,7 @@ views:
                 name: Right Front
                 toggle: true
                 hide_when_off: true
-          - type: 'custom:vertical-stack-in-card'
-            horizontal: true
+          - type: horizontal-stack
             cards:
               - type: button
                 entity: script.lights_off
@@ -215,7 +209,7 @@ views:
     panel: true
     badges: []
     cards:
-      - type: 'custom:vertical-stack-in-card'
+      - type: vertical-stack
         cards:
           - type: glance
             entities:
@@ -235,8 +229,7 @@ views:
               - entity: binary_sensor.updater
             state_color: true
             columns: 3
-          - type: 'custom:vertical-stack-in-card'
-            horizontal: true
+          - type: horizontal-stack
             cards:
               - type: button
               - type: button

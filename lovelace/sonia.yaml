@@ -6,7 +6,7 @@ views:
     panel: false
     badges: []
     cards:
-      - type: 'custom:vertical-stack-in-card'
+      - type: vertical-stack
         cards:
           - type: entities
             entities:
@@ -34,8 +34,7 @@ views:
               - entity: input_boolean.presence
             show_header_toggle: false
             state_color: true
-          - type: 'custom:vertical-stack-in-card'
-            horizontal: true
+          - type: horizontal-stack
             cards:
               - type: button
                 entity: script.lights_off
@@ -79,7 +78,7 @@ views:
     panel: true
     badges: []
     cards:
-      - type: 'custom:vertical-stack-in-card'
+      - type: vertical-stack
         cards:
           - type: glance
             entities:
