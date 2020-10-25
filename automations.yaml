@@ -272,7 +272,7 @@
       sequence:
       - service: input_select.select_option
         data:
-          option: night
+          option: morning
         entity_id: input_select.day_state
     default: []
   - choose:
