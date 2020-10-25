@@ -325,9 +325,6 @@
   action:
   - service: persistent_notification.create
     data:
-      message: 'The tablet battery level has dropped below 10 %, please recharge!
-
-        '
-      title: Critical Tablet Battery Level {{ states('sensor.tablet_battery_level')
-        }} %
+      message: 'The tablet battery level has dropped below 10 %, please recharge!'
+      title: 'Critical Battery Level {{ states(''sensor.tablet_battery_level'') }} %'
   mode: single
