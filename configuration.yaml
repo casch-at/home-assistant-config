@@ -7,7 +7,6 @@ frontend:
   extra_module_url:
     - /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
     - /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
-    - /hacsfiles/lovelace-layout-card/layout-card.js
     - /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
     - /hacsfiles/rgb-light-card/card.js
     - /hacsfiles/mini-humidifier/mini-humidifier-bundle.js
@@ -25,6 +24,10 @@ binary_sensor:
   - platform: workday
     country: DE
 
+# Shell commands
+shell_command:
+  # Need specify IP (resolve doesn't work :-?),
+  turn_off_tower: ssh -i /config/ssh/id_rsa root@192.168.1.17 systemctl poweroff
 
 switch: !include switch.yaml
 group: !include groups.yaml

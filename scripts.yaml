@@ -63,3 +63,10 @@ all_lights_off:
     domain: light
   mode: single
   icon: mdi:lightbulb-group
+tower_off:
+  alias: Tower Off
+  sequence:
+  - service: shell_command.turn_off_tower
+    data: {}
+  mode: single
+  icon: mdi:desktop-tower
