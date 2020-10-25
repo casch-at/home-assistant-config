@@ -6,66 +6,64 @@ views:
     panel: false
     badges: []
     cards:
-      - type: vertical-stack
+      - type: entities
+        entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.parlor_shelve_light
+            toggle: true
+            hide_when_off: true
+          - type: 'custom:slider-entity-row'
+            entity: light.stairs_led
+            toggle: true
+            hide_when_off: true
+          - type: 'custom:slider-entity-row'
+            entity: light.bathroom
+            toggle: true
+            hide_when_off: true
+          - entity: switch.tv
+            tab_action:
+              action: toggle
+          - entity: switch.printer
+            tab_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity: switch.printer
+          - entity: input_boolean.presence
+        show_header_toggle: false
+        state_color: true
+      - type: horizontal-stack
         cards:
-          - type: entities
-            entities:
-              - type: 'custom:slider-entity-row'
-                entity: light.parlor_shelve_light
-                toggle: true
-                hide_when_off: true
-              - type: 'custom:slider-entity-row'
-                entity: light.stairs_led
-                toggle: true
-                hide_when_off: true
-              - type: 'custom:slider-entity-row'
-                entity: light.bathroom
-                toggle: true
-                hide_when_off: true
-              - entity: switch.tv
-                tab_action:
-                  action: toggle
-              - entity: switch.printer
-                tab_action:
-                  action: call-service
-                  service: switch.toggle
-                  service_data:
-                    entity: switch.printer
-              - entity: input_boolean.presence
-            show_header_toggle: false
-            state_color: true
-          - type: horizontal-stack
-            cards:
-              - type: button
-                entity: script.lights_off
-                tap_action:
-                  action: call-service
-                  service: script.lights_off
-                  confirmation:
-                    text: Are you sure you want to turn off all lights?
-                name: Lights Off
-                icon_height: 50px
-              - type: button
-                entity: script.day_state_night
-                tap_action:
-                  action: call-service
-                  service: script.day_state_night
-                  confirmation:
-                    text: |
-                      Do you really want to set the day state to night?
+          - type: button
+            entity: script.lights_off
+            tap_action:
+              action: call-service
+              service: script.lights_off
+              confirmation:
+                text: Are you sure you want to turn off all lights?
+            name: Lights Off
+            icon_height: 50px
+          - type: button
+            entity: script.day_state_night
+            tap_action:
+              action: call-service
+              service: script.day_state_night
+              confirmation:
+                text: |
+                  Do you really want to set the day state to night?
 
-                      This turns lights and switches off!
-                name: State Night
-                icon_height: 50px
-              - type: button
-                entity: script.bathroom_demo
-                tap_action:
-                  action: call-service
-                  service: script.bathroom_demo
-                  confirmation:
-                    text: Are you sure you want to run the bathroom demo?
-                name: Bathroom Demo
-                icon_height: 50px
+                  This turns lights and switches off!
+            name: State Night
+            icon_height: 50px
+          - type: button
+            entity: script.bathroom_demo
+            tap_action:
+              action: call-service
+              service: script.bathroom_demo
+              confirmation:
+                text: Are you sure you want to run the bathroom demo?
+            name: Bathroom Demo
+            icon_height: 50px
   - icon: 'mdi:blinds'
     title: Blinds
     path: blinds
