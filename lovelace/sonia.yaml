@@ -2,21 +2,23 @@ title: Sonia's Lovelace
 views:
   - path: default_view
     title: Home
-    icon: 'mdi:home-assistant'
+    icon: mdi:home-assistant
     panel: false
     badges: []
     cards:
       - type: entities
+        show_header_toggle: false
+        state_color: true
         entities:
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.parlor_shelve_light
             toggle: true
             hide_when_off: true
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.stairs_led
             toggle: true
             hide_when_off: true
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.bathroom
             toggle: true
             hide_when_off: true
@@ -29,42 +31,44 @@ views:
               service: switch.toggle
               service_data:
                 entity: switch.printer
-          - entity: input_boolean.presence
-        show_header_toggle: false
-        state_color: true
       - type: horizontal-stack
         cards:
           - type: button
-            entity: script.lights_off
-            tap_action:
-              action: call-service
-              service: script.lights_off
-              confirmation:
-                text: Are you sure you want to turn off all lights?
+            entity: light.all_lights
             name: Lights Off
-            icon_height: 50px
-          - type: button
-            entity: script.set_daytime_to_night
+            icon_height: 80px
             tap_action:
               action: call-service
-              service: script.set_daytime_to_night
+              service: light.turn_off
+              service_data:
+                entity_id: light.all_lights
+              confirmation:
+                text: Do you really want to turn off all lights?
+          - type: button
+            entity: input_select.daytime
+            name: State Night
+            icon: mdi:sleep
+            icon_height: 80px
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                option: Night
               confirmation:
                 text: |
-                  Do you really want to set the day state to night?
+                  Do you really want to set the day state to "Night"?
 
                   This turns lights and switches off!
-            name: State Night
-            icon_height: 50px
           - type: button
             entity: script.bathroom_demo
+            name: Bathroom Demo
+            icon_height: 80px
             tap_action:
               action: call-service
               service: script.bathroom_demo
               confirmation:
                 text: Are you sure you want to run the bathroom demo?
-            name: Bathroom Demo
-            icon_height: 50px
-  - icon: 'mdi:blinds'
+  - icon: mdi:blinds
     title: Blinds
     path: blinds
     panel: true
@@ -72,7 +76,7 @@ views:
     cards: []
   - title: Status
     path: status
-    icon: 'mdi:information'
+    icon: mdi:information
     panel: true
     badges: []
     cards:
@@ -81,15 +85,15 @@ views:
           - type: horizontal-stack
             cards:
               - type: glance
-                entities:
-                  - entity: person.christian_schwarzgruber
                 state_color: true
                 columns: 1
+                entities:
+                  - entity: person.christian_schwarzgruber
               - type: button
                 entity: input_boolean.presence
                 name: Presence
                 show_state: true
-                icon_height: 40px
+                icon_height: 25px
                 tap_action:
                   action: call-service
                   service: input_boolean.toggle
@@ -98,11 +102,15 @@ views:
                   confirmation:
                     text: Toggle presence?
               - type: glance
-                entities:
-                  - entity: person.sonia_avramidis
                 state_color: true
                 columns: 1
+                entities:
+                  - entity: person.sonia_avramidis
+          - type: weather-forecast
+            entity: weather.home
           - type: glance
+            state_color: true
+            columns: 3
             entities:
               - entity: input_boolean.presence
               - entity: input_select.daytime
@@ -110,9 +118,7 @@ views:
               - entity: binary_sensor.workday_sensor
               - entity: sun.sun
               - entity: binary_sensor.bedroom_motion
-            state_color: true
-            columns: 3
-          - type: 'custom:battery-state-card'
+          - type: custom:battery-state-card
             entities:
               - entity: sensor.tablet_battery_level
                 name: Tablet Battery

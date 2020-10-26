@@ -4,18 +4,18 @@ views:
   - path: default_view
     title: Switches
     panel: false
-    icon: 'mdi:dip-switch'
+    icon: mdi:dip-switch
     badges: []
     cards:
       - type: entities
+        show_header_toggle: false
+        title: Switches
         entities:
           - switch.desk
           - switch.laptop
           - switch.printer
           - switch.tv
           - switch.tower
-        show_header_toggle: false
-        title: Switches
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -27,72 +27,80 @@ views:
                   service: script.desk_and_laptop_on
                 icon_height: 80px
               - type: button
-                entity: script.switches_off
+                entity: group.switches
+                name: Switches Off
+                icon_height: 80px
                 tap_action:
                   action: call-service
-                  service: script.switches_off
+                  service: homeassistant.turn_off
+                  service_data:
+                    entity_id: group.switches
                   confirmation:
-                    text: Turn all switches off?
+                    text: Do you really want to turn all switches off?
+              - type: button
+                entity: group.switches_and_lights
+                name: Switches/Lights Off
                 icon_height: 80px
+                tap_action:
+                  action: call-service
+                  service: homeassistant.turn_off
+                  service_data:
+                    entity_id: group.switches_and_lights
+                  confirmation:
+                    text: Do you really want to turn all switches and lights off?
+          - type: horizontal-stack
+            cards:
               - type: button
                 entity: script.wake_tower
+                icon_height: 80px
                 tap_action:
                   action: call-service
                   service: script.wake_tower
                   confirmation:
-                    text: Wake Tower?
-                icon_height: 80px
-          - type: horizontal-stack
-            cards:
+                    text: Do you really want to wake the Tower?
               - type: button
                 entity: script.tower_off
                 tap_action:
                   action: call-service
                   service: script.tower_off
                   confirmation:
-                    text: Turn off Tower?
+                    text: Do you really want to turn off the Tower?
                 icon_height: 80px
               - type: button
-                entity: script.set_daytime_to_night
+                entity: input_select.daytime
+                name: State Night
+                icon: mdi:sleep
+                icon_height: 80px
                 tap_action:
                   action: call-service
-                  service: script.set_daytime_to_night
+                  service: input_select.select_option
+                  service_data:
+                    option: Night
                   confirmation:
                     text: |
-                      Do you really want to set the day state to night?
+                      Do you really want to set the day state to "Night"?
 
-                      This turns lights and switches off!
-                name: State Night
-                icon_height: 50px
-              - type: button
-                entity: script.lights_off
-                tap_action:
-                  action: call-service
-                  service: script.lights_off
-                  confirmation:
-                    text: Are you sure you want to turn off all lights?
-                name: Lights Off
-                icon_height: 80px
+                      This turns all lights and switches off!
   - title: Lights
     path: lights
     panel: false
-    icon: 'mdi:lightbulb-group'
+    icon: mdi:lightbulb-group
     badges: []
     cards:
       - type: entities
         title: Stripes (RGB)
         entities:
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.led_stripes
             toggle: true
             hide_when_off: true
             name: All
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.stairs_led
             toggle: true
             hide_when_off: true
             name: Stairs
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.office_led
             toggle: true
             hide_when_off: true
@@ -100,12 +108,12 @@ views:
       - type: entities
         title: Parlor
         entities:
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.parlor
             toggle: true
             hide_when_off: true
             name: All
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.parlor_shelve_light
             name: Shelve Light
             toggle: true
@@ -116,92 +124,92 @@ views:
             cards:
               - type: button
                 entity: scene.bathroom_bath
+                name: Bath Warm
+                icon: mdi:hot-tub
+                icon_height: 50px
                 tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.bathroom_bath
-                name: Bath Warm
-                icon: 'mdi:hot-tub'
-                icon_height: 50px
               - type: button
                 entity: scene.bathroom_morning
+                name: Bath Cold
+                icon: mdi:shower
+                icon_height: 50px
                 tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.bathroom_morning
-                name: Bath Cold
-                icon: 'mdi:shower'
-                icon_height: 50px
               - type: button
                 entity: scene.chill
+                icon_height: 50px
                 tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.chill
-                icon_height: 50px
           - type: horizontal-stack
             cards:
               - type: button
                 entity: scene.love
+                icon_height: 50px
                 tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.love
-                icon_height: 50px
               - type: button
                 entity: scene.night
+                icon_height: 50px
                 tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.night
-                icon_height: 50px
-          - type: horizontal-stack
-            cards:
-              - type: button
-                entity: script.lights_off
-                tap_action:
-                  action: call-service
-                  service: script.lights_off
-                  confirmation:
-                    text: Are you sure you want to turn off all lights?
-                name: Lights Off
-                icon_height: 50px
+          - type: button
+            entity: light.all_lights
+            name: Lights Off
+            icon_height: 50px
+            tap_action:
+              action: call-service
+              service: light.turn_off
+              service_data:
+                entity_id: light.all_lights
+              confirmation:
+                text: Do you really want to turn off all lights?
       - type: entities
         title: Bathroom
         entities:
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.bathroom
             toggle: true
             hide_when_off: true
             name: All
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.bathroom_light_1
             name: Left Front
             toggle: true
             hide_when_off: true
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.bathroom_light_2
             name: Left Back
             toggle: true
             hide_when_off: true
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.bathroom_light_3
             name: Right Back
             toggle: true
             hide_when_off: true
-          - type: 'custom:slider-entity-row'
+          - type: custom:slider-entity-row
             entity: light.bathroom_light_4
             name: Right Front
             toggle: true
             hide_when_off: true
   - title: Status
     path: status
-    icon: 'mdi:information'
+    icon: mdi:information
     panel: true
     badges: []
     cards:
@@ -210,15 +218,15 @@ views:
           - type: horizontal-stack
             cards:
               - type: glance
-                entities:
-                  - entity: person.christian_schwarzgruber
                 state_color: true
                 columns: 1
+                entities:
+                  - entity: person.christian_schwarzgruber
               - type: button
                 entity: input_boolean.presence
                 name: Presence
                 show_state: true
-                icon_height: 40px
+                icon_height: 25px
                 tap_action:
                   action: call-service
                   service: input_boolean.toggle
@@ -227,32 +235,34 @@ views:
                     confirmation:
                     text: Toggle presence?
               - type: glance
-                entities:
-                  - entity: person.sonia_avramidis
                 state_color: true
                 columns: 1
+                entities:
+                  - entity: person.sonia_avramidis
+          - type: weather-forecast
+            entity: weather.home
           - type: glance
+            state_color: true
+            columns: 3
             entities:
               - entity: input_select.daytime
               - entity: sensor.daylight
                 name: Sun
               - entity: sun.sun
-            state_color: true
-            columns: 3
           - type: glance
+            state_color: true
+            columns: 2
             entities:
               - entity: binary_sensor.workday_sensor
                 name: Workday
               - entity: binary_sensor.bedroom_motion
+          - type: glance
             state_color: true
             columns: 2
-          - type: glance
             entities:
               - entity: sensor.hacs
                 name: HACS
               - entity: binary_sensor.updater
-            state_color: true
-            columns: 2
           - type: horizontal-stack
             cards:
               - type: button
@@ -266,7 +276,7 @@ views:
                   confirmation:
                     text: Restart Home Assistant?
               - type: button
-          - type: 'custom:battery-state-card'
+          - type: custom:battery-state-card
             entities:
               - entity: sensor.tablet_battery_level
                 name: Tablet Battery

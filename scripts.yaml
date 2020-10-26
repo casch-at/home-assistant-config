@@ -1,73 +1,36 @@
 desk_and_laptop_on:
-  alias: Desk/Laptop On
+  alias: Laptop On
   sequence:
   - service: switch.turn_on
     data: {}
     entity_id: switch.desk
-  - delay: '0.3'
+  - delay: 0.3
   - service: switch.turn_on
     data: {}
     entity_id: switch.laptop
   mode: single
-  icon: hass:dip-switch
-switches_off:
-  alias: Switches off
-  sequence:
-  - service: switch.turn_off
-    data: {}
-    entity_id: switch.laptop
-  - delay: '0.3'
-  - service: switch.turn_off
-    data: {}
-    entity_id: switch.desk
-  - delay: '0.3'
-  - service: switch.turn_off
-    data: {}
-    entity_id: switch.printer
-  - delay: '0.3'
-  - service: switch.turn_off
-    data: {}
-    entity_id: switch.tower
-  - delay: '0.3'
-  - service: switch.turn_off
-    data: {}
-    entity_id: switch.tv
-  mode: single
-  icon: hass:dip-switch
+  icon: hass:laptop
 wake_tower:
   alias: Wake Tower
   sequence:
   - service: switch.turn_on
     data: {}
     entity_id: switch.tower
-  - delay: 00:00:05
+  - delay: 00:00:01
   - service: switch.turn_on
     data: {}
     entity_id: switch.wake_on_lan_tower
   mode: single
   icon: hass:desktop-tower
-lights_off:
-  alias: Lights Off
-  sequence:
-  - type: turn_off
-    device_id: 6a0ab0530e0b11ebb293030875c32589
-    entity_id: light.bathroom
-    domain: light
-  - type: turn_off
-    device_id: 5e300c5a065f11ebb0d2291f45363241
-    entity_id: light.led_stripes
-    domain: light
-  - type: turn_off
-    device_id: 611cb71e0e0411ebbb5f87403d317985
-    entity_id: light.parlor
-    domain: light
-  mode: single
-  icon: mdi:lightbulb-group
 tower_off:
   alias: Tower Off
   sequence:
   - service: shell_command.turn_off_tower
     data: {}
+  - delay: 00:00:30
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.tower
   mode: single
   icon: mdi:desktop-tower
 bathroom_demo:
@@ -127,12 +90,3 @@ bathroom_demo:
     domain: light
   mode: single
   icon: mdi:shower
-set_daytime_to_night:
-  alias: Set Day State to Night
-  sequence:
-  - service: input_select.select_option
-    data:
-      option: Night
-    entity_id: input_select.daytime
-  mode: single
-  icon: mdi:sleep

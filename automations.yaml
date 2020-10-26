@@ -304,10 +304,10 @@
     to: Night
   condition: []
   action:
-  - service: script.switches_off
-    data: {}
-  - service: script.lights_off
-    data: {}
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.switches_and_lights
+    entity_id: group.switches_and_lights
   - service: automation.trigger
     data: {}
     entity_id: automation.night_toilet_light
@@ -325,6 +325,6 @@
   action:
   - service: persistent_notification.create
     data:
-      message: 'The tablet battery level has dropped below 10 %, please recharge!'
-      title: 'Critical Battery Level {{ states(''sensor.tablet_battery_level'') }} %'
+      message: The tablet battery level has dropped below 10 %, please recharge!
+      title: Critical Battery Level {{ states('sensor.tablet_battery_level') }} %
   mode: single
