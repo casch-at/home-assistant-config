@@ -18,7 +18,7 @@ binary_sensor:
 # Shell commands
 shell_command:
   # Need to specify IP (resolve doesn't work :-?),
-  turn_off_tower: ssh -i /config/ssh/id_rsa root@192.168.1.17 systemctl poweroff
+  turn_off_tower: !secret tower_off
 
 owntracks:
   max_gps_accuracy: 200

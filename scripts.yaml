@@ -16,7 +16,7 @@ wake_tower:
   - service: switch.turn_on
     data: {}
     entity_id: switch.tower
-  - delay: 00:00:01
+  - delay: 00:00:05
   - service: switch.turn_on
     data: {}
     entity_id: switch.wake_on_lan_tower
