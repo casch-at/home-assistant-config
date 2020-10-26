@@ -13,7 +13,7 @@ tts:
 
 binary_sensor:
   - platform: workday
-    country: DE
+    country: AT
 
 # Shell commands
 shell_command:
