@@ -20,13 +20,16 @@ views:
         cards:
           - type: horizontal-stack
             cards:
-              - type: button
-                entity: script.desk_and_laptop_on
+              - type: custom:button-card
+                entity: switch.laptop
+                icon: mdi:laptop
+                icon_height: 80px
+                triggers_update:
+                  - switch.desk
                 tap_action:
                   action: call-service
                   service: script.desk_and_laptop_on
-                icon_height: 80px
-              - type: button
+              - type: custom:button-card
                 entity: group.switches
                 name: Switches Off
                 icon_height: 80px
@@ -37,7 +40,7 @@ views:
                     entity_id: group.switches
                   confirmation:
                     text: Do you really want to turn all switches off?
-              - type: button
+              - type: custom:button-card
                 entity: group.switches_and_lights
                 name: Switches/Lights Off
                 icon_height: 80px
@@ -50,7 +53,7 @@ views:
                     text: Do you really want to turn all switches and lights off?
           - type: horizontal-stack
             cards:
-              - type: button
+              - type: custom:button-card
                 entity: script.wake_tower
                 icon_height: 80px
                 tap_action:
@@ -58,7 +61,7 @@ views:
                   service: script.wake_tower
                   confirmation:
                     text: Do you really want to wake the Tower?
-              - type: button
+              - type: custom:button-card
                 entity: script.tower_off
                 tap_action:
                   action: call-service
@@ -66,7 +69,7 @@ views:
                   confirmation:
                     text: Do you really want to turn off the Tower?
                 icon_height: 80px
-              - type: button
+              - type: custom:button-card
                 entity: input_select.daytime
                 name: State Night
                 icon: mdi:sleep
@@ -115,14 +118,14 @@ views:
             name: All
           - type: custom:slider-entity-row
             entity: light.parlor_shelve_light
-            name: Shelve Light
+            name: Shelve
             toggle: true
             hide_when_off: true
       - type: vertical-stack
         cards:
           - type: horizontal-stack
             cards:
-              - type: button
+              - type: custom:button-card
                 entity: scene.bathroom_bath
                 name: Bath Warm
                 icon: mdi:hot-tub
@@ -132,7 +135,7 @@ views:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.bathroom_bath
-              - type: button
+              - type: custom:button-card
                 entity: scene.bathroom_morning
                 name: Bath Cold
                 icon: mdi:shower
@@ -142,8 +145,9 @@ views:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.bathroom_morning
-              - type: button
+              - type: custom:button-card
                 entity: scene.chill
+                icon: mdi:palette
                 icon_height: 50px
                 tap_action:
                   action: call-service
@@ -152,7 +156,7 @@ views:
                     entity_id: scene.chill
           - type: horizontal-stack
             cards:
-              - type: button
+              - type: custom:button-card
                 entity: scene.love
                 icon_height: 50px
                 tap_action:
@@ -160,7 +164,7 @@ views:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.love
-              - type: button
+              - type: custom:button-card
                 entity: scene.night
                 icon_height: 50px
                 tap_action:
@@ -168,7 +172,7 @@ views:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.night
-          - type: button
+          - type: custom:button-card
             entity: light.all_lights
             name: Lights Off
             icon_height: 50px
@@ -222,7 +226,7 @@ views:
                 columns: 1
                 entities:
                   - entity: person.christian_schwarzgruber
-              - type: button
+              - type: custom:button-card
                 entity: input_boolean.presence
                 name: Presence
                 show_state: true
@@ -265,8 +269,8 @@ views:
               - entity: binary_sensor.updater
           - type: horizontal-stack
             cards:
-              - type: button
-              - type: button
+              - type: custom:button-card
+              - type: custom:button-card
                 name: Restart HA
                 icon: 'mdi:restart'
                 icon_height: 50px
@@ -275,7 +279,7 @@ views:
                   service: homeassistant.restart
                   confirmation:
                     text: Restart Home Assistant?
-              - type: button
+              - type: custom:button-card
           - type: custom:battery-state-card
             entities:
               - entity: sensor.tablet_battery_level
@@ -284,3 +288,24 @@ views:
                 name: Bedroom Motion Battery
               - entity: sensor.bath_switch_battery_level
                 name: Bath Switch Battery
+          - type: custom:mini-graph-card
+            hours_to_show: 240
+            name: Covid Status Austria
+            points_per_hour: 0.10
+            entities:
+              - entity: sensor.austria_coronavirus_confirmed
+                show_state: false
+                show_fill: false
+                name: Confirmed
+              - entity: sensor.austria_coronavirus_recovered
+                show_state: true
+                show_fill: false
+                name: Recovered
+              - entity: sensor.austria_coronavirus_current
+                show_state: true
+                show_fill: false
+                name: Current
+              - entity: sensor.austria_coronavirus_deaths
+                show_state: true
+                show_fill: false
+                name: Deaths
