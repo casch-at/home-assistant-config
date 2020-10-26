@@ -132,7 +132,7 @@ set_daytime_to_night:
   sequence:
   - service: input_select.select_option
     data:
-      option: night
+      option: Night
     entity_id: input_select.daytime
   mode: single
   icon: mdi:sleep
