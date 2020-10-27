@@ -175,13 +175,36 @@ views:
                   card:
                     - height: 100px
           - type: custom:battery-state-card
+            title: Battery Level
+            # secondary_info: last_updated
+            sort_by_level: asc
+            icon: mdi:battery-flash
+            color_gradient:
+              - '#FF0000'
+              - '#FFFF00'
+              - '#00FF00'
             entities:
               - entity: sensor.tablet_battery_level
-                name: Tablet Battery
+                name: Tablet
+                tap_action: more-info
+                charging_state:
+                  state: charging
+                  icon: mdi:flash
+                  color: yellow
               - entity: sensor.bedroom_motion_battery_level
-                name: Bedroom Motion Battery
+                name: Bedroom motion sensor
+                tap_action: more-info
               - entity: sensor.bath_switch_battery_level
-                name: Bath Switch Battery
+                name: Bath switch
+                tap_action: more-info
+            filter:
+              include:
+                - name: attributes.device_class
+                  value: battery
+              exclude:
+                - name: state
+                  value: 100
+                  operator: ">"
           - type: custom:mini-graph-card
             hours_to_show: 2400
             name: Covid Status Austria

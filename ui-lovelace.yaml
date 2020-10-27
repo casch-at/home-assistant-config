@@ -392,35 +392,37 @@ views:
                 label: Clear
               - value: "on"
                 label: Detected
-          - type: custom:mini-graph-card
-            name: Battery Level
-            hours_to_show: 480
-            points_per_hour: 0.0416666666667
-            line_width: 6
-            show_waypoints: false
-            animate: true
-            color_thresholds:
-              - value: 100
-                color: "#066F22"
-              - value: 80
-                color: "#0FB72C"
-              - value: 60
-                color: "#0FFB0B"
-              - value: 40
-                color: "#F3F135"
-              - value: 20
-                color: "#F05F00"
-              - value: 15
-                color: "#C10B0B"
-            show:
-              fill: false
+          - type: custom:battery-state-card
+            title: Battery Level
+            # secondary_info: last_updated
+            sort_by_level: asc
+            icon: mdi:battery-flash
+            color_gradient:
+              - '#FF0000'
+              - '#FFFF00'
+              - '#00FF00'
             entities:
               - entity: sensor.tablet_battery_level
                 name: Tablet
+                tap_action: more-info
+                charging_state:
+                  state: charging
+                  icon: mdi:flash
+                  color: yellow
               - entity: sensor.bedroom_motion_battery_level
-                name: Bedroom Motion Sensor
+                name: Bedroom motion sensor
+                tap_action: more-info
               - entity: sensor.bath_switch_battery_level
-                name: Bath Switch
+                name: Bath switch
+                tap_action: more-info
+            filter:
+              include:
+                - name: attributes.device_class
+                  value: battery
+              exclude:
+                - name: state
+                  value: 100
+                  operator: ">"
           - type: custom:mini-graph-card
             hours_to_show: 2400
             name: Covid Status Austria
