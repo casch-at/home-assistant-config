@@ -8,14 +8,20 @@ views:
     badges: []
     cards:
       - type: entities
-        show_header_toggle: false
         title: Switches
+        show_header_toggle: false
+        state_color: true
         entities:
-          - switch.desk
-          - switch.laptop
-          - switch.printer
-          - switch.tv
-          - switch.tower
+          - entity: switch.desk
+            icon: mdi:desk
+          - entity: switch.laptop
+            icon: mdi:laptop
+          - entity: switch.printer
+            icon: mdi:printer
+          - entity: switch.nightstand
+            icon: mdi:floor-lamp
+          - entity: switch.tower
+            icon: mdi:desktop-tower
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -64,6 +70,7 @@ views:
               - type: custom:button-card
                 entity: switch.tower
                 icon: hass:desktop-tower
+                name: Tower Off
                 tap_action:
                   action: call-service
                   service: script.tower_off
@@ -81,6 +88,7 @@ views:
                   action: call-service
                   service: input_select.select_option
                   service_data:
+                    entity_id: input_select.daytime
                     option: Night
                   confirmation:
                     text: |
@@ -373,10 +381,11 @@ views:
             entities:
               - entity: binary_sensor.bedroom_motion
             name: Motion last 7 days
-            hours_to_show: 12
-            points_per_hour: 60
+            hours_to_show: 24
+            points_per_hour: 30
             aggregate_func: max
-            line_width: 2
+            # group_by: interval
+            line_width: 1
             smoothing: false
             state_map:
               - value: "off"

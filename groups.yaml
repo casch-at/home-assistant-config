@@ -6,7 +6,7 @@ switches:
     - switch.laptop
     - switch.printer
     - switch.tower
-    - switch.tv
+    - switch.nightstand
 switches_and_lights:
   name: Lights and Switches
   entities:

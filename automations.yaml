@@ -35,9 +35,6 @@
     default: []
   - choose:
     - conditions:
-      - condition: state
-        entity_id: switch.tv
-        state: 'on'
       - condition: device
         type: is_off
         device_id: 15f7180d0e0411eb814e538c319c793d
@@ -124,9 +121,11 @@
   trigger:
   - platform: state
     entity_id: sensor.daylight
-    from: sunrise_end
-    to: golden_hour_1
-  condition: []
+  condition:
+  - condition: state
+    entity_id: sensor.daylight
+    state: ''
+    attribute: daylight
   action:
   - type: turn_off
     device_id: 03baa6e6081411eb958e6b58c8805747

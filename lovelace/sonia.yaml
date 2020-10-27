@@ -22,15 +22,17 @@ views:
             entity: light.bathroom
             toggle: true
             hide_when_off: true
-          - entity: switch.tv
-            tab_action:
-              action: toggle
           - entity: switch.printer
             tab_action:
               action: call-service
               service: switch.toggle
               service_data:
                 entity: switch.printer
+            icon: mdi:printer
+          - entity: switch.nightstand
+            tab_action:
+              action: toggle
+            icon: mdi:floor-lamp
       - type: horizontal-stack
         cards:
           - type: custom:button-card
@@ -53,6 +55,7 @@ views:
               action: call-service
               service: input_select.select_option
               service_data:
+                entity_id: input_select.daytime
                 option: Night
               confirmation:
                 text: |
