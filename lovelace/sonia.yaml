@@ -84,43 +84,93 @@ views:
         cards:
           - type: horizontal-stack
             cards:
-              - type: glance
-                state_color: true
-                columns: 1
-                entities:
-                  - entity: person.christian_schwarzgruber
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                entity: person.christian_schwarzgruber
+                show_entity_picture: true
+                show_state: true
+                styles:
+                  card:
+                    - background: rgba(0, 0, 0, 0)
+                  entity_picture:
+                    - border-radius: 50%
+                    - -webkit-box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
+                    - box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
+                state_display: >
+                  [[[
+                    if (entity.state == "home")
+                      return "is at home";
+                    else if (entity.state == "not_home")
+                      return "is away";
+                    else
+                      return "unknown";
+                  ]]]
+              - type: custom:button-card
+                entity: person.sonia_avramidis
+                show_entity_picture: true
+                show_state: true
+                styles:
+                  card:
+                    - background: rgba(0, 0, 0, 0)
+                  entity_picture:
+                    - border-radius: 50%
+                    - -webkit-box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
+                    - box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
+                state_display: >
+                  [[[
+                    if (entity.state == "home")
+                      return "is at home";
+                    else if (entity.state == "not_home")
+                      return "is away";
+                    else
+                      return "unknown";
+                  ]]]
+              - type: custom:button-card
+                color_type: blank-card
+          - type: weather-forecast
+            entity: weather.home
+          - type: horizontal-stack
+            cards:
               - type: custom:button-card
                 entity: input_boolean.presence
-                name: Presence
                 show_state: true
-                icon_height: 25px
                 styles:
                   card:
                     - height: 100px
-                tap_action:
-                  action: call-service
-                  service: input_boolean.toggle
-                  service_data:
-                    entity_id: input_boolean.presence
-                  confirmation:
-                    text: Toggle presence?
-              - type: glance
-                state_color: true
-                columns: 1
-                entities:
-                  - entity: person.sonia_avramidis
-          - type: weather-forecast
-            entity: weather.home
-          - type: glance
-            state_color: true
-            columns: 3
-            entities:
-              - entity: input_boolean.presence
-              - entity: input_select.daytime
-              - entity: sensor.daylight
-              - entity: binary_sensor.workday_sensor
-              - entity: sun.sun
-              - entity: binary_sensor.bedroom_motion
+              - type: custom:button-card
+                entity: sun.sun
+                show_state: true
+                styles:
+                  card:
+                    - height: 100px
+              - type: custom:button-card
+                entity: sensor.daylight
+                show_state: true
+                name: Sun
+                styles:
+                  card:
+                    - height: 100px
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: binary_sensor.workday_sensor
+                show_state: true
+                styles:
+                  card:
+                    - height: 100px
+              - type: custom:button-card
+                entity: input_select.daytime
+                show_state: true
+                styles:
+                  card:
+                    - height: 100px
+              - type: custom:button-card
+                entity: binary_sensor.bedroom_motion
+                show_state: true
+                styles:
+                  card:
+                    - height: 100px
           - type: custom:battery-state-card
             entities:
               - entity: sensor.tablet_battery_level
@@ -130,23 +180,18 @@ views:
               - entity: sensor.bath_switch_battery_level
                 name: Bath Switch Battery
           - type: custom:mini-graph-card
-            hours_to_show: 240
+            hours_to_show: 2400
             name: Covid Status Austria
-            points_per_hour: 0.10
+            points_per_hour: 0.0416666666667
+            line_width: 1
+            show:
+              fill: false
             entities:
               - entity: sensor.austria_coronavirus_confirmed
-                show_state: false
-                show_fill: false
                 name: Confirmed
               - entity: sensor.austria_coronavirus_recovered
-                show_state: true
-                show_fill: false
                 name: Recovered
               - entity: sensor.austria_coronavirus_current
-                show_state: true
-                show_fill: false
                 name: Current
               - entity: sensor.austria_coronavirus_deaths
-                show_state: true
-                show_fill: false
                 name: Deaths
