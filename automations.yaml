@@ -119,13 +119,9 @@
   alias: Turn off stairs LED
   description: ''
   trigger:
-  - platform: state
-    entity_id: sensor.daylight
-  condition:
-  - condition: state
-    entity_id: sensor.daylight
-    state: ''
-    attribute: daylight
+  - platform: template
+    value_template: '{{ state_attr(''sensor.daylight'', ''daylight'') }}'
+  condition: []
   action:
   - type: turn_off
     device_id: 03baa6e6081411eb958e6b58c8805747
@@ -256,8 +252,6 @@
     at: 06:45:00
   - platform: time
     at: '18:00:00'
-  - platform: time
-    at: 08:00:00
   condition: []
   action:
   - choose:
@@ -270,17 +264,6 @@
         entity_id: input_select.daytime
         data:
           option: Morning
-    default: []
-  - choose:
-    - conditions:
-      - condition: time
-        before: 08:05:00
-        after: 07:55:00
-      sequence:
-      - service: input_select.select_option
-        entity_id: input_select.daytime
-        data:
-          option: Daytimes
     default: []
   - choose:
     - conditions:
