@@ -6,9 +6,15 @@ switches:
     - switch.laptop
     - switch.printer
     - switch.tower
-    - switch.nightstand
+
 switches_and_lights:
   name: Lights and Switches
   entities:
     - group.switches
+    - light.all_lights
+
+all_lights_extra:
+  name: Lights and Switch Lights
+  entities:
+    - switch.nightstand
     - light.all_lights

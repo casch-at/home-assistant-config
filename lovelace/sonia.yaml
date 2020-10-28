@@ -41,9 +41,9 @@ views:
             icon_height: 80px
             tap_action:
               action: call-service
-              service: light.turn_off
+              service: homeassistant.turn_off
               service_data:
-                entity_id: light.all_lights
+                entity_id: group.all_lights_extra
               confirmation:
                 text: Do you really want to turn off all lights?
           - type: custom:button-card
