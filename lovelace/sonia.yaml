@@ -22,6 +22,10 @@ views:
             entity: light.bathroom
             toggle: true
             hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.lower_kitchen
+            toggle: true
+            hide_when_off: true
           - entity: switch.printer
             tab_action:
               action: call-service

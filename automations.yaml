@@ -1,5 +1,5 @@
 - id: '1602050820929'
-  alias: Sun down Lights
+  alias: Sun down lights
   description: Turn on lights when the sun goes down
   trigger:
   - platform: state
@@ -84,8 +84,8 @@
     default: []
   mode: single
 - id: '1602050996708'
-  alias: Turn on stairs LED
-  description: Turn on stairs LED in the morning
+  alias: Turn on stairs LED in the morning
+  description: ''
   trigger:
   - platform: time
     at: 06:50:00
@@ -116,7 +116,7 @@
   - scene: scene.stairs_morning_light
   mode: single
 - id: '1602059477289'
-  alias: Turn off stairs LED
+  alias: Turn off stairs LED when daylight == true
   description: ''
   trigger:
   - platform: template
@@ -133,7 +133,7 @@
       option: Daytimes
   mode: single
 - id: '1602353922519'
-  alias: Night Toilet Light
+  alias: Night toilet light
   description: ''
   trigger:
   - type: motion
@@ -245,7 +245,7 @@
     default: []
   mode: single
 - id: '1603389408650'
-  alias: Set Daytime
+  alias: Set daytime
   description: ''
   trigger:
   - platform: time
@@ -278,7 +278,7 @@
     default: []
   mode: single
 - id: '1603390848183'
-  alias: Night Mode
+  alias: Night mode
   description: ''
   trigger:
   - platform: state
@@ -295,7 +295,7 @@
     entity_id: automation.night_toilet_light
   mode: single
 - id: '1603633705234'
-  alias: Tablet Battery Warning
+  alias: Tablet battery warning
   description: ''
   trigger:
   - platform: template
@@ -309,4 +309,29 @@
     data:
       message: The tablet battery level has dropped below 10 %, please recharge!
       title: Critical Battery Level {{ states('sensor.tablet_battery_level') }} %
+  mode: single
+- id: '1603909632409'
+  alias: Turn on lights in lower kitchen on motion (LUX < 30.0)
+  description: ''
+  trigger:
+  - platform: device
+    domain: binary_sensor
+    entity_id: binary_sensor.lower_kitchen_motion
+    device_id: 8d133ccd194611ebabceebef0fb044f6
+    type: motion
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.lower_kitchen_motion_lightlevel'')|float <
+      30.0 }}'
+  action:
+  - domain: light
+    entity_id: light.lower_kitchen
+    device_id: 99c4272d194811eb9a33c1747a3f77e4
+    type: turn_on
+    brightness_pct: 55
+  - wait_template: '{{ states(''binary_sensor.lower_kitchen_motion'') == ''off'' }}'
+  - type: turn_off
+    device_id: 99c4272d194811eb9a33c1747a3f77e4
+    entity_id: light.lower_kitchen
+    domain: light
   mode: single

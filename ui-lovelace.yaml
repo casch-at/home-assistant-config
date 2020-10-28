@@ -210,6 +210,24 @@ views:
                   service_data:
                     entity_id: scene.night
       - type: entities
+        title: Lower Kitchen
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.lower_kitchen
+            toggle: true
+            hide_when_off: true
+            name: All
+          - type: custom:slider-entity-row
+            entity: light.lower_kitchen_back
+            name: Back
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.lower_kitchen_front
+            name: Front
+            toggle: true
+            hide_when_off: true
+      - type: entities
         title: Bathroom
         entities:
           - type: custom:slider-entity-row
@@ -218,22 +236,22 @@ views:
             hide_when_off: true
             name: All
           - type: custom:slider-entity-row
-            entity: light.bathroom_light_1
+            entity: light.bathroom_front_left
             name: Left Front
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.bathroom_light_2
+            entity: light.bathroom_back_left
             name: Left Back
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.bathroom_light_3
+            entity: light.bathroom_back_right
             name: Right Back
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.bathroom_light_4
+            entity: light.bathroom_front_right
             name: Right Front
             toggle: true
             hide_when_off: true
@@ -329,11 +347,7 @@ views:
                   card:
                     - height: 100px
               - type: custom:button-card
-                entity: binary_sensor.bedroom_motion
-                show_state: true
-                styles:
-                  card:
-                    - height: 100px
+                color_type: blank-card
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -380,10 +394,33 @@ views:
           - type: custom:mini-graph-card
             entities:
               - entity: binary_sensor.bedroom_motion
-            name: Motion last 7 days
+            name: Bedroom motion (24h)
             hours_to_show: 24
             points_per_hour: 30
             aggregate_func: max
+            line_width: 1
+            smoothing: false
+            state_map:
+              - value: "off"
+                label: Clear
+              - value: "on"
+                label: Detected
+          - type: custom:mini-graph-card
+            entities:
+              - entity: sensor.lower_kitchen_motion_lightlevel
+                name: Lower kitchen lightlevel
+              - entity: sensor.bedroom_motion_lightlevel
+                name: Bedroom lightlevel
+            name: Motion sensors lightlevel (24h)
+            hours_to_show: 24
+            points_per_hour: 10
+            line_width: 1
+          - type: custom:mini-graph-card
+            entities:
+              - entity: binary_sensor.lower_kitchen_motion
+            name: Lower kitchen motion (24h)
+            hours_to_show: 24
+            points_per_hour: 30
             # group_by: interval
             line_width: 1
             smoothing: false
@@ -411,6 +448,9 @@ views:
                   color: yellow
               - entity: sensor.bedroom_motion_battery_level
                 name: Bedroom motion sensor
+                tap_action: more-info
+              - entity: sensor.lower_kitchen_motion_battery_level
+                name: Lower kitchen motion sensor
                 tap_action: more-info
               - entity: sensor.bath_switch_battery_level
                 name: Bath switch
