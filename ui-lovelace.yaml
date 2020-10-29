@@ -394,6 +394,9 @@ views:
           - type: custom:mini-graph-card
             entities:
               - entity: binary_sensor.bedroom_motion
+                name: Bedroom
+              - entity: binary_sensor.lower_kitchen_motion
+                name: Lower Kitchen
             name: Bedroom motion (24h)
             hours_to_show: 24
             points_per_hour: 30
@@ -408,27 +411,13 @@ views:
           - type: custom:mini-graph-card
             entities:
               - entity: sensor.lower_kitchen_motion_lightlevel
-                name: Lower kitchen lightlevel
+                name: Lower kitchen
               - entity: sensor.bedroom_motion_lightlevel
-                name: Bedroom lightlevel
+                name: Bedroom
             name: Motion sensors lightlevel (24h)
             hours_to_show: 24
             points_per_hour: 10
             line_width: 1
-          - type: custom:mini-graph-card
-            entities:
-              - entity: binary_sensor.lower_kitchen_motion
-            name: Lower kitchen motion (24h)
-            hours_to_show: 24
-            points_per_hour: 30
-            # group_by: interval
-            line_width: 1
-            smoothing: false
-            state_map:
-              - value: "off"
-                label: Clear
-              - value: "on"
-                label: Detected
           - type: custom:battery-state-card
             title: Battery Level
             # secondary_info: last_updated
