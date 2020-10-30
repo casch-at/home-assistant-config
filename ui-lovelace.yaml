@@ -390,34 +390,44 @@ views:
           #       color_type: blank-card
           #       styles:
           #         card:
-          #           - height: 100px
+          #       - height: 100px
+
           - type: custom:mini-graph-card
             entities:
-              - entity: binary_sensor.bedroom_motion
-                name: Bedroom
               - entity: binary_sensor.lower_kitchen_motion
                 name: Lower Kitchen
-            name: Bedroom motion (24h)
-            hours_to_show: 24
-            points_per_hour: 30
+              - entity: binary_sensor.bedroom_motion
+                name: Bedroom
+            name: Motion detection
             aggregate_func: max
+            hours_to_show: 12   # 24 default
+            points_per_hour: 20 # 0.5 default
             line_width: 1
             smoothing: false
+            align_icon: left
+            align_header: left
             state_map:
               - value: "off"
                 label: Clear
               - value: "on"
                 label: Detected
+
           - type: custom:mini-graph-card
             entities:
               - entity: sensor.lower_kitchen_motion_lightlevel
                 name: Lower kitchen
               - entity: sensor.bedroom_motion_lightlevel
                 name: Bedroom
-            name: Motion sensors lightlevel (24h)
-            hours_to_show: 24
-            points_per_hour: 10
+            name: Lightlevel
+            hours_to_show: 24   # 24 default
+            points_per_hour: 12
             line_width: 1
+            smoothing: true
+            align_icon: left
+            align_header: left
+            # show:
+            #   extrema: true
+
           - type: custom:battery-state-card
             title: Battery Level
             # secondary_info: last_updated
@@ -453,6 +463,7 @@ views:
                 - name: state
                   value: 100
                   operator: ">"
+
           - type: custom:mini-graph-card
             hours_to_show: 2400
             name: Covid Status Austria
