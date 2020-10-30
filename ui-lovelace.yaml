@@ -22,6 +22,7 @@ views:
             icon: mdi:floor-lamp
           - entity: switch.tower
             icon: mdi:desktop-tower
+
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -57,6 +58,7 @@ views:
                     entity_id: group.switches_and_lights
                   confirmation:
                     text: Do you really want to turn all switches and lights off?
+
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -103,6 +105,7 @@ views:
     cards:
       - type: entities
         title: Stripes (RGB)
+        show_header_toggle: false
         entities:
           - type: custom:slider-entity-row
             entity: light.led_stripes
@@ -119,8 +122,10 @@ views:
             toggle: true
             hide_when_off: true
             name: Office
+
       - type: entities
         title: Parlor
+        show_header_toggle: false
         entities:
           - type: custom:slider-entity-row
             entity: light.parlor
@@ -132,6 +137,7 @@ views:
             name: Shelve
             toggle: true
             hide_when_off: true
+
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -174,6 +180,7 @@ views:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.chill
+
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -209,14 +216,36 @@ views:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.night
+
+      - type: entities
+        title: Front Floor
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.front_floor
+            name: All
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.front_floor_front
+            name: Back
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.front_floor_middle
+            name: Front
+            toggle: true
+            hide_when_off: true
+
       - type: entities
         title: Lower Kitchen
+        show_header_toggle: false
         entities:
           - type: custom:slider-entity-row
             entity: light.lower_kitchen
+            name: All
             toggle: true
             hide_when_off: true
-            name: All
           - type: custom:slider-entity-row
             entity: light.lower_kitchen_back
             name: Back
@@ -227,14 +256,16 @@ views:
             name: Front
             toggle: true
             hide_when_off: true
+
       - type: entities
         title: Bathroom
+        show_header_toggle: false
         entities:
           - type: custom:slider-entity-row
             entity: light.bathroom
+            name: All
             toggle: true
             hide_when_off: true
-            name: All
           - type: custom:slider-entity-row
             entity: light.bathroom_front_left
             name: Left Front
@@ -309,8 +340,10 @@ views:
                   ]]]
               - type: custom:button-card
                 color_type: blank-card
+
           - type: weather-forecast
             entity: weather.home
+
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -332,6 +365,7 @@ views:
                 styles:
                   card:
                     - height: 100px
+
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -348,6 +382,7 @@ views:
                     - height: 100px
               - type: custom:button-card
                 color_type: blank-card
+
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -394,6 +429,34 @@ views:
 
           - type: custom:mini-graph-card
             entities:
+              - entity: sensor.lower_kitchen_motion_lightlevel
+                name: Lower kitchen
+              - entity: sensor.front_floor_motion_lightlevel
+                name: Front Floor
+              - entity: sensor.bedroom_motion_lightlevel
+                name: Bedroom
+            name: Lightlevel
+            hours_to_show: 24   # 24 default
+            points_per_hour: 12
+            line_width: 1
+            smoothing: true
+            align_icon: left
+            align_header: left
+
+          - type: custom:mini-graph-card
+            entities:
+              - entity: sensor.front_floor_motion_temperature
+                name: Front Floor
+            name: Temperature
+            hours_to_show: 24   # 24 default
+            points_per_hour: 6
+            line_width: 1
+            smoothing: true
+            align_icon: left
+            align_header: left
+
+          - type: custom:mini-graph-card
+            entities:
               - entity: binary_sensor.lower_kitchen_motion
                 name: Lower Kitchen
               - entity: binary_sensor.bedroom_motion
@@ -411,22 +474,6 @@ views:
                 label: Clear
               - value: "on"
                 label: Detected
-
-          - type: custom:mini-graph-card
-            entities:
-              - entity: sensor.lower_kitchen_motion_lightlevel
-                name: Lower kitchen
-              - entity: sensor.bedroom_motion_lightlevel
-                name: Bedroom
-            name: Lightlevel
-            hours_to_show: 24   # 24 default
-            points_per_hour: 12
-            line_width: 1
-            smoothing: true
-            align_icon: left
-            align_header: left
-            # show:
-            #   extrema: true
 
           - type: custom:battery-state-card
             title: Battery Level
@@ -451,6 +498,9 @@ views:
                 tap_action: more-info
               - entity: sensor.lower_kitchen_motion_battery_level
                 name: Lower kitchen motion sensor
+                tap_action: more-info
+              - entity: sensor.front_floor_motion_battery_level
+                name: Front floor motion sensor
                 tap_action: more-info
               - entity: sensor.bath_switch_battery_level
                 name: Bath switch

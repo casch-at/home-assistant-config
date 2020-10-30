@@ -1,29 +1,41 @@
 - id: '1601832420345'
   name: 'Night '
   entities:
-    light.led_stripes:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      brightness: 211
-      color_temp: 375
-      is_deconz_group: true
-      all_on: true
-      friendly_name: LED Stripes
-      supported_features: 63
-      state: 'on'
     light.parlor:
       min_mireds: 153
       max_mireds: 500
       effect_list:
       - colorloop
-      brightness: 114
+      brightness: 178
       color_temp: 370
       is_deconz_group: true
       all_on: true
       friendly_name: Parlor Lights
       supported_features: 47
+      state: 'on'
+    light.office_led:
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      brightness: 254
+      color_temp: 329
+      is_deconz_group: false
+      friendly_name: Desk
+      icon: mdi:led-strip-variant
+      supported_features: 63
+      state: 'on'
+    light.stairs_led:
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      brightness: 178
+      color_temp: 375
+      is_deconz_group: false
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
+      supported_features: 63
       state: 'on'
   icon: mdi:weather-night
 - id: '1601908389461'
