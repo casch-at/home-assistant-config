@@ -432,7 +432,8 @@ views:
                 name: Tablet
                 tap_action: more-info
                 charging_state:
-                  state: charging
+                  entity_id: binary_sensor.tablet_is_charging
+                  state: "on"
                   icon: mdi:flash
                   color: yellow
               - entity: sensor.bedroom_motion_battery_level
