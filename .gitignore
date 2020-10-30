@@ -9,7 +9,6 @@
 /.storage/hacs/
 /.storage/hacs.repositories
 /.storage/mobile_app
-/.storage/*_registry
 /ssh/
 .storage/lovelace_resources
 .storage/http
