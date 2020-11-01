@@ -414,18 +414,6 @@ views:
                 styles:
                   card:
                     - height: 100px
-          # - type: horizontal-stack
-          #   cards:
-          #     - type: custom:button-card
-          #       color_type: blank-card
-          #       styles:
-          #         card:
-          #           - height: 100px
-          #     - type: custom:button-card
-          #       color_type: blank-card
-          #       styles:
-          #         card:
-          #       - height: 100px
 
           - type: custom:mini-graph-card
             entities:
@@ -438,19 +426,21 @@ views:
             name: Lightlevel
             hours_to_show: 24   # 24 default
             points_per_hour: 12
-            line_width: 1
+            line_width: 3
             smoothing: true
             align_icon: left
             align_header: left
 
           - type: custom:mini-graph-card
             entities:
+              - entity: sensor.lower_kitchen_motion_temperature
+                name: Lower Kitchen
               - entity: sensor.front_floor_motion_temperature
                 name: Front Floor
             name: Temperature
             hours_to_show: 24   # 24 default
             points_per_hour: 6
-            line_width: 1
+            line_width: 3
             smoothing: true
             align_icon: left
             align_header: left
@@ -459,6 +449,8 @@ views:
             entities:
               - entity: binary_sensor.lower_kitchen_motion
                 name: Lower Kitchen
+              - entity: binary_sensor.front_floor_motion
+                name: Front Floor
               - entity: binary_sensor.bedroom_motion
                 name: Bedroom
             name: Motion detection

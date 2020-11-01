@@ -324,11 +324,77 @@
     value_template: '{{ states(''sensor.lower_kitchen_motion_lightlevel'')|float <
       30.0 }}'
   action:
-  - domain: light
-    entity_id: light.lower_kitchen
-    device_id: 99c4272d194811eb9a33c1747a3f77e4
-    type: turn_on
-    brightness_pct: 55
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.daytime
+          state: Morning
+        - condition: state
+          entity_id: input_select.daytime
+          state: Daytime
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.lower_kitchen:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 254
+              color_temp: 271
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Lower Kitchen
+              supported_features: 47
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Evening
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.lower_kitchen:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 140
+              color_temp: 400
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Lower Kitchen
+              supported_features: 47
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.lower_kitchen:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 80
+              color_temp: 480
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Lower Kitchen
+              supported_features: 47
+              state: 'on'
+    default: []
   mode: single
 - id: '1604071027469'
   alias: Turn on lights in front floor
@@ -344,11 +410,77 @@
     value_template: '{{ states(''sensor.front_floor_motion_lightlevel'')|float < 30.0
       }}'
   action:
-  - type: turn_on
-    device_id: 9a999d4e84bd4c8eb7c7779363b97b26
-    entity_id: light.front_floor
-    domain: light
-    brightness_pct: 70
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.daytime
+          state: Morning
+        - condition: state
+          entity_id: input_select.daytime
+          state: Daytime
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 254
+              color_temp: 271
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Front Floor
+              supported_features: 47
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Evening
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 140
+              color_temp: 400
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Front Floor
+              supported_features: 47
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 80
+              color_temp: 480
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Front Floor
+              supported_features: 47
+              state: 'on'
+    default: []
   mode: single
 - id: '1604075158600'
   alias: Turn off lights in front floor
@@ -363,7 +495,12 @@
       hours: 0
       minutes: 0
       seconds: 20
-  condition: []
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+    entity_id: light.front_floor
+    domain: light
   action:
   - type: turn_off
     device_id: 9a999d4e84bd4c8eb7c7779363b97b26
@@ -383,7 +520,12 @@
       hours: 0
       minutes: 0
       seconds: 20
-  condition: []
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 99c4272d194811eb9a33c1747a3f77e4
+    entity_id: light.lower_kitchen
+    domain: light
   action:
   - type: turn_off
     device_id: 99c4272d194811eb9a33c1747a3f77e4
