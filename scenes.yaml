@@ -18,8 +18,8 @@
       max_mireds: 495
       effect_list:
       - colorloop
-      brightness: 254
-      color_temp: 329
+      brightness: 255
+      color_temp: 292
       is_deconz_group: false
       friendly_name: Desk
       icon: mdi:led-strip-variant
@@ -30,7 +30,7 @@
       max_mireds: 495
       effect_list:
       - colorloop
-      brightness: 178
+      brightness: 179
       color_temp: 375
       is_deconz_group: false
       friendly_name: Stairs

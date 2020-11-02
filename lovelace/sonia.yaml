@@ -145,6 +145,12 @@ views:
                 styles:
                   card:
                     - height: 100px
+                confirmation:
+                    text: | 
+                        Do you really want to toggle the presence?
+                        
+                        off -> All lights off
+                        on  -> Maybe some lights go on...    
               - type: custom:button-card
                 entity: sun.sun
                 show_state: true

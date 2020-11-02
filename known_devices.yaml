@@ -54,3 +54,10 @@ galaxy_a2_router:
   icon:
   picture:
   track: true
+
+raspberrypi:
+  name: raspberrypi
+  mac: B8:27:EB:7C:14:43
+  icon:
+  picture:
+  track: true

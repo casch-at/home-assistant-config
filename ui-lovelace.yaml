@@ -352,6 +352,12 @@ views:
                 styles:
                   card:
                     - height: 100px
+                confirmation:
+                    text: |
+                        Do you really want to toggle the presence?
+
+                        off -> All lights off
+                        on  -> Maybe some lights go on...
               - type: custom:button-card
                 entity: sun.sun
                 show_state: true
@@ -417,11 +423,11 @@ views:
 
           - type: custom:mini-graph-card
             entities:
-              - entity: sensor.lower_kitchen_motion_lightlevel
+              - entity: sensor.lower_kitchen_lightlevel
                 name: Lower kitchen
-              - entity: sensor.front_floor_motion_lightlevel
+              - entity: sensor.front_floor_lightlevel
                 name: Front Floor
-              - entity: sensor.bedroom_motion_lightlevel
+              - entity: sensor.bedroom_lightlevel
                 name: Bedroom
             name: Lightlevel
             hours_to_show: 24   # 24 default
@@ -433,11 +439,37 @@ views:
 
           - type: custom:mini-graph-card
             entities:
-              - entity: sensor.lower_kitchen_motion_temperature
+              - entity: sensor.lower_kitchen_temperature
                 name: Lower Kitchen
-              - entity: sensor.front_floor_motion_temperature
+              - entity: sensor.front_floor_temperature
                 name: Front Floor
+              - entity: sensor.office_temperature
+                name: Office
             name: Temperature
+            hours_to_show: 24   # 24 default
+            points_per_hour: 6
+            line_width: 3
+            smoothing: true
+            align_icon: left
+            align_header: left
+
+          - type: custom:mini-graph-card
+            entities:
+              - entity: sensor.office_humidity
+                name: Office
+            name: Humidity
+            hours_to_show: 24   # 24 default
+            points_per_hour: 6
+            line_width: 3
+            smoothing: true
+            align_icon: left
+            align_header: left
+
+          - type: custom:mini-graph-card
+            entities:
+              - entity: sensor.office_pressure
+                name: Office
+            name: Office Pressure
             hours_to_show: 24   # 24 default
             points_per_hour: 6
             line_width: 3
@@ -453,14 +485,17 @@ views:
                 name: Front Floor
               - entity: binary_sensor.bedroom_motion
                 name: Bedroom
-            name: Motion detection
+            name: Motion
             aggregate_func: max
             hours_to_show: 12   # 24 default
-            points_per_hour: 20 # 0.5 default
+            points_per_hour: 30 # 0.5 default
             line_width: 1
             smoothing: false
             align_icon: left
             align_header: left
+            show:
+              labels: true
+              points: false
             state_map:
               - value: "off"
                 label: Clear
@@ -497,14 +532,9 @@ views:
               - entity: sensor.bath_switch_battery_level
                 name: Bath switch
                 tap_action: more-info
-            filter:
-              include:
-                - name: attributes.device_class
-                  value: battery
-              exclude:
-                - name: state
-                  value: 100
-                  operator: ">"
+              - entity: sensor.office_multi_sensor_battery_level
+                name: Office Multi Sensor
+                tap_action: more-info
 
           - type: custom:mini-graph-card
             hours_to_show: 2400

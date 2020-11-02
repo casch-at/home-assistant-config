@@ -1,14 +1,29 @@
 - id: '1602050820929'
-  alias: Sun down lights
-  description: Turn on lights when the sun goes down
+  alias: Low illuminance light
+  description: Turn on lights when the sun goes down or on low light condition
   trigger:
   - platform: state
     entity_id: sensor.daylight
     to: sunset_start
+  - type: illuminance
+    platform: device
+    device_id: d362c802f675d2a59d2080b94ebef8e4
+    entity_id: sensor.front_floor_lightlevel
+    domain: sensor
+    below: 80
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  - platform: state
+    entity_id: input_boolean.presence
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
+  - condition: template
+    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 80 }}'
   action:
   - choose:
     - conditions:
@@ -26,7 +41,7 @@
               max_mireds: 500
               effect_list:
               - colorloop
-              brightness: 210
+              brightness: 180
               color_temp: 375
               is_deconz_group: false
               friendly_name: Stairs LED-Stripe
@@ -75,7 +90,7 @@
               max_mireds: 500
               effect_list:
               - colorloop
-              brightness: 210
+              brightness: 256
               color_temp: 375
               is_deconz_group: false
               friendly_name: Desk LED-Stripe
@@ -119,18 +134,22 @@
   alias: Turn off stairs LED when daylight == true
   description: ''
   trigger:
-  - platform: template
-    value_template: '{{ state_attr(''sensor.daylight'', ''daylight'') }}'
+  - type: illuminance
+    platform: device
+    device_id: d362c802f675d2a59d2080b94ebef8e4
+    entity_id: sensor.front_floor_lightlevel
+    domain: sensor
+    above: 80
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
   condition: []
   action:
   - type: turn_off
     device_id: 03baa6e6081411eb958e6b58c8805747
     entity_id: light.stairs_led
     domain: light
-  - service: input_select.select_option
-    entity_id: input_select.daytime
-    data:
-      option: Daytimes
   mode: single
 - id: '1602353922519'
   alias: Night toilet light
@@ -278,7 +297,7 @@
     default: []
   mode: single
 - id: '1603390848183'
-  alias: Night mode
+  alias: Bedtime mode
   description: ''
   trigger:
   - platform: state
@@ -321,7 +340,7 @@
     domain: binary_sensor
   condition:
   - condition: template
-    value_template: '{{ states(''sensor.lower_kitchen_motion_lightlevel'')|float <
+    value_template: '{{ states(''sensor.lower_kitchen_lightlevel'')|float <
       30.0 }}'
   action:
   - choose:
@@ -333,7 +352,7 @@
           state: Morning
         - condition: state
           entity_id: input_select.daytime
-          state: Daytime
+          state: Daytimes
       sequence:
       - service: scene.apply
         data:
@@ -407,8 +426,7 @@
     domain: binary_sensor
   condition:
   - condition: template
-    value_template: '{{ states(''sensor.front_floor_motion_lightlevel'')|float < 30.0
-      }}'
+    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 30.0 }}'
   action:
   - choose:
     - conditions:
@@ -419,7 +437,7 @@
           state: Morning
         - condition: state
           entity_id: input_select.daytime
-          state: Daytime
+          state: Daytimes
       sequence:
       - service: scene.apply
         data:
@@ -531,4 +549,68 @@
     device_id: 99c4272d194811eb9a33c1747a3f77e4
     entity_id: light.lower_kitchen
     domain: light
+  mode: single
+- id: '1604244673177'
+  alias: Presence on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: home
+    for: 00:00:15
+  - platform: state
+    entity_id: person.sonia_avramidis
+    to: home
+    for: 00:00:15
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    entity_id: input_boolean.presence
+  mode: single
+- id: '1604245860864'
+  alias: Presence off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.presence
+    to: 'off'
+  condition:
+  - condition: or
+    conditions:
+    - condition: device
+      type: is_on
+      device_id: a545f6c4178111ebb5412f4113021a80
+      entity_id: light.all_lights
+      domain: light
+    - condition: state
+      entity_id: switch.nightstand
+      state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_on
+        device_id: a545f6c4178111ebb5412f4113021a80
+        entity_id: light.all_lights
+        domain: light
+      sequence:
+      - type: turn_off
+        device_id: a545f6c4178111ebb5412f4113021a80
+        entity_id: light.all_lights
+        domain: light
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.nightstand
+        state: 'on'
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        entity_id: switch.nightstand
+    default: []
   mode: single
