@@ -439,9 +439,9 @@ views:
 
           - type: custom:mini-graph-card
             entities:
-              - entity: sensor.lower_kitchen_temperature
+              - entity: sensor.lower_kitchen_temperature_fixed
                 name: Lower Kitchen
-              - entity: sensor.front_floor_temperature
+              - entity: sensor.front_floor_temperature_fixed
                 name: Front Floor
               - entity: sensor.office_temperature
                 name: Office

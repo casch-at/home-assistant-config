@@ -116,30 +116,3 @@
       supported_features: 63
       state: 'on'
   icon: mdi:head-heart
-- id: '1604174767962'
-  name: tmp
-  entities:
-    light.front_floor:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      brightness: 178
-      color_temp: 400
-      is_deconz_group: true
-      all_on: true
-      friendly_name: Front Floor
-      supported_features: 47
-      state: 'on'
-    light.lower_kitchen:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      brightness: 254
-      color_temp: 271
-      is_deconz_group: true
-      all_on: true
-      friendly_name: Lower Kitchen
-      supported_features: 47
-      state: 'on'

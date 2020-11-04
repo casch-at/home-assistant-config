@@ -35,6 +35,7 @@ device_tracker:
     verify_ssl: false
     wireless_only: true
 
+sensor: !include sensors.yaml
 lovelace: !include lovelace/lovelace.yaml
 switch: !include switch.yaml
 group: !include groups.yaml
