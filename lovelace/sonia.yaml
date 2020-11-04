@@ -75,12 +75,177 @@ views:
               service: script.bathroom_demo
               confirmation:
                 text: Are you sure you want to run the bathroom demo?
+
+  - title: TV
+    path: tv
+    icon: mdi:television
+    panel: false
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+
+          - type: horizontal-stack
+            title: Soundbar
+            cards:
+              - type: custom:button-card
+                icon: mdi:power
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: power
+              - type: custom:button-card
+                icon: mdi:television
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: tv
+              - type: custom:button-card
+                icon: mdi:bluetooth
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: bluetooth
+              - type: custom:button-card
+                icon: mdi:volume-mute
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: mute
+              - type: custom:button-card
+                icon: mdi:volume-minus
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: volume_down
+              - type: custom:button-card
+                icon: mdi:volume-plus
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: volume_up
+
+          - type: vertical-stack
+            title: TV
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    icon: mdi:power
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: power
+                  - type: custom:button-card
+                    icon: mdi:logout-variant
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: source
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    icon: mdi:volume-mute
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: mute
+                  - type: custom:button-card
+                    icon: mdi:volume-minus
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: volume_down
+                  - type: custom:button-card
+                    icon: mdi:volume-plus
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: volume_up
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    icon: mdi:arrow-left
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: left
+                  - type: custom:button-card
+                    icon: mdi:arrow-right
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: right
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    icon: mdi:arrow-up
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: up
+                  - type: custom:button-card
+                    icon: mdi:arrow-down
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: down
+
   - icon: mdi:blinds
     title: Blinds
     path: blinds
     panel: true
     badges: []
     cards: []
+
   - title: Status
     path: status
     icon: mdi:information
@@ -146,11 +311,11 @@ views:
                   card:
                     - height: 100px
                 confirmation:
-                    text: | 
+                    text: |
                         Do you really want to toggle the presence?
-                        
+
                         off -> All lights off
-                        on  -> Maybe some lights go on...    
+                        on  -> Maybe some lights go on...
               - type: custom:button-card
                 entity: sun.sun
                 show_state: true

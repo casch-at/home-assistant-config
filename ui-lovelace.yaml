@@ -97,6 +97,7 @@ views:
                       Do you really want to set the day state to "Night"?
 
                       This turns all lights and switches off!
+
   - title: Lights
     path: lights
     panel: false
@@ -286,6 +287,170 @@ views:
             name: Right Front
             toggle: true
             hide_when_off: true
+
+  - title: TV
+    path: tv
+    icon: mdi:television
+    panel: false
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+
+          - type: horizontal-stack
+            title: Soundbar
+            cards:
+              - type: custom:button-card
+                icon: mdi:power
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: power
+              - type: custom:button-card
+                icon: mdi:television
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: tv
+              - type: custom:button-card
+                icon: mdi:bluetooth
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: bluetooth
+              - type: custom:button-card
+                icon: mdi:volume-mute
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: mute
+              - type: custom:button-card
+                icon: mdi:volume-minus
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: volume_down
+              - type: custom:button-card
+                icon: mdi:volume-plus
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: volume_up
+
+          - type: vertical-stack
+            title: TV
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    icon: mdi:power
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: power
+                  - type: custom:button-card
+                    icon: mdi:logout-variant
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: source
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    icon: mdi:volume-mute
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: mute
+                  - type: custom:button-card
+                    icon: mdi:volume-minus
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: volume_down
+                  - type: custom:button-card
+                    icon: mdi:volume-plus
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: volume_up
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    icon: mdi:arrow-left
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: left
+                  - type: custom:button-card
+                    icon: mdi:arrow-right
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: right
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    icon: mdi:arrow-up
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: up
+                  - type: custom:button-card
+                    icon: mdi:arrow-down
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: down
+
   - title: Status
     path: status
     icon: mdi:information
