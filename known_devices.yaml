@@ -60,4 +60,11 @@ raspberrypi:
   mac: B8:27:EB:7C:14:43
   icon:
   picture:
-  track: true
+  track: false
+
+24_df_a7_e0_20_c8:
+  name: '*'
+  mac: 24:DF:A7:E0:20:C8
+  icon:
+  picture:
+  track: false
