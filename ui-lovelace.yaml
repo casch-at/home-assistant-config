@@ -18,8 +18,6 @@ views:
             icon: mdi:laptop
           - entity: switch.printer
             icon: mdi:printer
-          - entity: switch.nightstand
-            icon: mdi:floor-lamp
           - entity: switch.tower
             icon: mdi:desktop-tower
 
@@ -138,6 +136,14 @@ views:
             name: Shelve
             toggle: true
             hide_when_off: true
+
+      - type: entities
+        title: Bedroom
+        show_header_toggle: false
+        state_color: true
+        entities:
+          - entity: switch.nightstand
+            icon: mdi:floor-lamp
 
       - type: vertical-stack
         cards:
@@ -452,6 +458,13 @@ views:
                         entity_id: remote.broadlink_rm3_mini_office_remote
                         device: tv
                         command: down
+
+  - title: Air Conditioner
+    path: ac
+    icon: mdi:air-conditioner
+    panel: false
+    badges: []
+    cards: []
 
   - title: Status
     path: status
