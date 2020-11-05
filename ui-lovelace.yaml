@@ -309,6 +309,7 @@ views:
                     entity_id: remote.broadlink_rm3_mini_office_remote
                     device: soundbar
                     command: power
+                    hold_secs: 0.3
               - type: custom:button-card
                 icon: mdi:television
                 tap_action:
@@ -318,6 +319,7 @@ views:
                     entity_id: remote.broadlink_rm3_mini_office_remote
                     device: soundbar
                     command: tv
+                    hold_secs: 0.3
               - type: custom:button-card
                 icon: mdi:bluetooth
                 tap_action:
