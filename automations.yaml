@@ -23,6 +23,11 @@
     state: 'on'
   - condition: template
     value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 80 }}'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.daytime
+      state: Night
   action:
   - choose:
     - conditions:
