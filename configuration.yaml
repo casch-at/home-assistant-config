@@ -30,10 +30,11 @@ device_tracker:
     username: !secret router_user
     password: !secret router_password
     interval_seconds: 10
-    consider_home: 180
     ssl: true
     verify_ssl: false
     wireless_only: true
+    new_device_defaults:
+      track_new_devices: false
 
 sensor: !include sensors.yaml
 lovelace: !include lovelace/lovelace.yaml

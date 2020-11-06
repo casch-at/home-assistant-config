@@ -616,6 +616,8 @@ views:
             smoothing: true
             align_icon: left
             align_header: left
+            show:
+              fill: false
 
           - type: custom:mini-graph-card
             entities:
@@ -625,6 +627,8 @@ views:
                 name: Front Floor
               - entity: sensor.office_temperature
                 name: Office
+              - entity: sensor.upstairs_temperature
+                name: Upstairs
             name: Temperature
             hours_to_show: 24   # 24 default
             points_per_hour: 6
@@ -632,11 +636,15 @@ views:
             smoothing: true
             align_icon: left
             align_header: left
+            show:
+              fill: false
 
           - type: custom:mini-graph-card
             entities:
               - entity: sensor.office_humidity
                 name: Office
+              - entity: sensor.upstairs_humidity
+                name: Upstairs
             name: Humidity
             hours_to_show: 24   # 24 default
             points_per_hour: 6
@@ -644,18 +652,24 @@ views:
             smoothing: true
             align_icon: left
             align_header: left
+            show:
+              fill: false
 
           - type: custom:mini-graph-card
             entities:
               - entity: sensor.office_pressure
                 name: Office
-            name: Office Pressure
+              - entity: sensor.upstairs_pressure
+                name: Upstairs
+            name: Pressure
             hours_to_show: 24   # 24 default
             points_per_hour: 6
             line_width: 3
             smoothing: true
             align_icon: left
             align_header: left
+            show:
+              fill: false
 
           - type: custom:mini-graph-card
             entities:
@@ -700,6 +714,22 @@ views:
                   state: "on"
                   icon: mdi:flash
                   color: yellow
+              - entity: sensor.huawei_p20_battery_level  
+                name: Huawei P20
+                tap_action: more-info
+                charging_state:
+                  entity_id: binary_sensor.huawei_p20_is_charging
+                  state: "on"
+                  icon: mdi:flash
+                  color: yellow
+              - entity: sensor.galaxy_a2_battery_level  
+                name: Galaxy A2
+                tap_action: more-info
+                charging_state:
+                  entity_id: binary_sensor.galaxy_a2_is_charging
+                  state: "on"
+                  icon: mdi:flash
+                  color: yellow
               - entity: sensor.bedroom_motion_battery_level
                 name: Bedroom motion sensor
                 tap_action: more-info
@@ -713,7 +743,10 @@ views:
                 name: Bath switch
                 tap_action: more-info
               - entity: sensor.office_multi_sensor_battery_level
-                name: Office Multi Sensor
+                name: Office multi sensor
+                tap_action: more-info
+              - entity: sensor.upstairs_multi_sensor_battery_level
+                name: Upstairs multi sensor
                 tap_action: more-info
 
           - type: custom:mini-graph-card
