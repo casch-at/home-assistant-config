@@ -24,8 +24,6 @@ resources:
     type: module
   - url: /hacsfiles/lovelace-card-mod/card-mod.js
     type: module
-  - url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js?v=1.2.9
-    type: module    
 dashboards:
   lovelace-sonia:
     mode: yaml

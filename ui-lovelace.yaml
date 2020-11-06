@@ -132,8 +132,18 @@ views:
             hide_when_off: true
             name: All
           - type: custom:slider-entity-row
-            entity: light.parlor_shelve_light
+            entity: light.parlor_shelve
             name: Shelve
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.parlor_plant_right
+            name: Plant Right
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.parlor_plant_left
+            name: Plant Left
             toggle: true
             hide_when_off: true
 
