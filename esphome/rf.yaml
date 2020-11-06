@@ -1,0 +1,25 @@
+esphome:
+  name: rf
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "WTF-Home-2.4GHz"
+  password: "!secret password"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Rf Fallback Hotspot"
+    password: "!secret ap_password"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "!secret password"
+
+ota:
+  password: "!secret password"
