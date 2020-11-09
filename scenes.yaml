@@ -1,24 +1,12 @@
 - id: '1601832420345'
   name: 'Night '
   entities:
-    light.parlor:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      brightness: 178
-      color_temp: 370
-      is_deconz_group: true
-      all_on: true
-      friendly_name: Parlor Lights
-      supported_features: 47
-      state: 'on'
     light.office_led:
       min_mireds: 155
       max_mireds: 495
       effect_list:
       - colorloop
-      brightness: 255
+      brightness: 254
       color_temp: 292
       is_deconz_group: false
       friendly_name: Desk
@@ -37,6 +25,36 @@
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
+    light.parlor_plants:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 178
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Parlor Plants
+      supported_features: 63
+      state: 'on'
+    light.parlor_shelve:
+      min_mireds: 140
+      max_mireds: 650
+      brightness: 178
+      color_temp: 370
+      is_deconz_group: false
+      friendly_name: Parlor Shelve
+      supported_features: 43
+      state: 'on'
   icon: mdi:weather-night
 - id: '1601908389461'
   name: Chill
@@ -46,7 +64,7 @@
       max_mireds: 500
       effect_list:
       - colorloop
-      brightness: 255
+      brightness: 254
       hs_color:
       - 120
       - 100
@@ -60,6 +78,28 @@
       is_deconz_group: true
       all_on: true
       friendly_name: LED Stripes
+      icon: mdi:led-strip-variant
+      supported_features: 63
+      state: 'on'
+    light.parlor_plants:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 132
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 50
+      xy_color:
+      - 0.171
+      - 0.718
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Parlor Plants
       supported_features: 63
       state: 'on'
 - id: '1602060945201'
@@ -95,9 +135,30 @@
 - id: '1602522741384'
   name: 'Love 😍 '
   entities:
-    light.stairs_led:
-      min_mireds: 155
-      max_mireds: 495
+    light.parlor_plants:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 343.294
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 71
+      xy_color:
+      - 0.659
+      - 0.28
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Parlor Plants
+      supported_features: 63
+      state: 'on'
+    light.led_stripes:
+      min_mireds: 153
+      max_mireds: 500
       effect_list:
       - colorloop
       brightness: 254
@@ -111,8 +172,10 @@
       xy_color:
       - 0.701
       - 0.299
-      is_deconz_group: false
-      friendly_name: Stairs-LED
+      is_deconz_group: true
+      all_on: true
+      friendly_name: LED Stripes
+      icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
   icon: mdi:head-heart
