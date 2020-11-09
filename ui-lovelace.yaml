@@ -409,7 +409,14 @@ views:
                         device: tv
                         command: source
                   - type: custom:button-card
-                    color_type: blank-card
+                    icon: mdi:keyboard-return
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: return
                   - type: custom:button-card
                     icon: mdi:volume-mute
                     tap_action:
@@ -459,10 +466,6 @@ views:
                         device: tv
                         command: right
                   - type: custom:button-card
-                    color_type: blank-card
-                  - type: custom:button-card
-                    color_type: blank-card
-                  - type: custom:button-card
                     icon: mdi:arrow-up
                     tap_action:
                       action: call-service
@@ -480,6 +483,24 @@ views:
                         entity_id: remote.broadlink_rm3_mini_office_remote
                         device: tv
                         command: down
+                  - type: custom:button-card
+                    icon: mdi:backup-restore
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: back
+                  - type: custom:button-card
+                    icon: mdi:exit-run
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.broadlink_rm3_mini_office_remote
+                        device: tv
+                        command: exit
 
   - title: Air Conditioner
     path: ac
