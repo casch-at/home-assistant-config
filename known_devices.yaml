@@ -1,46 +1,3 @@
-
-re450_router:
-  name: RE450 Router
-  mac: 18:D6:C7:B0:AA:D0
-  icon:
-  picture:
-  track: false
-
-lap_02_router:
-  name: Lap 02 Router
-  mac: A4:C4:94:5C:BB:74
-  icon:
-  picture:
-  track: false
-
-lap_sonia:
-  name: Lap Sonia Router
-  mac: 34:DE:1A:8C:D6:0B
-  icon:
-  picture:
-  track: false
-
-soundbar_router:
-  name: Soundbar Router
-  mac: 28:11:A5:93:C7:5D
-  icon:
-  picture:
-  track: false
-
-1e_d6_c7_b0_aa_d2_router:
-  name: 1e_d6_c7_b0_aa_d2 Router
-  mac: 1E:D6:C7:B0:AA:D2
-  icon:
-  picture:
-  track: false
-
-tablet_a10_router:
-  name: Tablet A10 Router
-  mac: 56:7C:B4:27:CF:F1
-  icon:
-  picture:
-  track: false
-
 huawei_p20_router:
   name: Huawei P20 Router
   mac: F8:C3:9E:14:E4:80
@@ -54,24 +11,3 @@ galaxy_a2_router:
   icon:
   picture:
   track: true
-
-raspberrypi:
-  name: raspberrypi
-  mac: B8:27:EB:7C:14:43
-  icon:
-  picture:
-  track: false
-
-24_df_a7_e0_20_c8:
-  name: '*'
-  mac: 24:DF:A7:E0:20:C8
-  icon:
-  picture:
-  track: false
-
-88_bd_45_5c_52_80:
-  name: 88_bd_45_5c_52_80
-  mac: 88:BD:45:5C:52:80
-  icon:
-  picture:
-  track: false
