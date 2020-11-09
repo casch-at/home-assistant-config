@@ -27,8 +27,8 @@ owntracks:
 device_tracker:
   - platform: ping
     hosts:
-      hostname: huawei-p20
-      hostname: galaxy-a2
+      huawei_p20_router: 192.168.1.5
+      galaxy_a2_router: 192.168.1.7
 
 sensor: !include sensors.yaml
 lovelace: !include lovelace/lovelace.yaml
