@@ -15,6 +15,11 @@ views:
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
+            entity: light.parlor_plants
+            name: Plants
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
             entity: light.parlor_plant_right
             name: Parlor Plant Right
             toggle: true
@@ -505,7 +510,7 @@ views:
                   state: "on"
                   icon: mdi:flash
                   color: yellow
-              - entity: sensor.huawei_p20_battery_level  
+              - entity: sensor.huawei_p20_battery_level
                 name: Huawei P20
                 tap_action: more-info
                 charging_state:
@@ -513,7 +518,7 @@ views:
                   state: "on"
                   icon: mdi:flash
                   color: yellow
-              - entity: sensor.galaxy_a2_battery_level  
+              - entity: sensor.galaxy_a2_battery_level
                 name: Galaxy A2
                 tap_action: more-info
                 charging_state:

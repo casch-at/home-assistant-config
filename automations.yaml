@@ -57,7 +57,7 @@
       - condition: device
         type: is_off
         device_id: 15f7180d0e0411eb814e538c319c793d
-        entity_id: light.parlor_shelve_light
+        entity_id: light.parlor_shelve
         domain: light
       - condition: template
         value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
@@ -65,7 +65,7 @@
       - service: scene.apply
         data:
           entities:
-            light.parlor_shelve_light:
+            light.parlor_shelve:
               min_mireds: 140
               max_mireds: 600
               effect_list:
@@ -75,6 +75,41 @@
               is_deconz_group: false
               friendly_name: Parlor Shelve Light
               supported_features: 43
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 8d47ffa289962b1efba2b9b35b3bbc9b
+        entity_id: light.parlor_plants
+        domain: light
+      - condition: template
+        value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.parlor_plants:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 150
+              hs_color:
+              - 131.765
+              - 100
+              rgb_color:
+              - 0
+              - 255
+              - 0
+              xy_color:
+              - 0.171
+              - 0.718
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Parlor Plants
+              supported_features: 63
               state: 'on'
     default: []
   - choose:
