@@ -321,11 +321,21 @@
       - condition: time
         before: 06:50:00
         after: 06:44:00
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'on'
       sequence:
-      - service: input_select.select_option
-        entity_id: input_select.daytime
-        data:
-          option: Morning
+      - service: cover.open_cover
+        entity_id: cover.bedroom_roller_shutter_level
+        data: {}
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: 'on'
+      sequence:
+      - service: cover.open_cover
+        data: {}
+        entity_id: cover.bedroom_roller_shutter_level
     default: []
   - choose:
     - conditions:
@@ -340,7 +350,7 @@
     default: []
   mode: single
 - id: '1603390848183'
-  alias: Bedtime mode
+  alias: Night mode
   description: ''
   trigger:
   - platform: state
@@ -355,6 +365,9 @@
   - service: automation.trigger
     data: {}
     entity_id: automation.night_toilet_light
+  - service: cover.close_cover
+    data: {}
+    entity_id: cover.bedroom_roller_shutter_level
   mode: single
 - id: '1603633705234'
   alias: Tablet battery warning
@@ -655,4 +668,26 @@
         data: {}
         entity_id: switch.nightstand
     default: []
+  mode: single
+- id: '1604963053032'
+  alias: Notify would turn off presence
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: not_home
+  - platform: state
+    entity_id: person.sonia_avramidis
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: person.christian_schwarzgruber
+    state: not_home
+  - condition: state
+    entity_id: person.sonia_avramidis
+    state: not_home
+  action:
+  - service: notify.mobile_app_huawei_p20
+    data:
+      message: Christian and Sonia are away
   mode: single

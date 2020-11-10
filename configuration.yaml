@@ -29,6 +29,7 @@ device_tracker:
     hosts:
       huawei_p20_router: 192.168.1.5
       galaxy_a2_router: 192.168.1.7
+    consider_home: 100
 
 sensor: !include sensors.yaml
 lovelace: !include lovelace/lovelace.yaml
@@ -47,9 +48,9 @@ scene: !include scenes.yaml
 
 
 
-logger:
-  default: info
-  logs:
-    pydeconz: debug
-    homeassistant.core: debug
-    homeassistant.components.deconz: debug
+# logger:
+#   default: info
+#   logs:
+#     pydeconz: debug
+#     homeassistant.core: debug
+#     homeassistant.components.deconz: debug
