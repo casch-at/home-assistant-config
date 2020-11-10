@@ -20,10 +20,6 @@ shell_command:
   # Need to specify IP (resolve doesn't work :-?),
   turn_off_tower: !secret tower_off
 
-owntracks:
-  max_gps_accuracy: 200
-
-
 device_tracker:
   - platform: ping
     hosts:
