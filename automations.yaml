@@ -663,7 +663,7 @@
       entity_id: light.all_lights
       domain: light
     - condition: state
-      entity_id: switch.nightstand
+      entity_id: switch.laptop_switch
       state: 'on'
   action:
   - choose:
@@ -682,12 +682,12 @@
   - choose:
     - conditions:
       - condition: state
-        entity_id: switch.nightstand
+        entity_id: switch.laptop_switch
         state: 'on'
       sequence:
       - service: switch.turn_off
         data: {}
-        entity_id: switch.nightstand
+        entity_id: switch.laptop_switch
     default: []
   mode: single
 - id: '1604963053032'
