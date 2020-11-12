@@ -1,7 +1,7 @@
 - platform: rpi_rf
   gpio: 17
   switches:
-    Nightstand: # 5
+    TV: # 5
       code_on: 5534979 # (S)FF F0 F1 FF 00 01 -> 0101 0100 0111 0101 0000 0011
       code_off: 5534988 # (S)FF F0 F1 FF 00 10 -> 0101 0100 0111 0101 0000 1100
       pulselength: 165
