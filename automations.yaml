@@ -384,12 +384,17 @@
   description: ''
   trigger:
   - platform: template
-    value_template: "{{ \n states('sensor.bath_switch_battery_level') | int < 10 \
-      \ or\n states('sensor.bedroom_motion_battery_level') | int < 10  or\n states('sensor.front_floor_motion_battery_level')\
-      \ | int < 10 or\n states('sensor.lower_kitchen_motion_battery_level') | int\
-      \ < 10  or\n states('sensor.office_multi_sensor_battery_level') | int < 10 \
-      \ or\n states('sensor.tablet_battery_level') | int < 10  or\n states('sensor.upstairs_multi_sensor_battery_level')\
-      \ | int < 10 \n}}\n"
+    value_template: >-
+      {{
+      states('sensor.bath_switch_battery_level') | int < 10 or
+      states('sensor.bedroom_motion_battery_level') | int < 10  or
+      states('sensor.front_floor_motion_battery_level') | int < 10 or
+      states('sensor.lower_kitchen_motion_battery_level') | int < 10  or
+      states('sensor.lower_kitchen_switch_battery_level') | int < 10  or
+      states('sensor.office_multi_sensor_battery_level') | int < 10 or
+      states('sensor.tablet_battery_level') | int < 10  or
+      states('sensor.upstairs_multi_sensor_battery_level') | int < 10
+      }}
   condition: []
   action:
   - service: notify.persistent_notification
@@ -926,8 +931,8 @@
     subtype: turn_on
   condition:
   - condition: template
-    value_template: '{{ state_attr(''automation.lower_kitchen_switch_turn_off_on_presence'',
-      ''current'')  | int == 1}}'
+    value_template: >-
+      {{ state_attr(''automation.lower_kitchen_switch_turn_off_on_presence'', ''current'')  | int == 1}}
   action:
   - service: automation.turn_off
     data:

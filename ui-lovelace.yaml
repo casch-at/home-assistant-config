@@ -840,6 +840,9 @@ views:
               - entity: sensor.bath_switch_battery_level
                 name: Bath switch
                 tap_action: more-info
+              - entity: sensor.lower_kitchen_switch_battery_level
+                name: Lower kitchen switch
+                tap_action: more-info
               - entity: sensor.office_multi_sensor_battery_level
                 name: Office multi sensor
                 tap_action: more-info
