@@ -142,7 +142,7 @@
     default: []
   mode: single
 - id: '1602050996708'
-  alias: Turn on stairs LED in the morning
+  alias: Morning light
   description: ''
   trigger:
   - platform: time
@@ -187,7 +187,10 @@
       hours: 0
       minutes: 10
       seconds: 0
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
   action:
   - type: turn_off
     device_id: 03baa6e6081411eb958e6b58c8805747
@@ -218,6 +221,9 @@
     device_id: 03baa6e6081411eb958e6b58c8805747
     entity_id: light.stairs_led
     domain: light
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
   action:
   - service: scene.turn_on
     data: {}
@@ -333,11 +339,6 @@
         entity_id: input_select.daytime
         data:
           option: Morning
-    - conditions:
-      - condition: state
-        entity_id: binary_sensor.workday_sensor
-        state: 'on'
-      sequence:
       - service: cover.open_cover
         data: {}
         entity_id: cover.bedroom_roller_shutter_level
@@ -361,8 +362,14 @@
   - platform: state
     entity_id: input_select.daytime
     to: Night
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
   action:
+  - service: cover.close_cover
+    data: {}
+    entity_id: cover.bedroom_roller_shutter_level
   - service: homeassistant.turn_off
     data:
       entity_id: group.switches_and_lights
@@ -370,28 +377,29 @@
   - service: automation.trigger
     data: {}
     entity_id: automation.night_toilet_light
-  - service: cover.close_cover
-    data: {}
-    entity_id: cover.bedroom_roller_shutter_level
   mode: single
+  max: 10
 - id: '1603633705234'
-  alias: Tablet battery warning
+  alias: Battery Level Warning
   description: ''
   trigger:
   - platform: template
-    value_template: '{{ states(''sensor.tablet_battery_level'')|int < 10 }}'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.tablet_is_charging
-    state: 'off'
+    value_template: "{{ \n states('sensor.bath_switch_battery_level') | int < 10 \
+      \ or\n states('sensor.bedroom_motion_battery_level') | int < 10  or\n states('sensor.front_floor_motion_battery_level')\
+      \ | int < 10 or\n states('sensor.lower_kitchen_motion_battery_level') | int\
+      \ < 10  or\n states('sensor.office_multi_sensor_battery_level') | int < 10 \
+      \ or\n states('sensor.tablet_battery_level') | int < 10  or\n states('sensor.upstairs_multi_sensor_battery_level')\
+      \ | int < 10 \n}}\n"
+  condition: []
   action:
-  - service: persistent_notification.create
+  - service: notify.persistent_notification
     data:
-      message: The tablet battery level has dropped below 10 %, please recharge!
-      title: Critical Battery Level {{ states('sensor.tablet_battery_level') }} %
-  mode: single
+      message: '{{ trigger.to_state.name }} Below 10 %'
+      title: '{{ trigger.to_state.name }} Critical'
+  mode: queued
+  max: 10
 - id: '1603909632409'
-  alias: Turn on lights in lower kitchen
+  alias: Turn on lights in lower kitchen -- motion detected
   description: ''
   trigger:
   - type: motion
@@ -402,7 +410,14 @@
   condition:
   - condition: template
     value_template: '{{ states(''sensor.lower_kitchen_lightlevel'')|float < 30.0 }}'
+  - condition: state
+    entity_id: input_boolean.lower_kitchen_switch_active
+    state: 'off'
   action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.lower_kitchen_motion_running
+    entity_id: input_boolean.lower_kitchen_motion_running
   - choose:
     - conditions:
       - condition: or
@@ -429,8 +444,6 @@
               friendly_name: Lower Kitchen
               supported_features: 47
               state: 'on'
-    default: []
-  - choose:
     - conditions:
       - condition: state
         entity_id: input_select.daytime
@@ -451,8 +464,6 @@
               friendly_name: Lower Kitchen
               supported_features: 47
               state: 'on'
-    default: []
-  - choose:
     - conditions:
       - condition: state
         entity_id: input_select.daytime
@@ -476,7 +487,7 @@
     default: []
   mode: single
 - id: '1604071027469'
-  alias: Turn on lights in front floor
+  alias: Turn on lights in front floor -- motion detected
   description: ''
   trigger:
   - type: motion
@@ -487,7 +498,14 @@
   condition:
   - condition: template
     value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 30.0 }}'
+  - condition: state
+    entity_id: input_boolean.front_floor_switch_active
+    state: 'off'
   action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.front_floor_motion_running
+    entity_id: input_boolean.front_floor_motion_running
   - choose:
     - conditions:
       - condition: or
@@ -514,8 +532,6 @@
               friendly_name: Front Floor
               supported_features: 47
               state: 'on'
-    default: []
-  - choose:
     - conditions:
       - condition: state
         entity_id: input_select.daytime
@@ -536,8 +552,6 @@
               friendly_name: Front Floor
               supported_features: 47
               state: 'on'
-    default: []
-  - choose:
     - conditions:
       - condition: state
         entity_id: input_select.daytime
@@ -561,7 +575,7 @@
     default: []
   mode: single
 - id: '1604075158600'
-  alias: Turn off lights in front floor
+  alias: Turn off lights in front floor -- motion cleared
   description: ''
   trigger:
   - type: no_motion
@@ -574,19 +588,21 @@
       minutes: 0
       seconds: 20
   condition:
-  - condition: device
-    type: is_on
-    device_id: 9a999d4e84bd4c8eb7c7779363b97b26
-    entity_id: light.front_floor
-    domain: light
+  - condition: state
+    entity_id: input_boolean.front_floor_switch_active
+    state: 'off'
   action:
   - type: turn_off
     device_id: 9a999d4e84bd4c8eb7c7779363b97b26
     entity_id: light.front_floor
     domain: light
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.front_floor_motion_running
+    entity_id: input_boolean.fron_floor_motion_running
   mode: single
 - id: '1604075563242'
-  alias: Turn off lights in lower kitchen
+  alias: Turn off lights in lower kitchen -- motion cleared
   description: ''
   trigger:
   - type: no_motion
@@ -599,16 +615,18 @@
       minutes: 0
       seconds: 20
   condition:
-  - condition: device
-    type: is_on
-    device_id: 99c4272d194811eb9a33c1747a3f77e4
-    entity_id: light.lower_kitchen
-    domain: light
+  - condition: state
+    entity_id: input_boolean.lower_kitchen_switch_active
+    state: 'off'
   action:
   - type: turn_off
     device_id: 99c4272d194811eb9a33c1747a3f77e4
     entity_id: light.lower_kitchen
     domain: light
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lower_kitchen_motion_running
+    entity_id: input_boolean.lower_kitchen_motion_running
   mode: single
 - id: '1604244673177'
   alias: Presence on
@@ -617,11 +635,9 @@
   - platform: state
     entity_id: person.christian_schwarzgruber
     to: home
-    for: 00:00:15
   - platform: state
     entity_id: person.sonia_avramidis
     to: home
-    for: 00:00:15
   condition:
   - condition: state
     entity_id: input_boolean.presence
@@ -695,4 +711,207 @@
   - service: notify.mobile_app_huawei_p20
     data:
       message: Christian and Sonia are away
+  mode: single
+- id: '1605165434986'
+  alias: Home Office
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.daytime
+    to: Morning
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.desk
+  mode: single
+- id: '1605185753431'
+  alias: Turn on/off lower kitchen lights using lower kitchen switch
+  description: ''
+  trigger:
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_short_release
+    subtype: turn_on
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.lower_kitchen_motion_running
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.lower_kitchen_switch_active
+        entity_id: input_boolean.lower_kitchen_switch_active
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.lower_kitchen_motion_running
+        entity_id: input_boolean.lower_kitchen_motion_running
+      - type: turn_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.lower_kitchen
+        domain: light
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.lower_kitchen_motion_running
+        state: 'off'
+      - condition: device
+        type: is_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.lower_kitchen
+        domain: light
+      sequence:
+      - type: turn_off
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.lower_kitchen
+        domain: light
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.lower_kitchen_switch_active
+        entity_id: input_boolean.lower_kitchen_switch_active
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.lower_kitchen_motion_running
+        state: 'off'
+      - condition: device
+        type: is_off
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.lower_kitchen
+        domain: light
+      sequence:
+      - type: turn_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.lower_kitchen
+        domain: light
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.lower_kitchen_switch_active
+        entity_id: input_boolean.lower_kitchen_switch_active
+    default: []
+  mode: queued
+  max: 10
+- id: '1605209491114'
+  alias: Turn on/off front floor lights using lower kitchen switch
+  description: ''
+  trigger:
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_short_release
+    subtype: turn_off
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.front_floor_motion_running
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_motion_running
+        entity_id: input_boolean.front_floor_motion_running
+      - type: turn_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.front_floor_motion_running
+        state: 'off'
+      - condition: device
+        type: is_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+      sequence:
+      - type: turn_off
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.front_floor_motion_running
+        state: 'off'
+      - condition: device
+        type: is_off
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+      sequence:
+      - type: turn_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+    default: []
+  mode: queued
+  max: 10
+- id: '1605210079592'
+  alias: Turn on/off presence using lower kitchen switch
+  description: ''
+  trigger:
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: turn_off
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.presence
+        state: 'on'
+      sequence:
+      - repeat:
+          count: '2'
+          sequence:
+          - type: flash
+            device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+            entity_id: light.front_floor
+            domain: light
+          - delay: 00:00:10
+      - repeat:
+          count: '2'
+          sequence:
+          - type: flash
+            device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+            entity_id: light.front_floor
+            domain: light
+          - delay: 00:00:5
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.presence
+        entity_id: input_boolean.presence
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.presence
+        state: 'off'
+      sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.presence
+        entity_id: input_boolean.presence
+    default: []
   mode: single
