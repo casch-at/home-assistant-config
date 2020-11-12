@@ -2,7 +2,7 @@ switches:
   name: Switches
   icon: mdi:dip-switch
   entities:
-    - switch.desk
+    - switch.desk_switch
     - switch.laptop
     - switch.printer
     - switch.tower
