@@ -629,7 +629,7 @@
     entity_id: input_boolean.lower_kitchen_motion_running
   mode: single
 - id: '1604244673177'
-  alias: Presence on
+  alias: Turn presence on when person is at home
   description: ''
   trigger:
   - platform: state
@@ -648,7 +648,7 @@
     entity_id: input_boolean.presence
   mode: single
 - id: '1604245860864'
-  alias: Presence off
+  alias: Turn everything on presence state off
   description: ''
   trigger:
   - platform: state
@@ -914,4 +914,27 @@
           entity_id: input_boolean.presence
         entity_id: input_boolean.presence
     default: []
+  mode: single
+- id: '1605213699980'
+  alias: Cancel automation.lower_kitchen_switch_turn_off_presence
+  description: ''
+  trigger:
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: turn_on
+  condition:
+  - condition: template
+    value_template: '{{ state_attr(''automation.lower_kitchen_switch_turn_off_on_presence'',
+      ''current'')  | int == 1}}'
+  action:
+  - service: automation.turn_off
+    data:
+      entity_id: automation.lower_kitchen_switch_turn_off_on_presence
+    entity_id: automation.lower_kitchen_switch_turn_off_on_presence
+  - service: automation.turn_on
+    data:
+      entity_id: automation.lower_kitchen_switch_turn_off_on_presence
+    entity_id: automation.lower_kitchen_switch_turn_off_on_presence
   mode: single
