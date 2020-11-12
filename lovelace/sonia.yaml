@@ -42,15 +42,9 @@ views:
             toggle: true
             hide_when_off: true
           - entity: switch.printer
-            tab_action:
-              action: call-service
-              service: switch.toggle
-              service_data:
-                entity: switch.printer
             icon: mdi:printer
-          - entity: switch.nightstand
-            tab_action:
-              action: toggle
+          - entity: switch.laptop_switch
+            name: Nightstand
             icon: mdi:floor-lamp
 
       - type: horizontal-stack

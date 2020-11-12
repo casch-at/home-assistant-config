@@ -16,5 +16,5 @@ switches_and_lights:
 all_lights_extra:
   name: Lights and Switch Lights
   entities:
-    - switch.nightstand
+    - switch.laptop_switch
     - light.all_lights

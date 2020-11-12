@@ -12,13 +12,21 @@ views:
         show_header_toggle: false
         state_color: true
         entities:
-          - entity: switch.desk
+          - entity: switch.desk_switch
+            tab_action:
+              action: toggle
             icon: mdi:desk
           - entity: switch.laptop
+            tab_action:
+              action: toggle
             icon: mdi:laptop
           - entity: switch.printer
+            tab_action:
+              action: toggle
             icon: mdi:printer
           - entity: switch.tower
+            tab_action:
+              action: toggle
             icon: mdi:desktop-tower
 
       - type: vertical-stack
@@ -30,7 +38,7 @@ views:
                 icon: mdi:laptop
                 icon_height: 80px
                 triggers_update:
-                  - switch.desk
+                  - switch.desk_switch
                 tap_action:
                   action: call-service
                   service: script.desk_and_laptop_on
@@ -157,7 +165,8 @@ views:
         show_header_toggle: false
         state_color: true
         entities:
-          - entity: switch.nightstand
+          - entity: switch.laptop_switch
+            name: Nightstand
             icon: mdi:floor-lamp
 
       - type: vertical-stack
