@@ -932,7 +932,7 @@
   condition:
   - condition: template
     value_template: >-
-      {{ state_attr(''automation.lower_kitchen_switch_turn_off_on_presence'', ''current'')  | int == 1}}
+      {{ state_attr('automation.lower_kitchen_switch_turn_off_on_presence', 'current')  | int == 1 }}
   action:
   - service: automation.turn_off
     data:
