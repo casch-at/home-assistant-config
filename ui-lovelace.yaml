@@ -15,19 +15,15 @@ views:
           - entity: switch.desk_switch
             tab_action:
               action: toggle
-            icon: mdi:desk
           - entity: switch.laptop
             tab_action:
               action: toggle
-            icon: mdi:laptop
           - entity: switch.printer
             tab_action:
               action: toggle
-            icon: mdi:printer
           - entity: switch.tower
             tab_action:
               action: toggle
-            icon: mdi:desktop-tower
 
       - type: vertical-stack
         cards:
@@ -118,17 +114,14 @@ views:
             entity: light.led_stripes
             toggle: true
             hide_when_off: true
-            name: All
           - type: custom:slider-entity-row
             entity: light.stairs_led
             toggle: true
             hide_when_off: true
-            name: Stairs
           - type: custom:slider-entity-row
             entity: light.office_led
             toggle: true
             hide_when_off: true
-            name: Office
 
       - type: entities
         title: Parlor
@@ -138,25 +131,20 @@ views:
             entity: light.parlor
             toggle: true
             hide_when_off: true
-            name: All
           - type: custom:slider-entity-row
             entity: light.parlor_shelve
-            name: Shelve
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
             entity: light.parlor_plants
-            name: Plants
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
             entity: light.parlor_plant_right
-            name: Plant Right
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
             entity: light.parlor_plant_left
-            name: Plant Left
             toggle: true
             hide_when_off: true
 
@@ -166,8 +154,6 @@ views:
         state_color: true
         entities:
           - entity: switch.laptop_switch
-            name: Nightstand
-            icon: mdi:floor-lamp
 
       - type: vertical-stack
         cards:

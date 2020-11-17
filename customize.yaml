@@ -1,1 +1,30 @@
 person.christian_schwarzgruber: {}
+switch.laptop:
+  icon: mdi:laptop
+switch.printer:
+  icon: mdi:printer
+switch.tower:
+  icon: mdi:desktop-tower
+switch.desk_switch:
+  icon: mdi:desk
+switch.laptop_switch:
+  icon: mdi:floor-lamp
+  friendly_name: Nighstand
+light.parlor:
+  friendly_name: All
+light.parlor_plants:
+  friendly_name: Plants
+light.parlor_plant_right:
+  friendly_name: Plant Right
+light.parlor_plant_left:
+  friendly_name: Plant Left
+light.parlor_shelve:
+  friendly_name: Shelve
+light.led_stripes:
+  friendly_name: All
+light.office_led:
+  friendly_name: Office
+light.stairs_led:
+  friendly_name: Stairs
+cover.bedroom_roller_shutter_level:
+  device_class: shade

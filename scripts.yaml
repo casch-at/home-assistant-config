@@ -3,8 +3,8 @@ desk_and_laptop_on:
   sequence:
   - service: switch.turn_on
     data: {}
-    entity_id: switch.desk
-  - delay: 0.3
+    entity_id: switch.desk_switch
+  - delay: '0.3'
   - service: switch.turn_on
     data: {}
     entity_id: switch.laptop

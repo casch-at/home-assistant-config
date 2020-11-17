@@ -16,17 +16,14 @@ views:
             hide_when_off: true
           - type: custom:slider-entity-row
             entity: light.parlor_plants
-            name: Plants
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
             entity: light.parlor_plant_right
-            name: Parlor Plant Right
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
             entity: light.parlor_plant_left
-            name: Parlor Plant Left
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
@@ -42,10 +39,7 @@ views:
             toggle: true
             hide_when_off: true
           - entity: switch.printer
-            icon: mdi:printer
           - entity: switch.laptop_switch
-            name: Nightstand
-            icon: mdi:floor-lamp
 
       - type: horizontal-stack
         cards:
