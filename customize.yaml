@@ -5,6 +5,8 @@ switch.printer:
   icon: mdi:printer
 switch.tower:
   icon: mdi:desktop-tower
+switch.tv:
+  icon: mdi:television
 switch.desk_switch:
   icon: mdi:desk
 switch.laptop_switch:
@@ -26,5 +28,3 @@ light.office_led:
   friendly_name: Office
 light.stairs_led:
   friendly_name: Stairs
-cover.bedroom_roller_shutter_level:
-  device_class: shade

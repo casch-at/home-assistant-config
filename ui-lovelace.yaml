@@ -18,6 +18,9 @@ views:
           - entity: switch.laptop
             tab_action:
               action: toggle
+          - entity: switch.tv
+            tab_action:
+              action: toggle
           - entity: switch.printer
             tab_action:
               action: toggle
@@ -378,7 +381,7 @@ views:
                     entity_id: remote.broadlink_rm3_mini_office_remote
                     device: soundbar
                     command: power
-                    hold_secs: 0.3
+                    hold_secs: 0.5
               - type: custom:button-card
                 icon: mdi:television
                 tap_action:
@@ -388,7 +391,7 @@ views:
                     entity_id: remote.broadlink_rm3_mini_office_remote
                     device: soundbar
                     command: tv
-                    hold_secs: 0.3
+                    hold_secs: 0.5
               - type: custom:button-card
                 icon: mdi:bluetooth
                 tap_action:
@@ -435,11 +438,7 @@ views:
                     icon: mdi:power
                     tap_action:
                       action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.broadlink_rm3_mini_office_remote
-                        device: tv
-                        command: power
+                      service: script.tv_off_on
                   - type: custom:button-card
                     icon: mdi:logout-variant
                     tap_action:

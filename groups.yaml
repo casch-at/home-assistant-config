@@ -6,6 +6,7 @@ switches:
     - switch.laptop
     - switch.printer
     - switch.tower
+    - switch.tv
 
 switches_and_lights:
   name: Lights and Switches

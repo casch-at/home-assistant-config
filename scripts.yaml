@@ -90,3 +90,62 @@ bathroom_demo:
     domain: light
   mode: single
   icon: mdi:shower
+reset_lower_kitchen_switch_active_states:
+  alias: Reset Lower Kitchen Switch Active States
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.lower_kitchen_switch_active
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.lower_kitchen_switch_active
+        entity_id: input_boolean.lower_kitchen_switch_active
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.front_floor_switch_active
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+    default: []
+  mode: single
+tv_off_on:
+  alias: Turn on/off TV
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.tv
+        state: 'off'
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        entity_id: switch.tv
+      - delay: 00:00:02
+      - service: remote.send_command
+        data:
+          entity_id: remote.broadlink_rm3_mini_office_remote
+          device: tv
+          command: power
+        entity_id: remote.broadlink_rm3_mini_office_remote
+    default:
+    - service: remote.send_command
+      entity_id: remote.broadlink_rm3_mini_office_remote
+      data:
+        entity_id: remote.broadlink_rm3_mini_office_remote
+        device: tv
+        command: power
+    - delay: 00:00:10
+    - service: switch.turn_off
+      data: {}
+      entity_id: switch.tv
+  mode: single
+  icon: mdi:television
+  max: 10

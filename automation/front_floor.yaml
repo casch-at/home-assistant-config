@@ -1,0 +1,217 @@
+- id: '1604071027469'
+  alias: Turn on lights in front floor -- motion detected
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: d362c802f675d2a59d2080b94ebef8e4
+    entity_id: binary_sensor.front_floor_motion
+    domain: binary_sensor
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 30.0 }}'
+  - condition: state
+    entity_id: input_boolean.front_floor_switch_active
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.front_floor_motion_running
+    entity_id: input_boolean.front_floor_motion_running
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.daytime
+          state: Morning
+        - condition: state
+          entity_id: input_select.daytime
+          state: Daytimes
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 254
+              color_temp: 271
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Front Floor
+              supported_features: 47
+              state: 'on'
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Evening
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 140
+              color_temp: 400
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Front Floor
+              supported_features: 47
+              state: 'on'
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 80
+              color_temp: 480
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Front Floor
+              supported_features: 47
+              state: 'on'
+    default: []
+  mode: single
+- id: '1604075158600'
+  alias: Turn off lights in front floor -- motion cleared
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: d362c802f675d2a59d2080b94ebef8e4
+    entity_id: binary_sensor.front_floor_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+  condition:
+  - condition: state
+    entity_id: input_boolean.front_floor_switch_active
+    state: 'off'
+  action:
+  - type: turn_off
+    device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+    entity_id: light.front_floor
+    domain: light
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.front_floor_motion_running
+    entity_id: input_boolean.front_floor_motion_running
+  mode: single
+- id: '1605209491114'
+  alias: Turn on/off front floor lights using lower kitchen switch
+  description: ''
+  trigger:
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_short_release
+    subtype: turn_off
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_double_press
+    subtype: turn_off
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.front_floor_motion_running
+            state: 'on'
+          - condition: template
+            value_template: '{{ trigger.event.data.event | int == 1002 }}'
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.front_floor_motion_running
+            state: 'off'
+          - condition: template
+            value_template: '{{ trigger.event.data.event | int == 1002 }}'
+          - condition: device
+            type: is_off
+            device_id: 99c4272d194811eb9a33c1747a3f77e4
+            entity_id: light.front_floor
+            domain: light
+      sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_motion_running
+        entity_id: input_boolean.front_floor_motion_running
+      - type: turn_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.front_floor_motion_running
+        state: 'off'
+      - condition: device
+        type: is_on
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 1002 }}'
+      sequence:
+      - type: turn_off
+        device_id: 99c4272d194811eb9a33c1747a3f77e4
+        entity_id: light.front_floor
+        domain: light
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 1004 }}'
+      sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_motion_running
+        entity_id: input_boolean.front_floor_motion_running
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 254
+              color_temp: 271
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Front Floor
+              supported_features: 47
+              state: 'on'
+    default: []
+  mode: queued
+  max: 10

@@ -1,0 +1,150 @@
+- id: '1604244673177'
+  alias: Turn presence on when person is at home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: home
+  - platform: state
+    entity_id: person.sonia_avramidis
+    to: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    entity_id: input_boolean.presence
+  mode: single
+- id: '1604245860864'
+  alias: Turn everything off on presence state off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.presence
+    to: 'off'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.front_floor_switch_active
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+    default: []
+  - service: script.reset_lower_kitchen_switch_active_states
+    data: {}
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.all_lights_extra
+    entity_id: group.all_lights_extra
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.switches
+    entity_id: group.switches
+  mode: single
+- id: '1604963053032'
+  alias: Notify would turn off presence
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: not_home
+  - platform: state
+    entity_id: person.sonia_avramidis
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: person.christian_schwarzgruber
+    state: not_home
+  - condition: state
+    entity_id: person.sonia_avramidis
+    state: not_home
+  action:
+  - service: notify.mobile_app_huawei_p20
+    data:
+      message: Christian and Sonia are away
+  mode: single
+- id: '1605210079592'
+  alias: Turn on/off presence using lower kitchen switch
+  description: ''
+  trigger:
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: turn_off
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.presence
+        state: 'on'
+      sequence:
+      - repeat:
+          count: '2'
+          sequence:
+          - type: flash
+            device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+            entity_id: light.front_floor
+            domain: light
+          - delay: 00:00:10
+      - repeat:
+          count: '2'
+          sequence:
+          - type: flash
+            device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+            entity_id: light.front_floor
+            domain: light
+          - delay: 00:00:5
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.presence
+        entity_id: input_boolean.presence
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.presence
+        state: 'off'
+      sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.presence
+        entity_id: input_boolean.presence
+      - repeat:
+          count: '2'
+          sequence:
+          - type: flash
+            device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+            entity_id: light.front_floor
+            domain: light
+    default: []
+  mode: single
+- id: '1605213699980'
+  alias: Cancel automation.lower_kitchen_switch_turn_off_presence
+  description: ''
+  trigger:
+  - device_id: c2cff687003dd88942aa8597fe9f8734
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: turn_on
+  condition:
+  - condition: template
+    value_template: '{{ state_attr(''automation.lower_kitchen_switch_turn_off_on_presence'',
+      ''current'')  | int == 1 }}'
+  action:
+  - service: automation.turn_off
+    data:
+      entity_id: automation.lower_kitchen_switch_turn_off_on_presence
+    entity_id: automation.lower_kitchen_switch_turn_off_on_presence
+  - service: automation.turn_on
+    data:
+      entity_id: automation.lower_kitchen_switch_turn_off_on_presence
+    entity_id: automation.lower_kitchen_switch_turn_off_on_presence
+  mode: single

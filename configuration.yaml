@@ -34,7 +34,7 @@ sensor: !include sensors.yaml
 lovelace: !include lovelace/lovelace.yaml
 switch: !include switch.yaml
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automation
 script: !include scripts.yaml
 scene: !include scenes.yaml
 

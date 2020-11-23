@@ -1,0 +1,143 @@
+- id: '1602050820929'
+  alias: Low illuminance light
+  description: Turn on lights when the sun goes down or on low light condition
+  trigger:
+  - platform: template
+    value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+  - type: illuminance
+    platform: device
+    device_id: d362c802f675d2a59d2080b94ebef8e4
+    entity_id: sensor.front_floor_lightlevel
+    domain: sensor
+    below: 80
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  - platform: state
+    entity_id: input_boolean.presence
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
+  - condition: template
+    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 80 }}'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.daytime
+      state: Night
+  action:
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 03baa6e6081411eb958e6b58c8805747
+        entity_id: light.stairs_led
+        domain: light
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.stairs_led:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 180
+              color_temp: 375
+              is_deconz_group: false
+              friendly_name: Stairs LED-Stripe
+              supported_features: 63
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 15f7180d0e0411eb814e538c319c793d
+        entity_id: light.parlor_shelve
+        domain: light
+      - condition: template
+        value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.parlor_shelve:
+              min_mireds: 140
+              max_mireds: 650
+              effect_list:
+              - colorloop
+              brightness: 100
+              color_temp: 370
+              is_deconz_group: false
+              friendly_name: Parlor Shelve
+              supported_features: 43
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 8d47ffa289962b1efba2b9b35b3bbc9b
+        entity_id: light.parlor_plants
+        domain: light
+      - condition: template
+        value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.parlor_plants:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 170
+              hs_color:
+              - 75.818
+              - 43.137
+              rgb_color:
+              - 200
+              - 255
+              - 145
+              xy_color:
+              - 0.361
+              - 0.459
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Parlor Plants
+              supported_features: 63
+              state: 'on'
+    default: []
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 064385de065911eb86921ff8f4822c34
+        entity_id: light.office_led
+        domain: light
+      - condition: state
+        entity_id: switch.desk_switch
+        state: 'on'
+      - condition: template
+        value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.office_led:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 256
+              color_temp: 375
+              is_deconz_group: false
+              friendly_name: Desk LED-Stripe
+              supported_features: 63
+              state: 'on'
+    default: []
+  mode: single

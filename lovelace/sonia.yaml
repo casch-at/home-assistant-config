@@ -156,11 +156,7 @@ views:
                     icon: mdi:power
                     tap_action:
                       action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.broadlink_rm3_mini_office_remote
-                        device: tv
-                        command: power
+                      service: script.tv_off_on
                   - type: custom:button-card
                     icon: mdi:logout-variant
                     tap_action:
