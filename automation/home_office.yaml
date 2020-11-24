@@ -1,0 +1,19 @@
+- id: '1605165434986'
+  alias: Home Office
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.daytime
+    to: Morning
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.desk
+  mode: single

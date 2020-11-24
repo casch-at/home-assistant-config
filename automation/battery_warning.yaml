@@ -1,0 +1,20 @@
+- id: '1603633705234'
+  alias: Battery Level Warning
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ states(''sensor.bath_switch_battery_level'') | int < 10 or
+      states(''sensor.bedroom_motion_battery_level'') | int < 10  or states(''sensor.front_floor_motion_battery_level'')
+      | int < 10 or states(''sensor.lower_kitchen_motion_battery_level'') | int <
+      10  or states(''sensor.lower_kitchen_switch_battery_level'') | int < 10  or
+      states(''sensor.office_multi_sensor_battery_level'') | int < 10 or states(''sensor.tablet_battery_level'')
+      | int < 10  or states(''sensor.upstairs_multi_sensor_battery_level'') | int
+      < 10 }}'
+  condition: []
+  action:
+  - service: notify.persistent_notification
+    data:
+      message: '{{ trigger.to_state.name }} Below 10 %'
+      title: '{{ trigger.to_state.name }} Critical'
+  mode: queued
+  max: 10

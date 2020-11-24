@@ -1,0 +1,24 @@
+- id: '1603390848183'
+  alias: Night mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.daytime
+    to: Night
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
+  action:
+  - service: cover.close_cover
+    data: {}
+    entity_id: cover.bedroom_roller_shutter_level
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.switches_and_lights
+    entity_id: group.switches_and_lights
+  - service: automation.trigger
+    data: {}
+    entity_id: automation.night_toilet_light
+  mode: single
+  max: 10
