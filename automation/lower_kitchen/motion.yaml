@@ -1,0 +1,115 @@
+- id: '1603909632409'
+  alias: Turn on lights in lower kitchen -- motion detected
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: a22002cc0fddfe438687ff5a86b3fd3b
+    entity_id: binary_sensor.lower_kitchen_motion
+    domain: binary_sensor
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.lower_kitchen_lightlevel'')|float < 40.0 }}'
+  - condition: state
+    entity_id: input_boolean.lower_kitchen_switch_active
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.lower_kitchen_motion_running
+    entity_id: input_boolean.lower_kitchen_motion_running
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.daytime
+          state: Morning
+        - condition: state
+          entity_id: input_select.daytime
+          state: Daytimes
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.lower_kitchen:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 254
+              color_temp: 271
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Lower Kitchen
+              supported_features: 47
+              state: 'on'
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Evening
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.lower_kitchen:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 140
+              color_temp: 400
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Lower Kitchen
+              supported_features: 47
+              state: 'on'
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.lower_kitchen:
+              min_mireds: 153
+              max_mireds: 500
+              effect_list:
+              - colorloop
+              brightness: 80
+              color_temp: 480
+              is_deconz_group: true
+              all_on: true
+              friendly_name: Lower Kitchen
+              supported_features: 47
+              state: 'on'
+    default: []
+  mode: single
+- id: '1604075563242'
+  alias: Turn off lights in lower kitchen -- motion cleared
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: a22002cc0fddfe438687ff5a86b3fd3b
+    entity_id: binary_sensor.lower_kitchen_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+  condition:
+  - condition: state
+    entity_id: input_boolean.lower_kitchen_switch_active
+    state: 'off'
+  action:
+  - type: turn_off
+    device_id: 99c4272d194811eb9a33c1747a3f77e4
+    entity_id: light.lower_kitchen
+    domain: light
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lower_kitchen_motion_running
+    entity_id: input_boolean.lower_kitchen_motion_running
+  mode: single

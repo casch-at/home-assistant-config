@@ -1,0 +1,19 @@
+- id: '1604244673177'
+  alias: Turn presence on when person is at home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: home
+  - platform: state
+    entity_id: person.sonia_avramidis
+    to: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    entity_id: input_boolean.presence
+  mode: single

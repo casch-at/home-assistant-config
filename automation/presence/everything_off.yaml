@@ -1,0 +1,31 @@
+- id: '1604245860864'
+  alias: Turn everything off on presence state off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.presence
+    to: 'off'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.front_floor_switch_active
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_switch_active
+    default: []
+  - service: script.reset_lower_kitchen_switch_active_states
+    data: {}
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.all_lights_extra
+    entity_id: group.all_lights_extra
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.switches
+    entity_id: group.switches
+  mode: single

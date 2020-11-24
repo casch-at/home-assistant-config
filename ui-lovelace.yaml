@@ -1,7 +1,8 @@
 title: Home
 icon: mdi:home-assistant
 views:
-  # I didn't use "!include_dir_list", because they wouldn't be in that order I like them
+  # I didn't use "!include_dir_list", because they wouldn't be in that order I like them. Of course,
+  # I could prefix the files with a number 01, 02, ..., to get the desired order...
   - !include lovelace/view/switches.yaml
   - !include lovelace/view/lights.yaml
   - !include lovelace/view/shutter.yaml

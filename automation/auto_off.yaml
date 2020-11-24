@@ -1,0 +1,21 @@
+- id: '1604963053032'
+  alias: Notify would turn off presence
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: not_home
+  - platform: state
+    entity_id: person.sonia_avramidis
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: person.christian_schwarzgruber
+    state: not_home
+  - condition: state
+    entity_id: person.sonia_avramidis
+    state: not_home
+  action:
+  - service: notify.mobile_app_huawei_p20
+    data:
+      message: Christian and Sonia are away
