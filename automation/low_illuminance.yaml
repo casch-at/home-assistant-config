@@ -1,5 +1,4 @@
-- id: '1602050820929'
-  alias: Low illuminance light
+- alias: Low illuminance light
   description: Turn on lights when the sun goes down or on low light condition
   trigger:
   - platform: template

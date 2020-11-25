@@ -1,5 +1,4 @@
-- id: '1605210079592'
-  alias: Turn on/off presence using lower kitchen switch
+- alias: Turn on/off presence using lower kitchen switch
   description: ''
   trigger:
   - device_id: c2cff687003dd88942aa8597fe9f8734
@@ -53,8 +52,7 @@
             domain: light
     default: []
   mode: single
-- id: '1605213699980'
-  alias: Cancel automation.lower_kitchen_switch_turn_off_presence
+- alias: Cancel automation.lower_kitchen_switch_turn_off_presence
   description: ''
   trigger:
   - device_id: c2cff687003dd88942aa8597fe9f8734

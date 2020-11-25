@@ -1,5 +1,4 @@
-- id: '1605185753431'
-  alias: Turn on/off lower kitchen lights using lower kitchen switch
+- alias: Turn on/off lower kitchen lights using lower kitchen switch
   description: ''
   trigger:
   - device_id: c2cff687003dd88942aa8597fe9f8734

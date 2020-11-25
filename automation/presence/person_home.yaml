@@ -1,5 +1,4 @@
-- id: '1604244673177'
-  alias: Turn presence on when person is at home
+- alias: Turn presence on when person is at home
   description: ''
   trigger:
   - platform: state

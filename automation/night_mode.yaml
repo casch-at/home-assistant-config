@@ -1,5 +1,4 @@
-- id: '1603390848183'
-  alias: Night mode
+- alias: Night mode
   description: ''
   trigger:
   - platform: state

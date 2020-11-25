@@ -1,5 +1,4 @@
-- id: '1602353922519'
-  alias: Night toilet light
+- alias: Night toilet light
   description: ''
   trigger:
   - type: motion
@@ -111,44 +110,5 @@
         device_id: 03baa6e6081411eb958e6b58c8805747
         entity_id: light.stairs_led
         domain: light
-    default: []
-  mode: single
-- id: '1603389408650'
-  alias: Set daytime
-  description: ''
-  trigger:
-  - platform: time
-    at: 06:45:00
-  - platform: time
-    at: '18:00:00'
-  condition: []
-  action:
-  - choose:
-    - conditions:
-      - condition: time
-        before: 06:50:00
-        after: 06:44:00
-      - condition: state
-        entity_id: binary_sensor.workday_sensor
-        state: 'on'
-      sequence:
-      - service: input_select.select_option
-        entity_id: input_select.daytime
-        data:
-          option: Morning
-      - service: cover.open_cover
-        data: {}
-        entity_id: cover.bedroom_roller_shutter_level
-    default: []
-  - choose:
-    - conditions:
-      - condition: time
-        before: '18:05:00'
-        after: '17:55:00'
-      sequence:
-      - service: input_select.select_option
-        entity_id: input_select.daytime
-        data:
-          option: Evening
     default: []
   mode: single

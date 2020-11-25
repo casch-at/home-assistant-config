@@ -1,5 +1,4 @@
-- id: '1602050996708'
-  alias: Morning light
+- alias: Morning light
   description: ''
   trigger:
   - platform: time
@@ -30,8 +29,7 @@
   action:
   - scene: scene.stairs_morning_light
   mode: single
-- id: '1602059477289'
-  alias: Turn off stairs LED when daylight == true
+- alias: Turn off stairs LED when daylight == true
   description: ''
   trigger:
   - type: illuminance

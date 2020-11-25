@@ -1,5 +1,4 @@
-- id: '1605165434986'
-  alias: Home Office
+- alias: Home Office
   description: ''
   trigger:
   - platform: state
@@ -15,5 +14,5 @@
   action:
   - service: switch.turn_on
     data: {}
-    entity_id: switch.desk
+    entity_id: switch.desk_switch
   mode: single
