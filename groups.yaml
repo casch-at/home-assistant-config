@@ -8,6 +8,14 @@ switches:
     - switch.tower
     - switch.tv
 
+office:
+  name: Office
+  icon: mdi:laptop-off
+  entities:
+    - switch.laptop
+    - switch.desk_switch
+    - light.office_led
+
 switches_and_lights:
   name: Lights and Switches
   entities:

@@ -39,6 +39,18 @@ cards:
               action: call-service
               service: script.desk_and_laptop_on
           - type: custom:button-card
+            entity: group.office
+            icon_height: 80px
+            triggers_update:
+              - switch.desk_switch
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_off
+              service_data:
+                entity_id: group.office
+              confirmation:
+                text: Do you really want to turn off all devices in the office?
+          - type: custom:button-card
             entity: group.switches
             name: Switches Off
             icon_height: 80px
