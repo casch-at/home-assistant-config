@@ -6,65 +6,78 @@ badges: []
 cards:
   - type: vertical-stack
     cards:
-      - type: horizontal-stack
+      - type: vertical-stack
         title: Soundbar
         cards:
-          - type: custom:button-card
-            icon: mdi:power
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.broadlink_rm3_mini_office_remote
-                device: soundbar
-                command: power
-                hold_secs: 0.5
-          - type: custom:button-card
-            icon: mdi:television
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.broadlink_rm3_mini_office_remote
-                device: soundbar
-                command: tv
-                hold_secs: 0.5
-          - type: custom:button-card
-            icon: mdi:bluetooth
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.broadlink_rm3_mini_office_remote
-                device: soundbar
-                command: bluetooth
-          - type: custom:button-card
-            icon: mdi:volume-mute
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.broadlink_rm3_mini_office_remote
-                device: soundbar
-                command: mute
-          - type: custom:button-card
-            icon: mdi:volume-minus
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.broadlink_rm3_mini_office_remote
-                device: soundbar
-                command: volume_down
-          - type: custom:button-card
-            icon: mdi:volume-plus
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.broadlink_rm3_mini_office_remote
-                device: soundbar
-                command: volume_up
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                icon: mdi:power
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: power
+                    hold_secs: 0.5
+              - type: custom:button-card
+                icon: mdi:television
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: tv
+                    hold_secs: 0.5
+              - type: custom:button-card
+                icon: mdi:bluetooth
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: bluetooth
+              - type: custom:button-card
+                color_type: blank-card
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                icon: mdi:volume-mute
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: mute
+              - type: custom:button-card
+                icon: mdi:volume-minus
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: volume_down
+              - type: custom:button-card
+                icon: mdi:volume-plus
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: soundbar
+                    command: volume_up
+              - type: custom:button-card
+                color_type: blank-card
 
       - type: vertical-stack
         title: TV
@@ -72,10 +85,21 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
                 icon: mdi:power
                 tap_action:
                   action: call-service
                   service: script.tv_off_on
+              - type: custom:button-card
+                icon: mdi:arrow-up
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: tv
+                    command: up
               - type: custom:button-card
                 icon: mdi:logout-variant
                 tap_action:
@@ -86,6 +110,22 @@ cards:
                     device: tv
                     command: source
               - type: custom:button-card
+                color_type: blank-card
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                icon: mdi:arrow-left
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: tv
+                    command: left
+              - type: custom:button-card
                 icon: mdi:keyboard-return
                 tap_action:
                   action: call-service
@@ -94,6 +134,56 @@ cards:
                     entity_id: remote.broadlink_rm3_mini_office_remote
                     device: tv
                     command: return
+              - type: custom:button-card
+                icon: mdi:arrow-right
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: tv
+                    command: right
+              - type: custom:button-card
+                color_type: blank-card
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                icon: mdi:backup-restore
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: tv
+                    command: back
+              - type: custom:button-card
+                icon: mdi:arrow-down
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: tv
+                    command: down
+              - type: custom:button-card
+                icon: mdi:exit-run
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.broadlink_rm3_mini_office_remote
+                    device: tv
+                    command: exit
+              - type: custom:button-card
+                color_type: blank-card
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: blank-card
               - type: custom:button-card
                 icon: mdi:volume-mute
                 tap_action:
@@ -121,60 +211,5 @@ cards:
                     entity_id: remote.broadlink_rm3_mini_office_remote
                     device: tv
                     command: volume_up
-
-          - type: horizontal-stack
-            cards:
               - type: custom:button-card
-                icon: mdi:arrow-left
-                tap_action:
-                  action: call-service
-                  service: remote.send_command
-                  service_data:
-                    entity_id: remote.broadlink_rm3_mini_office_remote
-                    device: tv
-                    command: left
-              - type: custom:button-card
-                icon: mdi:arrow-right
-                tap_action:
-                  action: call-service
-                  service: remote.send_command
-                  service_data:
-                    entity_id: remote.broadlink_rm3_mini_office_remote
-                    device: tv
-                    command: right
-              - type: custom:button-card
-                icon: mdi:arrow-up
-                tap_action:
-                  action: call-service
-                  service: remote.send_command
-                  service_data:
-                    entity_id: remote.broadlink_rm3_mini_office_remote
-                    device: tv
-                    command: up
-              - type: custom:button-card
-                icon: mdi:arrow-down
-                tap_action:
-                  action: call-service
-                  service: remote.send_command
-                  service_data:
-                    entity_id: remote.broadlink_rm3_mini_office_remote
-                    device: tv
-                    command: down
-              - type: custom:button-card
-                icon: mdi:backup-restore
-                tap_action:
-                  action: call-service
-                  service: remote.send_command
-                  service_data:
-                    entity_id: remote.broadlink_rm3_mini_office_remote
-                    device: tv
-                    command: back
-              - type: custom:button-card
-                icon: mdi:exit-run
-                tap_action:
-                  action: call-service
-                  service: remote.send_command
-                  service_data:
-                    entity_id: remote.broadlink_rm3_mini_office_remote
-                    device: tv
-                    command: exit
+                color_type: blank-card
