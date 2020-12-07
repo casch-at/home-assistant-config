@@ -37,7 +37,7 @@
     device_id: d362c802f675d2a59d2080b94ebef8e4
     entity_id: sensor.front_floor_lightlevel
     domain: sensor
-    above: 80
+    above: 100
     for:
       hours: 0
       minutes: 10

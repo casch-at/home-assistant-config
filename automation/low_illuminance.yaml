@@ -8,7 +8,7 @@
     device_id: d362c802f675d2a59d2080b94ebef8e4
     entity_id: sensor.front_floor_lightlevel
     domain: sensor
-    below: 80
+    below: 100
     for:
       hours: 0
       minutes: 10
@@ -21,7 +21,7 @@
     entity_id: input_boolean.presence
     state: 'on'
   - condition: template
-    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 80 }}'
+    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 100 }}'
   - condition: not
     conditions:
     - condition: state

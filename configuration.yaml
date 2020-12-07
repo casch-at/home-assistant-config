@@ -26,7 +26,7 @@ shell_command:
 device_tracker:
   - platform: ping
     hosts:
-      huawei_p20_router: 192.168.1.5
+      huawei_p20_router: 192.168.1.15
       galaxy_a2_router: 192.168.1.7
     consider_home: 100
 
