@@ -30,3 +30,4 @@
 - platform: wake_on_lan
   mac: !secret tower_mac
   name: "Wake on LAN - Tower"
+  broadcast_address: !secret broadcast_address
