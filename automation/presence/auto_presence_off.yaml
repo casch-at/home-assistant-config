@@ -18,3 +18,7 @@
   - service: notify.mobile_app_huawei_p20
     data:
       message: Christian and Sonia are away
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.presence
+    entity_id: input_boolean.presence

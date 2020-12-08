@@ -7,9 +7,9 @@
       effect_list:
       - colorloop
       brightness: 254
-      color_temp: 292
+      color_temp: 155
       is_deconz_group: false
-      friendly_name: Desk
+      friendly_name: Office
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
@@ -43,7 +43,7 @@
       - 0.747
       is_deconz_group: true
       all_on: true
-      friendly_name: Parlor Plants
+      friendly_name: Plants
       supported_features: 63
       state: 'on'
     light.parlor_shelve:
@@ -52,7 +52,7 @@
       brightness: 178
       color_temp: 370
       is_deconz_group: false
-      friendly_name: Parlor Shelve
+      friendly_name: Shelve
       supported_features: 43
       state: 'on'
   icon: mdi:weather-night
@@ -179,3 +179,18 @@
       supported_features: 63
       state: 'on'
   icon: mdi:head-heart
+- id: '1607445104403'
+  name: Office work light
+  entities:
+    light.office_led:
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      brightness: 254
+      color_temp: 155
+      is_deconz_group: false
+      friendly_name: Office
+      icon: mdi:led-strip-variant
+      supported_features: 63
+      state: 'on'

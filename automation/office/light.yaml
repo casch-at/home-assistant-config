@@ -1,0 +1,52 @@
+- alias: Office LED On/Off
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: ed75d33e4fdc486c13f061762e77931c
+    entity_id: switch.desk_switch
+    domain: switch
+  - platform: device
+    type: turned_on
+    device_id: ed75d33e4fdc486c13f061762e77931c
+    entity_id: switch.desk_switch
+    domain: switch
+  - platform: template
+    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 100 }}'
+  - platform: template
+    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float >= 100 }}'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 100 }}'
+      - condition: state
+        entity_id: switch.desk_switch
+        state: 'on'
+      sequence:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.office_work_light
+    default: []
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: switch.desk_switch
+            state: 'off'
+          - condition: template
+            value_template: '{{ states(''sensor.front_floor_lightlevel'')|float >= 100 }}'
+        - condition: state
+          entity_id: light.office_led
+          state: 'on'
+      sequence:
+      - type: turn_off
+        device_id: 064385de065911eb86921ff8f4822c34
+        entity_id: light.office_led
+        domain: light
+    default: []
+  mode: single

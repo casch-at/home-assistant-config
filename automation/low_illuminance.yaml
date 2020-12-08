@@ -124,19 +124,8 @@
       - condition: template
         value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
       sequence:
-      - service: scene.apply
+      - service: scene.turn_on
         data:
-          entities:
-            light.office_led:
-              min_mireds: 153
-              max_mireds: 500
-              effect_list:
-              - colorloop
-              brightness: 256
-              color_temp: 375
-              is_deconz_group: false
-              friendly_name: Desk LED-Stripe
-              supported_features: 63
-              state: 'on'
+          entity_id: scene.office_work_light
     default: []
   mode: single
