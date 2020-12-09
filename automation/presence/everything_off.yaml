@@ -15,16 +15,42 @@
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.front_floor_switch_active
-        entity_id: input_boolean.front_floor_switch_active
     default: []
   - service: script.reset_lower_kitchen_switch_active_states
-    data: {}
   - service: homeassistant.turn_off
     data:
       entity_id: group.all_lights_extra
-    entity_id: group.all_lights_extra
-  - service: homeassistant.turn_off
+  - delay: 00:00:05
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: >-
+          {{
+          states('device_tracker.lap_02_lan_router') == 'not_home' and
+          states('device_tracker.lap_02_wlan_router') == 'not_home' and
+          states('device_tracker.work_wlan_router') == 'not_home'
+          }}
+      sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.laptop
+      - delay: 00:00:01
+      - service: switch.turn_off
+        data:
+          entity_id: switch.desk_switch
+    default: []
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''device_tracker.tower_lan_router'') == ''not_home'' }}'
+      sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.tower
+    default: []
+  - service: swith.turn_off
     data:
-      entity_id: group.switches
-    entity_id: group.switches
+      entity_id:
+        - switch.printer
+        - switch.tv
   mode: single

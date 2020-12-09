@@ -28,7 +28,13 @@ device_tracker:
     hosts:
       huawei_p20_router: 192.168.1.15
       galaxy_a2_router: 192.168.1.7
-    consider_home: 100
+      lap_02_lan_router: 192.168.1.18
+      lap_02_wlan_router: 192.168.1.19
+      work_wlan_router: 192.168.1.11
+      tower_wlan_router: 192.168.1.17
+    interval_seconds: 30
+    count: 5
+    consider_home: 120
 
 sensor: !include sensors.yaml
 lovelace: !include lovelace/lovelace.yaml

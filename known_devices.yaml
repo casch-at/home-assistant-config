@@ -1,13 +1,41 @@
 huawei_p20_router:
   name: Huawei P20 Router
   mac: F8:C3:9E:14:E4:80
-  icon:
+  icon: mdi:cellphone-android
   picture:
   track: true
 
 galaxy_a2_router:
   name: Galaxy A2 Router
   mac: 7C:38:AD:0E:AA:20
-  icon:
+  icon: mdi:cellphone-android
+  picture:
+  track: true
+
+lap_02_wlan_router:
+  name: lap_02_wlan_router
+  mac: A4:C4:94:5C:BB:74
+  icon: mdi:laptop
+  picture:
+  track: true
+
+lap_02_lan_router:
+  name: lap_02_lan_router
+  mac: b0:5a:da:eb:7a:60
+  icon: mdi:laptop
+  picture:
+  track: true
+
+work_wlan_router:
+  name: work_wlan_router
+  mac: 08:D4:0C:18:A2:E5
+  icon: mdi:laptop
+  picture:
+  track: true
+
+tower_lan_router:
+  name: tower_lan_router
+  mac: 20:CF:30:2E:0B:E1
+  icon: mdi:desktop-tower
   picture:
   track: true

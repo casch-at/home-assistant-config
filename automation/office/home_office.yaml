@@ -13,6 +13,10 @@
     state: 'on'
   action:
   - service: switch.turn_on
-    data: {}
-    entity_id: switch.desk_switch
+    data:
+      entity_id: switch.desk_switch
+  - delay: 00:00:02
+  - service: switch.turn_on
+    data:
+      entity_id: switch.laptop
   mode: single

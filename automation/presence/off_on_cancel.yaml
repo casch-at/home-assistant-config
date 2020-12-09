@@ -33,7 +33,6 @@
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.presence
-        entity_id: input_boolean.presence
     - conditions:
       - condition: state
         entity_id: input_boolean.presence
@@ -42,7 +41,6 @@
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.presence
-        entity_id: input_boolean.presence
       - repeat:
           count: '2'
           sequence:
@@ -68,9 +66,7 @@
   - service: automation.turn_off
     data:
       entity_id: automation.lower_kitchen_switch_turn_off_on_presence
-    entity_id: automation.lower_kitchen_switch_turn_off_on_presence
   - service: automation.turn_on
     data:
       entity_id: automation.lower_kitchen_switch_turn_off_on_presence
-    entity_id: automation.lower_kitchen_switch_turn_off_on_presence
   mode: single

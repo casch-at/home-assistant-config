@@ -1,4 +1,4 @@
-- alias: Notify would turn off presence
+- alias: Automatically turn presence off
   description: ''
   trigger:
   - platform: state
@@ -21,4 +21,3 @@
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.presence
-    entity_id: input_boolean.presence

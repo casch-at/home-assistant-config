@@ -1,8 +1,9 @@
 - alias: Morning light
   description: ''
   trigger:
-  - platform: time
-    at: 06:50:00
+  - platform: state
+    entity_id: input_select.daytime
+    to: Morning
   condition:
   - condition: and
     conditions:
@@ -10,26 +11,27 @@
       conditions:
       - condition: state
         entity_id: sensor.daylight
-        state: sunrise_start
-      - condition: state
-        entity_id: sensor.daylight
         state: sunrise_end
       - condition: state
         entity_id: sensor.daylight
+        state: sunrise_start
+      - condition: state
+        entity_id: sensor.daylight
         state: dawn
+      - condition: state
+        entity_id: sensor.daylight
+        state: nautical_dawn
     - condition: state
       state: 'on'
       entity_id: input_boolean.presence
-    - condition: state
-      entity_id: input_select.daytime
-      state: Morning
     - condition: state
       entity_id: binary_sensor.workday_sensor
       state: 'on'
   action:
   - scene: scene.stairs_morning_light
   mode: single
-- alias: Turn off stairs LED when daylight == true
+
+- alias: Turn off morning light
   description: ''
   trigger:
   - type: illuminance

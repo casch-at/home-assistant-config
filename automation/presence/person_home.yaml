@@ -13,6 +13,6 @@
     state: 'off'
   action:
   - service: input_boolean.turn_on
-    data: {}
-    entity_id: input_boolean.presence
+    data:
+      entity_id: input_boolean.presence
   mode: single

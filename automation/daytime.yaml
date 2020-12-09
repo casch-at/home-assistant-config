@@ -21,8 +21,8 @@
         data:
           option: Morning
       - service: cover.open_cover
-        data: {}
-        entity_id: cover.bedroom_roller_shutter_level
+        data:
+          entity_id: cover.bedroom_roller_shutter_level
     default: []
   - choose:
     - conditions:
