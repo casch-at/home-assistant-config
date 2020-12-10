@@ -5,12 +5,33 @@
       value_template: >-
         {{ (states('sensor.lower_kitchen_temperature')|float + 1.8) | round(2) }}
       device_class: temperature
-      unit_of_measurement: °C
+      unit_of_measurement: '°C'
       unique_id: mysensor0001
     front_floor_temperature_fixed:
       friendly_name: "Front Floor Temperature"
       value_template: >-
         {{ (states('sensor.front_floor_temperature')|float + 1.8) | round(2) }}
       device_class: temperature
-      unit_of_measurement: °C
+      unit_of_measurement: '°C'
       unique_id: mysensor0002
+    outdoor_temperature:
+      friendly_name: "Outdoor Temperature"
+      value_template: >-
+        {{ state_attr('weather.home', 'temperature') }}
+      device_class: temperature
+      unit_of_measurement: '°C'
+      unique_id: mysensor0003
+    outdoor_humidity:
+      friendly_name: "Outdoor Humidity"
+      value_template: >-
+        {{ state_attr('weather.home', 'humidity') }}
+      device_class: humidity
+      unit_of_measurement: '%'
+      unique_id: mysensor0004
+    outdoor_pressure:
+      friendly_name: "Outdoor Pressure"
+      value_template: >-
+        {{ state_attr('weather.home', 'pressure') }}
+      device_class: pressure
+      unit_of_measurement: 'hPa'
+      unique_id: mysensor0005

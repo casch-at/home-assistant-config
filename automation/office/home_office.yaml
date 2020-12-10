@@ -4,6 +4,9 @@
   - platform: state
     entity_id: input_select.daytime
     to: Morning
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: home
   condition:
   - condition: state
     entity_id: binary_sensor.workday_sensor
@@ -11,6 +14,9 @@
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
+  - condition: time
+    after: '00:06:45'
+    before: '00:17:00'
   action:
   - service: switch.turn_on
     data:

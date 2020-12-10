@@ -32,8 +32,8 @@ device_tracker:
       lap_02_wlan_router: 192.168.1.19
       work_wlan_router: 192.168.1.11
       tower_wlan_router: 192.168.1.17
-    interval_seconds: 30
-    count: 5
+    # interval_seconds: 30        # default 12
+    count: 3
     consider_home: 120
 
 sensor: !include sensors.yaml

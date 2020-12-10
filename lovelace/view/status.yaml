@@ -161,6 +161,8 @@ cards:
             name: Office
           - entity: sensor.upstairs_temperature
             name: Upstairs
+          - entity: sensor.outdoor_temperature
+            name: Outdoor
         name: Temperature
         hours_to_show: 24   # 24 default
         points_per_hour: 6
@@ -177,6 +179,8 @@ cards:
             name: Office
           - entity: sensor.upstairs_humidity
             name: Upstairs
+          - entity: sensor.outdoor_humidity
+            name: Outdoor
         name: Humidity
         hours_to_show: 24   # 24 default
         points_per_hour: 6
@@ -193,6 +197,8 @@ cards:
             name: Office
           - entity: sensor.upstairs_pressure
             name: Upstairs
+          - entity: sensor.outdoor_pressure
+            name: Outdoor
         name: Pressure
         hours_to_show: 24   # 24 default
         points_per_hour: 6
@@ -232,7 +238,6 @@ cards:
         title: Battery Level
         # secondary_info: last_updated
         sort_by_level: asc
-        icon: mdi:battery-flash
         color_gradient:
           - '#FF0000'
           - '#FFFF00'
