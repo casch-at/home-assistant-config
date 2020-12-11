@@ -15,14 +15,8 @@
     entity_id: input_boolean.presence
     state: 'on'
   - condition: time
-    after: '00:06:45'
+    after: '00:06:00'
     before: '00:17:00'
   action:
-  - service: switch.turn_on
-    data:
-      entity_id: switch.desk_switch
-  - delay: 00:00:02
-  - service: switch.turn_on
-    data:
-      entity_id: switch.laptop
+  - service: script.desk_and_laptop_on
   mode: single

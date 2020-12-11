@@ -31,7 +31,7 @@ device_tracker:
       lap_02_lan_router: 192.168.1.18
       lap_02_wlan_router: 192.168.1.19
       work_wlan_router: 192.168.1.11
-      tower_wlan_router: 192.168.1.17
+      tower_lan_router: 192.168.1.17
     # interval_seconds: 30        # default 12
     count: 3
     consider_home: 120
