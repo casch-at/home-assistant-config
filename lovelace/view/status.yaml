@@ -6,10 +6,15 @@ badges: []
 cards:
   - type: vertical-stack
     cards:
-      - type: horizontal-stack
+      - type: grid
+        square: false
+        columns: 2
         cards:
-          - type: custom:button-card
-            color_type: blank-card
+          # - type: custom:button-card
+          #   color_type: blank-card
+          # - type: custom:button-card
+          #   color_type: blank-card
+
           - type: custom:button-card
             entity: person.christian_schwarzgruber
             show_entity_picture: true
@@ -50,20 +55,16 @@ cards:
                 else
                   return "unknown";
               ]]]
-          - type: custom:button-card
-            color_type: blank-card
 
       - type: weather-forecast
         entity: weather.home
 
-      - type: horizontal-stack
+      - type: grid
         cards:
           - type: custom:button-card
             entity: input_boolean.presence
             show_state: true
-            styles:
-              card:
-                - height: 100px
+            aspect_ratio: 1/1
             confirmation:
                 text: |
                     Do you really want to toggle the presence?
@@ -73,51 +74,34 @@ cards:
           - type: custom:button-card
             entity: sun.sun
             show_state: true
-            styles:
-              card:
-                - height: 100px
+            aspect_ratio: 1/1
           - type: custom:button-card
             entity: sensor.daylight
             show_state: true
             name: Sun
-            styles:
-              card:
-                - height: 100px
-
-      - type: horizontal-stack
-        cards:
+            aspect_ratio: 1/1
           - type: custom:button-card
             entity: binary_sensor.workday_sensor
             show_state: true
-            styles:
-              card:
-                - height: 100px
+            aspect_ratio: 1/1
           - type: custom:button-card
             entity: input_select.daytime
             show_state: true
-            styles:
-              card:
-                - height: 100px
+            aspect_ratio: 1/1
           - type: custom:button-card
             color_type: blank-card
-
-      - type: horizontal-stack
-        cards:
           - type: custom:button-card
             entity: sensor.hacs
             name: HACS
             show_state: true
             icon: mdi:update
-            styles:
-              card:
-                - height: 100px
+            aspect_ratio: 1/1
           - type: custom:button-card
             name: Restart HA
             icon: mdi:restart
-            icon_height: 50px
+            show_state: true
+            aspect_ratio: 1/1
             styles:
-              card:
-                - height: 100px
               icon:
                 - color: "#C10B0B"
             tap_action:
@@ -129,9 +113,7 @@ cards:
             entity: binary_sensor.updater
             show_state: true
             icon: mdi:update
-            styles:
-              card:
-                - height: 100px
+            aspect_ratio: 1/1
 
       - type: custom:mini-graph-card
         entities:

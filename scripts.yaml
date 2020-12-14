@@ -2,35 +2,34 @@ desk_and_laptop_on:
   alias: Laptop On
   sequence:
   - service: switch.turn_on
-    data: {}
-    entity_id: switch.desk_switch
+    data:
+      entity_id: switch.desk_switch
   - delay: '0.3'
   - service: switch.turn_on
-    data: {}
-    entity_id: switch.laptop
+    data:
+      entity_id: switch.laptop_switch
   mode: single
   icon: hass:laptop
 wake_tower:
   alias: Wake Tower
   sequence:
   - service: switch.turn_on
-    data: {}
-    entity_id: switch.tower
+    data:
+      entity_id: switch.tower
   - delay: 00:00:05
   - service: switch.turn_on
-    data: {}
-    entity_id: switch.wake_on_lan_tower
+    data:
+      entity_id: switch.wake_on_lan_tower
   mode: single
   icon: hass:desktop-tower
 tower_off:
   alias: Tower Off
   sequence:
   - service: shell_command.turn_off_tower
-    data: {}
   - delay: 00:00:30
   - service: switch.turn_off
-    data: {}
-    entity_id: switch.tower
+    data:
+      entity_id: switch.tower
   mode: single
   icon: mdi:desktop-tower
 bathroom_demo:
@@ -122,12 +121,12 @@ tv_off_on:
   - choose:
     - conditions:
       - condition: state
-        entity_id: switch.tv
+        entity_id: switch.tv_switch
         state: 'off'
       sequence:
       - service: switch.turn_on
-        data: {}
-        entity_id: switch.tv
+        data:
+          entity_id: switch.tv_switch
       - delay: 00:00:02
       - service: remote.send_command
         data:
@@ -144,8 +143,8 @@ tv_off_on:
         command: power
     - delay: 00:00:10
     - service: switch.turn_off
-      data: {}
-      entity_id: switch.tv
+      data:
+        entity_id: switch.tv
   mode: single
   icon: mdi:television
   max: 10

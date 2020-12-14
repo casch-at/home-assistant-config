@@ -33,7 +33,7 @@
       sequence:
       - service: switch.turn_off
         data:
-          entity_id: switch.laptop
+          entity_id: switch.laptop_switch
       - delay: 00:00:01
       - service: switch.turn_off
         data:
@@ -52,5 +52,7 @@
     data:
       entity_id:
         - switch.printer
-        - switch.tv
+        - switch.tv_switch
+        - switch.tv_usb
+        - switch.nightstand_usb
   mode: single

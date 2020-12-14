@@ -1,17 +1,14 @@
 person.christian_schwarzgruber: {}
-switch.laptop:
-  icon: mdi:laptop
 switch.printer:
   icon: mdi:printer
 switch.tower:
   icon: mdi:desktop-tower
-switch.tv:
+switch.tv_switch:
   icon: mdi:television
 switch.desk_switch:
   icon: mdi:desk
 switch.laptop_switch:
-  icon: mdi:floor-lamp
-  friendly_name: Nighstand
+  icon: mdi:laptop
 light.parlor:
   friendly_name: All
 light.parlor_plants:

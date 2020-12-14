@@ -39,7 +39,7 @@ views:
             toggle: true
             hide_when_off: true
           - entity: switch.printer
-          - entity: switch.laptop_switch
+          - entity: switch.nightstand_switch
 
       - type: horizontal-stack
         cards:

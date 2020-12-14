@@ -3,16 +3,18 @@ switches:
   icon: mdi:dip-switch
   entities:
     - switch.desk_switch
-    - switch.laptop
+    - switch.laptop_switch
+#    - switch.nightstand_usb
     - switch.printer
     - switch.tower
-    - switch.tv
+    - switch.tv_switch
+#    - switch.tv_usb
 
 office:
   name: Office
   icon: mdi:laptop-off
   entities:
-    - switch.laptop
+    - switch.laptop_switch
     - switch.desk_switch
     - light.office_led
 
@@ -25,5 +27,5 @@ switches_and_lights:
 all_lights_extra:
   name: Lights and Switch Lights
   entities:
-    - switch.laptop_switch
+    - switch.nightstand_switch
     - light.all_lights

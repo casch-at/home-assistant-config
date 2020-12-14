@@ -51,7 +51,7 @@ cards:
     show_header_toggle: false
     state_color: true
     entities:
-      - entity: switch.laptop_switch
+      - entity: switch.nightstand_switch
 
   - type: vertical-stack
     cards:
