@@ -20,8 +20,10 @@ binary_sensor:
   - platform: workday
     country: AT
 
-# Setup camera stream support
-stream:
+# stream:
+
+# For onvif integration?
+ffmpeg:
 
 # Shell commands
 shell_command:

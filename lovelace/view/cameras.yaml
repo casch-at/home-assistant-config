@@ -1,0 +1,15 @@
+title: Cameras
+path: cameras
+panel: true
+icon: mdi:cctv
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - type: picture-glance
+        aspect_ratio: 9x16
+        show_state: false
+        show_name: false
+        entities: []
+        camera_image:  camera.tapo_c200_mainstream
+        camera_view: live
