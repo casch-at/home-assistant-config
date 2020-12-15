@@ -1,15 +1,3 @@
-desk_and_laptop_on:
-  alias: Laptop On
-  sequence:
-  - service: switch.turn_on
-    data:
-      entity_id: switch.desk_switch
-  - delay: '0.3'
-  - service: switch.turn_on
-    data:
-      entity_id: switch.laptop_switch
-  mode: single
-  icon: hass:laptop
 wake_tower:
   alias: Wake Tower
   sequence:

@@ -36,11 +36,13 @@ cards:
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: switch.laptop_switch
+            entity: group.desk_and_laptop
             icon_height: 80px
             tap_action:
               action: call-service
-              service: script.desk_and_laptop_on
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: group.desk_and_laptop
           - type: custom:button-card
             entity: group.office
             icon_height: 80px

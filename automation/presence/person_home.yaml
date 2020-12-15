@@ -15,4 +15,9 @@
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.presence
+  - service: switch.turn_on
+    data:
+      entity_id:
+        - switch.tv_usb
+        - switch.nightstand_usb
   mode: single

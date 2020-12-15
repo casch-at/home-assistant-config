@@ -10,6 +10,13 @@ switches:
     - switch.tv_switch
 #    - switch.tv_usb
 
+desk_and_laptop:
+  name: Desktop and Laptop
+  icon: mdi:laptop
+  entities:
+    - switch.desk_switch
+    - switch.laptop_switch
+
 office:
   name: Office
   icon: mdi:laptop-off
