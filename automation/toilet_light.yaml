@@ -12,7 +12,7 @@
     value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
   - condition: state
     entity_id: input_select.daytime
-    state: Night
+    state: 'Night'
   - condition: device
     type: is_off
     device_id: 03baa6e6081411eb958e6b58c8805747

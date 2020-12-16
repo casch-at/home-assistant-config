@@ -23,10 +23,10 @@
         conditions:
         - condition: state
           entity_id: input_select.daytime
-          state: Morning
+          state: 'Morning'
         - condition: state
           entity_id: input_select.daytime
-          state: Daytimes
+          state: 'Daytimes'
       sequence:
       - service: scene.apply
         data:
@@ -46,7 +46,7 @@
     - conditions:
       - condition: state
         entity_id: input_select.daytime
-        state: Evening
+        state: 'Evening'
       sequence:
       - service: scene.apply
         data:
@@ -66,7 +66,7 @@
     - conditions:
       - condition: state
         entity_id: input_select.daytime
-        state: Night
+        state: 'Night'
       sequence:
       - service: scene.apply
         data:

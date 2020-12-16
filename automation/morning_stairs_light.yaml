@@ -12,16 +12,16 @@
       conditions:
       - condition: state
         entity_id: sensor.daylight
-        state: sunrise_end
+        state: 'sunrise_end'
       - condition: state
         entity_id: sensor.daylight
-        state: sunrise_start
+        state: 'sunrise_start'
       - condition: state
         entity_id: sensor.daylight
-        state: dawn
+        state: 'dawn'
       - condition: state
         entity_id: sensor.daylight
-        state: nautical_dawn
+        state: 'nautical_dawn'
     - condition: state
       state: 'on'
       entity_id: input_boolean.presence

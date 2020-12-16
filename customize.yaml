@@ -9,6 +9,8 @@ switch.desk_switch:
   icon: mdi:desk
 switch.laptop_switch:
   icon: mdi:laptop
+switch.nightstand_switch:
+  icon: mdi:lamp
 light.parlor:
   friendly_name: All
 light.parlor_plants:

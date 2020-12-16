@@ -2,19 +2,31 @@
   alias: Set daytime
   description: ''
   trigger:
-  - platform: time
-    at: 06:45:00
+  - platform: template
+    #  - 24 * 60 * 60 -> use previous date alaerm, otherwise we miss the event
+    value_template: >-
+      {{
+      (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
+      ==
+      as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+      or
+      (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
+      ==
+      as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+      }}
   - platform: time
     at: '18:00:00'
   condition: []
   action:
   - choose:
     - conditions:
-      - condition: time
-        before: 06:50:00
-        after: 06:44:00
+      - condition: template
+        value_template: '{{ trigger.entity_id == "sensor.date_time_iso" }}'
       - condition: state
-        entity_id: binary_sensor.workday_sensor
+        entity_id: input_select.daytime
+        state: 'Night'
+      - condition: state
+        entity_id: input_boolean.presence
         state: 'on'
       sequence:
       - service: input_select.select_option

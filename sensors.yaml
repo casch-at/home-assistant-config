@@ -40,4 +40,5 @@
   display_options:
     - 'date_time'
     - 'date_time_utc'
-
+    - 'date_time_iso'
+    - 'time_utc'

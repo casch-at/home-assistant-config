@@ -27,7 +27,7 @@
     conditions:
     - condition: state
       entity_id: input_select.daytime
-      state: Night
+      state: 'Night'
   action:
   - choose:
     - conditions:
