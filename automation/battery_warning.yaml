@@ -1,4 +1,5 @@
-- alias: Battery Level Warning
+- id: battery_warning
+  alias: Battery Level Warning
   description: ''
   trigger:
   - platform: template

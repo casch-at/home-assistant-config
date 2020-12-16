@@ -1,4 +1,5 @@
-- alias: Turn on lights in lower kitchen -- motion detected
+- id: lower_kitchen_motion_detected
+  alias: Turn on lights in lower kitchen -- motion detected
   description: ''
   trigger:
   - type: motion
@@ -84,7 +85,8 @@
               state: 'on'
     default: []
   mode: single
-- alias: Turn off lights in lower kitchen -- motion cleared
+- id: lower_kitchen_motion_cleared
+  alias: Turn off lights in lower kitchen -- motion cleared
   description: ''
   trigger:
   - type: no_motion

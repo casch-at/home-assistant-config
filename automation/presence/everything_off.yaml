@@ -1,4 +1,5 @@
-- alias: Turn everything off on presence state off
+- id: presence_everything_off
+  alias: Turn everything off on presence state off
   description: ''
   trigger:
   - platform: state

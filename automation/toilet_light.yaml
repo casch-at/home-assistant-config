@@ -1,4 +1,5 @@
-- alias: Night toilet light
+- id: toilet_light
+  alias: Night toilet light
   description: ''
   trigger:
   - type: motion

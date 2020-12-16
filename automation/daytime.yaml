@@ -1,4 +1,5 @@
-- alias: Set daytime
+- id: daytime
+  alias: Set daytime
   description: ''
   trigger:
   - platform: time

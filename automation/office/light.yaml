@@ -1,4 +1,5 @@
-- alias: Office LED On/Off
+- id: office_light_on_off
+  alias: Office LED On/Off
   description: ''
   trigger:
   - platform: device
@@ -30,7 +31,7 @@
     for:
       hours: 0
       minutes: 10
-      seconds: 0      
+      seconds: 0
   condition: []
   action:
   - choose:

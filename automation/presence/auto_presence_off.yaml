@@ -1,4 +1,5 @@
-- alias: Automatically turn presence off
+- id: presence_auto_off
+  alias: Automatically turn presence off
   description: ''
   trigger:
   - platform: state

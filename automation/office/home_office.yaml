@@ -1,4 +1,5 @@
-- alias: Home Office
+- id: home_office
+  alias: Home Office
   description: ''
   trigger:
   - platform: state
@@ -18,5 +19,7 @@
     after: '00:06:00'
     before: '00:17:00'
   action:
-  - service: script.desk_and_laptop_on
+  - service: homeassistant.turn_on
+    data:
+        entity_id: group.desk_and_laptop
   mode: single
