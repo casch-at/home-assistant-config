@@ -23,7 +23,7 @@ binary_sensor:
 # stream:
 
 # For onvif integration?
-ffmpeg:
+# ffmpeg:
 
 # Shell commands
 shell_command:

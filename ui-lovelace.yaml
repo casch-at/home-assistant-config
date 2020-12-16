@@ -8,7 +8,7 @@ views:
   - !include lovelace/view/shutter.yaml
   - !include lovelace/view/tv.yaml
   - !include lovelace/view/air_conditioner.yaml
-  - !include lovelace/view/cameras.yaml
+  # - !include lovelace/view/cameras.yaml
   - !include lovelace/view/status.yaml
 
 #066F22
