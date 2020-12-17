@@ -6,13 +6,12 @@
     #  - 24 * 60 * 60 -> use previous date alaerm, otherwise we miss the event
     value_template: >-
       {{
-      (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
-      ==
-      as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
-      or
-      (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
-      ==
-      as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+      not is_state('sensor.huawei_p20_next_alarm', 'unavailable')
+      and (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
+      == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+      or not is_state('sensor.galaxy_a2_next_alarm', 'unavailable')
+      and (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
+      == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
       }}
   - platform: time
     at: '18:00:00'
