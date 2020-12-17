@@ -50,13 +50,15 @@ automation: !include_dir_merge_list automation
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-
-# Nextcloud
-#nextcloud:
-#    url: https://cloud.casch.at
-#    username: chrisluxtux
-#    password:
-
+calendar:
+  - platform: caldav
+    url: !secret nextcloud_webdav_url
+    username: !secret nextcloud_user
+    password: !secret nextcloud_password
+    custom_calendars:
+      - name: Holiday
+        calendar: Work
+        search: 'Schwarzgruber_(UR|GT)'
 
 
 # logger:
