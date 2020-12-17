@@ -15,9 +15,9 @@
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
-  - condition: time
-    after: '00:06:00'
-    before: '00:17:00'
+#  - condition: time
+#    after: '06:00:00'
+#    before: '17:00:00'
   action:
   - service: homeassistant.turn_on
     data:
