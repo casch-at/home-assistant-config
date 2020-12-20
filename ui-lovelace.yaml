@@ -10,7 +10,7 @@ views:
   - !include lovelace/view/air_conditioner.yaml
   # - !include lovelace/view/cameras.yaml
   - !include lovelace/view/status.yaml
-
+  - !include lovelace/view/status-new.yaml
 #066F22
 #0FB72C
 #0FFB0B

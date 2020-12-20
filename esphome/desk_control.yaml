@@ -1,0 +1,76 @@
+esphome:
+  name: desk_control
+  platform: ESP32
+  board: esp32dev
+  platformio_options:
+    platform: espressif32
+    board: az-delivery-devkit-v4
+    board_build.mcu: esp32
+    board_build.f_cpu: 240000000L
+
+wifi:
+  ssid: !secret ssid
+  password: !secret password
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Desk Control Fallback Hotspot"
+    password: !secret ap_password
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret password
+
+ota:
+  password: !secret password
+
+
+# GPIO setup
+switch:
+  - platform: gpio
+    pin: 32
+    id: desk_position_1
+    name: "Desk Position 1"
+  - platform: gpio
+    pin: 33
+    id: desk_position_2
+    name: "Desk Position 2"
+  - platform: gpio
+    pin: 25
+    id: desk_position_3
+    name: "Desk Position 3"
+  - platform: gpio
+    pin: 26
+    id: desk_position_4
+    name: "Desk Position 4"
+  - platform: gpio
+    pin: 27
+    id: desk_position_s
+    name: "Desk Position S"
+  - platform: gpio
+    pin: 14
+    id: desk_position_up
+    name: "Desk Position Up"
+  - platform: gpio
+    pin: 12
+    id: desk_position_down
+    name: "Desk Position Down"
+
+
+#switch:
+#  - platform: gpio
+#    pin: 33
+#    id: desk_position_1
+#  - platform: template
+#    name: "Desk Position 1"
+#    icon: "mdi:gate"
+#    turn_on_action:
+#    - switch.turn_on: desk_position_1
+#    - delay: 10s
+#    - switch.turn_off: desk_position_1

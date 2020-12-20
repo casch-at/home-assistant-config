@@ -1,36 +1,29 @@
-- id: morning_light
-  alias: Morning light
+- id: state_morning
+  alias: Morning state
   description: ''
   trigger:
   - platform: state
     entity_id: input_select.daytime
     to: Morning
-  condition:
-  - condition: and
-    conditions:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: sensor.daylight
-        state: 'sunrise_end'
-      - condition: state
-        entity_id: sensor.daylight
-        state: 'sunrise_start'
-      - condition: state
-        entity_id: sensor.daylight
-        state: 'dawn'
-      - condition: state
-        entity_id: sensor.daylight
-        state: 'nautical_dawn'
-    - condition: state
-      state: 'on'
-      entity_id: input_boolean.presence
-    - condition: state
-      entity_id: binary_sensor.workday_sensor
-      state: 'on'
+  condition: []
   action:
-  - scene: scene.stairs_morning_light
-  mode: single
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: template
+          value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 100 }}'
+        - condition: state
+          state: 'on'
+          entity_id: input_boolean.presence
+      sequence:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.stairs_morning_light
+    default: []
+  - service: cover.open_cover
+    data:
+      entity_id: cover.bedroom_roller_shutter_level
 
 - id: morning_light_off
   alias: Turn off morning light

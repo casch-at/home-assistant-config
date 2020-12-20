@@ -3,7 +3,7 @@
   description: ''
   trigger:
   - platform: template
-    #  - 24 * 60 * 60 -> use previous date alaerm, otherwise we miss the event
+    #  - 24 * 60 * 60 -> use previous date alarm, otherwise we miss the event
     value_template: >-
       {{
       not is_state('sensor.huawei_p20_next_alarm', 'unavailable')
@@ -32,9 +32,6 @@
         entity_id: input_select.daytime
         data:
           option: Morning
-      - service: cover.open_cover
-        data:
-          entity_id: cover.bedroom_roller_shutter_level
     default: []
   - choose:
     - conditions:
