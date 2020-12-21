@@ -1,3 +1,16 @@
+button_card_templates:
+  embedded_card:
+    show_name: false
+    show_state: true
+    show_icon: false
+    show_units: false
+    style: |
+      ha-card {
+      box-shadow: none;
+      }
+
+
+
 title: Home
 icon: mdi:home-assistant
 views:
@@ -10,7 +23,7 @@ views:
   - !include lovelace/view/air_conditioner.yaml
   # - !include lovelace/view/cameras.yaml
   - !include lovelace/view/status.yaml
-  - !include lovelace/view/status-new.yaml
+
 #066F22
 #0FB72C
 #0FFB0B

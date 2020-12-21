@@ -17,21 +17,21 @@
     outdoor_temperature:
       friendly_name: "Outdoor Temperature"
       value_template: >-
-        {{ state_attr('weather.home', 'temperature') }}
+        {{ state_attr('weather.home', 'temperature')|float  }}
       device_class: temperature
       unit_of_measurement: '°C'
       unique_id: mysensor0003
     outdoor_humidity:
       friendly_name: "Outdoor Humidity"
       value_template: >-
-        {{ state_attr('weather.home', 'humidity') }}
+        {{ state_attr('weather.home', 'humidity')|float }}
       device_class: humidity
       unit_of_measurement: '%'
       unique_id: mysensor0004
     outdoor_pressure:
       friendly_name: "Outdoor Pressure"
       value_template: >-
-        {{ state_attr('weather.home', 'pressure') }}
+        {{ state_attr('weather.home', 'pressure')|int }}
       device_class: pressure
       unit_of_measurement: 'hPa'
       unique_id: mysensor0005

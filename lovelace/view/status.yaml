@@ -1,22 +1,18 @@
-title: Status
-path: status
+title: Fancy
+path: status-fancy
 icon: mdi:information
 panel: true
 badges: []
 cards:
   - type: vertical-stack
     cards:
-      - type: grid
-        square: false
-        columns: 2
+      - type: horizontal-stack
         cards:
           # - type: custom:button-card
-          #   color_type: blank-card
-          # - type: custom:button-card
-          #   color_type: blank-card
-
+            # color_type: blank-card
           - type: custom:button-card
             entity: person.christian_schwarzgruber
+            aspect_ratio: 10/9
             show_entity_picture: true
             show_state: true
             styles:
@@ -24,8 +20,8 @@ cards:
                 - background: rgba(0, 0, 0, 0)
               entity_picture:
                 - border-radius: 50%
-                - -webkit-box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
-                - box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
+                - -webkit-box-shadow: 0px 0px 6px 6px var(--button-card-light-color)
+                - box-shadow: 0px 0px 6px 6px var(--button-card-light-color)
             state_display: >
               [[[
                 if (entity.state == "home")
@@ -37,6 +33,7 @@ cards:
               ]]]
           - type: custom:button-card
             entity: person.sonia_avramidis
+            aspect_ratio: 10/9
             show_entity_picture: true
             show_state: true
             styles:
@@ -44,8 +41,8 @@ cards:
                 - background: rgba(0, 0, 0, 0)
               entity_picture:
                 - border-radius: 50%
-                - -webkit-box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
-                - box-shadow: 0px 0px 3px 3px var(--button-card-light-color)
+                - -webkit-box-shadow: 0px 0px 6px 6px var(--button-card-light-color)
+                - box-shadow: 0px 0px 6px 6px var(--button-card-light-color)
             state_display: >
               [[[
                 if (entity.state == "home")
@@ -55,16 +52,138 @@ cards:
                 else
                   return "unknown";
               ]]]
+          # - type: custom:button-card
+            # color_type: blank-card
 
       - type: weather-forecast
         entity: weather.home
 
+      - type: custom:button-card
+        styles:
+          grid:
+            - grid-template-areas: >-
+                "n  tn hn pn ln"
+                "n2 t2 h2 p2 l2"
+                "n4 t4 h4 p4 l4"
+                "n5 t5 h5 p5 l5"
+                "n1 t1 h1 p1 l1"
+                "n3 t3 h3 p3 l3"
+            - grid-template-columns: min-content 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr
+          custom_fields:
+            n1:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n2:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n3:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n4:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n5:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            tn:
+              - font-weight: bold
+            hn:
+              - font-weight: bold
+            pn:
+              - font-weight: bold
+            ln:
+              - font-weight: bold
+        custom_fields:
+          tn: '°C'
+          hn: '%'
+          pn: 'hPa'
+          ln: 'lx'
+          n1: 'Lower Kitchen'
+          n2: 'Office'
+          n3: 'Front Floor'
+          n4: 'Upstairs'
+          n5: 'Outdoor'
+          l1:
+            card:
+                type: custom:button-card
+                entity: sensor.lower_kitchen_lightlevel
+                template: embedded_card
+          t1:
+            card:
+                type: custom:button-card
+                entity: sensor.lower_kitchen_temperature_fixed
+                template: embedded_card
+          t2:
+            card:
+                type: custom:button-card
+                entity: sensor.office_temperature
+                template: embedded_card
+          h2:
+            card:
+                type: custom:button-card
+                entity: sensor.office_humidity
+                template: embedded_card
+          p2:
+            card:
+                type: custom:button-card
+                entity: sensor.office_pressure
+                template: embedded_card
+          t3:
+            card:
+                type: custom:button-card
+                entity: sensor.front_floor_temperature_fixed
+                template: embedded_card
+          l3:
+            card:
+                type: custom:button-card
+                entity: sensor.front_floor_lightlevel
+                template: embedded_card
+          t4:
+            card:
+                type: custom:button-card
+                entity: sensor.upstairs_temperature
+                template: embedded_card
+          h4:
+            card:
+                type: custom:button-card
+                entity: sensor.upstairs_humidity
+                template: embedded_card
+          p4:
+            card:
+                type: custom:button-card
+                entity: sensor.upstairs_pressure
+                template: embedded_card
+          t5:
+            card:
+                type: custom:button-card
+                entity: sensor.outdoor_temperature
+                template: embedded_card
+          h5:
+            card:
+                type: custom:button-card
+                entity: sensor.outdoor_humidity
+                template: embedded_card
+          p5:
+            card:
+                type: custom:button-card
+                entity: sensor.outdoor_pressure
+                template: embedded_card
+
       - type: grid
+        square: false
+        # title: State and Service Buttons
         cards:
           - type: custom:button-card
             entity: input_boolean.presence
             show_state: true
-            aspect_ratio: 1/1
+            show_icon: false
+            color_type: card
             confirmation:
                 text: |
                     Do you really want to toggle the presence?
@@ -74,36 +193,60 @@ cards:
           - type: custom:button-card
             entity: sun.sun
             show_state: true
-            aspect_ratio: 1/1
+            show_icon: false
           - type: custom:button-card
             entity: sensor.daylight
             show_state: true
+            show_icon: false
             name: Sun
-            aspect_ratio: 1/1
           - type: custom:button-card
             entity: binary_sensor.workday_sensor
+            show_icon: false
             show_state: true
-            aspect_ratio: 1/1
+            color_type: card
+          - type: custom:button-card
+            entity: calendar.work_holiday
+            show_icon: false
+            show_state: true
+            color_type: card
           - type: custom:button-card
             entity: input_select.daytime
+            show_icon: false
             show_state: true
-            aspect_ratio: 1/1
-          - type: custom:button-card
-            color_type: blank-card
           - type: custom:button-card
             entity: sensor.hacs
-            name: HACS
+            name: HACS Updater
             show_state: true
+            show_icon: false
+            show_units: false
+            color_type: card
             icon: mdi:update
-            aspect_ratio: 1/1
+            state:
+              - value: 1
+                operator: >
+                color: var(--paper-item-icon-active-color)
+              - value: 0
+                color: var(--paper-item-icon-color)
           - type: custom:button-card
+            # color_type: label-card
+            # color: rgb(44, 109, 214)
             name: Restart HA
-            icon: mdi:restart
+            state:
+              - value: ''
+                name: 'Ok'
+            show_icon: false
             show_state: true
-            aspect_ratio: 1/1
+            # entity_it: home
+            icon: mdi:restart
+            # styles:
+              # grid:
+                # - grid-template-areas: '"n" "n"'
+                # - grid-template-columns: 1fr
+                # - grid-template-rows: 1fr 1fr
             styles:
-              icon:
+              name:
                 - color: "#C10B0B"
+                - font-weight: bold
             tap_action:
               action: call-service
               service: homeassistant.restart
@@ -112,84 +255,9 @@ cards:
           - type: custom:button-card
             entity: binary_sensor.updater
             show_state: true
+            show_icon: false
+            color_type: card
             icon: mdi:update
-            aspect_ratio: 1/1
-
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.lower_kitchen_lightlevel
-            name: Lower kitchen
-          - entity: sensor.front_floor_lightlevel
-            name: Front Floor
-          - entity: sensor.bedroom_lightlevel
-            name: Bedroom
-        name: Lightlevel
-        hours_to_show: 24   # 24 default
-        points_per_hour: 12
-        line_width: 3
-        smoothing: true
-        align_icon: left
-        align_header: left
-        show:
-          fill: false
-
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.lower_kitchen_temperature_fixed
-            name: Lower Kitchen
-          - entity: sensor.front_floor_temperature_fixed
-            name: Front Floor
-          - entity: sensor.office_temperature
-            name: Office
-          - entity: sensor.upstairs_temperature
-            name: Upstairs
-          - entity: sensor.outdoor_temperature
-            name: Outdoor
-        name: Temperature
-        hours_to_show: 24   # 24 default
-        points_per_hour: 6
-        line_width: 3
-        smoothing: true
-        align_icon: left
-        align_header: left
-        show:
-          fill: false
-
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.office_humidity
-            name: Office
-          - entity: sensor.upstairs_humidity
-            name: Upstairs
-          - entity: sensor.outdoor_humidity
-            name: Outdoor
-        name: Humidity
-        hours_to_show: 24   # 24 default
-        points_per_hour: 6
-        line_width: 3
-        smoothing: true
-        align_icon: left
-        align_header: left
-        show:
-          fill: false
-
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.office_pressure
-            name: Office
-          - entity: sensor.upstairs_pressure
-            name: Upstairs
-          - entity: sensor.outdoor_pressure
-            name: Outdoor
-        name: Pressure
-        hours_to_show: 24   # 24 default
-        points_per_hour: 6
-        line_width: 3
-        smoothing: true
-        align_icon: left
-        align_header: left
-        show:
-          fill: false
 
       - type: custom:mini-graph-card
         entities:
