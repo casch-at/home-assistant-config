@@ -6,18 +6,23 @@
     entity_id: input_select.daytime
     to: Morning
   - platform: state
-    entity_id: person.christian_schwarzgruber
-    to: home
+    entity_id: input_boolean.presence
+    to: 'on'    
   condition:
   - condition: state
-    entity_id: binary_sensor.workday_sensor
+    entity_id: calendar.work_home_office
     state: 'on'
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
-#  - condition: time
-#    after: '06:00:00'
-#    before: '17:00:00'
+  - condition: time
+    before: '16:00:00'
+    after: '06:00:00'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.daytime
+      state: Night    
   action:
   - service: homeassistant.turn_on
     data:

@@ -226,7 +226,7 @@ cards:
                 operator: >
                 color: var(--paper-item-icon-active-color)
               - value: 0
-                color: var(--paper-item-icon-color)
+                color: var( --ha-card-background, var(--card-background-color, white) )
           - type: custom:button-card
             # color_type: label-card
             # color: rgb(44, 109, 214)
