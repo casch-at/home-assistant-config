@@ -53,84 +53,81 @@ cards:
     entities:
       - entity: switch.nightstand_switch
 
-  - type: vertical-stack
+  - type: grid
+    square: false
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            entity: scene.bathroom_bath
-            name: Bath Warm
-            icon: mdi:hot-tub
-            icon_height: 50px
-            styles:
-              icon:
-                - color: "#FFA69E"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.bathroom_bath
-          - type: custom:button-card
-            entity: scene.bathroom_morning
-            name: Bath Cold
-            icon: mdi:shower
-            icon_height: 50px
-            styles:
-              icon:
-                - color: "#3D48FF"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.bathroom_morning
-          - type: custom:button-card
-            entity: scene.chill
-            icon: mdi:palette
-            icon_height: 50px
-            styles:
-              icon:
-                - color: "#0BC129"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.chill
+      - type: custom:button-card
+        entity: scene.bathroom_bath
+        name: Bath Warm
+        icon: mdi:hot-tub
+        icon_height: 50px
+        styles:
+          icon:
+            - color: "#FFA69E"
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.bathroom_bath
+      - type: custom:button-card
+        entity: scene.bathroom_morning
+        name: Bath Cold
+        icon: mdi:shower
+        icon_height: 50px
+        styles:
+          icon:
+            - color: "#3D48FF"
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.bathroom_morning
+      - type: custom:button-card
+        entity: scene.chill
+        icon: mdi:palette
+        icon_height: 50px
+        styles:
+          icon:
+            - color: "#0BC129"
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.chill
 
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            entity: scene.love
-            icon_height: 50px
-            styles:
-              icon:
-                - color: "#C10B0B"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.love
-          - type: custom:button-card
-            entity: light.all_lights
-            name: Lights Off
-            icon_height: 50px
-            tap_action:
-              action: call-service
-              service: homeassistant.turn_off
-              service_data:
-                entity_id: group.all_lights_extra
-              confirmation:
-                text: Do you really want to turn off all lights?
-          - type: custom:button-card
-            entity: scene.night
-            icon_height: 50px
-            styles:
-              icon:
-                - color: "#FFE59E"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.night
+      - type: custom:button-card
+        entity: scene.love
+        icon_height: 50px
+        styles:
+          icon:
+            - color: "#C10B0B"
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.love
+      - type: custom:button-card
+        entity: light.all_lights
+        name: Lights Off
+        icon_height: 50px
+        tap_action:
+          action: call-service
+          service: homeassistant.turn_off
+          service_data:
+            entity_id: group.all_lights_extra
+          confirmation:
+            text: Do you really want to turn off all lights?
+      - type: custom:button-card
+        entity: scene.night
+        icon_height: 50px
+        styles:
+          icon:
+            - color: "#FFE59E"
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.night
 
   - type: entities
     title: Front Floor

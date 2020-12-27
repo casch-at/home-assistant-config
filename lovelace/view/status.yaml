@@ -1,5 +1,5 @@
-title: Fancy
-path: status-fancy
+title: Status
+path: status
 icon: mdi:information
 panel: true
 badges: []
@@ -210,6 +210,11 @@ cards:
             show_state: true
             color_type: card
           - type: custom:button-card
+            entity: calendar.work_home_office
+            show_icon: false
+            show_state: true
+            color_type: card
+          - type: custom:button-card
             entity: input_select.daytime
             show_icon: false
             show_state: true
@@ -227,31 +232,6 @@ cards:
                 color: var(--paper-item-icon-active-color)
               - value: 0
                 color: var( --ha-card-background, var(--card-background-color, white) )
-          - type: custom:button-card
-            # color_type: label-card
-            # color: rgb(44, 109, 214)
-            name: Restart HA
-            state:
-              - value: ''
-                name: 'Ok'
-            show_icon: false
-            show_state: true
-            # entity_it: home
-            icon: mdi:restart
-            # styles:
-              # grid:
-                # - grid-template-areas: '"n" "n"'
-                # - grid-template-columns: 1fr
-                # - grid-template-rows: 1fr 1fr
-            styles:
-              name:
-                - color: "#C10B0B"
-                - font-weight: bold
-            tap_action:
-              action: call-service
-              service: homeassistant.restart
-              confirmation:
-                text: Restart Home Assistant?
           - type: custom:button-card
             entity: binary_sensor.updater
             show_state: true
@@ -283,61 +263,6 @@ cards:
             label: Clear
           - value: "on"
             label: Detected
-
-      - type: custom:battery-state-card
-        title: Battery Level
-        # secondary_info: last_updated
-        sort_by_level: asc
-        color_gradient:
-          - '#FF0000'
-          - '#FFFF00'
-          - '#00FF00'
-        entities:
-          - entity: sensor.tablet_battery_level
-            name: Tablet
-            tap_action: more-info
-            charging_state:
-              entity_id: binary_sensor.tablet_is_charging
-              state: "on"
-              icon: mdi:flash
-              color: yellow
-          - entity: sensor.huawei_p20_battery_level
-            name: Huawei P20
-            tap_action: more-info
-            charging_state:
-              entity_id: binary_sensor.huawei_p20_is_charging
-              state: "on"
-              icon: mdi:flash
-              color: yellow
-          - entity: sensor.galaxy_a2_battery_level
-            name: Galaxy A2
-            tap_action: more-info
-            charging_state:
-              entity_id: binary_sensor.galaxy_a2_is_charging
-              state: "on"
-              icon: mdi:flash
-              color: yellow
-          - entity: sensor.bedroom_motion_battery_level
-            name: Bedroom motion sensor
-            tap_action: more-info
-          - entity: sensor.lower_kitchen_motion_battery_level
-            name: Lower kitchen motion sensor
-            tap_action: more-info
-          - entity: sensor.front_floor_motion_battery_level
-            name: Front floor motion sensor
-            tap_action: more-info
-          - entity: sensor.bath_switch_battery_level
-            name: Bath switch
-            tap_action: more-info
-          - entity: sensor.lower_kitchen_switch_battery_level
-            name: Lower kitchen switch
-            tap_action: more-info
-          - entity: sensor.office_multi_sensor_battery_level
-            name: Office multi sensor
-            tap_action: more-info
-          - entity: sensor.upstairs_multi_sensor_battery_level
-            name: Upstairs multi sensor
-            tap_action: more-info
 
       - type: custom:mini-graph-card
         hours_to_show: 2400

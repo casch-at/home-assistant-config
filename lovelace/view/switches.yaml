@@ -31,89 +31,97 @@ cards:
         tab_action:
           action: toggle
 
-  - type: vertical-stack
+  - type: grid
+    columns: 4
+    square: false
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            entity: group.desk_and_laptop
-            icon_height: 80px
-            tap_action:
-              action: call-service
-              service: homeassistant.turn_on
-              service_data:
-                entity_id: group.desk_and_laptop
-          - type: custom:button-card
-            entity: group.office
-            icon_height: 80px
-            name: Office Off
-            tap_action:
-              action: call-service
-              service: homeassistant.turn_off
-              service_data:
-                entity_id: group.office
-              confirmation:
-                text: Do you really want to turn off desk, laptop and office led?
-          - type: custom:button-card
-            entity: script.wake_tower
-            icon_height: 80px
-            tap_action:
-              action: call-service
-              service: script.wake_tower
-              confirmation:
-                text: Do you really want to wake the Tower?
-          - type: custom:button-card
-            entity: switch.tower
-            icon: hass:desktop-tower
-            name: Tower Off
-            tap_action:
-              action: call-service
-              service: script.tower_off
-              confirmation:
-                text: Do you really want to turn off the Tower?
-            icon_height: 80px
+      - type: custom:button-card
+        entity: group.desk_and_laptop
+        icon_height: 80px
+        tap_action:
+          action: call-service
+          service: homeassistant.turn_on
+          service_data:
+            entity_id: group.desk_and_laptop
+      - type: custom:button-card
+        entity: group.office
+        icon_height: 80px
+        name: Office Off
+        tap_action:
+          action: call-service
+          service: homeassistant.turn_off
+          service_data:
+            entity_id: group.office
+          confirmation:
+            text: Do you really want to turn off desk, laptop and office led?
+      - type: custom:button-card
+        entity: script.wake_tower
+        icon_height: 80px
+        tap_action:
+          action: call-service
+          service: script.wake_tower
+          confirmation:
+            text: Do you really want to wake the Tower?
+      - type: custom:button-card
+        entity: switch.tower
+        icon: hass:desktop-tower
+        name: Tower Off
+        tap_action:
+          action: call-service
+          service: script.tower_off
+          confirmation:
+            text: Do you really want to turn off the Tower?
+        icon_height: 80px
 
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            entity: group.switches
-            name: Switches Off
-            icon_height: 80px
-            tap_action:
-              action: call-service
-              service: homeassistant.turn_off
-              service_data:
-                entity_id: group.switches
-              confirmation:
-                text: Do you really want to turn all switches off?
-          - type: custom:button-card
-            entity: group.switches_and_lights
-            name: Switches/Lights Off
-            icon_height: 80px
-            tap_action:
-              action: call-service
-              service: homeassistant.turn_off
-              service_data:
-                entity_id: group.switches_and_lights
-              confirmation:
-                text: Do you really want to turn all switches and lights off?
-          - type: custom:button-card
-            entity: input_select.daytime
-            name: State Night
-            icon: mdi:sleep
-            icon_height: 80px
-            state:
-              - value: 'Night'
-            tap_action:
-              action: call-service
-              service: input_select.select_option
-              service_data:
-                entity_id: input_select.daytime
-                option: Night
-              confirmation:
-                text: |
-                  Do you really want to set the day state to "Night"?
+      - type: custom:button-card
+        entity: group.switches
+        name: Switches Off
+        icon_height: 80px
+        tap_action:
+          action: call-service
+          service: homeassistant.turn_off
+          service_data:
+            entity_id: group.switches
+          confirmation:
+            text: Do you really want to turn all switches off?
+      - type: custom:button-card
+        entity: group.switches_and_lights
+        name: Switches/Lights Off
+        icon_height: 80px
+        tap_action:
+          action: call-service
+          service: homeassistant.turn_off
+          service_data:
+            entity_id: group.switches_and_lights
+          confirmation:
+            text: Do you really want to turn all switches and lights off?
+      - type: custom:button-card
+        entity: input_select.daytime
+        name: State Night
+        icon: mdi:sleep
+        icon_height: 80px
+        state:
+          - value: 'Night'
+        tap_action:
+          action: call-service
+          service: input_select.select_option
+          service_data:
+            entity_id: input_select.daytime
+            option: Night
+          confirmation:
+            text: |
+              Do you really want to set the day state to "Night"?
 
-                  This turns all lights and switches off!
-          - type: custom:button-card
-            color_type: blank-card
+              This turns all lights and switches off!
+      - type: custom:button-card
+        name: Restart HA
+        icon: mdi:restart
+        styles:
+          name:
+            - color: "#C10B0B"
+            - font-weight: bold
+        tap_action:
+          action: call-service
+          service: homeassistant.restart
+          confirmation:
+            text: Restart Home Assistant?
