@@ -7,6 +7,11 @@ embedded_card:
     ha-card {
     box-shadow: none;
     }
+shutter_switch:
+  template: embedded_card
+  show_state: false
+  show_icon: true
+  size: 10%
 shutter_card_up:
   icon: mdi:arrow-up
   template: embedded_card

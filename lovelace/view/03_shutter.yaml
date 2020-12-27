@@ -1,4 +1,4 @@
-title: Blinds
+etitle: Blinds
 icon: mdi:blinds
 path: blinds
 panel: false
@@ -44,6 +44,14 @@ cards:
                 service_data:
                   entity_id: cover.bedroom_roller_shutter_level
 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            color_type: blank-card
+            size: 10%
+          - type: custom:button-card
+            entity: switch.bedroom_roller_shutter_switch
+            template: shutter_switch
 
       - type: custom:button-card
         name: 'Office'
@@ -84,6 +92,15 @@ cards:
                 service_data:
                   entity_id: cover.office_roller_shutter_right_level
 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: switch.office_roller_shutter_left_switch
+            template: shutter_switch
+          - type: custom:button-card
+            entity: switch.office_roller_shutter_right_switch
+            template: shutter_switch
+
       - type: custom:button-card
         name: 'Parlor'
         template: shutter_base
@@ -123,6 +140,15 @@ cards:
                 service_data:
                   entity_id: cover.parlor_roller_shutter_right_level
 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: switch.parlor_roller_shutter_left_switch
+            template: shutter_switch
+          - type: custom:button-card
+            entity: switch.parlor_roller_shutter_right_switch
+            template: shutter_switch
+
       - type: custom:button-card
         name: 'L. Kitchen'
         template: shutter_base
@@ -161,6 +187,15 @@ cards:
               tap_action:
                 service_data:
                   entity_id: cover.lower_kitchen_roller_shutter_right_level
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: switch.lower_kitchen_roller_shutter_left_switch
+            template: shutter_switch
+          - type: custom:button-card
+            entity: switch.lower_kitchen_roller_shutter_right_switch
+            template: shutter_switch
 
       - type: custom:button-card
         name: 'Center Upstairs'
@@ -241,6 +276,25 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_bottom_right_level
 
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: switch.upstairs_roller_shutter_center_top_left_switch
+                template: shutter_switch
+              - type: custom:button-card
+                entity: switch.upstairs_roller_shutter_center_top_right_switch
+                template: shutter_switch
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: switch.upstairs_roller_shutter_center_bottom_left_switch
+                template: shutter_switch
+              - type: custom:button-card
+                entity: switch.upstairs_roller_shutter_center_bottom_right_switch
+                template: shutter_switch
+
       - type: custom:button-card
         name: 'Side Upstairs'
         template: shutter_base
@@ -280,49 +334,11 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_right_level
 
-      # - type: entities
-      #   title: Bedroom
-      #   show_header_toggle: false
-      #   entities:
-      #     - cover.bedroom_roller_shutter_level
-      #     - switch.bedroom_roller_shutter_switch
-      # - type: entities
-      #   title: Office
-      #   show_header_toggle: false
-      #   entities:
-      #     - cover.office_roller_shutter_left_level
-      #     - switch.office_roller_shutter_left_switch
-      #     - cover.office_roller_shutter_right_level
-      #     - switch.office_roller_shutter_right_switch
-      # - type: entities
-      #   title: Parlor
-      #   show_header_toggle: false
-      #   entities:
-      #     - cover.parlor_roller_shutter_left_level
-      #     - switch.parlor_roller_shutter_left_switch
-      #     - cover.parlor_roller_shutter_right_level
-      #     - switch.parlor_roller_shutter_right_switch
-      # - type: entities
-      #   title: Lower Kitchen
-      #   show_header_toggle: false
-      #   entities:
-      #     - cover.lower_kitchen_roller_shutter_left_level
-      #     - switch.lower_kitchen_roller_shutter_left_switch
-      #     - cover.lower_kitchen_roller_shutter_right_level
-      #     - switch.lower_kitchen_roller_shutter_right_switch
-      # - type: entities
-      #   title: Upstairs
-      #   show_header_toggle: false
-      #   entities:
-      #     - cover.upstairs_roller_shutter_left_level
-      #     - switch.upstairs_roller_shutter_left_switch
-      #     - cover.upstairs_roller_shutter_center_up_left_level
-      #     - switch.upstairs_roller_shutter_center_up_left_switch
-      #     - cover.upstairs_roller_shutter_center_up_right_level
-      #     - switch.upstairs_roller_shutter_center_up_right_switch
-      #     - cover.upstairs_roller_shutter_center_bottom_left_level
-      #     - switch.upstairs_roller_shutter_center_bottom_left_switch
-      #     - cover.upstairs_roller_shutter_center_bottom_right_level
-      #     - switch.upstairs_roller_shutter_center_bottom_right_switch
-      #     - cover.upstairs_roller_shutter_right_level
-      #     - switch.upstairs_roller_shutter_right_switch
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: switch.upstairs_roller_shutter_left_switch
+            template: shutter_switch
+          - type: custom:button-card
+            entity: switch.upstairs_roller_shutter_right_switch
+            template: shutter_switch
