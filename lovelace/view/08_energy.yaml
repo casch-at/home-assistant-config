@@ -41,7 +41,7 @@ cards:
               - font-weight: bold
               - margin-bottom: -10px
               - margin-top: 10px
-              - color: lightblue
+              - color: green
             w5:
               - margin-bottom: -10px
               - margin-top: 10px
@@ -109,7 +109,7 @@ cards:
               type: custom:button-card
               state_display: >
                 [[[
-                  return `<b style="color: lightblue;">${parseFloat(states['sensor.nightstand_switch_energy_power'].state) +
+                  return `<b style="color: green;">${parseFloat(states['sensor.nightstand_switch_energy_power'].state) +
                     parseFloat(states['sensor.tv_switch_energy_power'].state) +
                     parseFloat(states['sensor.desk_switch_energy_power'].state) +
                     parseFloat(states['sensor.laptop_switch_energy_power'].state)}</b>`
@@ -120,48 +120,12 @@ cards:
               type: custom:button-card
               state_display: >
                 [[[
-                  return `<b style="color: lightblue;">${(parseFloat(states['sensor.nightstand_switch_energy_total'].state) +
+                  return `<b style="color: green;">${(parseFloat(states['sensor.nightstand_switch_energy_total'].state) +
                     parseFloat(states['sensor.tv_switch_energy_total'].state) +
                     parseFloat(states['sensor.desk_switch_energy_total'].state) +
                     parseFloat(states['sensor.laptop_switch_energy_total'].state)).toFixed(3)}</b>`
                 ]]]
               template: embedded_card
-      # - type: grid
-      #   square: false
-      #   columns: 4
-      #   cards:
-      #     - type: gauge
-      #       entity: sensor.desk_switch_energy_power
-      #       max: 1000
-      #     - type: gauge
-      #       entity: sensor.laptop_switch_energy_power
-      #       max: 1000
-      #     - type: gauge
-      #       entity: sensor.tv_switch_energy_power
-      #       max: 1000
-      #     - type: gauge
-      #       entity: sensor.nightstand_switch_energy_power
-
-      #     - type: custom:button-card
-      #       entity: sensor.desk_switch_energy_power
-      #       name: Desk
-      #       show_state: true
-      #       show_icon: false
-      #     - type: custom:button-card
-      #       entity: sensor.laptop_switch_energy_power
-      #       name: Laptop
-      #       show_state: true
-      #       show_icon: false
-      #     - type: custom:button-card
-      #       entity: sensor.tv_switch_energy_power
-      #       name: TV
-      #       show_state: true
-      #       show_icon: false
-      #     - type: custom:button-card
-      #       entity: sensor.nightstand_switch_energy_power
-      #       name: Nightstand
-      #       show_state: true
-      #       show_icon: false
 
       - type: custom:battery-state-card
         title: Battery Level

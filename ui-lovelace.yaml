@@ -1,28 +1,9 @@
-button_card_templates:
-  embedded_card:
-    show_name: false
-    show_state: true
-    show_icon: false
-    show_units: false
-    style: |
-      ha-card {
-      box-shadow: none;
-      }
-
+button_card_templates: !include lovelace/templates.yaml
 
 title: Home
 icon: mdi:home-assistant
-views:
-  # I didn't use "!include_dir_list", because they wouldn't be in that order I like them. Of course,
-  # I could prefix the files with a number 01, 02, ..., to get the desired order...
-  - !include lovelace/view/switches.yaml
-  - !include lovelace/view/lights.yaml
-  - !include lovelace/view/shutter.yaml
-  - !include lovelace/view/tv.yaml
-  - !include lovelace/view/air_conditioner.yaml
-  # - !include lovelace/view/cameras.yaml
-  - !include lovelace/view/status.yaml
-  - !include lovelace/view/energy.yaml
+views: !include_dir_list lovelace/view
+
 #066F22
 #0FB72C
 #0FFB0B

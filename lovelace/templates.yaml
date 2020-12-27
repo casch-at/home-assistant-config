@@ -1,0 +1,64 @@
+embedded_card:
+  show_name: false
+  show_state: true
+  show_icon: false
+  show_units: false
+  style: |
+    ha-card {
+    box-shadow: none;
+    }
+shutter_card_up:
+  icon: mdi:arrow-up
+  template: embedded_card
+  show_icon: true
+  tap_action:
+    action: call-service
+    service: cover.open_cover
+shutter_card_down:
+  icon: mdi:arrow-down
+  template: embedded_card
+  show_icon: true
+  tap_action:
+    action: call-service
+    service: cover.close_cover
+shutter_base:
+  styles:
+    grid:
+      - grid-template-areas: >-
+          "n n1 au ad"
+          "lu ld ru rd"
+      - grid-template-columns: 1fr 1fr 1fr 1fr
+      - grid-template-rows: min-content 1fr
+    name:
+      - justify-self: start
+      - padding-left: 10px
+      - margin-top: -30px
+  custom_fields:
+    au:
+      card:
+        type: custom:button-card
+        template: shutter_card_up
+        size: 25%
+        color: green
+    ad:
+      card:
+        type: custom:button-card
+        template: shutter_card_down
+        size: 25%
+        color: green
+    lu:
+      card:
+        type: custom:button-card
+        template: shutter_card_up
+    ld:
+      card:
+        type: custom:button-card
+        template: shutter_card_down
+    ru:
+      card:
+        type: custom:button-card
+        template: shutter_card_up
+    rd:
+      card:
+        type: custom:button-card
+        template: shutter_card_down

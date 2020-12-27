@@ -1,0 +1,328 @@
+title: Blinds
+icon: mdi:blinds
+path: blinds
+panel: false
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        name: 'Bedroom'
+        template: shutter_base
+        styles:
+          name:
+            - margin-top: -10px
+        custom_fields:
+          au:
+            card:
+              show_icon: false
+            # tab_action:
+              # action: none
+          ad:
+            card:
+              show_icon: false
+            # tab_action:
+              # action: none
+          lu:
+            card:
+              show_icon: false
+            # tab_action:
+              # action: none
+          ld:
+            card:
+              show_icon: false
+            # tab_action:
+              # action: none
+          ru:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.bedroom_roller_shutter_level
+          rd:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.bedroom_roller_shutter_level
+
+
+      - type: custom:button-card
+        name: 'Office'
+        template: shutter_base
+        custom_fields:
+          au:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.office_roller_shutter_left_level
+                    - cover.office_roller_shutter_right_level
+          ad:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.office_roller_shutter_left_level
+                    - cover.office_roller_shutter_right_level
+          lu:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.office_roller_shutter_left_level
+          ld:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.office_roller_shutter_left_level
+          ru:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.office_roller_shutter_right_level
+          rd:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.office_roller_shutter_right_level
+
+      - type: custom:button-card
+        name: 'Parlor'
+        template: shutter_base
+        custom_fields:
+          au:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.parlor_roller_shutter_left_level
+                    - cover.parlor_roller_shutter_right_level
+          ad:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.parlor_roller_shutter_left_level
+                    - cover.parlor_roller_shutter_right_level
+          lu:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.parlor_roller_shutter_left_level
+          ld:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.parlor_roller_shutter_left_level
+          ru:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.parlor_roller_shutter_right_level
+          rd:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.parlor_roller_shutter_right_level
+
+      - type: custom:button-card
+        name: 'L. Kitchen'
+        template: shutter_base
+        custom_fields:
+          au:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.lower_kitchen_roller_shutter_left_level
+                    - cover.lower_kitchen_roller_shutter_right_level
+          ad:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.lower_kitchen_roller_shutter_left_level
+                    - cover.lower_kitchen_roller_shutter_right_level
+          lu:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.lower_kitchen_roller_shutter_left_level
+          ld:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.lower_kitchen_roller_shutter_left_level
+          ru:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.lower_kitchen_roller_shutter_right_level
+          rd:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.lower_kitchen_roller_shutter_right_level
+
+      - type: custom:button-card
+        name: 'Center Upstairs'
+        template: shutter_base
+        styles:
+          grid:
+            - grid-template-areas: >-
+                "n n1 au ad"
+                "lu ld ru rd"
+                "ldu ldd rdu rdd"
+            - grid-template-columns: 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr
+        custom_fields:
+          au:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.upstairs_roller_shutter_center_up_left_level
+                    - cover.upstairs_roller_shutter_center_up_right_level
+                    - cover.upstairs_roller_shutter_center_bottom_left_level
+                    - cover.upstairs_roller_shutter_center_bottom_right_level
+          ad:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.upstairs_roller_shutter_center_up_left_level
+                    - cover.upstairs_roller_shutter_center_up_right_level
+                    - cover.upstairs_roller_shutter_center_bottom_left_level
+                    - cover.upstairs_roller_shutter_center_bottom_right_level
+          lu:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_up_left_level
+          ld:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_up_left_level
+          ru:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_up_right_level
+          rd:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_up_right_level
+          ldu:
+            card:
+              type: custom:button-card
+              template: shutter_card_up
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_bottom_left_level
+          ldd:
+            card:
+              type: custom:button-card
+              template: shutter_card_up
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_bottom_left_level
+          rdu:
+            card:
+              type: custom:button-card
+              template: shutter_card_up
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_bottom_right_level
+          rdd:
+            card:
+              type: custom:button-card
+              template: shutter_card_up
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_center_bottom_right_level
+
+      - type: custom:button-card
+        name: 'Side Upstairs'
+        template: shutter_base
+        custom_fields:
+          au:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.upstairs_roller_shutter_left_level
+                    - cover.upstairs_roller_shutter_right_level
+          ad:
+            card:
+              tap_action:
+                service_data:
+                  entity_id:
+                    - cover.upstairs_roller_shutter_left_level
+                    - cover.upstairs_roller_shutter_right_level
+          lu:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_left_level
+          ld:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_left_level
+          ru:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_right_level
+          rd:
+            card:
+              tap_action:
+                service_data:
+                  entity_id: cover.upstairs_roller_shutter_right_level
+
+      # - type: entities
+      #   title: Bedroom
+      #   show_header_toggle: false
+      #   entities:
+      #     - cover.bedroom_roller_shutter_level
+      #     - switch.bedroom_roller_shutter_switch
+      # - type: entities
+      #   title: Office
+      #   show_header_toggle: false
+      #   entities:
+      #     - cover.office_roller_shutter_left_level
+      #     - switch.office_roller_shutter_left_switch
+      #     - cover.office_roller_shutter_right_level
+      #     - switch.office_roller_shutter_right_switch
+      # - type: entities
+      #   title: Parlor
+      #   show_header_toggle: false
+      #   entities:
+      #     - cover.parlor_roller_shutter_left_level
+      #     - switch.parlor_roller_shutter_left_switch
+      #     - cover.parlor_roller_shutter_right_level
+      #     - switch.parlor_roller_shutter_right_switch
+      # - type: entities
+      #   title: Lower Kitchen
+      #   show_header_toggle: false
+      #   entities:
+      #     - cover.lower_kitchen_roller_shutter_left_level
+      #     - switch.lower_kitchen_roller_shutter_left_switch
+      #     - cover.lower_kitchen_roller_shutter_right_level
+      #     - switch.lower_kitchen_roller_shutter_right_switch
+      # - type: entities
+      #   title: Upstairs
+      #   show_header_toggle: false
+      #   entities:
+      #     - cover.upstairs_roller_shutter_left_level
+      #     - switch.upstairs_roller_shutter_left_switch
+      #     - cover.upstairs_roller_shutter_center_up_left_level
+      #     - switch.upstairs_roller_shutter_center_up_left_switch
+      #     - cover.upstairs_roller_shutter_center_up_right_level
+      #     - switch.upstairs_roller_shutter_center_up_right_switch
+      #     - cover.upstairs_roller_shutter_center_bottom_left_level
+      #     - switch.upstairs_roller_shutter_center_bottom_left_switch
+      #     - cover.upstairs_roller_shutter_center_bottom_right_level
+      #     - switch.upstairs_roller_shutter_center_bottom_right_switch
+      #     - cover.upstairs_roller_shutter_right_level
+      #     - switch.upstairs_roller_shutter_right_switch
