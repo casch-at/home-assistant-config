@@ -214,8 +214,8 @@ cards:
               tap_action:
                 service_data:
                   entity_id:
-                    - cover.upstairs_roller_shutter_center_up_left_level
-                    - cover.upstairs_roller_shutter_center_up_right_level
+                    - cover.upstairs_roller_shutter_center_top_left_level
+                    - cover.upstairs_roller_shutter_center_top_right_level
                     - cover.upstairs_roller_shutter_center_bottom_left_level
                     - cover.upstairs_roller_shutter_center_bottom_right_level
           ad:
@@ -223,30 +223,30 @@ cards:
               tap_action:
                 service_data:
                   entity_id:
-                    - cover.upstairs_roller_shutter_center_up_left_level
-                    - cover.upstairs_roller_shutter_center_up_right_level
+                    - cover.upstairs_roller_shutter_center_top_left_level
+                    - cover.upstairs_roller_shutter_center_top_right_level
                     - cover.upstairs_roller_shutter_center_bottom_left_level
                     - cover.upstairs_roller_shutter_center_bottom_right_level
           lu:
             card:
               tap_action:
                 service_data:
-                  entity_id: cover.upstairs_roller_shutter_center_up_left_level
+                  entity_id: cover.upstairs_roller_shutter_center_top_left_level
           ld:
             card:
               tap_action:
                 service_data:
-                  entity_id: cover.upstairs_roller_shutter_center_up_left_level
+                  entity_id: cover.upstairs_roller_shutter_center_top_left_level
           ru:
             card:
               tap_action:
                 service_data:
-                  entity_id: cover.upstairs_roller_shutter_center_up_right_level
+                  entity_id: cover.upstairs_roller_shutter_center_top_right_level
           rd:
             card:
               tap_action:
                 service_data:
-                  entity_id: cover.upstairs_roller_shutter_center_up_right_level
+                  entity_id: cover.upstairs_roller_shutter_center_top_right_level
           ldu:
             card:
               type: custom:button-card
@@ -257,7 +257,7 @@ cards:
           ldd:
             card:
               type: custom:button-card
-              template: shutter_card_up
+              template: shutter_card_down
               tap_action:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_bottom_left_level
@@ -271,7 +271,7 @@ cards:
           rdd:
             card:
               type: custom:button-card
-              template: shutter_card_up
+              template: shutter_card_down
               tap_action:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_bottom_right_level
