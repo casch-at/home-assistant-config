@@ -19,11 +19,18 @@ desk_and_laptop:
 
 office:
   name: Office
-  icon: mdi:laptop-off
+  icon: mdi:laptop
   entities:
     - switch.laptop_switch
     - switch.desk_switch
     - light.office_led
+
+parlor:
+  name: Parlor
+  icon: mdi:sofa
+  entities:
+    - switch.tv_switch
+    - light.parlor
 
 switches_and_lights:
   name: Lights and Switches

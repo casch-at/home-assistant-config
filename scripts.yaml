@@ -136,3 +136,43 @@ tv_off_on:
   mode: single
   icon: mdi:television
   max: 10
+parlor_off:
+  alias: Parlor Off
+  sequence:
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_on
+        device_id: 611cb71e0e0411ebbb5f87403d317985
+        entity_id: light.parlor
+        domain: light
+      sequence:
+      - type: turn_off
+        device_id: 611cb71e0e0411ebbb5f87403d317985
+        entity_id: light.parlor
+        domain: light
+    default: []
+  - choose:
+    - conditions:
+      - type: is_power
+        condition: device
+        device_id: 5548196bdfae70373fa44fdefe4752c2
+        entity_id: sensor.tv_switch_energy_power
+        domain: sensor
+        above: 40
+      sequence:
+      - service: script.tv_off_on
+        data: {}
+    - conditions:
+      - condition: device
+        type: is_on
+        device_id: 5548196bdfae70373fa44fdefe4752c2
+        entity_id: switch.tv_switch
+        domain: switch
+      sequence:
+      - type: turn_off
+        device_id: 5548196bdfae70373fa44fdefe4752c2
+        entity_id: switch.tv_switch
+        domain: switch
+    default: []
+  mode: single
