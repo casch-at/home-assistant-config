@@ -129,13 +129,8 @@ tv_off_on:
         entity_id: remote.broadlink_rm3_mini_office_remote
         device: tv
         command: power
-    - delay: 00:00:10
-    - service: switch.turn_off
-      data:
-        entity_id: switch.tv_switch
   mode: single
   icon: mdi:television
-  max: 10
 parlor_off:
   alias: Parlor Off
   sequence:
