@@ -1,0 +1,42 @@
+- id: floor_switch_automations
+  alias: Floor Switch Automations
+  description: ''
+  mode: queued
+  max: 10
+  trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: floor_switch
+  condition:
+  - condition: template
+    value_template: |-
+      {% set event = trigger.event.data.event | int %}
+      {{ event == 1002 or event == 2002 or event == 6001 }}
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 6001 }}'
+      sequence:
+      - service: homeassistant.toggle
+        data:
+          entity_id: group.office
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 1002 }}'
+      sequence:
+      - service: switch.toggle
+        data:
+          entity_id: switch.nightstand_switch
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 2002 }}'
+      sequence:
+      - service: homeassistant.toggle
+        data:
+          entity_id: light.parlor
+    default:
+    - service: persistent_notification.create
+      data:
+        message: '{{ trigger.event.data.event }}'

@@ -1,0 +1,56 @@
+- id: bath_switch_automations
+  alias: Bath Switch Automations
+  description: ''
+  mode: single
+  trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: bath_switch
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+      - condition: state
+        entity_id: input_boolean.bath_left_right
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bathroom_front_left
+            - light.bathroom_back_left
+      - service: light.turn_off
+        data:
+          entity_id:
+            - light.bathroom_front_right
+            - light.bathroom_back_right
+      - service: input_boolean.toggle
+        data:
+          entity_id: input_boolean.bath_left_right
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+      - condition: state
+        entity_id: input_boolean.bath_left_right
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bathroom_front_right
+            - light.bathroom_back_right
+      - service: light.turn_off
+        data:
+          entity_id:
+            - light.bathroom_front_left
+            - light.bathroom_back_left
+      - service: input_boolean.toggle
+        data:
+          entity_id: input_boolean.bath_left_right
+    default:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.bath_left_right
