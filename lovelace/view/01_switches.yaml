@@ -81,23 +81,6 @@ cards:
 
               This turns all lights and switches off!
       - type: custom:button-card
-        name: Restart HA
-        icon: mdi:restart
-        aspect_ratio: 20/10
-        styles:
-          name:
-            - color: "#C10B0B"
-            - font-weight: bold
-        tap_action:
-          action: call-service
-          service: homeassistant.restart
-          confirmation:
-            text: Restart Home Assistant?
-      - type: custom:button-card
-        color_type: blank-card
-
-
-      - type: custom:button-card
         entity: group.office
         aspect_ratio: 20/10
         name: Office Off
@@ -139,3 +122,53 @@ cards:
             entity_id: group.switches_and_lights
           confirmation:
             text: Do you really want to turn all switches and lights off?
+      - type: custom:button-card
+        color_type: blank-card
+      - type: custom:button-card
+        name: Restart HA
+        icon: mdi:restart
+        aspect_ratio: 20/10
+        styles:
+          name:
+            - color: "#C10B0B"
+            - font-weight: bold
+        tap_action:
+          action: call-service
+          service: homeassistant.restart
+          confirmation:
+            text: Restart Home Assistant?
+      - type: custom:button-card
+        name: Check Config
+        icon: mdi:check
+        aspect_ratio: 20/10
+        tap_action:
+          action: call-service
+          service: homeassistant.check_config
+      - type: custom:button-card
+        name: Reload Core Config
+        icon: mdi:cog
+        aspect_ratio: 20/10
+        tap_action:
+          action: call-service
+          service: homeassistant.reload_core_config
+      - type: custom:button-card
+        name: Reload Scripts
+        icon: mdi:script-text
+        aspect_ratio: 20/10
+        tap_action:
+          action: call-service
+          service: script.reload
+      - type: custom:button-card
+        name: Reload Automations
+        icon: mdi:home-automation
+        aspect_ratio: 20/10
+        tap_action:
+          action: call-service
+          service: automation.reload
+      - type: custom:button-card
+        name: Reload Groups
+        icon: mdi:home-group
+        aspect_ratio: 20/10
+        tap_action:
+          action: call-service
+          service: group.reload
