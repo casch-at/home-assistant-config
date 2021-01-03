@@ -2,12 +2,15 @@
   alias: Turn on/off presence using lower kitchen switch
   description: ''
   trigger:
-  - device_id: c2cff687003dd88942aa8597fe9f8734
-    domain: deconz
-    platform: device
-    type: remote_button_long_press
-    subtype: turn_off
-  condition: []
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: lower_kitchen_switch
+  condition:
+  - condition: template
+    value_template: |-
+      {% set event = trigger.event.data.event | int %}
+      {{ event == 1001 }}
   action:
   - choose:
     - conditions:
@@ -15,6 +18,9 @@
         entity_id: input_boolean.presence
         state: 'on'
       sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.presence_off_running
       - repeat:
           count: '2'
           sequence:

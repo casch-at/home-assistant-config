@@ -3,15 +3,15 @@
   description: ''
   trigger:
   - platform: template
-    #  - 24 * 60 * 60 -> use previous date alarm, otherwise we miss the event
+    #  - 60 seconds because otherwise we miss it
     value_template: >-
       {{
-      not is_state('sensor.huawei_p20_next_alarm', 'unavailable')
-      and (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
-      == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
-      or not is_state('sensor.galaxy_a2_next_alarm', 'unavailable')
-      and (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 24 * 60 * 60) | timestamp_custom('%F, %H:%M')
-      == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+        not is_state('sensor.huawei_p20_next_alarm', 'unavailable')
+        and (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
+        == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+        or not is_state('sensor.galaxy_a2_next_alarm', 'unavailable')
+        and (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
+        == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
       }}
   - platform: time
     at: '18:00:00'
@@ -32,8 +32,6 @@
         entity_id: input_select.daytime
         data:
           option: Morning
-    default: []
-  - choose:
     - conditions:
       - condition: time
         before: '18:05:00'
