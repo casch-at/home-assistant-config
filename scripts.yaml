@@ -23,58 +23,49 @@ tower_off:
 bathroom_demo:
   alias: Bathroom Demo
   sequence:
-  - type: turn_on
-    device_id: a70552270e0811ebac91ad60565192c3
-    entity_id: light.bathroom_light_1
-    domain: light
+  - service: light.turn_on
+    data:
+      entity_id: light.bathroom_light_1
   - delay: 00:00:01
-  - type: turn_on
-    device_id: b15d0e4c0e0811eba84271250acf1f2f
-    entity_id: light.bathroom_light_2
-    domain: light
+  - service: light.turn_on
+    data:
+      entity_id: light.bathroom_light_2
   - delay: 00:00:01
-  - type: turn_on
-    device_id: b91249340e0811eb8b2be5a133b9bf99
-    entity_id: light.bathroom_light_3
-    domain: light
+  - service: light.turn_on
+    data:
+      entity_id: light.bathroom_light_3
   - delay: 00:00:01
-  - type: turn_on
-    device_id: c0c5cde00e0811ebb52ec19e538eee1d
-    entity_id: light.bathroom_light_4
-    domain: light
+  - service: light.turn_on
+    data:
+      entity_id: light.bathroom_light_4
   - delay: 00:00:01
-  - type: turn_off
-    device_id: c0c5cde00e0811ebb52ec19e538eee1d
-    entity_id: light.bathroom_light_4
-    domain: light
+  - service: light.turn_off
+    data:
+      entity_id: light.bathroom_light_4
   - delay: 00:00:01
-  - type: turn_off
-    device_id: b91249340e0811eb8b2be5a133b9bf99
-    entity_id: light.bathroom_light_3
-    domain: light
+  - service: light.turn_off
+    data:
+      entity_id: light.bathroom_light_3
   - delay: 00:00:01
-  - type: turn_off
-    device_id: b15d0e4c0e0811eba84271250acf1f2f
-    entity_id: light.bathroom_light_2
-    domain: light
+  - service: light.turn_off
+    data:
+      entity_id: light.bathroom_light_2
   - delay: 00:00:01
-  - type: turn_off
-    device_id: a70552270e0811ebac91ad60565192c3
-    entity_id: light.bathroom_light_1
-    domain: light
+  - service: light.turn_off
+    data:
+      entity_id: light.bathroom_light_1
   - delay: 00:00:01
   - service: scene.turn_on
-    data: {}
-    entity_id: scene.bathroom_bath
+    data:
+      entity_id: scene.bathroom_bath
   - delay: 00:00:01
   - service: scene.turn_on
-    data: {}
-    entity_id: scene.bathroom_morning
+    data:
+      entity_id: scene.bathroom_morning
   - delay: 00:00:01
-  - type: turn_off
-    device_id: 6a0ab0530e0b11ebb293030875c32589
-    entity_id: light.bathroom
-    domain: light
+  - service: light.turn_off
+    data:
+      entity_id: light.bathroom
   mode: single
   icon: mdi:shower
 reset_lower_kitchen_switch_active_states:
@@ -89,7 +80,6 @@ reset_lower_kitchen_switch_active_states:
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.lower_kitchen_switch_active
-        entity_id: input_boolean.lower_kitchen_switch_active
     default: []
   - choose:
     - conditions:
@@ -100,7 +90,6 @@ reset_lower_kitchen_switch_active_states:
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.front_floor_switch_active
-        entity_id: input_boolean.front_floor_switch_active
     default: []
   mode: single
 tv_off_on:
@@ -121,10 +110,8 @@ tv_off_on:
           entity_id: remote.broadlink_rm3_mini_office_remote
           device: tv
           command: power
-        entity_id: remote.broadlink_rm3_mini_office_remote
     default:
     - service: remote.send_command
-      entity_id: remote.broadlink_rm3_mini_office_remote
       data:
         entity_id: remote.broadlink_rm3_mini_office_remote
         device: tv
@@ -142,10 +129,9 @@ parlor_off:
         entity_id: light.parlor
         domain: light
       sequence:
-      - type: turn_off
-        device_id: 611cb71e0e0411ebbb5f87403d317985
-        entity_id: light.parlor
-        domain: light
+      - service: light.turn_off
+        data:
+          entity_id: light.parlor
     default: []
   - choose:
     - conditions:
@@ -158,6 +144,9 @@ parlor_off:
       sequence:
       - service: script.tv_off_on
         data: {}
+      - service: light.turn_off
+        data:
+          entity_id: switch.tv_switch
     - conditions:
       - condition: device
         type: is_on
@@ -165,9 +154,8 @@ parlor_off:
         entity_id: switch.tv_switch
         domain: switch
       sequence:
-      - type: turn_off
-        device_id: 5548196bdfae70373fa44fdefe4752c2
-        entity_id: switch.tv_switch
-        domain: switch
+      - service: light.turn_off
+        data:
+          entity_id: switch.tv_switch
     default: []
   mode: single
