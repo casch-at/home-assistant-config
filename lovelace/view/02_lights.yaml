@@ -4,121 +4,125 @@ panel: false
 icon: mdi:lightbulb-group
 badges: []
 cards:
-  - type: entities
-    title: Stripes (RGB)
-    show_header_toggle: false
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.led_stripes
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.stairs_led
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.office_led
-        toggle: true
-        hide_when_off: true
+  - type: grid
+    columns: 1
+    square: false
+    cards:
+      - type: entities
+        title: Stripes (RGB)
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.led_stripes
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.stairs_led
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.office_led
+            toggle: true
+            hide_when_off: true
 
-  - type: entities
-    title: Parlor
-    show_header_toggle: false
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.parlor
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.parlor_shelve
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.parlor_plants
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.parlor_plant_right
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.parlor_plant_left
-        toggle: true
-        hide_when_off: true
+      - type: entities
+        title: Parlor
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.parlor
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.parlor_shelve
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.parlor_plants
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.parlor_plant_right
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.parlor_plant_left
+            toggle: true
+            hide_when_off: true
 
-  - type: entities
-    title: Bedroom
-    show_header_toggle: false
-    state_color: true
-    entities:
-      - entity: switch.nightstand_switch
+      - type: entities
+        title: Bedroom
+        show_header_toggle: false
+        state_color: true
+        entities:
+          - entity: switch.nightstand_switch
 
-  - type: entities
-    title: Front Floor
-    show_header_toggle: false
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.front_floor
-        name: All
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.front_floor_front
-        name: Back
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.front_floor_middle
-        name: Front
-        toggle: true
-        hide_when_off: true
+      - type: entities
+        title: Front Floor
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.front_floor
+            name: All
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.front_floor_front
+            name: Back
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.front_floor_middle
+            name: Front
+            toggle: true
+            hide_when_off: true
 
-  - type: entities
-    title: Lower Kitchen
-    show_header_toggle: false
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.lower_kitchen
-        name: All
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.lower_kitchen_back
-        name: Back
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.lower_kitchen_front
-        name: Front
-        toggle: true
-        hide_when_off: true
+      - type: entities
+        title: Lower Kitchen
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.lower_kitchen
+            name: All
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.lower_kitchen_back
+            name: Back
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.lower_kitchen_front
+            name: Front
+            toggle: true
+            hide_when_off: true
 
-  - type: entities
-    title: Bathroom
-    show_header_toggle: false
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.bathroom
-        name: All
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.bathroom_front_left
-        name: Left Front
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.bathroom_back_left
-        name: Left Back
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.bathroom_back_right
-        name: Right Back
-        toggle: true
-        hide_when_off: true
-      - type: custom:slider-entity-row
-        entity: light.bathroom_front_right
-        name: Right Front
-        toggle: true
-        hide_when_off: true
+      - type: entities
+        title: Bathroom
+        show_header_toggle: false
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.bathroom
+            name: All
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.bathroom_front_left
+            name: Left Front
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.bathroom_back_left
+            name: Left Back
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.bathroom_back_right
+            name: Right Back
+            toggle: true
+            hide_when_off: true
+          - type: custom:slider-entity-row
+            entity: light.bathroom_front_right
+            name: Right Front
+            toggle: true
+            hide_when_off: true
