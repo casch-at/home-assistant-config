@@ -32,6 +32,12 @@ parlor:
     - switch.tv_switch
     - light.parlor
 
+bedroom:
+  name: Bedroom
+  icon: mdi:bed
+  entities:
+    - switch.nightstand_switch
+
 switches_and_lights:
   name: Lights and Switches
   entities:

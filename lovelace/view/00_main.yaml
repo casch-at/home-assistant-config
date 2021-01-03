@@ -1,0 +1,311 @@
+title: Main
+path: main
+panel: false
+icon: mdi:home-assistant
+badges: []
+cards:
+  - type: grid
+    columns: 1
+    square: false
+    cards:
+      - type: grid
+        cards:
+          - type: grid
+            columns: 2
+            cards:
+              - type: custom:button-card
+                entity: group.desk_and_laptop
+                template: icon_only
+                tap_action:
+                  action: call-service
+                  service: homeassistant.toggle
+                  service_data:
+                    entity_id: group.desk_and_laptop
+                  confirmation:
+                    text: Do you really want to turn on/off office?
+                hold_action:
+                  action: more-info
+                  entity: light.office_led
+              - type: custom:button-card
+                entity: switch.tower
+                template: icon_only
+                tap_action:
+                  action: call-service
+                  service: script.wake_tower
+                  confirmation:
+                    text: Do you really want to wake the Tower?
+                hold_action:
+                  action: call-service
+                  service: script.tower_off
+                  confirmation:
+                    text: Do you really want to turn off the Tower?
+              - type: custom:button-card
+                entity: group.parlor
+                template: icon_only
+                tap_action:
+                  action: call-service
+                  service: script.parlor_off
+                  confirmation:
+                    text: Do you really want to turn off all lights and tv switch in parlor?
+                hold_action:
+                  action: more-info
+                  entity: light.parlor
+              - type: custom:button-card
+                entity: group.bedroom
+                template: icon_only
+                tap_action:
+                  action: call-service
+                  service: homeassistant.toggle
+                  service_data:
+                    entity_id: group.bedroom
+
+          - type: grid
+            columns: 1
+            cards:
+              # - type: custom:button-card
+              #   entity: input_boolean.presence
+              #   template: icon_only
+              #   color_type: card
+              #   confirmation:
+              #       text: |
+              #           Do you really want to toggle the presence?
+
+              #           off -> All lights off
+              #           on  -> Maybe some lights go on...
+              - type: custom:button-card
+                color_type: card
+                entity: input_select.daytime
+                icon: mdi:sleep
+                template: icon_only
+                color: var( --ha-card-background, var(--card-background-color, white) )
+                state:
+                  - value: 'Night'
+                    color: var(--paper-item-icon-active-color)
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.daytime
+                    option: Night
+                  confirmation:
+                    text: |
+                      Do you really want to set the day state to "Night"?
+
+                      This turns all lights and switches off!
+
+          - type: grid
+            columns: 2
+            cards:
+              - type: custom:button-card
+                entity: light.stairs_led
+                template: icon_only
+                icon: mdi:stairs
+                hold_action:
+                  action: more-info
+              - type: custom:button-card
+                entity: light.all_lights
+                template: icon_only
+                tap_action:
+                  action: call-service
+                  service: homeassistant.turn_off
+                  service_data:
+                    entity_id: group.all_lights_extra
+                  confirmation:
+                    text: Do you really want to turn off all lights?
+              - type: custom:button-card
+                entity: group.switches
+                template: icon_only
+                tap_action:
+                  action: call-service
+                  service: homeassistant.turn_off
+                  service_data:
+                    entity_id: group.switches
+                  confirmation:
+                    text: Do you really want to turn all switches off?
+
+      - type: grid
+        columns: 8
+        cards:
+          - type: custom:button-card
+            entity: scene.bathroom_bath
+            template: icon_only
+            icon: mdi:hot-tub
+            styles:
+              icon:
+                - color: "#FFA69E"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.bathroom_bath
+            hold_action:
+              action: more-info
+          - type: custom:button-card
+            entity: scene.bathroom_morning
+            template: icon_only
+            icon: mdi:hot-tub
+            styles:
+              icon:
+                - color: "#3D48FF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.bathroom_morning
+            hold_action:
+              action: more-info
+          - type: custom:button-card
+            entity: scene.chill
+            template: icon_only
+            icon: mdi:palette
+            styles:
+              icon:
+                - color: "#0BC129"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.chill
+            hold_action:
+              action: more-info
+          - type: custom:button-card
+            entity: scene.love
+            template: icon_only
+            styles:
+              icon:
+                - color: "#C10B0B"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.love
+            hold_action:
+              action: more-info
+          - type: custom:button-card
+            entity: scene.night
+            template: icon_only
+            styles:
+              icon:
+                - color: "#FFE59E"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.night
+            hold_action:
+              action: more-info
+
+      - type: grid
+        columns: 8
+        cards:
+          - type: custom:button-card
+            icon: mdi:dip-switch
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/switches
+
+          - type: custom:button-card
+            icon: mdi:lightbulb-group
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/lights
+
+          - type: custom:button-card
+            icon: mdi:blinds
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/blinds
+
+          - type: custom:button-card
+            icon: mdi:television
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/tv
+
+          - type: custom:button-card
+            icon: mdi:air-conditioner
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/ac
+
+          - type: custom:button-card
+            icon: mdi:cctv
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/cameras
+
+          - type: custom:button-card
+            icon: mdi:transmission-tower
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/energy
+
+          - type: custom:button-card
+            icon: mdi:information
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/status
+
+      - type: grid
+        columns: 6
+        cards:
+          - type: custom:button-card
+            name: Restart HA
+            show_name: false
+            icon: mdi:restart
+            aspect_ratio: 1/1
+            color: red
+            tap_action:
+              action: call-service
+              service: homeassistant.restart
+              confirmation:
+                text: Restart Home Assistant?
+          - type: custom:button-card
+            name: Check Config
+            show_name: false
+            icon: mdi:check
+            aspect_ratio: 1/1
+            color: green
+            tap_action:
+              action: call-service
+              service: homeassistant.check_config
+          - type: custom:button-card
+            name: Reload Core Config
+            show_name: false
+            icon: mdi:cog
+            aspect_ratio: 1/1
+            tap_action:
+              action: call-service
+              service: homeassistant.reload_core_config
+          - type: custom:button-card
+            name: Reload Scripts
+            show_name: false
+            icon: mdi:script-text
+            aspect_ratio: 1/1
+            tap_action:
+              action: call-service
+              service: script.reload
+          - type: custom:button-card
+            name: Reload Automations
+            show_name: false
+            icon: mdi:home-automation
+            aspect_ratio: 1/1
+            tap_action:
+              action: call-service
+              service: automation.reload
+          - type: custom:button-card
+            name: Reload Groups
+            show_name: false
+            icon: mdi:home-group
+            aspect_ratio: 1/1
+            tap_action:
+              action: call-service
+              service: group.reload

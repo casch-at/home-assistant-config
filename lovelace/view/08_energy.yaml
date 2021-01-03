@@ -1,10 +1,12 @@
 title: Energy
 path: energy
 icon: mdi:transmission-tower
-panel: true
+panel: false
 badges: []
 cards:
-  - type: vertical-stack
+  - type: grid
+    columns: 1
+    square: false
     cards:
       - type: custom:button-card
         styles:
