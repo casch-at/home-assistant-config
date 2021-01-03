@@ -2,17 +2,15 @@
   alias: Turn on/off front floor lights using lower kitchen switch
   description: ''
   trigger:
-  - device_id: c2cff687003dd88942aa8597fe9f8734
-    domain: deconz
-    platform: device
-    type: remote_button_short_release
-    subtype: turn_off
-  - device_id: c2cff687003dd88942aa8597fe9f8734
-    domain: deconz
-    platform: device
-    type: remote_button_double_press
-    subtype: turn_off
-  condition: []
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: lower_kitchen_switch
+  condition:
+  - condition: template
+    value_template: |-
+      {% set event = trigger.event.data.event | int %}
+      {{ event == 1002 or event == 1004 }}
   action:
   - choose:
     - conditions:
