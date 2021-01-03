@@ -2,28 +2,28 @@ mode: yaml
 resources:
   - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
     type: module
-  - url: /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
-    type: module
-  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
-    type: module
+  # - url: /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
+    # type: module
+  # - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+    # type: module
   - url: /hacsfiles/button-card/button-card.js
     type: module
-  - url: /hacsfiles/mini-climate-card/mini-climate-card-bundle.js
-    type: module
+  # - url: /hacsfiles/mini-climate-card/mini-climate-card-bundle.js
+    # type: module
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
     type: module
-  - url: /hacsfiles/mini-humidifier/mini-humidifier-bundle.js
-    type: module
-  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
-    type: module
-  - url: /hacsfiles/rgb-light-card/card.js
-    type: module
-  - url: /hacsfiles/vacuum-card/vacuum-card.js
-    type: module
+  # - url: /hacsfiles/mini-humidifier/mini-humidifier-bundle.js
+    # type: module
+  # - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+    # type: module
+  # - url: /hacsfiles/rgb-light-card/card.js
+    # type: module
+  # - url: /hacsfiles/vacuum-card/vacuum-card.js
+    # type: module
   - url: /hacsfiles/battery-state-card/battery-state-card.js
     type: module
-  - url: /hacsfiles/lovelace-card-mod/card-mod.js
-    type: module
+  # - url: /hacsfiles/lovelace-card-mod/card-mod.js
+  #   type: module
   - url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js?v=1.3.0
     type: module
 dashboards:

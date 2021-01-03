@@ -2,7 +2,26 @@ title: Main
 path: main
 panel: false
 icon: mdi:home-assistant
-badges: []
+badges:
+  - entity: person.christian_schwarzgruber
+    show_name: false
+  - entity: person.sonia_avramidis
+    show_name: false
+  # - entity: binary_sensor.workday_sensor
+  #   icon: mdi:briefcase
+  #   name: ' '
+  #   show_name: false
+  #   show_icon: true
+  # - entity: input_boolean.presence
+  #   icon: mdi:home
+  #   name: ' '
+  #   show_name: false
+  #   show_icon: true
+  # - entity: calendar.work_home_office
+  #   icon: mdi:home-city
+  #   name: ' '
+  #   show_name: false
+  #   show_icon: true
 cards:
   - type: grid
     columns: 1
@@ -15,7 +34,7 @@ cards:
             cards:
               - type: custom:button-card
                 entity: group.desk_and_laptop
-                template: icon_only
+                template: icon_only_more_info
                 tap_action:
                   action: call-service
                   service: homeassistant.toggle
@@ -24,7 +43,6 @@ cards:
                   confirmation:
                     text: Do you really want to turn on/off office?
                 hold_action:
-                  action: more-info
                   entity: light.office_led
               - type: custom:button-card
                 entity: switch.tower
@@ -41,14 +59,13 @@ cards:
                     text: Do you really want to turn off the Tower?
               - type: custom:button-card
                 entity: group.parlor
-                template: icon_only
+                template: icon_only_more_info
                 tap_action:
                   action: call-service
                   service: script.parlor_off
                   confirmation:
                     text: Do you really want to turn off all lights and tv switch in parlor?
                 hold_action:
-                  action: more-info
                   entity: light.parlor
               - type: custom:button-card
                 entity: group.bedroom
@@ -128,7 +145,7 @@ cards:
         cards:
           - type: custom:button-card
             entity: scene.bathroom_bath
-            template: icon_only
+            template: icon_only_more_info
             icon: mdi:hot-tub
             styles:
               icon:
@@ -138,11 +155,9 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.bathroom_bath
-            hold_action:
-              action: more-info
           - type: custom:button-card
             entity: scene.bathroom_morning
-            template: icon_only
+            template: icon_only_more_info
             icon: mdi:hot-tub
             styles:
               icon:
@@ -152,11 +167,9 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.bathroom_morning
-            hold_action:
-              action: more-info
           - type: custom:button-card
             entity: scene.chill
-            template: icon_only
+            template: icon_only_more_info
             icon: mdi:palette
             styles:
               icon:
@@ -166,11 +179,9 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.chill
-            hold_action:
-              action: more-info
           - type: custom:button-card
             entity: scene.love
-            template: icon_only
+            template: icon_only_more_info
             styles:
               icon:
                 - color: "#C10B0B"
@@ -179,11 +190,9 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.love
-            hold_action:
-              action: more-info
           - type: custom:button-card
             entity: scene.night
-            template: icon_only
+            template: icon_only_more_info
             styles:
               icon:
                 - color: "#FFE59E"
@@ -192,8 +201,6 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.night
-            hold_action:
-              action: more-info
 
       - type: grid
         columns: 8

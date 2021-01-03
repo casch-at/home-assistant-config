@@ -1,6 +1,10 @@
 icon_only:
   show_name: false
   aspect_ratio: 1/1
+icon_only_more_info:
+  template: icon_only
+  hold_action:
+    action: more-info
 embedded_card:
   show_name: false
   show_state: true
