@@ -51,24 +51,3 @@
             domain: light
     default: []
   mode: single
-- id: presence_cancel
-  alias: Cancel automation.lower_kitchen_switch_turn_off_presence
-  description: ''
-  trigger:
-  - device_id: c2cff687003dd88942aa8597fe9f8734
-    domain: deconz
-    platform: device
-    type: remote_button_long_press
-    subtype: turn_on
-  condition:
-  - condition: template
-    value_template: '{{ state_attr(''automation.lower_kitchen_switch_turn_off_on_presence'',
-      ''current'')  | int == 1 }}'
-  action:
-  - service: automation.turn_off
-    data:
-      entity_id: automation.lower_kitchen_switch_turn_off_on_presence
-  - service: automation.turn_on
-    data:
-      entity_id: automation.lower_kitchen_switch_turn_off_on_presence
-  mode: single

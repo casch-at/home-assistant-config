@@ -1,0 +1,38 @@
+- id: floor_switch_automations_cancel
+  alias: Floor Switch Automations Cancel
+  description: ''
+  mode: queued
+  max: 10
+  trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: floor_switch
+  condition:
+  - condition: template
+    value_template: |-
+      {% set event = trigger.event.data.event | int %}
+      {{ event == 1001 }}
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 1001 }}'
+      - condition: state
+        entity_id: input_boolean.floor_switch_state_night_running
+        state: 'on'
+      sequence:
+      - type: flash
+        device_id: 03baa6e6081411eb958e6b58c8805747
+        entity_id: light.stairs_led
+        domain: light
+      - service: automation.toggle
+        data:
+          entity_id: automation.floor_switch_automations
+      - service: automation.turn_on
+        data:
+          entity_id: automation.floor_switch_automations
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.floor_switch_state_night_running
+    default: []
