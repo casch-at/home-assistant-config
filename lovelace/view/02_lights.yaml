@@ -8,121 +8,73 @@ cards:
     columns: 1
     square: false
     cards:
-      - type: entities
-        title: Stripes (RGB)
-        show_header_toggle: false
-        entities:
-          - type: custom:slider-entity-row
-            entity: light.led_stripes
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.stairs_led
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.office_led
-            toggle: true
-            hide_when_off: true
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: grid
+            columns: 4
+            cards:
+              - type: custom:button-card
+                entity: light.led_stripes
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.stairs_led
+                icon: mdi:stairs
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.office_led
+                icon: mdi:desk
+                template: icon_only_more_info
 
-      - type: entities
-        title: Parlor
-        show_header_toggle: false
-        entities:
-          - type: custom:slider-entity-row
-            entity: light.parlor
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.parlor_shelve
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.parlor_plants
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.parlor_plant_right
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.parlor_plant_left
-            toggle: true
-            hide_when_off: true
+          - type: grid
+            columns: 4
+            cards:
+              - type: custom:button-card
+                entity: light.parlor
+                template: icon_only_more_info
+                icon: mdi:sofa
+              - type: custom:button-card
+                entity: light.parlor_shelve
+                template: icon_only_more_info
+                icon: mdi:library-shelves
+              - type: custom:button-card
+                entity: light.parlor_plant_right
+                template: icon_only_more_info
+                icon: mdi:flower
+                name: 'C'
+                show_name: true
+              - type: custom:button-card
+                entity: light.parlor_plant_left
+                template: icon_only_more_info
+                icon: mdi:flower
+                name: 'T'
+                show_name: true
 
-      - type: entities
-        title: Bedroom
-        show_header_toggle: false
-        state_color: true
-        entities:
-          - entity: switch.nightstand_switch
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
 
-      - type: entities
-        title: Front Floor
-        show_header_toggle: false
-        entities:
-          - type: custom:slider-entity-row
-            entity: light.front_floor
-            name: All
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.front_floor_front
-            name: Back
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.front_floor_middle
-            name: Front
-            toggle: true
-            hide_when_off: true
+          - type: grid
+            columns: 4
+            cards:
+              - type: custom:button-card
+                entity: switch.nightstand_switch
+                template: icon_only_more_info
 
-      - type: entities
-        title: Lower Kitchen
-        show_header_toggle: false
-        entities:
-          - type: custom:slider-entity-row
-            entity: light.lower_kitchen
-            name: All
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.lower_kitchen_back
-            name: Back
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.lower_kitchen_front
-            name: Front
-            toggle: true
-            hide_when_off: true
-
-      - type: entities
-        title: Bathroom
-        show_header_toggle: false
-        entities:
-          - type: custom:slider-entity-row
-            entity: light.bathroom
-            name: All
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.bathroom_front_left
-            name: Left Front
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.bathroom_back_left
-            name: Left Back
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.bathroom_back_right
-            name: Right Back
-            toggle: true
-            hide_when_off: true
-          - type: custom:slider-entity-row
-            entity: light.bathroom_front_right
-            name: Right Front
-            toggle: true
-            hide_when_off: true
+          - type: grid
+            columns: 4
+            cards:
+              - type: custom:button-card
+                entity: light.bathroom
+                template: icon_only_more_info
+                icon: mdi:shower
+              - type: custom:button-card
+                entity: light.front_floor
+                template: icon_only_more_info
+                icon: mdi:door
+              - type: custom:button-card
+                entity: light.lower_kitchen
+                template: icon_only_more_info
+                icon: mdi:coffee
