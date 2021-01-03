@@ -67,3 +67,10 @@ shutter_base:
       card:
         type: custom:button-card
         template: shutter_card_down
+remote_parlor:
+  aspect_ratio: 1/1
+  tap_action:
+    action: call-service
+    service: remote.send_command
+    service_data:
+      entity_id: remote.broadlink_rm3_mini_office_remote
