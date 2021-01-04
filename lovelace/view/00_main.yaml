@@ -7,21 +7,20 @@ badges:
     show_name: false
   - entity: person.sonia_avramidis
     show_name: false
-  # - entity: binary_sensor.workday_sensor
-  #   icon: mdi:briefcase
-  #   name: ' '
-  #   show_name: false
-  #   show_icon: true
-  # - entity: input_boolean.presence
-  #   icon: mdi:home
-  #   name: ' '
-  #   show_name: false
-  #   show_icon: true
-  # - entity: calendar.work_home_office
-  #   icon: mdi:home-city
-  #   name: ' '
-  #   show_name: false
-  #   show_icon: true
+  - entity: binary_sensor.workday_sensor
+    icon: mdi:briefcase
+    name: 'Work'
+    show_name: false
+    show_icon: true
+  - entity: input_boolean.presence
+    icon: mdi:briefcase
+    show_name: false
+    show_icon: true
+  - entity: calendar.work_home_office
+    name: 'HO'
+  - entity: calendar.work_holiday
+    icon: mdi:home-city
+    name: 'Vacation'
 cards:
   - type: grid
     columns: 1
@@ -92,6 +91,7 @@ cards:
               - type: custom:button-card
                 color_type: card
                 entity: input_select.daytime
+                show_state: true
                 icon: mdi:sleep
                 template: icon_only
                 color: var( --ha-card-background, var(--card-background-color, white) )
@@ -109,6 +109,9 @@ cards:
                       Do you really want to set the day state to "Night"?
 
                       This turns all lights and switches off!
+                hold_action:
+                  action: more-info
+                  entity: input_select.daytime
 
           - type: grid
             columns: 2
@@ -265,10 +268,8 @@ cards:
         columns: 6
         cards:
           - type: custom:button-card
-            name: Restart HA
-            show_name: false
+            template: icon_only
             icon: mdi:restart
-            aspect_ratio: 1/1
             color: red
             tap_action:
               action: call-service
@@ -276,43 +277,33 @@ cards:
               confirmation:
                 text: Restart Home Assistant?
           - type: custom:button-card
-            name: Check Config
-            show_name: false
+            template: icon_only
             icon: mdi:check
-            aspect_ratio: 1/1
             color: green
             tap_action:
               action: call-service
               service: homeassistant.check_config
           - type: custom:button-card
-            name: Reload Core Config
-            show_name: false
+            template: icon_only
             icon: mdi:cog
-            aspect_ratio: 1/1
             tap_action:
               action: call-service
               service: homeassistant.reload_core_config
           - type: custom:button-card
-            name: Reload Scripts
-            show_name: false
             icon: mdi:script-text
-            aspect_ratio: 1/1
+            template: icon_only
             tap_action:
               action: call-service
               service: script.reload
           - type: custom:button-card
-            name: Reload Automations
-            show_name: false
+            template: icon_only
             icon: mdi:home-automation
-            aspect_ratio: 1/1
             tap_action:
               action: call-service
               service: automation.reload
           - type: custom:button-card
-            name: Reload Groups
-            show_name: false
+            template: icon_only
             icon: mdi:home-group
-            aspect_ratio: 1/1
             tap_action:
               action: call-service
               service: group.reload
