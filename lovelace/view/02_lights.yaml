@@ -60,6 +60,27 @@ cards:
             entity: light.bathroom
             template: icon_only_more_info
             icon: mdi:shower
+          - type: custom:button-card
+            entity: light.bathroom_front_left
+            template: icon_only_more_info
+            name: 'FL'
+            show_name: true
+          - type: custom:button-card
+            entity: light.bathroom_front_right
+            template: icon_only_more_info
+            name: 'FR'
+            show_name: true
+          - type: custom:button-card
+            entity: light.bathroom_back_left
+            template: icon_only_more_info
+            name: 'BL'
+            show_name: true
+          - type: custom:button-card
+            entity: light.bathroom_back_right
+            template: icon_only_more_info
+            name: 'BR'
+            show_name: true
+
       - type: grid
         columns: 1
         cards:
@@ -67,6 +88,17 @@ cards:
             entity: light.front_floor
             template: icon_only_more_info
             icon: mdi:door
+          - type: custom:button-card
+            entity: light.front_floor_front
+            template: icon_only_more_info
+            name: 'F'
+            show_name: true
+          - type: custom:button-card
+            entity: light.front_floor_middle
+            template: icon_only_more_info
+            name: 'M'
+            show_name: true
+
       - type: grid
         columns: 1
         cards:
@@ -74,3 +106,13 @@ cards:
             entity: light.lower_kitchen
             template: icon_only_more_info
             icon: mdi:coffee
+          - type: custom:button-card
+            entity: light.lower_kitchen_back
+            template: icon_only_more_info
+            name: 'F'
+            show_name: true
+          - type: custom:button-card
+            entity: light.lower_kitchen_back
+            template: icon_only_more_info
+            name: 'B'
+            show_name: true

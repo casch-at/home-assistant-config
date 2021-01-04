@@ -44,36 +44,18 @@ cards:
                 hold_action:
                   entity: light.office_led
               - type: custom:button-card
-                entity: switch.tower
-                template: icon_only
-                tap_action:
-                  action: call-service
-                  service: script.wake_tower
-                  confirmation:
-                    text: Do you really want to wake the Tower?
-                hold_action:
-                  action: call-service
-                  service: script.tower_off
-                  confirmation:
-                    text: Do you really want to turn off the Tower?
-              - type: custom:button-card
                 entity: group.parlor
                 template: icon_only_more_info
-                tap_action:
-                  action: call-service
-                  service: script.parlor_off
-                  confirmation:
-                    text: Do you really want to turn off all lights and tv switch in parlor?
                 hold_action:
                   entity: light.parlor
               - type: custom:button-card
                 entity: group.bedroom
                 template: icon_only
-                tap_action:
-                  action: call-service
-                  service: homeassistant.toggle
-                  service_data:
-                    entity_id: group.bedroom
+              - type: custom:button-card
+                entity: light.bathroom
+                template: icon_only_more_info
+                icon: mdi:shower
+
 
           - type: grid
             columns: 1
@@ -99,6 +81,12 @@ cards:
                   - value: 'Night'
                     color: var(--paper-item-icon-active-color)
                 tap_action:
+                  action: more-info
+                  entity: input_select.daytime
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/status
+                double_tap_action:
                   action: call-service
                   service: input_select.select_option
                   service_data:
@@ -109,19 +97,14 @@ cards:
                       Do you really want to set the day state to "Night"?
 
                       This turns all lights and switches off!
-                hold_action:
-                  action: more-info
-                  entity: input_select.daytime
 
           - type: grid
             columns: 2
             cards:
               - type: custom:button-card
                 entity: light.stairs_led
-                template: icon_only
+                template: icon_only_more_info
                 icon: mdi:stairs
-                hold_action:
-                  action: more-info
               - type: custom:button-card
                 entity: light.all_lights
                 template: icon_only
@@ -132,6 +115,9 @@ cards:
                     entity_id: group.all_lights_extra
                   confirmation:
                     text: Do you really want to turn off all lights?
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/lights
               - type: custom:button-card
                 entity: group.switches
                 template: icon_only
@@ -142,10 +128,81 @@ cards:
                     entity_id: group.switches
                   confirmation:
                     text: Do you really want to turn all switches off?
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/switches
+              - type: custom:button-card
+                icon: mdi:cctv
+                template: icon_only
+                entity: camera.tapo_c200_mainstream
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/cameras
+
+
+      - type: grid
+        columns: 6
+        cards:
+          - type: custom:button-card
+            entity: light.lower_kitchen
+            template: icon_only_more_info
+            icon: mdi:coffee
+
+          - type: custom:button-card
+            entity: light.front_floor
+            template: icon_only_more_info
+            icon: mdi:door
+
+          - type: custom:button-card
+            entity: switch.tv_switch
+            template: icon_only
+            tap_action:
+              action: call-service
+              service: script.tv_off_on
+            hold_action:
+              action: navigate
+              navigation_path: /lovelace/tv
+            lock:
+              enabled: >
+                [[[
+                  return states['script.tv_off_on'].state == "on";
+                ]]]
+          - type: custom:button-card
+            icon: mdi:blinds
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/blinds
+          - type: custom:button-card
+            icon: mdi:air-conditioner
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/ac
+          - type: custom:button-card
+            icon: mdi:transmission-tower
+            template: icon_only
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/energy
 
       - type: grid
         columns: 8
         cards:
+          - type: custom:button-card
+            entity: switch.tower
+            template: icon_only
+            hold_action:
+              action: call-service
+              service: script.tower_off
+              confirmation:
+                text: Do you really want to turn off the Tower?
+            double_tap_action:
+              action: call-service
+              service: script.wake_tower
+              confirmation:
+                text: Do you really want to wake the Tower?
+
           - type: custom:button-card
             entity: scene.bathroom_bath
             template: icon_only_more_info
@@ -204,65 +261,6 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.night
-
-      - type: grid
-        columns: 8
-        cards:
-          - type: custom:button-card
-            icon: mdi:dip-switch
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/switches
-
-          - type: custom:button-card
-            icon: mdi:lightbulb-group
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/lights
-
-          - type: custom:button-card
-            icon: mdi:blinds
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/blinds
-
-          - type: custom:button-card
-            icon: mdi:television
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/tv
-
-          - type: custom:button-card
-            icon: mdi:air-conditioner
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/ac
-
-          - type: custom:button-card
-            icon: mdi:cctv
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/cameras
-
-          - type: custom:button-card
-            icon: mdi:transmission-tower
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/energy
-
-          - type: custom:button-card
-            icon: mdi:information
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/status
 
       - type: grid
         columns: 6
