@@ -22,24 +22,36 @@
         entity_id: input_boolean.state_night_running
         state: 'off'
       sequence:
-      - service: persistent_notification.create
+      - service: scene.create
         data:
-          message: 'Setting state night'
+          scene_id: stairs_backup
+          snapshot_entities:
+          - light.stairs_led
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.state_night_running
       - repeat:
-          count: '2'
+          count: '3'
           sequence:
-          - type: flash
-            device_id: 03baa6e6081411eb958e6b58c8805747
-            entity_id: light.stairs_led
-            domain: light
-          - delay: 00:00:04
+          - service: light.turn_on
+            data:
+              entity_id: light.stairs_led
+              rgb_color: [200, 50, 0]
+              brightness: 125
+          - delay: 00:00:02
+          - service: light.turn_on
+            data:
+              entity_id: light.stairs_led
+              rgb_color: [200, 50, 0]
+              brightness: 5
+          - delay: 00:00:02
       - service: input_select.select_option
         data:
           entity_id: input_select.daytime
           option: 'Night'
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.state_night_running    
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1002 }}'
