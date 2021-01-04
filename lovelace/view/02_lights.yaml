@@ -5,76 +5,72 @@ icon: mdi:lightbulb-group
 badges: []
 cards:
   - type: grid
-    columns: 1
-    square: false
+    columns: 6
     cards:
       - type: grid
-        columns: 2
-        square: false
+        columns: 1
         cards:
-          - type: grid
-            columns: 4
-            cards:
-              - type: custom:button-card
-                entity: light.led_stripes
-                template: icon_only_more_info
-              - type: custom:button-card
-                entity: light.stairs_led
-                icon: mdi:stairs
-                template: icon_only_more_info
-              - type: custom:button-card
-                entity: light.office_led
-                icon: mdi:desk
-                template: icon_only_more_info
-
-          - type: grid
-            columns: 4
-            cards:
-              - type: custom:button-card
-                entity: light.parlor
-                template: icon_only_more_info
-                icon: mdi:sofa
-              - type: custom:button-card
-                entity: light.parlor_shelve
-                template: icon_only_more_info
-                icon: mdi:library-shelves
-              - type: custom:button-card
-                entity: light.parlor_plant_right
-                template: icon_only_more_info
-                icon: mdi:flower
-                name: 'C'
-                show_name: true
-              - type: custom:button-card
-                entity: light.parlor_plant_left
-                template: icon_only_more_info
-                icon: mdi:flower
-                name: 'T'
-                show_name: true
-
           - type: custom:button-card
-            color_type: blank-card
+            entity: light.led_stripes
+            template: icon_only_more_info
           - type: custom:button-card
-            color_type: blank-card
+            entity: light.stairs_led
+            icon: mdi:stairs
+            template: icon_only_more_info
+          - type: custom:button-card
+            entity: light.office_led
+            icon: mdi:desk
+            template: icon_only_more_info
 
-          - type: grid
-            columns: 4
-            cards:
-              - type: custom:button-card
-                entity: switch.nightstand_switch
-                template: icon_only_more_info
+      - type: grid
+        columns: 1
+        cards:
+          - type: custom:button-card
+            entity: light.parlor
+            template: icon_only_more_info
+            icon: mdi:sofa
+          - type: custom:button-card
+            entity: light.parlor_shelve
+            template: icon_only_more_info
+            icon: mdi:library-shelves
+          - type: custom:button-card
+            entity: light.parlor_plant_right
+            template: icon_only_more_info
+            icon: mdi:flower
+            name: 'C'
+            show_name: true
+          - type: custom:button-card
+            entity: light.parlor_plant_left
+            template: icon_only_more_info
+            icon: mdi:flower
+            name: 'T'
+            show_name: true
 
-          - type: grid
-            columns: 4
-            cards:
-              - type: custom:button-card
-                entity: light.bathroom
-                template: icon_only_more_info
-                icon: mdi:shower
-              - type: custom:button-card
-                entity: light.front_floor
-                template: icon_only_more_info
-                icon: mdi:door
-              - type: custom:button-card
-                entity: light.lower_kitchen
-                template: icon_only_more_info
-                icon: mdi:coffee
+      - type: grid
+        columns: 1
+        cards:
+          - type: custom:button-card
+            entity: switch.nightstand_switch
+            template: icon_only_more_info
+
+      - type: grid
+        columns: 1
+        cards:
+          - type: custom:button-card
+            entity: light.bathroom
+            template: icon_only_more_info
+            icon: mdi:shower
+      - type: grid
+        columns: 1
+        cards:
+          - type: custom:button-card
+            entity: light.front_floor
+            template: icon_only_more_info
+            icon: mdi:door
+      - type: grid
+        columns: 1
+        cards:
+          - type: custom:button-card
+            entity: light.lower_kitchen
+            template: icon_only_more_info
+            icon: mdi:coffee
