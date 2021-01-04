@@ -4,29 +4,55 @@ panel: false
 icon: mdi:dip-switch
 badges: []
 cards:
-  - type: entities
-    title: Switches
-    show_header_toggle: true
-    state_color: true
-    entities:
-      - entity: switch.desk_switch
-        tab_action:
-          action: toggle
-      - entity: switch.laptop_switch
-        tap_action:
-          action: toggle
-      - entity: switch.tv_switch
-        tab_action:
-          action: toggle
-      - entity: switch.printer
-        tab_action:
-          action: toggle
-      - entity: switch.tower
-        tab_action:
-          action: toggle
-      - entity: switch.tv_usb
-        tab_action:
-          action: toggle
-      - entity: switch.nightstand_usb
-        tab_action:
-          action: toggle
+  - type: grid
+    columns: 6
+    cards:
+    - type: grid
+      columns: 1
+      cards:
+        - type: custom:button-card
+          entity: switch.desk_switch
+          template: icon_only_more_info
+
+    - type: grid
+      columns: 1
+      cards:
+        - type: custom:button-card
+          entity: switch.laptop_switch
+          template: icon_only_more_info
+
+    - type: grid
+      columns: 1
+      cards:
+        - type: custom:button-card
+          entity: switch.tower
+          template: icon_only_more_info
+
+    - type: grid
+      columns: 1
+      cards:
+        - type: custom:button-card
+          entity: switch.tv_switch
+          template: icon_only_more_info
+        - type: custom:button-card
+          entity: switch.tv_usb
+          icon: mdi:usb-port
+          template: icon_only_more_info
+
+    - type: grid
+      columns: 1
+      cards:
+        - type: custom:button-card
+          entity: switch.printer
+          template: icon_only_more_info
+
+    - type: grid
+      columns: 1
+      cards:
+        - type: custom:button-card
+          entity: switch.nightstand_switch
+          template: icon_only_more_info
+        - type: custom:button-card
+          entity: switch.nightstand_usb
+          icon: mdi:usb-port
+          template: icon_only_more_info
