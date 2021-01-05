@@ -92,6 +92,15 @@ cards:
               type: custom:button-card
               entity: sensor.nightstand_switch_energy_power
               template: embedded_card
+          w5:
+            card:
+              type: custom:button-card
+              entity: sensor.energy_power
+              state_display: >
+                [[[
+                  return `<b style="color: green;">${(parseFloat(states['sensor.energy_power'].state))}</b>`
+                ]]]
+              template: embedded_card
           w6:
             card:
               type: custom:button-card
@@ -117,37 +126,19 @@ cards:
               type: custom:button-card
               entity: sensor.nightstand_switch_energy_total
               template: embedded_card
+          t5:
+            card:
+              type: custom:button-card
+              entity: sensor.energy_power_total
+              state_display: >
+                [[[
+                  return `<b style="color: green;">${(parseFloat(states['sensor.energy_power_total'].state)).toFixed(3)}</b>`
+                ]]]
+              template: embedded_card
           t6:
             card:
               type: custom:button-card
               entity: sensor.generic1_switch_energy_total
-              template: embedded_card
-          w5:
-            card:
-              type: custom:button-card
-              state_display: >
-                [[[
-                  return `<b style="color: green;">${parseFloat(states['sensor.nightstand_switch_energy_power'].state) +
-                    parseFloat(states['sensor.tv_switch_energy_power'].state) +
-                    parseFloat(states['sensor.desk_switch_energy_power'].state) +
-                    parseFloat(states['sensor.laptop_switch_energy_power'].state) +
-                    parseFloat(states['sensor.generic1_switch_energy_power'].state)
-                    }</b>`
-                ]]]
-              template: embedded_card
-          t5:
-            card:
-              type: custom:button-card
-              state_display: >
-                [[[
-                  return `<b style="color: green;">${(
-                    parseFloat(states['sensor.nightstand_switch_energy_total'].state) +
-                    parseFloat(states['sensor.tv_switch_energy_total'].state) +
-                    parseFloat(states['sensor.desk_switch_energy_total'].state) +
-                    parseFloat(states['sensor.laptop_switch_energy_total'].state) +
-                    parseFloat(states['sensor.generic1_switch_energy_total'].state)
-                    ).toFixed(3)}</b>`
-                ]]]
               template: embedded_card
 
       - type: custom:battery-state-card

@@ -3,38 +3,74 @@
     lower_kitchen_temperature_fixed:
       friendly_name: "Lower Kitchen Temperature"
       value_template: >-
-        {{ (states('sensor.lower_kitchen_temperature')|float + 1.8) | round(2) }}
+        {{
+          (states('sensor.lower_kitchen_temperature') | float + 1.8) | round(2)
+        }}
       device_class: temperature
       unit_of_measurement: '°C'
       unique_id: mysensor0001
     front_floor_temperature_fixed:
       friendly_name: "Front Floor Temperature"
       value_template: >-
-        {{ (states('sensor.front_floor_temperature')|float + 1.8) | round(2) }}
+        {{
+          (states('sensor.front_floor_temperature') | float + 1.8) | round(2)
+        }}
       device_class: temperature
       unit_of_measurement: '°C'
       unique_id: mysensor0002
     outdoor_temperature:
       friendly_name: "Outdoor Temperature"
       value_template: >-
-        {{ state_attr('weather.home', 'temperature')|float  }}
+        {{
+          state_attr('weather.home', 'temperature') | float
+        }}
       device_class: temperature
       unit_of_measurement: '°C'
       unique_id: mysensor0003
     outdoor_humidity:
       friendly_name: "Outdoor Humidity"
       value_template: >-
-        {{ state_attr('weather.home', 'humidity')|float }}
+        {{
+          state_attr('weather.home', 'humidity') | float
+        }}
       device_class: humidity
       unit_of_measurement: '%'
       unique_id: mysensor0004
     outdoor_pressure:
       friendly_name: "Outdoor Pressure"
       value_template: >-
-        {{ state_attr('weather.home', 'pressure')|int }}
+        {{
+          state_attr('weather.home', 'pressure') | int
+        }}
       device_class: pressure
       unit_of_measurement: 'hPa'
       unique_id: mysensor0005
+    energy_power:
+      friendly_name: "Energy Power"
+      value_template: >-
+        {{
+          states('sensor.nightstand_switch_energy_power') | int +
+          states('sensor.tv_switch_energy_power') | int +
+          states('sensor.desk_switch_energy_power') | int +
+          states('sensor.laptop_switch_energy_power') | int +
+          states('sensor.generic1_switch_energy_power') | int
+        }}
+      device_class: power
+      unit_of_measurement: 'W'
+      unique_id: mysensor0006
+    energy_power_total:
+      friendly_name: "Energy Power Total"
+      value_template: >-
+        {{
+          states('sensor.nightstand_switch_energy_total') | float +
+          states('sensor.tv_switch_energy_total') | float +
+          states('sensor.desk_switch_energy_total') | float +
+          states('sensor.laptop_switch_energy_total') | float +
+          states('sensor.generic1_switch_energy_total') | float
+        }}
+      device_class: power
+      unit_of_measurement: 'kWh'
+      unique_id: mysensor0007
 
 - platform: time_date
   display_options:
