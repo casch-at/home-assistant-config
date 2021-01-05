@@ -10,10 +10,10 @@ embedded_card:
   show_state: true
   show_icon: false
   show_units: false
-  style: |
-    ha-card {
-    box-shadow: none;
-    }
+  styles:
+    card:
+      - -webkit-box-shadow: none
+      - box-shadow: none
 shutter_switch:
   template: embedded_card
   show_state: false
