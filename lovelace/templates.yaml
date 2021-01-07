@@ -19,6 +19,17 @@ shutter_switch:
   show_state: false
   show_icon: true
   size: 10%
+name_card_round:
+  color_type: card
+  aspect_ratio: 1/1
+  show_icon: false
+  # card_size: 40px
+  styles:
+    card:
+      - border-radius: 50%
+      - border: 0.2em solid var(--ha-label-badge-color, var(--primary-color))
+      - font-size: 11px
+      # - color: rgba(var(--rgb-primary-text-color), 1.2)
 shutter_card_up:
   icon: mdi:arrow-up
   template: embedded_card

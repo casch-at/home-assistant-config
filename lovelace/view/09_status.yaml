@@ -6,6 +6,43 @@ badges: []
 cards:
   - type: vertical-stack
     cards:
+      - type: grid
+        columns: 6
+        cards:
+          - type: custom:button-card
+            entity: binary_sensor.workday_sensor
+            name: "Work"
+            template: name_card_round
+          - type: custom:button-card
+            entity: calendar.work_holiday
+            name: "Vacation"
+            template: name_card_round
+          - type: custom:button-card
+            entity: calendar.work_home_office
+            name: "HO"
+            template: name_card_round
+          - type: custom:button-card
+            entity: input_boolean.presence
+            name: "Presence"
+            template: name_card_round
+            tap_action:
+              action: toggle
+              confirmation:
+                text: Do you really want to turn on/off office?
+          - type: custom:button-card
+            entity: binary_sensor.updater
+            template: name_card_round
+          - type: custom:button-card
+            entity: sensor.hacs
+            name: HACS U.
+            template: name_card_round
+            state:
+              - value: 1
+                operator: >
+                color: var(--paper-item-icon-active-color)
+              - value: 0
+                color: var( --ha-card-background, var(--card-background-color, white) )
+
       # - type: grid
       #   columns: 2
       #   cards:
@@ -190,34 +227,16 @@ cards:
                 show_state: true
                 show_name: false
                 show_icon: false
-              - type: custom:button-card
-                entity: sensor.daylight
-                show_state: true
-                show_name: false
-                show_icon: false
 
           - type: grid
             columns: 1
             square: false
             cards:
               - type: custom:button-card
-                entity: binary_sensor.updater
+                entity: sensor.daylight
+                show_state: true
+                show_name: false
                 show_icon: false
-                color_type: card
-                icon: mdi:update
-              - type: custom:button-card
-                entity: sensor.hacs
-                name: HACS Updater
-                show_icon: false
-                show_units: false
-                color_type: card
-                icon: mdi:update
-                state:
-                  - value: 1
-                    operator: >
-                    color: var(--paper-item-icon-active-color)
-                  - value: 0
-                    color: var( --ha-card-background, var(--card-background-color, white) )
 
       - type: custom:mini-graph-card
         entities:
