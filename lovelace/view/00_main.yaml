@@ -46,16 +46,6 @@ cards:
           - type: grid
             columns: 1
             cards:
-              # - type: custom:button-card
-              #   entity: input_boolean.presence
-              #   template: icon_only
-              #   color_type: card
-              #   confirmation:
-              #       text: |
-              #           Do you really want to toggle the presence?
-
-              #           off -> All lights off
-              #           on  -> Maybe some lights go on...
               - type: custom:button-card
                 color_type: card
                 entity: input_select.daytime
