@@ -1,3 +1,6 @@
+substitutions:
+  base_button_name: "Desk Control Button"
+
 esphome:
   name: desk_control
   platform: ESP32
@@ -31,46 +34,137 @@ ota:
   password: !secret password
 
 
-# GPIO setup
 switch:
+  # id is wire color
   - platform: gpio
     pin: 32
-    id: desk_position_1
-    name: "Desk Position 1"
+    id: blue
   - platform: gpio
     pin: 33
-    id: desk_position_2
-    name: "Desk Position 2"
+    id: green
   - platform: gpio
     pin: 25
-    id: desk_position_3
-    name: "Desk Position 3"
+    id: yellow
   - platform: gpio
     pin: 26
-    id: desk_position_4
-    name: "Desk Position 4"
-  - platform: gpio
-    pin: 27
-    id: desk_position_s
-    name: "Desk Position S"
-  - platform: gpio
-    pin: 14
-    id: desk_position_up
-    name: "Desk Position Up"
-  - platform: gpio
-    pin: 12
-    id: desk_position_down
-    name: "Desk Position Down"
+    id: red
 
+  - platform: template
+    id: desk_control_button_1
+    name: ${base_button_name} 1
+    icon: mdi:numeric-1-circle
+    lambda: |-
+      if (id(blue).state && !(id(red).state || id(green).state || id(yellow).state)) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - switch.turn_on: blue
+      - delay: 15s
+      - if:
+          condition:
+            switch.is_on: desk_control_button_1
+          then:
+            - switch.turn_off: blue
+    turn_off_action:
+      - switch.turn_off: blue
 
-#switch:
-#  - platform: gpio
-#    pin: 33
-#    id: desk_position_1
-#  - platform: template
-#    name: "Desk Position 1"
-#    icon: "mdi:gate"
-#    turn_on_action:
-#    - switch.turn_on: desk_position_1
-#    - delay: 10s
-#    - switch.turn_off: desk_position_1
+  - platform: template
+    id: desk_control_button_2
+    name: ${base_button_name} 2
+    icon: mdi:numeric-2-circle
+    lambda: |-
+      if (id(yellow).state && !(id(red).state || id(green).state || id(blue).state)) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - switch.turn_on: yellow
+      - delay: 15s
+      - if:
+          condition:
+            switch.is_on: desk_control_button_2
+          then:
+            - switch.turn_off: yellow
+    turn_off_action:
+      - switch.turn_off: yellow
+
+  - platform: template
+    id: desk_control_button_3
+    name: ${base_button_name} 3
+    icon: mdi:numeric-3-circle
+    lambda: |-
+      if (id(yellow).state && id(green).state && !(id(red).state || id(blue).state)) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - switch.turn_on: yellow
+      - switch.turn_on: green
+      - delay: 15s
+      - if:
+          condition:
+            switch.is_on: desk_control_button_3
+          then:
+            - switch.turn_off: yellow
+            - switch.turn_off: green
+    turn_off_action:
+      - switch.turn_off: yellow
+      - switch.turn_off: green
+
+  - platform: template
+    id: desk_control_button_4
+    name: ${base_button_name} 4
+    icon: mdi:numeric-4-circle
+    lambda: |-
+      if (id(blue).state && id(green).state && !(id(red).state || id(yellow).state)) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - switch.turn_on: blue
+      - switch.turn_on: green
+      - delay: 15s
+      - if:
+          condition:
+            switch.is_on: desk_control_button_4
+          then:
+            - switch.turn_off: blue
+            - switch.turn_off: green
+    turn_off_action:
+      - switch.turn_off: blue
+      - switch.turn_off: green
+
+  - platform: template
+    id: desk_control_button_up
+    name: ${base_button_name} Up
+    icon: mdi:arrow-up
+    lambda: |-
+      if (id(red).state && !(id(blue).state || id(green).state || id(yellow).state)) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - switch.turn_on: red
+    turn_off_action:
+      - switch.turn_off: red
+
+  - platform: template
+    id: desk_control_button_down
+    name: ${base_button_name} Down
+    icon: mdi:arrow-down
+    lambda: |-
+      if (id(green).state && !(id(red).state || id(blue).state || id(yellow).state)) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - switch.turn_on: green
+    turn_off_action:
+      - switch.turn_off: green
