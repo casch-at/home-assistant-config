@@ -263,45 +263,23 @@ cards:
                 entity_id: scene.night
 
       - type: grid
-        columns: 6
+        columns: 7
         cards:
           - type: custom:button-card
             template: icon_only
-            icon: mdi:restart
-            color: red
+            icon: mdi:cogs
             tap_action:
-              action: call-service
-              service: homeassistant.restart
-              confirmation:
-                text: Restart Home Assistant?
+              action: navigate
+              navigation_path: /config/server_control
           - type: custom:button-card
             template: icon_only
-            icon: mdi:check
-            color: green
+            icon: mdi:math-log
             tap_action:
-              action: call-service
-              service: homeassistant.check_config
+              action: navigate
+              navigation_path: /config/logs
           - type: custom:button-card
             template: icon_only
-            icon: mdi:cog
+            icon: mdi:home-assistant
             tap_action:
-              action: call-service
-              service: homeassistant.reload_core_config
-          - type: custom:button-card
-            icon: mdi:script-text
-            template: icon_only
-            tap_action:
-              action: call-service
-              service: script.reload
-          - type: custom:button-card
-            template: icon_only
-            icon: mdi:home-automation
-            tap_action:
-              action: call-service
-              service: automation.reload
-          - type: custom:button-card
-            template: icon_only
-            icon: mdi:home-group
-            tap_action:
-              action: call-service
-              service: group.reload
+              action: navigate
+              navigation_path: /hassio/system
