@@ -12,7 +12,13 @@
   - condition: template
     value_template: |-
       {% set event = trigger.event.data.event | int %}
-      {{ event == 1001 or event == 1002 or event == 2002 or event == 2004 or event == 6001 or event == 6004 }}
+      {{
+        event == 1001 or event == 1002 or
+        event == 2002 or event == 2004 or
+        event == 3002 or event == 3004 or
+        event == 5002 or
+        event == 6001 or event == 6004
+      }}
   action:
   - choose:
     - conditions:
@@ -52,6 +58,7 @@
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.state_night_running
+
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1002 }}'
@@ -59,6 +66,7 @@
       - service: switch.toggle
         data:
           entity_id: switch.nightstand_switch
+
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 2002 }}'
@@ -66,6 +74,7 @@
       - service: homeassistant.toggle
         data:
           entity_id: light.parlor
+
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 2004 }}'
@@ -73,6 +82,34 @@
       - service: scene.turn_on
         data:
           entity_id: scene.night
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+      sequence:
+      - event: deconz_event
+        event_data:
+          id: bath_switch
+          event: 2002
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 3004 }}'
+      sequence:
+      - event: deconz_event
+        event_data:
+          id: bath_switch
+          event: 3002
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 5002 }}'
+      sequence:
+      - event: deconz_event
+        event_data:
+          id: lower_kitchen_switch
+          event: 1002
+
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 6001 }}'
@@ -80,6 +117,7 @@
       - service: homeassistant.toggle
         data:
           entity_id: group.office
+
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 6004 }}'
