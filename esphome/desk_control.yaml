@@ -33,7 +33,12 @@ api:
 ota:
   password: !secret password
 
-
+sensor:
+  - platform: adc
+    pin: 35
+    internal: true
+    id: desk_control_display
+    
 switch:
   # id is wire color
   - platform: gpio
