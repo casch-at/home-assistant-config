@@ -7,49 +7,161 @@
     event_type: deconz_event
     event_data:
       id: bath_switch
-  condition: []
+  condition:
+  - condition: template
+    value_template: |
+      {% set event = trigger.event.data.event | int %}
+      {{
+        event == 1002 or event == 1004 or
+        event == 2002 or event == 2004 or
+        event == 3002 or event == 3004 or
+        event == 4002 or event == 4004
+      }}
   action:
   - choose:
+    # Mirror light
+    # - conditions:
+    #   - condition: template
+    #     value_template: '{{ trigger.event.data.event | int == 1002 }}'
+    #   sequence:
+    #   - service: light.toggle
+    #     data:
+    #       entity_id: light.bathroom_mirror
+
+    # Color temperature warmer
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+        value_template: '{{ trigger.event.data.event | int == 1004 }}'
       - condition: state
-        entity_id: input_boolean.bath_left_right
+        entity_id: light.bathroom
         state: 'on'
       sequence:
       - service: light.turn_on
         data:
-          entity_id:
-            - light.bathroom_front_left
-            - light.bathroom_back_left
-      - service: light.turn_off
-        data:
-          entity_id:
-            - light.bathroom_front_right
-            - light.bathroom_back_right
-      - service: input_boolean.toggle
-        data:
-          entity_id: input_boolean.bath_left_right
+          entity_id: light.bathroom
+          color_temp: |
+            {% if state_attr('light.bathroom', 'color_temp') < 340 %}
+              {{ state_attr('light.bathroom', 'color_temp') + 30 }}
+            {% endif %}
+
+    # Toggle ceiling lights
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+        value_template: '{{ trigger.event.data.event | int == 2002 }}'
+      sequence:
+      - service: light.toggle
+        data:
+          entity_id: light.bathroom
+
+    # Brightness up
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 2004 }}'
       - condition: state
-        entity_id: input_boolean.bath_left_right
-        state: 'off'
+        entity_id: light.bathroom
+        state: 'on'
       sequence:
       - service: light.turn_on
         data:
-          entity_id:
-            - light.bathroom_front_right
-            - light.bathroom_back_right
-      - service: light.turn_off
+          entity_id: light.bathroom
+          brightness: |
+            {% if state_attr('light.bathroom', 'brightness') < 225 %}
+              {{ state_attr('light.bathroom', 'brightness') + 30 }}
+            {% endif %}
+
+    # Turn left <-> right lights on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.bathroom
+                state: 'off'
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity_id: light.bathroom_back_left
+                    state: 'on'
+                  - condition: state
+                    entity_id: light.bathroom_front_left
+                    state: 'on'
+              - condition: template
+                value_template: '{{ state_attr("light.bathroom", "all_on") }}'
+          sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.bathroom_back_right
+          - service: light.turn_on
+            data:
+              entity_id: light.bathroom_front_right
+          - service: light.turn_off
+            data:
+              entity_id: light.bathroom_front_left
+          - service: light.turn_off
+            data:
+              entity_id: light.bathroom_back_left
+        default:
+        - service: light.turn_on
+          data:
+            entity_id: light.bathroom_front_left
+        - service: light.turn_on
+          data:
+            entity_id: light.bathroom_back_left
+        - service: light.turn_off
+          data:
+            entity_id: light.bathroom_back_right
+        - service: light.turn_off
+          data:
+            entity_id: light.bathroom_front_right
+
+    # Color temperature colder
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 3004 }}'
+      - condition: state
+        entity_id: light.bathroom
+        state: 'on'
+      sequence:
+      - service: light.turn_on
         data:
-          entity_id:
-            - light.bathroom_front_left
-            - light.bathroom_back_left
-      - service: input_boolean.toggle
+          entity_id: light.bathroom
+          color_temp: |
+            {% if state_attr('light.bathroom', 'color_temp') > 183 %}
+              {{ state_attr('light.bathroom', 'color_temp') - 30 }}
+            {% endif %}
+
+    # Cycle scense
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 4002 }}'
+      sequence:
+      - service: scene.turn_on
         data:
-          entity_id: input_boolean.bath_left_right
+          entity_id: '{{ states("input_select.bathroom_scenes") }}'
+      - service: input_select.select_next
+        data:
+          entity_id: input_select.bathroom_scenes
+
+    # Brightness down
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 4004 }}'
+      - condition: state
+        entity_id: light.bathroom
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.bathroom
+          brightness: |
+            {% if state_attr('light.bathroom', 'brightness') > 40 %}
+              {{ state_attr('light.bathroom', 'brightness') - 30 }}
+            {% endif %}
+
     default:
     - service: input_boolean.turn_off
       data:

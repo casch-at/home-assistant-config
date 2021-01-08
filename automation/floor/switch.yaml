@@ -10,7 +10,7 @@
       id: floor_switch
   condition:
   - condition: template
-    value_template: |-
+    value_template: |
       {% set event = trigger.event.data.event | int %}
       {{
         event == 1001 or event == 1002 or
@@ -37,20 +37,20 @@
         data:
           entity_id: input_boolean.state_night_running
       - repeat:
-          count: '3'
+          count: '6'
           sequence:
           - service: light.turn_on
             data:
               entity_id: light.stairs_led
               rgb_color: [200, 50, 0]
               brightness: 125
-          - delay: 00:00:02
+          - delay: 00:00:01
           - service: light.turn_on
             data:
               entity_id: light.stairs_led
               rgb_color: [200, 50, 0]
-              brightness: 5
-          - delay: 00:00:02
+              brightness: 20
+          - delay: 00:00:01
       - service: input_select.select_option
         data:
           entity_id: input_select.daytime
