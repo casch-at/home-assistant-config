@@ -60,13 +60,22 @@ switch:
         return false;
       }
     turn_on_action:
-      - switch.turn_on: blue
-      - delay: 15s
       - if:
           condition:
-            switch.is_on: desk_control_button_1
+            and:
+              - switch.is_off: desk_control_button_2
+              - switch.is_off: desk_control_button_3
+              - switch.is_off: desk_control_button_4
+              - switch.is_off: desk_control_button_up
+              - switch.is_off: desk_control_button_down
           then:
-            - switch.turn_off: blue
+            - switch.turn_on: blue
+            - delay: 14s
+            - if:
+                condition:
+                  switch.is_on: desk_control_button_1
+                then:
+                  - switch.turn_off: blue
     turn_off_action:
       - switch.turn_off: blue
 
@@ -81,13 +90,22 @@ switch:
         return false;
       }
     turn_on_action:
-      - switch.turn_on: yellow
-      - delay: 15s
       - if:
           condition:
-            switch.is_on: desk_control_button_2
+            and:
+              - switch.is_off: desk_control_button_1
+              - switch.is_off: desk_control_button_3
+              - switch.is_off: desk_control_button_4
+              - switch.is_off: desk_control_button_up
+              - switch.is_off: desk_control_button_down
           then:
-            - switch.turn_off: yellow
+            - switch.turn_on: yellow
+            - delay: 14s
+            - if:
+                condition:
+                  switch.is_on: desk_control_button_2
+                then:
+                  - switch.turn_off: yellow
     turn_off_action:
       - switch.turn_off: yellow
 
@@ -102,15 +120,24 @@ switch:
         return false;
       }
     turn_on_action:
-      - switch.turn_on: yellow
-      - switch.turn_on: green
-      - delay: 15s
       - if:
           condition:
-            switch.is_on: desk_control_button_3
+            and:
+              - switch.is_off: desk_control_button_1
+              - switch.is_off: desk_control_button_2
+              - switch.is_off: desk_control_button_4
+              - switch.is_off: desk_control_button_up
+              - switch.is_off: desk_control_button_down
           then:
-            - switch.turn_off: yellow
-            - switch.turn_off: green
+            - switch.turn_on: yellow
+            - switch.turn_on: green
+            - delay: 14s
+            - if:
+                condition:
+                  switch.is_on: desk_control_button_3
+                then:
+                  - switch.turn_off: yellow
+                  - switch.turn_off: green
     turn_off_action:
       - switch.turn_off: yellow
       - switch.turn_off: green
@@ -126,15 +153,24 @@ switch:
         return false;
       }
     turn_on_action:
-      - switch.turn_on: blue
-      - switch.turn_on: green
-      - delay: 15s
       - if:
           condition:
-            switch.is_on: desk_control_button_4
+            and:
+              - switch.is_off: desk_control_button_1
+              - switch.is_off: desk_control_button_2
+              - switch.is_off: desk_control_button_3
+              - switch.is_off: desk_control_button_up
+              - switch.is_off: desk_control_button_down
           then:
-            - switch.turn_off: blue
-            - switch.turn_off: green
+            - switch.turn_on: blue
+            - switch.turn_on: green
+            - delay: 14s
+            - if:
+                condition:
+                  switch.is_on: desk_control_button_4
+                then:
+                  - switch.turn_off: blue
+                  - switch.turn_off: green
     turn_off_action:
       - switch.turn_off: blue
       - switch.turn_off: green
@@ -150,7 +186,16 @@ switch:
         return false;
       }
     turn_on_action:
-      - switch.turn_on: red
+      - if:
+          condition:
+            and:
+              - switch.is_off: desk_control_button_1
+              - switch.is_off: desk_control_button_2
+              - switch.is_off: desk_control_button_3
+              - switch.is_off: desk_control_button_4
+              - switch.is_off: desk_control_button_down
+          then:
+            - switch.turn_on: red
     turn_off_action:
       - switch.turn_off: red
 
@@ -165,6 +210,15 @@ switch:
         return false;
       }
     turn_on_action:
-      - switch.turn_on: green
+      - if:
+          condition:
+            and:
+              - switch.is_off: desk_control_button_1
+              - switch.is_off: desk_control_button_2
+              - switch.is_off: desk_control_button_3
+              - switch.is_off: desk_control_button_4
+              - switch.is_off: desk_control_button_up
+          then:
+            - switch.turn_on: green
     turn_off_action:
       - switch.turn_off: green

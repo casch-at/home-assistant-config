@@ -12,7 +12,7 @@
   - condition: template
     value_template: |-
       {% set event = trigger.event.data.event | int %}
-      {{ event == 1001 or event == 1002 or event == 2002 or event == 2004 or event == 6001 }}
+      {{ event == 1001 or event == 1002 or event == 2002 or event == 2004 or event == 6001 or event == 6004 }}
   action:
   - choose:
     - conditions:
@@ -51,7 +51,7 @@
           option: 'Night'
       - service: input_boolean.turn_off
         data:
-          entity_id: input_boolean.state_night_running    
+          entity_id: input_boolean.state_night_running
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1002 }}'
@@ -80,4 +80,33 @@
       - service: homeassistant.toggle
         data:
           entity_id: group.office
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 6004 }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_select.desk_hight
+            state: '110'
+          sequence:
+          - service: switch.turn_on
+            data:
+              entity_id: switch.desk_control_button_4
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.desk_hight
+              option: '68'
+        - conditions:
+          - condition: state
+            entity_id: input_select.desk_hight
+            state: '68'
+          sequence:
+          - service: switch.turn_on
+            data:
+              entity_id: switch.desk_control_button_1
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.desk_hight
+              option: '110'
     default: []

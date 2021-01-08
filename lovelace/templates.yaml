@@ -1,10 +1,12 @@
 icon_only:
   show_name: false
   aspect_ratio: 1/1
+
 icon_only_more_info:
   template: icon_only
   hold_action:
     action: more-info
+
 embedded_card:
   show_name: false
   show_state: true
@@ -14,11 +16,20 @@ embedded_card:
     card:
       - -webkit-box-shadow: none
       - box-shadow: none
+
+desk_control:
+  template: embedded_card
+  show_state: false
+  show_icon: true
+  aspect_ratio: 1/1
+  size: 50%
+
 shutter_switch:
   template: embedded_card
   show_state: false
   show_icon: true
   size: 10%
+
 name_card_round:
   color_type: card
   aspect_ratio: 1/1
@@ -30,6 +41,7 @@ name_card_round:
       - border: 0.2em solid var(--ha-label-badge-color, var(--primary-color))
       - font-size: 11px
       # - color: rgba(var(--rgb-primary-text-color), 1.2)
+
 shutter_card_up:
   icon: mdi:arrow-up
   template: embedded_card
@@ -37,6 +49,7 @@ shutter_card_up:
   tap_action:
     action: call-service
     service: cover.open_cover
+
 shutter_card_down:
   icon: mdi:arrow-down
   template: embedded_card
@@ -44,6 +57,7 @@ shutter_card_down:
   tap_action:
     action: call-service
     service: cover.close_cover
+
 shutter_base:
   styles:
     grid:
@@ -85,6 +99,7 @@ shutter_base:
       card:
         type: custom:button-card
         template: shutter_card_down
+
 remote_parlor:
   aspect_ratio: 1/1
   tap_action:

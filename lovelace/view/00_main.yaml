@@ -239,6 +239,65 @@ cards:
                 entity_id: scene.night
 
       - type: grid
+        columns: 1
+        square: false
+        cards:
+          - type: custom:button-card
+            # name: Desk Control 520
+            # icon: mdi:desk
+            # tooltip: Desk Control 520
+            styles:
+              card:
+                - padding: 0%
+                # - padding-top: 1%
+                # - padding-bottom: 1%
+              grid:
+                - position: relative
+                - grid-template-areas: >-
+                    "b1 b2 b3 b4 s up down"
+                - grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+                - grid-templates-rows: min-content 1fr
+            custom_fields:
+              b1:
+                card:
+                  type: custom:button-card
+                  template: desk_control
+                  entity: switch.desk_control_button_1
+                  double_tap_action:
+                    service: switch.toggle
+              b2:
+                card:
+                  type: custom:button-card
+                  template: desk_control
+                  entity: switch.desk_control_button_2
+                  double_tap_action:
+                    service: switch.toggle
+              b3:
+                card:
+                  type: custom:button-card
+                  template: desk_control
+                  entity: switch.desk_control_button_3
+                  double_tap_action:
+                    service: switch.toggle
+              b4:
+                card:
+                  type: custom:button-card
+                  template: desk_control
+                  entity: switch.desk_control_button_4
+                  double_tap_action:
+                    service: switch.toggle
+              up:
+                card:
+                  type: custom:button-card
+                  template: desk_control
+                  entity: switch.desk_control_button_up
+              down:
+                card:
+                  type: custom:button-card
+                  template: desk_control
+                  entity: switch.desk_control_button_down
+
+      - type: grid
         columns: 7
         cards:
           - type: custom:button-card
