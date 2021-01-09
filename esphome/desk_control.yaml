@@ -1,6 +1,6 @@
 substitutions:
   base_button_name: "Desk Control Button"
-
+# See for reusing: https://esphome.io/guides/configuration-types.html#config-substitutions
 esphome:
   name: desk_control
   platform: ESP32
@@ -38,7 +38,7 @@ sensor:
     pin: 35
     internal: true
     id: desk_control_display
-    
+
 switch:
   # id is wire color
   - platform: gpio

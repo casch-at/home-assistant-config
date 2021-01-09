@@ -2,22 +2,15 @@
   alias: Office LED On/Off
   description: ''
   trigger:
-  - platform: device
-    type: turned_off
-    device_id: ed75d33e4fdc486c13f061762e77931c
+  - platform: state
     entity_id: switch.desk_switch
-    domain: switch
-  - platform: device
-    type: turned_on
-    device_id: ed75d33e4fdc486c13f061762e77931c
-    entity_id: switch.desk_switch
-    domain: switch
   - type: illuminance
     platform: device
     device_id: d362c802f675d2a59d2080b94ebef8e4
     entity_id: sensor.front_floor_lightlevel
     domain: sensor
     below: 60
+    above: 20
     for:
       hours: 0
       minutes: 10
@@ -41,6 +34,9 @@
       - condition: state
         entity_id: switch.desk_switch
         state: 'on'
+      - condition: state
+        entity_id: light.office_led
+        state: 'off'
       sequence:
       - service: scene.turn_on
         data:
