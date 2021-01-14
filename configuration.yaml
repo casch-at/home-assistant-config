@@ -40,7 +40,7 @@ device_tracker:
       work_wlan_router: 192.168.1.11
       tower_lan_router: 192.168.1.17
     count: 3
-    consider_home: 800
+    consider_home: 600
 
 sensor: !include sensors.yaml
 lovelace: !include lovelace/lovelace.yaml
