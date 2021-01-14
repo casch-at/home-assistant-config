@@ -263,19 +263,3 @@ cards:
           - value: "on"
             label: Detected
 
-      - type: custom:mini-graph-card
-        hours_to_show: 2400
-        name: Covid Status Austria
-        points_per_hour: 0.0416666666667
-        line_width: 2
-        show:
-          fill: false
-        entities:
-          - entity: sensor.austria_coronavirus_confirmed
-            name: Confirmed
-          - entity: sensor.austria_coronavirus_recovered
-            name: Recovered
-          - entity: sensor.austria_coronavirus_current
-            name: Current
-          - entity: sensor.austria_coronavirus_deaths
-            name: Deaths
