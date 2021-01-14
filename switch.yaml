@@ -10,7 +10,7 @@
       code_on: 5528835 # (S)FF F0 FF 1F 00 01 -> 0101 0100 0101 1101 0000 0011
       code_off: 5528844 # (S)FF F0 FF 1F 00 10 -> 0101 0100 0101 1101 0000 1100
       pulselength: 165
-      signal_repetitions: 10
+      signal_repetitions: 15
     # Desk: # 3
     #   code_on: 5527299 # (S)FF F0 FF F1 00 01 -> 0101 0100 0101 0111 0000 0011
     #   code_off: 5527308 # (S)FF F0 FF F1 00 10 -> 0101 0100 0101 0111 0000 1100
