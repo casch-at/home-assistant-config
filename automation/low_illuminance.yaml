@@ -3,7 +3,8 @@
   description: Turn on lights when the sun goes down or on low light condition
   trigger:
   - platform: template
-    value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+    value_template: >-
+      {{ not state_attr('sensor.daylight', 'daylight') }}
   - type: illuminance
     platform: device
     device_id: d362c802f675d2a59d2080b94ebef8e4
@@ -14,15 +15,19 @@
       hours: 0
       minutes: 10
       seconds: 0
-  - platform: state
-    entity_id: input_boolean.presence
-    to: 'on'
+  - platform: template
+    value_template: >-
+      {{ states('person.christian_schwarzgruber') == 'home' }}
+  - platform: template
+    value_template: >-
+      {{ states('person.sonia_avramidis') == 'home' }}
   condition:
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
   - condition: template
-    value_template: '{{ states(''sensor.front_floor_lightlevel'')|float < 100 }}'
+    value_template: >-
+      {{ states('sensor.front_floor_lightlevel')|float < 100 }}
   - condition: not
     conditions:
     - condition: state
@@ -60,7 +65,11 @@
         entity_id: light.parlor_shelve
         domain: light
       - condition: template
-        value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+        value_template: >-
+          {{ not state_attr('sensor.daylight', 'daylight') }}
+      - condition: template
+        value_template: >-
+          {{ states('person.sonia_avramidis') == 'home' }}
       sequence:
       - service: scene.apply
         data:
@@ -85,7 +94,11 @@
         entity_id: light.parlor_plants
         domain: light
       - condition: template
-        value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+        value_template: >-
+          {{ not state_attr('sensor.daylight', 'daylight') }}
+      - condition: template
+        value_template: >-
+          {{ states('person.sonia_avramidis') == 'home' }}
       sequence:
       - service: scene.apply
         data:
@@ -123,7 +136,8 @@
         entity_id: switch.desk_switch
         state: 'on'
       - condition: template
-        value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
+        value_template: >-
+          {{ not state_attr('sensor.daylight', 'daylight') }}
       sequence:
       - service: scene.turn_on
         data:
