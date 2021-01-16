@@ -10,9 +10,18 @@
     entity_id: input_boolean.presence
     state: 'on'
   action:
-  - service: cover.close_cover
-    data:
-      entity_id: cover.bedroom_roller_shutter_level
+  - choose:
+    - conditions:
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: weather.home
+          state: snowy
+      sequence:
+      - service: cover.close_cover
+        data:
+          entity_id: cover.bedroom_roller_shutter_level
+    default: []
   - service: homeassistant.turn_off
     data:
       entity_id: group.switches_and_lights
