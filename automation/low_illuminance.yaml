@@ -14,17 +14,21 @@
     for:
       hours: 0
       minutes: 10
-      seconds: 0
-  - platform: template
-    value_template: >-
-      {{ states('person.christian_schwarzgruber') == 'home' }}
-  - platform: template
-    value_template: >-
-      {{ states('person.sonia_avramidis') == 'home' }}
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    to: home
+  - platform: state
+    entity_id: person.sonia_avramidis
+    to: home
   condition:
-  - condition: state
-    entity_id: input_boolean.presence
-    state: 'on'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.christian_schwarzgruber
+      state: 'home'
+    - condition: state
+      entity_id: person.sonia_avramidis
+      state: 'home'
   - condition: template
     value_template: >-
       {{ states('sensor.front_floor_lightlevel')|float < 100 }}
