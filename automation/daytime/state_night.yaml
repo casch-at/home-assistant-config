@@ -14,9 +14,14 @@
     - conditions:
       - condition: not
         conditions:
-        - condition: state
-          entity_id: weather.home
-          state: snowy
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: weather.home
+            state: snowy
+          - condition: numeric_state
+            entity_id: sensor.outdoor_temperature
+            below: 1
       sequence:
       - service: cover.close_cover
         data:
