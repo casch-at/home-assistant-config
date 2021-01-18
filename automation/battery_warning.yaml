@@ -19,7 +19,21 @@
   action:
   - service: notify.persistent_notification
     data:
-      message: '{{ trigger.to_state.name }} Below 10 %'
+      message: |-
+        {{ trigger.to_state.name }} Below 10 %
+
+
+        {{ trigger }}
       title: '{{ trigger.to_state.name }} Critical'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: >-
+          {{ trigger.to_state.name == 'Tablet Battery Level' }}
+      sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.tv_usb
+    default: []
   mode: queued
   max: 10
