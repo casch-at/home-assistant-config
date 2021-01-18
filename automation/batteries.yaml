@@ -1,5 +1,5 @@
-- id: battery_warning
-  alias: Battery Level Warning
+- id: batteries
+  alias: All about batteries
   description: ''
   trigger:
   - platform: template
@@ -20,16 +20,13 @@
   - service: notify.persistent_notification
     data:
       message: |-
-        {{ trigger.to_state.name }} Below 10 %
-
-
-        {{ trigger }}
+        {{ trigger.to_state.name }} Below 10 % ({{ trigger.to_state.state }} %)
       title: '{{ trigger.to_state.name }} Critical'
   - choose:
     - conditions:
       - condition: template
         value_template: >-
-          {{ trigger.to_state.name == 'Tablet Battery Level' }}
+          {{ trigger.to_state.object_id == 'tablet_battery_level' }}
       sequence:
       - service: switch.turn_on
         data:
