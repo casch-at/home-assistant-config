@@ -34,14 +34,32 @@ api:
 ota:
   password: !secret password
 
+# deep_sleep:
+#   run_duration: 10s
+#   sleep_duration: 60s
+#   wakeup_pin: 33
 
 switch:
   # id is wire color
   - platform: gpio
-    pin: 33
+    pin:
+      number: 33
+      mode: OUTPUT
+      inverted: true
     id: fan_power
     name: Fan Power
     icon: mdi:power
+    # make it a lambda and publish state -- need to use gpio: ... and turn on off that gpio -- see desk_control
+    on_turn_on:
+      - switch.turn_on: fan_power
+      - delay: 50ms
+      - switch.turn_off: fan_power
+      - logger.log: "Switch turned off!"
+#    on_turn_off:
+#      - switch.turn_on: fan_power
+#      - delay: 50ms
+#      - switch.turn_off: fan_power
+#      - logger.log: "Switch turned off!"
 
 remote_receiver:
   pin: 32
