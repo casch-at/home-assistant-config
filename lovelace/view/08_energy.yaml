@@ -182,8 +182,8 @@ cards:
           - entity: sensor.front_floor_motion_battery_level
             name: Front floor motion sensor
             tap_action: more-info
-          - entity: sensor.bath_switch_battery_level
-            name: Bath switch
+          - entity: sensor.bathroom_switch_battery_level
+            name: Bathroom switch
             tap_action: more-info
           - entity: sensor.lower_kitchen_switch_battery_level
             name: Lower kitchen switch
@@ -193,4 +193,19 @@ cards:
             tap_action: more-info
           - entity: sensor.upstairs_multi_sensor_battery_level
             name: Upstairs multi sensor
+            tap_action: more-info
+          - entity: sensor.bedroom_multi_sensor_battery_level
+            name: Bedroom multi sensor
+            tap_action: more-info
+          - entity: sensor.parlor_multi_sensor_battery_level
+            name: Parlor multi sensor
+            tap_action: more-info
+          - entity: sensor.bathroom_multi_sensor_battery_level
+            name: Bathroom multi sensor
+            tap_action: more-info
+          - entity: sensor.bedroom_window_sensor_battery_level
+            name: Bedroom window sensor
+            tap_action: more-info
+          - entity: sensor.balcony_door_sensor_battery_level
+            name: Balcony multi sensor
             tap_action: more-info

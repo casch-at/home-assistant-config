@@ -5,7 +5,7 @@
   - platform: template
     value_template: >-
       {{
-        states('sensor.bath_switch_battery_level') | int < 10 or
+        states('sensor.bathroom_switch_battery_level') | int < 10 or
         states('sensor.bedroom_motion_battery_level') | int < 10  or
         states('sensor.front_floor_motion_battery_level') | int < 10 or
         states('sensor.lower_kitchen_motion_battery_level') | int < 10  or
@@ -13,6 +13,11 @@
         states('sensor.office_multi_sensor_battery_level') | int < 10 or
         states('sensor.tablet_battery_level') | int < 10  or
         states('sensor.upstairs_multi_sensor_battery_level') | int < 10 or
+        states('sensor.parlor_multi_sensor_battery_level') | int < 10 or
+        states('sensor.bedroom_multi_sensor_battery_level') | int < 10 or
+        states('sensor.bathroom_multi_sensor_battery_level') | int < 10 or
+        states('sensor.bedroom_window_sensor_battery_level') | int < 10 or
+        states('sensor.balcony_door_sensor_battery_level') | int < 10 or
         states('sensor.floor_switch_battery_level') | int < 10
       }}
   condition: []

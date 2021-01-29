@@ -95,7 +95,7 @@
       sequence:
       - event: deconz_event
         event_data:
-          id: bath_switch
+          id: bathroom_switch
           event: 2002
 
     - conditions:
@@ -104,7 +104,7 @@
       sequence:
       - event: deconz_event
         event_data:
-          id: bath_switch
+          id: bathroom_switch
           event: 3002
 
     - conditions:

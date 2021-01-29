@@ -101,13 +101,16 @@ cards:
           grid:
             - grid-template-areas: >-
                 "n  tn hn pn ln"
+                "n8 t8 h8 p8 l8"
+                "n6 t6 h6 p6 l6"
                 "n2 t2 h2 p2 l2"
-                "n4 t4 h4 p4 l4"
                 "n5 t5 h5 p5 l5"
+                "n7 t7 h7 p7 l7"
+                "n4 t4 h4 p4 l4"
                 "n1 t1 h1 p1 l1"
                 "n3 t3 h3 p3 l3"
             - grid-template-columns: min-content 1fr 1fr 1fr 1fr
-            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
           custom_fields:
             n1:
               - justify-self: start
@@ -129,6 +132,18 @@ cards:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
+            n6:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n7:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n8:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
             tn:
               - font-weight: bold
             hn:
@@ -147,6 +162,9 @@ cards:
           n3: 'Front Floor'
           n4: 'Upstairs'
           n5: 'Outdoor'
+          n6: 'Bedroom'
+          n7: 'Parlor'
+          n8: 'Bathroom'
           l1:
             card:
                 type: custom:button-card
@@ -212,6 +230,51 @@ cards:
                 type: custom:button-card
                 entity: sensor.outdoor_pressure
                 template: embedded_card
+          t6:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_temperature
+                template: embedded_card
+          h6:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_humidity
+                template: embedded_card
+          p6:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_pressure
+                template: embedded_card
+          t7:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_temperature
+                template: embedded_card
+          h7:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_humidity
+                template: embedded_card
+          p7:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_pressure
+                template: embedded_card
+          t8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_temperature
+                template: embedded_card
+          h8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_humidity
+                template: embedded_card
+          p8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_pressure
+                template: embedded_card
 
       - type: grid
         square: false
@@ -262,4 +325,3 @@ cards:
             label: Clear
           - value: "on"
             label: Detected
-

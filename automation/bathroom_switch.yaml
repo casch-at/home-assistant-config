@@ -1,12 +1,12 @@
-- id: bath_switch_automations
-  alias: Bath Switch Automations
+- id: bathroom_switch_automations
+  alias: Bathroom Switch Automations
   description: ''
   mode: single
   trigger:
   - platform: event
     event_type: deconz_event
     event_data:
-      id: bath_switch
+      id: bathroom_switch
   condition:
   - condition: template
     value_template: |
