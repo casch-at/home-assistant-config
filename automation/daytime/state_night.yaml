@@ -16,7 +16,8 @@
         value_template: >-
           {{
             states('weather.home') != 'snowy' and
-            states('sensor.outdoor_temperature') | float > 1.0
+            states('sensor.outdoor_temperature') | float > 1.0 and
+            states('binary_sensor.bedroom_window_sensor') == 'off'
           }}
       sequence:
       - service: cover.close_cover

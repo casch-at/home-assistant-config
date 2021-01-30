@@ -5,8 +5,17 @@ icon: mdi:home-assistant
 badges:
   - entity: person.christian_schwarzgruber
     show_name: false
+  - entity: binary_sensor.balcony_door_sensor
+    show_name: false
+    name: Balcony
+    icon: mdi:door-open
+  - entity: binary_sensor.bedroom_window_sensor
+    show_name: false
+    name: B. Window
+    icon: mdi:window-open
   - entity: person.sonia_avramidis
     show_name: false
+
 cards:
   - type: grid
     columns: 1
