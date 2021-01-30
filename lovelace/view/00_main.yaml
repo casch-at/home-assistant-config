@@ -5,14 +5,6 @@ icon: mdi:home-assistant
 badges:
   - entity: person.christian_schwarzgruber
     show_name: false
-  - entity: binary_sensor.balcony_door_sensor
-    show_name: false
-    name: Balcony
-    icon: mdi:door-open
-  - entity: binary_sensor.bedroom_window_sensor
-    show_name: false
-    name: B. Window
-    icon: mdi:window-open
   - entity: person.sonia_avramidis
     show_name: false
 
@@ -327,3 +319,19 @@ cards:
             tap_action:
               action: navigate
               navigation_path: /hassio/system
+
+      - type: grid
+        columns: 6
+        cards:
+          - type: custom:button-card
+            entity: binary_sensor.balcony_door_sensor
+            show_icon: true
+            name: Balcony
+            icon: mdi:door-open
+            template: name_card_round
+          - type: custom:button-card
+            entity: binary_sensor.bedroom_window_sensor
+            show_icon: true
+            icon: mdi:window-open
+            name: "Bedroom"
+            template: name_card_round
