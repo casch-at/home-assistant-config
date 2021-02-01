@@ -1,0 +1,23 @@
+- id: balcony_door_open
+  alias: Balcony Door Open
+  description: Send notification when it is cold outside and balcony is longer than
+    10 minutes open
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 14e74a9cb9c3cb94820ae06b486ffaa4
+    entity_id: binary_sensor.balcony_door_sensor
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  condition:
+  - condition: template
+    value_template: >-
+      {{ state_attr('weather.home', 'temperature') | float < 20 }}
+  action:
+  - service: notify.persistent_notification
+    data:
+      title: The balcony door is open since 10 minutes
+  mode: single
