@@ -33,10 +33,13 @@ api:
 ota:
   password: !secret password
 
-sensor:
-  - platform: adc
-    pin: 35
-    internal: true
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 35
+      mode: INPUT
+      inverted: True
+    name: "Desk Control Display"
     id: desk_control_display
 
 switch:
