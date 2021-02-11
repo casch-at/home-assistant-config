@@ -18,7 +18,7 @@
         event == 3002 or event == 3004 or
         event == 4001 or event == 4002 or event == 4004 or
         event == 5002 or
-        event == 6001 or event == 6002
+        event == 6001 or event == 6002 or event == 6004
       }}
   action:
   - choose:
@@ -38,20 +38,20 @@
         data:
           entity_id: input_boolean.state_night_running
       - repeat:
-          count: '6'
+          count: '3'
           sequence:
           - service: light.turn_on
             data:
               entity_id: light.stairs_led
               rgb_color: [200, 50, 0]
-              brightness: 125
-          - delay: 00:00:01
+              brightness: 150
+          - delay: 00:00:02
           - service: light.turn_on
             data:
               entity_id: light.stairs_led
               rgb_color: [200, 50, 0]
               brightness: 20
-          - delay: 00:00:01
+          - delay: 00:00:02
       - service: input_select.select_option
         data:
           entity_id: input_select.daytime
@@ -170,6 +170,17 @@
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 6002 }}'
       sequence:
+      - service: scene.turn_on
+        data:
+          entity_id: '{{ states("input_select.stairs_scenes") }}'
+      - service: input_select.select_next
+        data:
+          entity_id: input_select.stairs_scenes
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 6004 }}'
+      sequence:          
       - service: light.toggle
         data:
           entity_id: light.stairs_led

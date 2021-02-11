@@ -28,6 +28,11 @@
           - service: automation.toggle
             data:
               entity_id: automation.floor_switch_automations
+      - service: light.turn_on
+        data:
+          entity_id: light.stairs_led
+          rgb_color: [50, 200, 0]
+          brightness: 150
       - delay: 00:00:02
       - service: scene.turn_on
         data:

@@ -259,3 +259,82 @@
       supported_features: 47
       state: 'on'
   icon: mdi:shower
+- id: '1612985607737'
+  name: Stairs Green
+  entities:
+    light.stairs_led:
+      min_mireds: 140
+      max_mireds: 650
+      brightness: 254
+      hs_color:
+      - 135.059
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 64
+      xy_color:
+      - 0.17
+      - 0.701
+      is_deconz_group: false
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
+      supported_features: 59
+      state: 'on'
+- id: '1612985635802'
+  name: Stairs Blue
+  entities:
+    light.stairs_led:
+      min_mireds: 140
+      max_mireds: 650
+      brightness: 254
+      hs_color:
+      - 242.588
+      - 100
+      rgb_color:
+      - 10
+      - 0
+      - 255
+      xy_color:
+      - 0.137
+      - 0.041
+      is_deconz_group: false
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
+      supported_features: 59
+      state: 'on'
+- id: '1612985673557'
+  name: Stairs Purple
+  entities:
+    light.stairs_led:
+      min_mireds: 140
+      max_mireds: 650
+      brightness: 254
+      hs_color:
+      - 269.663
+      - 69.804
+      rgb_color:
+      - 165
+      - 76
+      - 255
+      xy_color:
+      - 0.262
+      - 0.125
+      is_deconz_group: false
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
+      supported_features: 59
+      state: 'on'
+- id: '1612985714915'
+  name: Stairs Night
+  entities:
+    light.stairs_led:
+      min_mireds: 140
+      max_mireds: 650
+      brightness: 204
+      color_temp: 397
+      is_deconz_group: false
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
+      supported_features: 59
+      state: 'on'
