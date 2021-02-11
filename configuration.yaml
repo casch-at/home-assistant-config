@@ -63,6 +63,9 @@ calendar:
         calendar: Work
         search: '^Schwarzgruber_HO'
 
+light: !include lights.yaml
+
+
 # logger:
 #   default: info
 #   logs:

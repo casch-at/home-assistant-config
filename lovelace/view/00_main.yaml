@@ -184,11 +184,12 @@ cards:
             template: icon_only_more_info
             icon: mdi:air-humidifier
             hold_action:
-              action: call-service
-              service: switch.toggle
-              entity: switch.aroma_diffuser_light
-              service_data:
-                entity_id: switch.aroma_diffuser_light
+              entity: light.aroma_diffuser_light
+              # action: call-service
+              # service: switch.toggle
+              # entity: switch.aroma_diffuser_light
+              # service_data:
+              #   entity_id: switch.aroma_diffuser_light
           - type: custom:button-card
             entity: scene.bathroom_bath
             template: icon_only_more_info
