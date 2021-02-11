@@ -44,7 +44,7 @@ switches_and_lights:
     - group.switches
     - light.all_lights
     - switch.aroma_diffuser
-    - switch.aroma_diffuser_light
+    - light.aroma_diffuser_light
 
 all_lights_extra:
   name: Lights and Switch Lights

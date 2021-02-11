@@ -24,7 +24,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
   rgb_command_topic: "cmnd/aroma_diffuser/TUYASEND3"
   rgb_command_template: >-
     {% set brightness = 100 %}
