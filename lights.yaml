@@ -2,23 +2,30 @@
   name: "Aroma Diffuser Light"
   unique_id: "aroma_diffuser_light_01"
   command_topic: "cmnd/aroma_diffuser/EVENT"
-  state_topic: "tele/aroma_diffuser/STATE"
-  state_value_template: >-
-    {% if value_json.Light is defined %}
-      {{ value_json.Light }}
+  state_topic: "tele/aroma_diffuser/RESULT"
+  value_template: >-
+    {% if value_json.TuyaReceived is defined and '5' in value_json['TuyaReceived'] -%}
+      {% if value_json['TuyaReceived'].DpType1Id5 -%}
+        on
+      {% else %}
+        off
+      {% endif %}
     {% endif %}
-  # brightness_command_topic: "cmnd/aroma_diffuser/DIMMER"
-  # brightness_state_topic: "tele/aroma_diffuser/STATE"
-  # brightness_scale: 100
-  # brightness_value_template: 100
+  payload_off: "off"
+  payload_on: "on"
+  on_command_type: "first"
   effect_command_topic: "cmnd/aroma_diffuser/EVENT"
-  effect_state_topic: "tele/aroma_diffuser/STATE"
+  effect_state_topic: "tele/aroma_diffuser/RESULT"
   effect_value_template: >-
-    {% if value_json.Light is defined %}
-      {{ value_json.LightMode }}
+    {% if value_json.TuyaReceived is defined and '6' in value_json['TuyaReceived'] -%}
+      {% if value_json['TuyaReceived'].DpType4Id6 -%}
+        cycle
+      {% else %}
+        color
+      {% endif %}
     {% endif %}
   effect_list:
-    - rgb_cycle
+    - cycle
     - color
   availability_topic: "tele/aroma_diffuser/LWT"
   payload_available: "Online"
@@ -27,12 +34,15 @@
   retain: false
   rgb_command_topic: "cmnd/aroma_diffuser/TUYASEND3"
   rgb_command_template: >-
-    {% set brightness = 100 %}
     {{ '8,%02x%02x%02x003cff64' | format(red, green, blue) }}
   rgb_value_template: >-
-    {% if value_json.TuyaReceived is defined and '8' in value_json['TuyaReceived'] %}
+    {% if value_json.TuyaReceived is defined and '8' in value_json['TuyaReceived'] -%}
       {{
-        (value_json['TuyaReceived']['8'].Type3Data[0:2]|int(base=16),value_json['TuyaReceived']['8'].Type3Data[2:4]|int(base=16),value_json['TuyaReceived']['8'].Type3Data[4:6]|int(base=16)) | join(',')
+        (
+         value_json['TuyaReceived']['8'].Type3Data[0:2]|int(base=16),
+         value_json['TuyaReceived']['8'].Type3Data[2:4]|int(base=16),
+         value_json['TuyaReceived']['8'].Type3Data[4:6]|int(base=16)
+        ) | join(',')
       }}
     {% endif %}
   rgb_state_topic: "tele/aroma_diffuser/RESULT"
