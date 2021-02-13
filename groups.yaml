@@ -43,8 +43,12 @@ switches_and_lights:
   entities:
     - group.switches
     - light.all_lights
+    - group.devices
+
+devices:
+  name: Devices
+  entities:
     - switch.aroma_diffuser
-    - light.aroma_diffuser_light
 
 all_lights_extra:
   name: Lights and Switch Lights
