@@ -1,6 +1,8 @@
 - platform: mqtt
   name: "Aroma Diffuser Light"
   unique_id: "aroma_diffuser_light_01"
+  device:
+    connections: !secret aroma_diffuser_connections
   command_topic: "cmnd/aroma_diffuser/EVENT"
   state_topic: "tele/aroma_diffuser/RESULT"
   value_template: >-
