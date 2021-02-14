@@ -38,12 +38,23 @@ cards:
               tap_action:
                 service_data:
                   entity_id: cover.bedroom_roller_shutter_level
+              lock:
+                enabled: >
+                  [[[
+                    return states['binary_sensor.bedroom_window_sensor'].state == "on";
+                  ]]]
+                duration: 0
           rd:
             card:
               tap_action:
                 service_data:
                   entity_id: cover.bedroom_roller_shutter_level
-
+              lock:
+                enabled: >
+                  [[[
+                    return states['binary_sensor.bedroom_window_sensor'].state == "on";
+                  ]]]
+                duration: 0
       - type: horizontal-stack
         cards:
           - type: custom:button-card
