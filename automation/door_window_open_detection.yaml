@@ -3,33 +3,27 @@
   description: Send notification when it is cold outside and door/window is longer than 10 minutes open
   trigger:
   - platform: template
-    value_template: >-
-      {{
-        is_state('binary_sensor.balcony_door_sensor', 'on') or
-        is_state('binary_sensor.bedroom_window_sensor', 'on')
-      }}
+    value_template: "{{ is_state('binary_sensor.balcony_door_sensor', 'on') }}"
+    for: 00:10:00
+  - platform: template
+    value_template: "{{ is_state('binary_sensor.bedroom_window_sensor', 'on') }}"
+    for: 00:10:00
   condition:
   - condition: template
-    value_template: >-
-      {{ state_attr('weather.home', 'temperature') | float < 20 }}
+    value_template: "{{ state_attr('weather.home', 'temperature') | float < 20 }}"
   action:
-  # - service: notify.persistent_notification
-  #   data:
-  #     message: '{{ trigger }}'
-  - wait_template: >-
-      {{ is_state(trigger.entity_id, 'off') }}
-    timeout: 00:10:00
-    # timeout: 00:00:10
-  - condition: template
-    value_template: '{{ not wait.completed }}'
   - service: notify.notify
     data:
-      title: >-
-        {{ trigger.to_state.name | replace(' Sensor', '') }}
+      title: "{{ trigger.to_state.name | replace(' Sensor', '') }}"
       message: >-
         The
         {{ trigger.to_state.name | lower | replace(' sensor', '') }}
         is already 10 minutes open.
+  - wait_template: "{{ is_state('input_boolean.window_or_door_open', 'off') }}"
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.window_or_door_open
+  - condition: template
+    value_template: "{{ is_state(trigger.entity_id, 'on') }}"
   - service: scene.create
     data:
       scene_id: stairs_backup
@@ -40,10 +34,11 @@
       entity_id: light.stairs_led
       rgb_color: [235, 40, 0]
       brightness: 256
-  - wait_template: >-
-      {{ is_state(trigger.entity_id, 'off') }}
+  - wait_template: "{{ is_state(trigger.entity_id, 'off') }}"
   - service: scene.turn_on
     data:
       entity_id: scene.stairs_backup
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.window_or_door_open
   mode: parallel
   max: 10
