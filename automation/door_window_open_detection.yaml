@@ -14,7 +14,7 @@
   action:
   - service: notify.notify
     data:
-      title: "{{ trigger.to_state.name | replace(' Sensor', '') }}"
+      title: "{{ trigger.to_state.name | replace(' Sensor', '') }} Open"
       message: >-
         The
         {{ trigger.to_state.name | lower | replace(' sensor', '') }}
