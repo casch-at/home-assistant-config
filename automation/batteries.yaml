@@ -3,35 +3,43 @@
   description: ''
   trigger:
   - platform: template
-    value_template: >-
-      {{
-        states('sensor.bathroom_switch_battery_level') | int < 10 or
-        states('sensor.bedroom_motion_battery_level') | int < 10  or
-        states('sensor.front_floor_motion_battery_level') | int < 10 or
-        states('sensor.lower_kitchen_motion_battery_level') | int < 10  or
-        states('sensor.lower_kitchen_switch_battery_level') | int < 10  or
-        states('sensor.office_multi_sensor_battery_level') | int < 10 or
-        states('sensor.tablet_battery_level') | int < 10  or
-        states('sensor.upstairs_multi_sensor_battery_level') | int < 10 or
-        states('sensor.parlor_multi_sensor_battery_level') | int < 10 or
-        states('sensor.bedroom_multi_sensor_battery_level') | int < 10 or
-        states('sensor.bathroom_multi_sensor_battery_level') | int < 10 or
-        states('sensor.bedroom_window_sensor_battery_level') | int < 10 or
-        states('sensor.balcony_door_sensor_battery_level') | int < 10 or
-        states('sensor.floor_switch_battery_level') | int < 10
-      }}
+    value_template: "{{ states('sensor.bathroom_switch_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.bedroom_motion_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.front_floor_motion_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.lower_kitchen_motion_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.lower_kitchen_switch_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.office_multi_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.tablet_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.upstairs_multi_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.parlor_multi_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.bedroom_multi_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.bathroom_multi_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.bedroom_window_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.balcony_door_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.floor_switch_battery_level') | int < 10 }}"
   condition: []
   action:
   - service: notify.persistent_notification
     data:
-      message: |-
-        {{ trigger.to_state.name }} Below 10 % ({{ trigger.to_state.state }} %)
+      message: '{{ trigger.to_state.name }} Below 10 % ({{ trigger.to_state.state }} %)'
       title: '{{ trigger.to_state.name }} Critical'
   - choose:
     - conditions:
       - condition: template
-        value_template: >-
-          {{ trigger.to_state.object_id == 'tablet_battery_level' }}
+        value_template: "{{ trigger.to_state.object_id == 'tablet_battery_level' }}"
       sequence:
       - service: switch.turn_on
         data:
