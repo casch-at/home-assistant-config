@@ -1,0 +1,17 @@
+- id: reset_lower_kitchen_switch_active
+  alias: Reset lower kitchen switch active state when lights where turned off manually
+  description: ''
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: light.lower_kitchen
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.lower_kitchen_switch_active
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lower_kitchen_switch_active
