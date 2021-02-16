@@ -50,15 +50,8 @@
         data:
           entities:
             light.stairs_led:
-              min_mireds: 153
-              max_mireds: 500
-              effect_list:
-              - colorloop
               brightness: 180
               color_temp: 375
-              is_deconz_group: false
-              friendly_name: Stairs LED-Stripe
-              supported_features: 63
               state: 'on'
     default: []
   - choose:
@@ -79,15 +72,8 @@
         data:
           entities:
             light.parlor_shelve:
-              min_mireds: 140
-              max_mireds: 650
-              effect_list:
-              - colorloop
               brightness: 100
               color_temp: 370
-              is_deconz_group: false
-              friendly_name: Parlor Shelve
-              supported_features: 43
               state: 'on'
     default: []
   - choose:
@@ -108,10 +94,6 @@
         data:
           entities:
             light.parlor_plants:
-              min_mireds: 153
-              max_mireds: 500
-              effect_list:
-              - colorloop
               brightness: 170
               hs_color:
               - 75.818
@@ -123,10 +105,6 @@
               xy_color:
               - 0.361
               - 0.459
-              is_deconz_group: true
-              all_on: true
-              friendly_name: Parlor Plants
-              supported_features: 63
               state: 'on'
     default: []
   - choose:

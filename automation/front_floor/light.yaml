@@ -42,10 +42,27 @@
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.front_floor_motion_running
-      - type: turn_on
-        device_id: 99c4272d194811eb9a33c1747a3f77e4
-        entity_id: light.front_floor
-        domain: light
+      - service: scene.apply
+        data:
+          entities:
+            light.front_floor:
+              brightness: |
+                {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+                  254
+                {% elif states('input_select.daytime') == 'Evening' -%}
+                  140
+                {% elif states('input_select.daytime') == 'Night' -%}
+                  80
+                {% endif %}
+              color_temp: |
+                {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+                  271
+                {% elif states('input_select.daytime') == 'Evening' -%}
+                  400
+                {% elif states('input_select.daytime') == 'Night' -%}
+                  480
+                {% endif %}
+              state: 'on'
     - conditions:
       - condition: state
         entity_id: input_boolean.front_floor_motion_running
@@ -62,9 +79,6 @@
         device_id: 99c4272d194811eb9a33c1747a3f77e4
         entity_id: light.front_floor
         domain: light
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.front_floor_switch_active
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1004 }}'

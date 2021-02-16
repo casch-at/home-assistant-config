@@ -49,8 +49,35 @@
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 2002 }}'
       sequence:
-      - service: light.toggle
-        data:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.bathroom
+            state: 'off'
+          sequence:
+          - service: scene.apply
+            data:
+              entities:
+                light.bathroom:
+                  brightness: |
+                    {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+                      254
+                    {% elif states('input_select.daytime') == 'Evening' -%}
+                      140
+                    {% elif states('input_select.daytime') == 'Night' -%}
+                      80
+                    {% endif %}
+                  color_temp: |
+                    {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+                      271
+                    {% elif states('input_select.daytime') == 'Evening' -%}
+                      400
+                    {% elif states('input_select.daytime') == 'Night' -%}
+                      480
+                    {% endif %}
+                  state: 'on'
+        default:
+        - service: light.turn_off
           entity_id: light.bathroom
 
     # Brightness up
@@ -78,19 +105,19 @@
         - conditions:
           - condition: or
             conditions:
-              - condition: state
-                entity_id: light.bathroom
-                state: 'off'
-              - condition: and
-                conditions:
-                  - condition: state
-                    entity_id: light.bathroom_back_left
-                    state: 'on'
-                  - condition: state
-                    entity_id: light.bathroom_front_left
-                    state: 'on'
-              - condition: template
-                value_template: '{{ state_attr("light.bathroom", "all_on") }}'
+            - condition: state
+              entity_id: light.bathroom
+              state: 'off'
+            - condition: and
+              conditions:
+                - condition: state
+                  entity_id: light.bathroom_back_left
+                  state: 'on'
+                - condition: state
+                  entity_id: light.bathroom_front_left
+                  state: 'on'
+            - condition: template
+              value_template: '{{ state_attr("light.bathroom", "all_on") }}'
           sequence:
           - service: light.turn_on
             data:
