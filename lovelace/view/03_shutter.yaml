@@ -353,3 +353,6 @@ cards:
           - type: custom:button-card
             entity: switch.upstairs_roller_shutter_right_switch
             template: shutter_switch
+  - type: custom:slider-entity-row
+    entity: input_number.window_or_door_open
+    name: Window/Door Open Timeout

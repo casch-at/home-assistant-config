@@ -4,10 +4,10 @@
   trigger:
   - platform: template
     value_template: "{{ is_state('binary_sensor.balcony_door_sensor', 'on') }}"
-    for: 00:10:00
+    for: "{{ states('input_number.window_or_door_open') | int(0) }}"
   - platform: template
     value_template: "{{ is_state('binary_sensor.bedroom_window_sensor', 'on') }}"
-    for: 00:10:00
+    for: "{{ states('input_number.window_or_door_open') | int(0) }}"
   condition:
   - condition: template
     value_template: "{{ state_attr('weather.home', 'temperature') | float < 20 }}"
@@ -16,9 +16,10 @@
     data:
       title: "{{ trigger.to_state.name | replace(' Sensor', '') }} Open"
       message: >-
-        The
-        {{ trigger.to_state.name | lower | replace(' sensor', '') }}
-        is already 10 minutes open.
+        {% set minutes = (states('input_number.window_or_door_open') | int(0) / 60) | int(0) %}
+        The {{ trigger.to_state.name | lower | replace(' sensor', '') }}
+        is already {{ minutes }} {% if minutes > 1 -%} minutes {% else -%} minute {% endif %}
+        open.
   - wait_template: "{{ is_state('input_boolean.window_or_door_open', 'off') }}"
   - service: input_boolean.turn_on
     entity_id: input_boolean.window_or_door_open
