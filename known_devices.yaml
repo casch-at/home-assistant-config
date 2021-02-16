@@ -28,7 +28,7 @@ lap_02_lan_router:
 
 work_wlan_router:
   name: work_wlan_router
-  mac: 08:D4:0C:18:A2:E5
+  mac: 68:3E:26:6D:6B:27
   icon: mdi:laptop
   picture:
   track: true
