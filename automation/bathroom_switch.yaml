@@ -63,13 +63,13 @@
                     {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
                       254
                     {% elif states('input_select.daytime') == 'Evening' -%}
-                      140
+                      130
                     {% elif states('input_select.daytime') == 'Night' -%}
                       80
                     {% endif %}
                   color_temp: |
                     {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-                      271
+                      150
                     {% elif states('input_select.daytime') == 'Evening' -%}
                       400
                     {% elif states('input_select.daytime') == 'Night' -%}
