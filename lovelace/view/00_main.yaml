@@ -164,7 +164,7 @@ cards:
               navigation_path: /lovelace/energy
 
       - type: grid
-        columns: 8
+        columns: 7
         cards:
           - type: custom:button-card
             entity: switch.tower
@@ -312,6 +312,10 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
             template: icon_only
             icon: mdi:cogs
             tap_action:
@@ -329,10 +333,18 @@ cards:
             tap_action:
               action: navigate
               navigation_path: /hassio/system
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
 
       - type: grid
         columns: 6
         cards:
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
           - type: custom:button-card
             entity: binary_sensor.balcony_door_sensor
             show_icon: true
