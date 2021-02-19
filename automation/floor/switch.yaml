@@ -82,40 +82,53 @@
       sequence:
       - choose:
           - conditions:
-              - condition: template
-                value_template: >-
-                  {{
-                    states('sensor.desk_control_height') | int < 110
-                  }}
+            - condition: template
+              value_template: >-
+                {{
+                  states('switch.desk_control_button_1') == 'on' or
+                  states('switch.desk_control_button_2') == 'on' or
+                  states('switch.desk_control_button_3') == 'on' or
+                  states('switch.desk_control_button_4') == 'on' or
+                  states('switch.desk_control_button_up') == 'on' or
+                  states('switch.desk_control_button_down') == 'on'
+                }}
             sequence:
             - service: switch.turn_off
               data:
                 entity_id:
+                  - switch.desk_control_button_1
                   - switch.desk_control_button_2
                   - switch.desk_control_button_3
                   - switch.desk_control_button_4
                   - switch.desk_control_button_up
                   - switch.desk_control_button_down
-            - delay: 1
+          - conditions:
+            - condition: template
+              value_template: "{{ states('sensor.desk_control_height') | int < 110 }}"
+            sequence:
             - service: switch.turn_on
+              data:
+                entity_id: switch.desk_control_button_1
+            - wait_template: "{{ states('sensor.desk_control_height') | int == 110 }}"
+              timeout: 14
+              continue_on_timeout: false
+            - delay:
+                milliseconds: 50
+            - service: switch.turn_off
               data:
                 entity_id: switch.desk_control_button_1
         default:
         - condition: template
-          value_template: >-
-            {{
-              states('sensor.desk_control_height') | int > 68
-            }}
-        - service: switch.turn_off
-          data:
-            entity_id:
-              - switch.desk_control_button_1
-              - switch.desk_control_button_2
-              - switch.desk_control_button_3
-              - switch.desk_control_button_up
-              - switch.desk_control_button_down
-        - delay: 1
+          value_template: "{{ states('sensor.desk_control_height') | int > 68 }}"
         - service: switch.turn_on
+          data:
+            entity_id: switch.desk_control_button_4
+        - wait_template: "{{ states('sensor.desk_control_height') | int == 68 }}"
+          timeout: 14
+          continue_on_timeout: false
+        - delay:
+            milliseconds: 50
+        - service: switch.turn_off
           data:
             entity_id: switch.desk_control_button_4
 
