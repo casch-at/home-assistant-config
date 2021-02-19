@@ -302,7 +302,7 @@ cards:
                   styles:
                     state:
                       - color: var(--paper-item-icon-active-color)
-                      - font-size: 33px
+                      - font-size: 20px
               up:
                 card:
                   type: custom:button-card
