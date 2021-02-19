@@ -254,18 +254,13 @@ cards:
         square: false
         cards:
           - type: custom:button-card
-            # name: Desk Control 520
-            # icon: mdi:desk
-            # tooltip: Desk Control 520
             styles:
               card:
                 - padding: 0%
-                # - padding-top: 1%
-                # - padding-bottom: 1%
               grid:
                 - position: relative
                 - grid-template-areas: >-
-                    "b1 b2 b3 b4 s up down"
+                    "b1 b2 b3 b4 h up down"
                 - grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
                 - grid-templates-rows: min-content 1fr
             custom_fields:
@@ -297,6 +292,17 @@ cards:
                   entity: switch.desk_control_button_4
                   double_tap_action:
                     service: switch.toggle
+              h:
+                card:
+                  type: custom:button-card
+                  template: desk_control
+                  entity: sensor.desk_control_height
+                  show_state: true
+                  show_icon: false
+                  styles:
+                    state:
+                      - color: var(--paper-item-icon-active-color)
+                      - font-size: 33px
               up:
                 card:
                   type: custom:button-card
