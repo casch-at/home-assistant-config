@@ -12,6 +12,11 @@ esphome:
     board_build.f_cpu: 240000000L
   includes:
     - desk_height_sensor.h
+  on_boot:
+    then:
+      - switch.turn_on: red
+      - delay: 50ms
+      - switch.turn_off: red
 
 wifi:
   ssid: !secret ssid
@@ -59,6 +64,7 @@ sensor:
     sensors:
       id: desk_control_height
       name: Desk Control Height
+      unit_of_measurement: "cm"
 
 switch:
   # id is wire color of "Desk Control 520"
