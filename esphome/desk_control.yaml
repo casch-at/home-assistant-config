@@ -10,6 +10,8 @@ esphome:
     board: az-delivery-devkit-v4
     board_build.mcu: esp32
     board_build.f_cpu: 240000000L
+  includes:
+    - desk_height_sensor.h
 
 wifi:
   ssid: !secret ssid
@@ -25,25 +27,41 @@ captive_portal:
 
 # Enable logging
 logger:
+  # Disable UART debug output on UART0
+  baud_rate: 0
+  # Default DEBUG -- VERY_VERBOSE, VERBOSE, DEBUG, INFO, WARN, ERROR, NONE
+  level: WARN
 
 # Enable Home Assistant API
 api:
   password: !secret password
 
+# Enable OTA update
 ota:
   password: !secret password
 
-binary_sensor:
-  - platform: gpio
-    pin:
-      number: 35
-      mode: INPUT
-      inverted: True
-    name: "Desk Control Display"
-    id: desk_control_display
+# UART2
+uart:
+  baud_rate: 1000
+  rx_pin: 16
+  data_bits: 8
+  parity: EVEN
+  stop_bits: 1
+  id: desk_height_uart_bus
+
+# Custom height sensor
+sensor:
+  - platform: custom
+    lambda: |-
+      auto desk_height_sensor = new DeskHeightSensor(id(desk_height_uart_bus));
+      App.register_component(desk_height_sensor);
+      return {desk_height_sensor};
+    sensors:
+      id: desk_control_height
+      name: Desk Control Height
 
 switch:
-  # id is wire color
+  # id is wire color of "Desk Control 520"
   - platform: gpio
     pin: 32
     id: blue
@@ -57,6 +75,7 @@ switch:
     pin: 26
     id: red
 
+  # Define button
   - platform: template
     id: desk_control_button_1
     name: ${base_button_name} 1
