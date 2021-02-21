@@ -64,7 +64,7 @@ calendar:
         search: '^Schwarzgruber_HO'
 
 light: !include lights.yaml
-
+cover: !include covers.yaml
 
 # logger:
 #   default: info

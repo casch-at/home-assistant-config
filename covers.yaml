@@ -1,0 +1,27 @@
+- platform: group
+  name: Office Roller Shutters
+  entities:
+    - cover.office_roller_shutter_left_level
+    - cover.office_roller_shutter_right_level
+
+- platform: group
+  name: Parlor Roller Shutters
+  entities:
+    - cover.parlor_roller_shutter_left_level
+    - cover.parlor_roller_shutter_right_level
+
+- platform: group
+  name: Lower Kitchen Roller Shutters
+  entities:
+    - cover.lower_kitchen_roller_shutter_left_level
+    - cover.lower_kitchen_roller_shutter_right_level
+
+- platform: group
+  name: Upstairs Roller Shutters
+  entities:
+    - cover.upstairs_roller_shutter_left_level
+    - cover.upstairs_roller_shutter_center_top_left_level
+    - cover.upstairs_roller_shutter_center_bottom_left_level
+    - cover.upstairs_roller_shutter_center_top_right_level
+    - cover.upstairs_roller_shutter_center_bottom_right_level
+    - cover.upstairs_roller_shutter_right_level
