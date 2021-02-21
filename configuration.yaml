@@ -16,10 +16,6 @@ wake_on_lan:
 tts:
   - platform: google_translate
 
-binary_sensor:
-  - platform: workday
-    country: AT
-
 # stream:
 
 # For onvif integration?
@@ -43,6 +39,7 @@ device_tracker:
     consider_home: 600
 
 sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
 lovelace: !include lovelace/lovelace.yaml
 switch: !include switch.yaml
 group: !include groups.yaml

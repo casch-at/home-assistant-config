@@ -23,6 +23,9 @@ desk_control:
   show_icon: true
   aspect_ratio: 1/1
   size: 50%
+  styles:
+    card:
+      - border-radius: 50%
 
 shutter_switch:
   template: embedded_card
@@ -34,7 +37,8 @@ name_card_round:
   color_type: card
   aspect_ratio: 1/1
   show_icon: false
-  # card_size: 40px
+  # size: 10px
+  # card_size: 10px
   styles:
     card:
       - border-radius: 50%
@@ -42,18 +46,41 @@ name_card_round:
       - font-size: 11px
       # - color: rgba(var(--rgb-primary-text-color), 1.2)
 
+shutter_card_base:
+  # color_type: card
+  aspect_ratio: 1/1
+  show_icon: true
+  card_size: 1
+  styles:
+    card:
+      - -webkit-box-shadow: none
+      - box-shadow: none
+      - border-radius: 50%
+  # styles:
+  #   card:
+  #     - border-radius: 50%
+  #     - border: 0.2em solid gray
+  #     - size: 10px
+  #     # - color: rgba(var(--rgb-primary-text-color), 1.2)
+
 shutter_card_up:
   icon: mdi:arrow-up
-  template: embedded_card
-  show_icon: true
+  template: shutter_card_base
   tap_action:
     action: call-service
     service: cover.open_cover
 
+shutter_card_stop:
+  icon: mdi:stop
+  template: shutter_card_base
+  # color: "#3800ff"
+  tap_action:
+    action: call-service
+    service: cover.stop_cover
+
 shutter_card_down:
   icon: mdi:arrow-down
-  template: embedded_card
-  show_icon: true
+  template: shutter_card_base
   tap_action:
     action: call-service
     service: cover.close_cover
@@ -62,31 +89,41 @@ shutter_base:
   styles:
     grid:
       - grid-template-areas: >-
-          "n n1 au ad"
-          "lu ld ru rd"
-      - grid-template-columns: 1fr 1fr 1fr 1fr
-      - grid-template-rows: min-content 1fr
+          "n ns n1 au as ad"
+          "lu ls ld ru rs rd"
+      - grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr
+      - grid-template-rows: min-content min-content
     name:
       - justify-self: start
-      - padding-left: 10px
-      - margin-top: -30px
+      - padding-left: 25px
+      # - margin-top: 3px
   custom_fields:
     au:
       card:
         type: custom:button-card
         template: shutter_card_up
-        size: 25%
-        color: green
+        # size: 25%
+        color: "#B9F18B"
     ad:
       card:
         type: custom:button-card
         template: shutter_card_down
-        size: 25%
-        color: green
+        # size: 25%
+        color: "#B9F18B"
+    as:
+      card:
+        type: custom:button-card
+        template: shutter_card_stop
+        # size: 25%
+        color: "#B9F18B"
     lu:
       card:
         type: custom:button-card
         template: shutter_card_up
+    ls:
+      card:
+        type: custom:button-card
+        template: shutter_card_stop
     ld:
       card:
         type: custom:button-card
@@ -95,6 +132,10 @@ shutter_base:
       card:
         type: custom:button-card
         template: shutter_card_up
+    rs:
+      card:
+        type: custom:button-card
+        template: shutter_card_stop
     rd:
       card:
         type: custom:button-card

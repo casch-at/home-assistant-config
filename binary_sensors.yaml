@@ -1,0 +1,14 @@
+- platform: template
+  sensors:
+    cover_operation_to_cold:
+      friendly_name: "Cover Operation To Cold"
+      unique_id: cover_operation_to_cold
+      device_class: cold
+      value_template: >-
+        {{
+          states('weather.home') == 'snowy' or
+          states('sensor.outdoor_temperature') | float < 2.0
+        }}
+
+- platform: workday
+  country: AT
