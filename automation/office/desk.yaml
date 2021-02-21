@@ -1,0 +1,61 @@
+- id: desk_height
+  alias: Desk height
+  description: ''
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: input_number.desk_height
+  condition: []
+    # - condition: template
+    #   value_template: >-
+    #     {{
+    #       states('sensor.desk_control_height') != 'unknown' and
+    #       states('switch.desk_control_up') != 'unknown' and
+    #       states('switch.desk_control_down') != 'unknown'
+    #     }}
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: >-
+                {{
+                  states('sensor.desk_control_height') | int < states('input_number.desk_height') | int
+                }}
+          sequence:
+            - service: switch.turn_off
+              data:
+                entity_id: switch.desk_control_button_down
+            - delay:
+                milliseconds: 150
+            - service: switch.turn_on
+              data:
+                entity_id: switch.desk_control_button_up
+            - wait_template: >-
+                {{
+                  (states('sensor.desk_control_height') | int + 1) == states('input_number.desk_height') | int
+                }}
+            - service: switch.turn_off
+              data:
+                entity_id: switch.desk_control_button_up
+        - conditions:
+            - condition: template
+              value_template: >-
+                {{
+                  states('sensor.desk_control_height') | int > states('input_number.desk_height') | int
+                }}
+          sequence:
+            - service: switch.turn_off
+              data:
+                entity_id: switch.desk_control_button_up
+            - delay:
+                milliseconds: 150
+            - service: switch.turn_on
+              entity_id: switch.desk_control_button_down
+            - wait_template: >-
+                {{
+                  (states('sensor.desk_control_height') | int - 1) == states('input_number.desk_height') | int
+                }}
+            - service: switch.turn_off
+              data:
+                entity_id: switch.desk_control_button_down
+      default: []

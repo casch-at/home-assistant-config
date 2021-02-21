@@ -314,6 +314,10 @@ cards:
                   template: desk_control
                   entity: switch.desk_control_button_down
 
+      - type: entities
+        entities:
+          - input_number.desk_height
+
       - type: grid
         columns: 7
         cards:
