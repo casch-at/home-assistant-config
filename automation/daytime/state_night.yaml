@@ -19,6 +19,9 @@
             states('binary_sensor.bedroom_window_sensor') == 'off'
           }}
       sequence:
+      - service: cover.stop_cover
+        data:
+          entity_id: cover.bedroom_roller_shutter_level
       - service: cover.close_cover
         data:
           entity_id: cover.bedroom_roller_shutter_level
