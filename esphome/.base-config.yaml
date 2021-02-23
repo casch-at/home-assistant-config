@@ -1,0 +1,22 @@
+wifi:
+  ssid: !secret ssid
+  password: !secret password
+  fast_connect: true
+
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: ${ap_ssid}
+    password: !secret ap_password
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret password
+
+ota:
+  password: !secret password

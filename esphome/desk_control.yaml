@@ -1,15 +1,11 @@
 substitutions:
+  name: "desk_control"
   base_button_name: "Desk Control Button"
+  ap_ssid: "Desk Control Fallback Hotspot"
+
 # See for reusing: https://esphome.io/guides/configuration-types.html#config-substitutions
 esphome:
-  name: desk_control
-  platform: ESP32
-  board: esp32dev
-  platformio_options:
-    platform: espressif32
-    board: az-delivery-devkit-v4
-    board_build.mcu: esp32
-    board_build.f_cpu: 240000000L
+  <<: !include .board-config.yaml
   includes:
     - desk_height_sensor.h
   on_boot:
@@ -22,32 +18,7 @@ esphome:
             - delay: 10ms
             - switch.turn_off: red
 
-wifi:
-  ssid: !secret ssid
-  password: !secret password
-  fast_connect: true
-
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "Desk Control Fallback Hotspot"
-    password: !secret ap_password
-
-captive_portal:
-
-# Enable logging
-logger:
-  # Disable UART debug output on UART0
-  baud_rate: 0
-  # Default DEBUG -- VERY_VERBOSE, VERBOSE, DEBUG, INFO, WARN, ERROR, NONE
-  level: WARN
-
-# Enable Home Assistant API
-api:
-  password: !secret password
-
-# Enable OTA update
-ota:
-  password: !secret password
+<<: !include .base-config.yaml
 
 # UART2
 uart:
