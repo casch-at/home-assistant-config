@@ -95,6 +95,7 @@
             light.front_floor:
               brightness: 254
               color_temp: 271
+              state: 'on'
     default: []
   mode: queued
   max: 10
