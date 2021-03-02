@@ -13,6 +13,13 @@ captive_portal:
 
 # Enable logging
 logger:
+  # level: NONE
+  # level: ERROR
+  # level: WARN
+  # level: INFO
+  level: DEBUG # Default
+  # level: VERBOSE
+  # level: VERY_VERBOSE
 
 # Enable Home Assistant API
 api:
