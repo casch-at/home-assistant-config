@@ -23,7 +23,7 @@ cards:
                 else if (states['binary_sensor.fan_speed_high'].state == 'on')
                   return "mdi:fan-speed-3";
                 else
-                  return "mdi:fan";
+                  return "mdi:fan-off";
               ]]]
             state:
               - operator: template
@@ -65,7 +65,6 @@ cards:
           # - type: custom:button-card
           #   template: icon_only
           #   entity: switch.off
-
           # - type: custom:button-card
           #   template: icon_only
           #   entity: binary_sensor.fan_speed_low
@@ -86,7 +85,7 @@ cards:
             entity: binary_sensor.fan_mode_fan
           - type: custom:button-card
             template: icon_only
-            entity: binary_sensor.fan_mode_tree
+            entity: binary_sensor.fan_mode_night
           - type: custom:button-card
             template: icon_only
-            entity: binary_sensor.fan_mode_night
+            entity: binary_sensor.fan_mode_tree
