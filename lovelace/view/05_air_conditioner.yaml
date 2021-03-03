@@ -66,6 +66,9 @@ cards:
                              states['binary_sensor.fan_speed_high'].state == 'on'));
                   ]]]
                 color: var(--paper-item-icon-active-color)
+            double_tap_action:
+              service_data:
+                entity_id: entity
           - type: custom:button-card
             template: icon_only
             entity: switch.fan_swing_switch
