@@ -42,6 +42,30 @@ cards:
           - type: custom:button-card
             template: icon_only
             entity: switch.fan_mode_switch
+            icon: >-
+              [[[
+                if (states['binary_sensor.fan_mode_fan'].state == 'on')
+                  return "mdi:alpha-f-circle-outline";
+                else if (states['binary_sensor.fan_mode_tree'].state == 'on')
+                  return "mdi:alpha-t-circle-outline";
+                else if (states['binary_sensor.fan_mode_night'].state == 'on')
+                  return "mdi:alpha-n-circle-outline";
+                else
+                  return "mdi:form-select";
+              ]]]
+            state:
+              - operator: template
+                value: >-
+                  [[[
+                    return ((states['binary_sensor.fan_mode_fan'].state == 'on' ||
+                            states['binary_sensor.fan_mode_tree'].state == 'on' ||
+                            states['binary_sensor.fan_mode_night'].state == 'on')
+                            &&
+                            (states['binary_sensor.fan_speed_low'].state == 'on' ||
+                             states['binary_sensor.fan_speed_mid'].state == 'on' ||
+                             states['binary_sensor.fan_speed_high'].state == 'on'));
+                  ]]]
+                color: var(--paper-item-icon-active-color)
           - type: custom:button-card
             template: icon_only
             entity: switch.fan_swing_switch
@@ -62,30 +86,3 @@ cards:
                     return states['binary_sensor.fan_mist'].state == 'on';
                   ]]]
                 color: var(--paper-item-icon-active-color)
-          # - type: custom:button-card
-          #   template: icon_only
-          #   entity: switch.off
-          # - type: custom:button-card
-          #   template: icon_only
-          #   entity: binary_sensor.fan_speed_low
-          # - type: custom:button-card
-          #   template: icon_only
-          #   entity: binary_sensor.fan_speed_mid
-          # - type: custom:button-card
-          #   template: icon_only
-          #   entity: binary_sensor.fan_speed_high
-          # - type: custom:button-card
-          #   template: icon_only
-          #   entity: binary_sensor.fan_mist
-          # - type: custom:button-card
-          #   template: icon_only
-          #   entity: binary_sensor.fan_swing
-          - type: custom:button-card
-            template: icon_only
-            entity: binary_sensor.fan_mode_fan
-          - type: custom:button-card
-            template: icon_only
-            entity: binary_sensor.fan_mode_night
-          - type: custom:button-card
-            template: icon_only
-            entity: binary_sensor.fan_mode_tree
