@@ -55,3 +55,9 @@ all_lights_extra:
   entities:
     - switch.nightstand_switch
     - light.all_lights
+
+door_window_sensor:
+  name: Door or Window Open Sensors
+  entities:
+    - binary_sensor.balcony_door_sensor
+    - binary_sensor.bedroom_window_sensor
