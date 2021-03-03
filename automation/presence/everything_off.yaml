@@ -7,47 +7,49 @@
     to: 'off'
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.front_floor_switch_active
-        state: 'on'
-      sequence:
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.front_floor_switch_active
-    default: []
+
+  # Reset lower kitchen switch helper variables
   - service: script.reset_lower_kitchen_switch_active_states
+
+  # Lights
   - service: homeassistant.turn_off
     data:
       entity_id: group.all_lights_extra
+
+  # Group devices
   - service: homeassistant.turn_off
     data:
       entity_id: group.devices
   - delay: 00:00:05
+
+  # Desk and laptop
   - choose:
     - conditions:
       - condition: template
         value_template: >-
           {{
-          states('device_tracker.lap_02_lan_router') == 'not_home' and
-          states('device_tracker.lap_02_wlan_router') == 'not_home' and
-          states('device_tracker.work_wlan_router') == 'not_home'
+            is_state('device_tracker.lap_02_lan_router', 'not_home') and
+            is_state('device_tracker.lap_02_wlan_router', 'not_home') and
+            is_state('device_tracker.work_wlan_router', 'not_home')
           }}
       sequence:
       - service: homeassistant.turn_off
         data:
           entity_id: group.desk_and_laptop
     default: []
+
+  # Switch tower off
   - choose:
     - conditions:
       - condition: template
-        value_template: '{{ states(''device_tracker.tower_lan_router'') == ''not_home'' }}'
+        value_template: '{{ is_state(''device_tracker.tower_lan_router'', ''not_home'') }}'
       sequence:
       - service: switch.turn_off
         data:
           entity_id: switch.tower
     default: []
+
+  # Switches off
   - service: switch.turn_off
     data:
       entity_id:
@@ -55,4 +57,5 @@
         - switch.tv_switch
         - switch.tv_usb
         - switch.nightstand_usb
+
   mode: single
