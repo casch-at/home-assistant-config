@@ -55,6 +55,11 @@ cards:
               service_data:
                 device: soundbar
                 command: volume_down
+            hold_action:
+              service_data:
+                device: soundbar
+                command: volume_down
+              repeat: 500
           - type: custom:button-card
             icon: mdi:volume-plus
             template: remote_parlor
@@ -62,6 +67,11 @@ cards:
               service_data:
                 device: soundbar
                 command: volume_up
+            hold_action:
+              service_data:
+                device: soundbar
+                command: volume_up
+              repeat: 500
           - type: custom:button-card
             color_type: blank-card
 
@@ -159,6 +169,11 @@ cards:
               service_data:
                 device: tv
                 command: volume_down
+            hold_action:
+              service_data:
+                device: tv
+                command: volume_down
+              repeat: 500
           - type: custom:button-card
             icon: mdi:volume-plus
             template: remote_parlor
@@ -166,5 +181,10 @@ cards:
               service_data:
                 device: tv
                 command: volume_up
+            hold_action:
+              service_data:
+                device: tv
+                command: volume_up
+              repeat: 500
           - type: custom:button-card
             color_type: blank-card
