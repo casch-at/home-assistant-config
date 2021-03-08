@@ -117,17 +117,17 @@ binary_sensor:
         - script.execute: script_initial_mode
 
   - platform: gpio
-    pin: 32
+    pin: 39
     name: Speed Low
     id: fan_speed_low
 
   - platform: gpio
-    pin: 35
+    pin: 34
     name: Speed Mid
     id: fan_speed_mid
 
   - platform: gpio
-    pin: 34
+    pin: 35
     name: Speed High
     id: fan_speed_high
 
@@ -155,7 +155,7 @@ binary_sensor:
 
   # Swing status
   - platform: gpio
-    pin: 39
+    pin: 32
     name: Swing
     id: fan_swing
 
