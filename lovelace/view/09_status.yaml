@@ -38,7 +38,7 @@ cards:
             template: name_card_round
             state:
               - value: 1
-                operator: >
+                operator: '>='
                 color: var(--paper-item-icon-active-color)
               - value: 0
                 color: var( --ha-card-background, var(--card-background-color, white) )
