@@ -44,42 +44,6 @@
               {{ state_attr('light.bathroom', 'color_temp') + 30 }}
             {% endif %}
 
-    # Toggle ceiling lights
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event | int == 2002 }}'
-      sequence:
-      - choose:
-        - conditions:
-          - condition: state
-            entity_id: light.bathroom
-            state: 'off'
-          sequence:
-          - service: scene.apply
-            data:
-              entities:
-                light.bathroom:
-                  brightness: |
-                    {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-                      254
-                    {% elif states('input_select.daytime') == 'Evening' -%}
-                      130
-                    {% elif states('input_select.daytime') == 'Night' -%}
-                      80
-                    {% endif %}
-                  color_temp: |
-                    {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-                      150
-                    {% elif states('input_select.daytime') == 'Evening' -%}
-                      400
-                    {% elif states('input_select.daytime') == 'Night' -%}
-                      480
-                    {% endif %}
-                  state: 'on'
-        default:
-        - service: light.turn_off
-          entity_id: light.bathroom
-
     # Brightness up
     - conditions:
       - condition: template
@@ -97,53 +61,34 @@
             {% endif %}
 
     # Turn left <-> right lights on
+    # Toggle ceiling lights
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+        value_template: >-
+          {% set event = trigger.event.data.event | int %}
+          {{
+            event == 3002 or event == 2002
+          }}
       sequence:
-      - choose:
-        - conditions:
-          - condition: or
-            conditions:
-            - condition: state
-              entity_id: light.bathroom
-              state: 'off'
-            - condition: and
-              conditions:
-                - condition: state
-                  entity_id: light.bathroom_back_left
-                  state: 'on'
-                - condition: state
-                  entity_id: light.bathroom_front_left
-                  state: 'on'
-            - condition: template
-              value_template: '{{ state_attr("light.bathroom", "all_on") }}'
-          sequence:
-          - service: light.turn_on
-            data:
-              entity_id: light.bathroom_back_right
-          - service: light.turn_on
-            data:
-              entity_id: light.bathroom_front_right
-          - service: light.turn_off
-            data:
-              entity_id: light.bathroom_front_left
-          - service: light.turn_off
-            data:
-              entity_id: light.bathroom_back_left
-        default:
-        - service: light.turn_on
-          data:
-            entity_id: light.bathroom_front_left
-        - service: light.turn_on
-          data:
-            entity_id: light.bathroom_back_left
-        - service: light.turn_off
-          data:
-            entity_id: light.bathroom_back_right
-        - service: light.turn_off
-          data:
-            entity_id: light.bathroom_front_right
+      - service: script.bathroom_switch_helper_script
+        data:
+          event: '{{ trigger.event.data.event | int }}'
+          brightness: >-
+            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+              254
+            {% elif states('input_select.daytime') == 'Evening' -%}
+              130
+            {% elif states('input_select.daytime') == 'Night' -%}
+              80
+            {% endif %}
+          color_temp: >-
+            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+              150
+            {% elif states('input_select.daytime') == 'Evening' -%}
+              400
+            {% elif states('input_select.daytime') == 'Night' -%}
+              480
+            {% endif %}
 
     # Color temperature colder
     - conditions:
