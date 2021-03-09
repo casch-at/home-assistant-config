@@ -151,11 +151,11 @@ cards:
               action: navigate
               navigation_path: /lovelace/blinds
           - type: custom:button-card
-            icon: mdi:air-conditioner
+            icon: mdi:home-thermometer
             template: icon_only
             tap_action:
               action: navigate
-              navigation_path: /lovelace/ac
+              navigation_path: /lovelace/temperature
           - type: custom:button-card
             icon: mdi:transmission-tower
             template: icon_only
