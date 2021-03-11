@@ -119,17 +119,18 @@
       state: 'on'
   icon: mdi:stairs
 - id: '1602355780411'
-  name: Toilet
+  name: Night Toilet Light
   entities:
     light.stairs_led:
-      min_mireds: 155
-      max_mireds: 495
+      min_mireds: 140
+      max_mireds: 650
       effect_list:
       - colorloop
       brightness: 12
       color_temp: 495
       is_deconz_group: false
-      friendly_name: Stairs LED-Stripe
+      friendly_name: Stairs
+      icon: mdi:stairs
       supported_features: 63
       state: 'on'
   icon: hass:toilet
@@ -181,7 +182,7 @@
       state: 'on'
   icon: mdi:head-heart
 - id: '1607445104403'
-  name: Office work light
+  name: Office Work Light
   entities:
     light.office_led:
       min_mireds: 155
@@ -192,7 +193,7 @@
       color_temp: 155
       is_deconz_group: false
       friendly_name: Office
-      icon: mdi:led-strip-variant
+      icon: mdi:desk
       supported_features: 63
       state: 'on'
   icon: mdi:desk
