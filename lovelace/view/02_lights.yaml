@@ -17,10 +17,102 @@ cards:
             entity: light.stairs_led
             icon: mdi:stairs
             template: icon_only_more_info
+            name: 'S'
+            show_name: true
           - type: custom:button-card
             entity: light.office_led
             icon: mdi:desk
             template: icon_only_more_info
+            name: 'D'
+            show_name: true
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFFFFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_work_light
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#A54CFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_purple
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#00FF41"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_green
+          - type: custom:button-card
+            entity: light.stairs_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFFFFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.stairs_morning_light
+          - type: custom:button-card
+            entity: light.stairs_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFC8C8"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.stairs_night
+          - type: custom:button-card
+            entity: light.stairs_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#00FF41"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.stairs_green
+          - type: custom:button-card
+            entity: light.stairs_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#0A00FF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.stairs_blue
+          - type: custom:button-card
+            entity: light.stairs_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#A54CFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.stairs_purple
 
       - type: grid
         columns: 1
@@ -33,6 +125,8 @@ cards:
             entity: light.parlor_shelve
             template: icon_only_more_info
             icon: mdi:library-shelves
+            name: 'S'
+            show_name: true
           - type: custom:button-card
             entity: light.parlor_plant_right
             template: icon_only_more_info
@@ -45,6 +139,39 @@ cards:
             icon: mdi:flower
             name: 'T'
             show_name: true
+          - type: custom:button-card
+            entity: light.parlor_plants
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#A54CFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.parlor_purple
+          - type: custom:button-card
+            entity: light.parlor_plants
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#B6FFC8"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.parlor_light_green
+          - type: custom:button-card
+            entity: light.parlor
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#E2FF91"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.parlor_tv
 
       - type: grid
         columns: 1
@@ -59,7 +186,6 @@ cards:
           - type: custom:button-card
             entity: light.bathroom
             template: icon_only_more_info
-            icon: mdi:shower
           - type: custom:button-card
             entity: light.bathroom_front_left
             template: icon_only_more_info
@@ -80,6 +206,28 @@ cards:
             template: icon_only_more_info
             name: 'BR'
             show_name: true
+          - type: custom:button-card
+            entity: light.bathroom
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFA69E"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.bathroom_bath
+          - type: custom:button-card
+            entity: light.bathroom
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFFFFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.bathroom_morning
 
       - type: grid
         columns: 1

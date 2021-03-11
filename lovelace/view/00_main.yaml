@@ -221,30 +221,6 @@ cards:
               # service_data:
               #   entity_id: switch.aroma_diffuser_light
           - type: custom:button-card
-            entity: scene.bathroom_bath
-            template: icon_only_more_info
-            icon: mdi:hot-tub
-            styles:
-              icon:
-                - color: "#FFA69E"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.bathroom_bath
-          - type: custom:button-card
-            entity: scene.bathroom_morning
-            template: icon_only_more_info
-            icon: mdi:hot-tub
-            styles:
-              icon:
-                - color: "#3D48FF"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.bathroom_morning
-          - type: custom:button-card
             entity: scene.chill
             template: icon_only_more_info
             icon: mdi:palette
@@ -278,6 +254,28 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.night
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#A54CFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_purple
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFFFFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_work_light
 
       - type: grid
         columns: 1

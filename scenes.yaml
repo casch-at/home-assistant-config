@@ -106,17 +106,18 @@
   name: Stairs Morning Light
   entities:
     light.stairs_led:
-      min_mireds: 155
-      max_mireds: 495
+      min_mireds: 140
+      max_mireds: 650
       effect_list:
       - colorloop
       brightness: 254
       color_temp: 155
       is_deconz_group: false
-      friendly_name: Stairs LED-Stripe
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
-  icon: mdi:brightness-6
+  icon: mdi:stairs
 - id: '1602355780411'
   name: Toilet
   entities:
@@ -194,6 +195,7 @@
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
+  icon: mdi:desk
 - id: '1609433939121'
   name: Parlor TV
   entities:
@@ -227,6 +229,7 @@
       friendly_name: Shelve
       supported_features: 43
       state: 'on'
+  icon: mdi:sofa
 - id: '1610138242037'
   name: Bathroom Warm
   entities:
@@ -265,9 +268,11 @@
     light.stairs_led:
       min_mireds: 140
       max_mireds: 650
+      effect_list:
+      - colorloop
       brightness: 254
       hs_color:
-      - 135.059
+      - 135.294
       - 100
       rgb_color:
       - 0
@@ -279,65 +284,75 @@
       is_deconz_group: false
       friendly_name: Stairs
       icon: mdi:led-strip-variant
-      supported_features: 59
+      supported_features: 63
       state: 'on'
+  icon: mdi:stairs
 - id: '1612985635802'
   name: Stairs Blue
   entities:
     light.stairs_led:
       min_mireds: 140
       max_mireds: 650
+      effect_list:
+      - colorloop
       brightness: 254
       hs_color:
-      - 242.588
-      - 100
+      - 242.683
+      - 96.471
       rgb_color:
-      - 10
-      - 0
+      - 19
+      - 8
       - 255
       xy_color:
-      - 0.137
-      - 0.041
+      - 0.138
+      - 0.042
       is_deconz_group: false
       friendly_name: Stairs
       icon: mdi:led-strip-variant
-      supported_features: 59
+      supported_features: 63
       state: 'on'
+  icon: mdi:stairs
 - id: '1612985673557'
   name: Stairs Purple
   entities:
     light.stairs_led:
       min_mireds: 140
       max_mireds: 650
+      effect_list:
+      - colorloop
       brightness: 254
       hs_color:
-      - 269.663
-      - 69.804
+      - 270
+      - 69.02
       rgb_color:
-      - 165
-      - 76
+      - 166
+      - 78
       - 255
       xy_color:
-      - 0.262
-      - 0.125
+      - 0.263
+      - 0.127
       is_deconz_group: false
       friendly_name: Stairs
       icon: mdi:led-strip-variant
-      supported_features: 59
+      supported_features: 63
       state: 'on'
+  icon: mdi:stairs
 - id: '1612985714915'
   name: Stairs Night
   entities:
     light.stairs_led:
       min_mireds: 140
       max_mireds: 650
+      effect_list:
+      - colorloop
       brightness: 204
       color_temp: 397
       is_deconz_group: false
       friendly_name: Stairs
       icon: mdi:led-strip-variant
-      supported_features: 59
+      supported_features: 63
       state: 'on'
+  icon: mdi:stairs
 - id: '1614371683931'
   name: 'Parlor Light Green '
   entities:
@@ -362,3 +377,115 @@
       friendly_name: Plants
       supported_features: 63
       state: 'on'
+  icon: mdi:flower
+- id: '1615231929151'
+  name: test
+  entities:
+    light.bathroom_back_right:
+      min_mireds: 140
+      max_mireds: 650
+      brightness: 143
+      color_temp: 370
+      is_deconz_group: false
+      friendly_name: Bathroom Back Right
+      supported_features: 43
+      state: 'on'
+    light.bathroom_front_right:
+      min_mireds: 140
+      max_mireds: 650
+      brightness: 145
+      color_temp: 370
+      is_deconz_group: false
+      friendly_name: Bathroom Front Right
+      supported_features: 43
+      state: 'on'
+    light.bathroom_back_left:
+      min_mireds: 140
+      max_mireds: 650
+      is_deconz_group: false
+      friendly_name: Bathroom Back Left
+      supported_features: 43
+      state: 'off'
+    light.bathroom_front_left:
+      min_mireds: 140
+      max_mireds: 650
+      is_deconz_group: false
+      friendly_name: Bathroom Front Left
+      supported_features: 43
+      state: 'off'
+- id: '1615493477115'
+  name: Office Purple
+  entities:
+    light.office_led:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 270
+      - 69.02
+      rgb_color:
+      - 166
+      - 78
+      - 255
+      xy_color:
+      - 0.263
+      - 0.127
+      is_deconz_group: false
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
+      supported_features: 63
+      state: 'on'
+  icon: mdi:desk
+- id: '1615493508591'
+  name: Office Green
+  entities:
+    light.office_led:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 135.294
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 64
+      xy_color:
+      - 0.17
+      - 0.701
+      is_deconz_group: false
+      friendly_name: Stairs
+      icon: mdi:led-strip-variant
+      supported_features: 63
+      state: 'on'
+  icon: mdi:desk
+- id: '1615504295983'
+  name: Parlor Plants
+  entities:
+    light.parlor_plants:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 270
+      - 69.02
+      rgb_color:
+      - 166
+      - 78
+      - 255
+      xy_color:
+      - 0.263
+      - 0.127
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Plants
+      icon: mdi:flower
+      supported_features: 63
+      state: 'on'
+  icon: mdi:flower
