@@ -149,7 +149,7 @@ cards:
               action: call-service
               service: scene.turn_on
               service_data:
-                entity_id: scene.parlor_purple
+                entity_id: scene.parlor_plants_purple
           - type: custom:button-card
             entity: light.parlor_plants
             template: icon_only_more_info
@@ -160,7 +160,7 @@ cards:
               action: call-service
               service: scene.turn_on
               service_data:
-                entity_id: scene.parlor_light_green
+                entity_id: scene.parlor_plants_light_green
           - type: custom:button-card
             entity: light.parlor
             template: icon_only_more_info
