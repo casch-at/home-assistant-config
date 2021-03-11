@@ -25,7 +25,7 @@ cards:
                   entity_id: cover.bedroom_roller_shutter_level
               color: "#B9F18B"
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.bedroom_window_sensor'].state == 'on' ||
                       states['binary_sensor.cover_operation_to_cold'].state === 'on';
@@ -44,7 +44,7 @@ cards:
                 service_data:
                   entity_id: cover.bedroom_roller_shutter_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.bedroom_window_sensor'].state == 'on' ||
                       states['binary_sensor.cover_operation_to_cold'].state === 'on';
@@ -63,7 +63,7 @@ cards:
                     - cover.office_roller_shutter_left_level
                     - cover.office_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -83,7 +83,7 @@ cards:
                     - cover.office_roller_shutter_left_level
                     - cover.office_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -94,7 +94,7 @@ cards:
                 service_data:
                   entity_id: cover.office_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -110,7 +110,7 @@ cards:
                 service_data:
                   entity_id: cover.office_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -121,7 +121,7 @@ cards:
                 service_data:
                   entity_id: cover.office_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -137,7 +137,7 @@ cards:
                 service_data:
                   entity_id: cover.office_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -155,7 +155,7 @@ cards:
                     - cover.parlor_roller_shutter_left_level
                     - cover.parlor_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -175,7 +175,7 @@ cards:
                     - cover.parlor_roller_shutter_left_level
                     - cover.parlor_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -186,7 +186,7 @@ cards:
                 service_data:
                   entity_id: cover.parlor_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -202,7 +202,7 @@ cards:
                 service_data:
                   entity_id: cover.parlor_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -213,7 +213,7 @@ cards:
                 service_data:
                   entity_id: cover.parlor_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -229,7 +229,7 @@ cards:
                 service_data:
                   entity_id: cover.parlor_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -247,7 +247,7 @@ cards:
                     - cover.lower_kitchen_roller_shutter_left_level
                     - cover.lower_kitchen_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -267,7 +267,7 @@ cards:
                     - cover.lower_kitchen_roller_shutter_left_level
                     - cover.lower_kitchen_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -278,7 +278,7 @@ cards:
                 service_data:
                   entity_id: cover.lower_kitchen_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -294,7 +294,7 @@ cards:
                 service_data:
                   entity_id: cover.lower_kitchen_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -305,7 +305,7 @@ cards:
                 service_data:
                   entity_id: cover.lower_kitchen_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -321,7 +321,7 @@ cards:
                 service_data:
                   entity_id: cover.lower_kitchen_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -349,7 +349,7 @@ cards:
                     - cover.upstairs_roller_shutter_center_bottom_left_level
                     - cover.upstairs_roller_shutter_center_bottom_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -373,7 +373,7 @@ cards:
                     - cover.upstairs_roller_shutter_center_bottom_left_level
                     - cover.upstairs_roller_shutter_center_bottom_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -384,7 +384,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_top_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -400,7 +400,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_top_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -411,7 +411,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_top_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -427,7 +427,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_top_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -440,7 +440,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_bottom_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -460,7 +460,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_bottom_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -473,7 +473,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_bottom_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -493,7 +493,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_center_bottom_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -511,7 +511,7 @@ cards:
                     - cover.upstairs_roller_shutter_left_level
                     - cover.upstairs_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -531,7 +531,7 @@ cards:
                     - cover.upstairs_roller_shutter_left_level
                     - cover.upstairs_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -542,7 +542,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -558,7 +558,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_left_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -569,7 +569,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
@@ -585,7 +585,7 @@ cards:
                 service_data:
                   entity_id: cover.upstairs_roller_shutter_right_level
               lock:
-                enabled: >
+                enabled: >-
                   [[[
                     return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
