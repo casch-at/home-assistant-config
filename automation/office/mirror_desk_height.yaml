@@ -1,0 +1,25 @@
+- id: mirror_desk_height
+  alias: Mirror Sensor Desk Height with Input Number Desk Height
+  description: Insure input_number.desk_height gets updated when desk height changes without using the input_number.desk_height entity
+  mode: single
+  trigger:
+  - platform: template
+    value_template: >-
+      {{
+        states('sensor.desk_control_height') != states('input_number.desk_height') | int
+      }}
+    for: 15
+  condition: []
+  action:
+  - wait_template: "{{ state_attr('automation.desk_height', 'current') == 0 }}"
+  - service: automation.turn_off
+    target:
+      entity_id: automation.desk_height
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.desk_height
+    data:
+      value: "{{ states('sensor.desk_control_height') }}"
+  - service: automation.turn_on
+    target:
+      entity_id: automation.desk_height
