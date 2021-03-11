@@ -218,6 +218,7 @@
       is_deconz_group: true
       all_on: true
       friendly_name: Plants
+      icon: mdi:flower
       supported_features: 63
       state: 'on'
     light.parlor_shelve:
@@ -227,6 +228,7 @@
       color_temp: 370
       is_deconz_group: false
       friendly_name: Shelve
+      icon: mdi:library-shelves
       supported_features: 43
       state: 'on'
   icon: mdi:sofa
@@ -354,7 +356,7 @@
       state: 'on'
   icon: mdi:stairs
 - id: '1614371683931'
-  name: 'Parlor Light Green '
+  name: 'Parlor Plants Light Green '
   entities:
     light.parlor_plants:
       min_mireds: 153
@@ -375,6 +377,7 @@
       is_deconz_group: true
       all_on: true
       friendly_name: Plants
+      icon: mdi:flower
       supported_features: 63
       state: 'on'
   icon: mdi:flower
@@ -464,24 +467,24 @@
       state: 'on'
   icon: mdi:desk
 - id: '1615504295983'
-  name: Parlor Plants
+  name: Parlor Plants Purple
   entities:
     light.parlor_plants:
       min_mireds: 153
       max_mireds: 500
       effect_list:
       - colorloop
-      brightness: 254
+      brightness: 163
       hs_color:
-      - 270
-      - 69.02
+      - 271.765
+      - 100
       rgb_color:
-      - 166
-      - 78
+      - 135
+      - 0
       - 255
       xy_color:
-      - 0.263
-      - 0.127
+      - 0.227
+      - 0.082
       is_deconz_group: true
       all_on: true
       friendly_name: Plants
