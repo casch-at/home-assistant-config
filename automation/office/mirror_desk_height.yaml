@@ -6,12 +6,24 @@
   - platform: template
     value_template: >-
       {{
-        states('sensor.desk_control_height') != states('input_number.desk_height') | int
+        states('sensor.desk_control_height') | int != states('input_number.desk_height') | int and
+        states('switch.desk_control_button_1') == 'off' and
+        states('switch.desk_control_button_2') == 'off' and
+        states('switch.desk_control_button_3') == 'off' and
+        states('switch.desk_control_button_4') == 'off' and
+        states('switch.desk_control_button_up') == 'off' and
+        states('switch.desk_control_button_down') == 'off'
       }}
-    for: 15
-  condition: []
+    for: 1
+  condition:
+  # If height changed due to a change of the input_number.desk_height variable,
+  # that variable will have the correct value already.
+  - condition: template
+    value_template: >-
+      {{
+        states('sensor.desk_control_height') | int != states('input_number.desk_height') | int
+      }}
   action:
-  - wait_template: "{{ state_attr('automation.desk_height', 'current') == 0 }}"
   - service: automation.turn_off
     target:
       entity_id: automation.desk_height

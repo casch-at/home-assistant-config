@@ -6,13 +6,6 @@
   - platform: state
     entity_id: input_number.desk_height
   condition: []
-    # - condition: template
-    #   value_template: >-
-    #     {{
-    #       states('sensor.desk_control_height') != 'unknown' and
-    #       states('switch.desk_control_up') != 'unknown' and
-    #       states('switch.desk_control_down') != 'unknown'
-    #     }}
   action:
   - choose:
     - conditions:
