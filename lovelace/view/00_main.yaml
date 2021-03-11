@@ -135,11 +135,11 @@ cards:
                   - value: 'Night'
                     color: var(--paper-item-icon-active-color)
                 tap_action:
-                  action: more-info
-                  entity: input_select.daytime
-                hold_action:
                   action: navigate
                   navigation_path: /lovelace/status
+                hold_action:
+                  action: more-info
+                  entity: input_select.daytime
                 double_tap_action:
                   action: call-service
                   service: input_select.select_option
