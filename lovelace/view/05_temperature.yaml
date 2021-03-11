@@ -8,13 +8,22 @@ cards:
     columns: 1
     square: false
     cards:
-
-#      - type: custom:mini-climate
-#        entity: climate.heating_thermostat
-#            hide: on
-      - type: thermostat
+      - type: custom:simple-thermostat
         entity: climate.heating
         name: Heating Thermostat
+        #show_header: false
+        #step_layout: row
+        control:
+          _headings: false
+          _names: false
+          presets: false
+          hvac:
+            auto:
+              icon: mdi:calendar-clock
+
+#      - type: thermostat
+#        entity: climate.heating
+#        name: Heating Thermostat
 
       - type: grid
         columns: 4
@@ -112,6 +121,7 @@ cards:
                 "n4 t4 h4 p4 l4"
                 "n1 t1 h1 p1 l1"
                 "n3 t3 h3 p3 l3"
+# "n9 t9 h9 p9 l9"
             - grid-template-columns: min-content 1fr 1fr 1fr 1fr
             - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
           custom_fields:
@@ -147,6 +157,10 @@ cards:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
+#            n9:
+#              - justify-self: start
+#              - padding-left: 10px
+#              - font-weight: bold
             tn:
               - font-weight: bold
             hn:
@@ -168,6 +182,7 @@ cards:
           n6: 'Bedroom'
           n7: 'Parlor'
           n8: 'Bathroom'
+#          n9: 'Heating Therm.'
           l1:
             card:
                 type: custom:button-card
@@ -278,3 +293,9 @@ cards:
                 type: custom:button-card
                 entity: sensor.bathroom_pressure
                 template: embedded_card
+#          t9:
+#            card:
+#                type: custom:button-card
+#                entity: sensor.heating_temperature
+#                template: embedded_card
+
