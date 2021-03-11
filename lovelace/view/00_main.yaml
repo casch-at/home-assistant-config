@@ -14,27 +14,92 @@ cards:
     square: false
     cards:
       - type: grid
+        columns: 6
+        cards:
+          - type: custom:button-card
+            entity: group.desk_and_laptop
+            template: icon_only_more_info
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: group.desk_and_laptop
+              confirmation:
+                text: Do you really want to turn on/off office?
+            hold_action:
+              entity: light.office_led
+          - type: custom:button-card
+            entity: group.parlor
+            template: icon_only_more_info
+            hold_action:
+              entity: light.parlor
+          - type: custom:button-card
+            entity: switch.tv_switch
+            template: icon_only
+            tap_action:
+              action: call-service
+              service: script.tv_off_on
+            hold_action:
+              action: navigate
+              navigation_path: /lovelace/tv
+            lock:
+              enabled: >
+                [[[
+                  return states['script.tv_off_on'].state == "on";
+                ]]]
+          - type: custom:button-card
+            icon: mdi:blinds
+            template: icon_only
+            color: green
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/blinds
+            triggers_update:
+              - binary_sensor.cover_operation_to_cold
+            state:
+              - operator: template
+                value: >-
+                  [[[
+                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                  ]]]
+                color: red
+
+          - type: custom:button-card
+            icon: mdi:home-thermometer
+            template: icon_only
+            color: green
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/temperature
+            triggers_update:
+              - climate.heating
+            state:
+              - operator: template
+                value: >-
+                  [[[
+                    return states['climate.heating'].attributes.hvac_action === 'heating';
+                  ]]]
+                color: red
+              # TODO(cschwarzgruber): Get state of ac unit, if running it should draw the icon in blue
+              # - operator: template
+              #   value: >-
+              #     [[[
+              #       return states['climate.heating'].attributes.hvac_action == 'idle'
+              #     ]]]
+              #   color: blue
+          - type: custom:button-card
+            icon: mdi:transmission-tower
+            template: icon_only
+            color: green
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/energy
+
+      - type: grid
         cards:
           - type: grid
             columns: 2
             cards:
-              - type: custom:button-card
-                entity: group.desk_and_laptop
-                template: icon_only_more_info
-                tap_action:
-                  action: call-service
-                  service: homeassistant.toggle
-                  service_data:
-                    entity_id: group.desk_and_laptop
-                  confirmation:
-                    text: Do you really want to turn on/off office?
-                hold_action:
-                  entity: light.office_led
-              - type: custom:button-card
-                entity: group.parlor
-                template: icon_only_more_info
-                hold_action:
-                  entity: light.parlor
               - type: custom:button-card
                 entity: group.bedroom
                 template: icon_only
@@ -42,8 +107,14 @@ cards:
                 entity: light.bathroom
                 template: icon_only_more_info
                 icon: mdi:shower
-
-
+              - type: custom:button-card
+                entity: light.lower_kitchen
+                template: icon_only_more_info
+                icon: mdi:coffee
+              - type: custom:button-card
+                entity: light.front_floor
+                template: icon_only_more_info
+                icon: mdi:door
           - type: grid
             columns: 1
             cards:
@@ -74,7 +145,6 @@ cards:
                       Do you really want to set the day state to "Night"?
 
                       This turns all lights and switches off!
-
           - type: grid
             columns: 2
             cards:
@@ -116,52 +186,6 @@ cards:
                   action: navigate
                   navigation_path: /lovelace/cameras
 
-
-      - type: grid
-        columns: 6
-        cards:
-          - type: custom:button-card
-            entity: light.lower_kitchen
-            template: icon_only_more_info
-            icon: mdi:coffee
-
-          - type: custom:button-card
-            entity: light.front_floor
-            template: icon_only_more_info
-            icon: mdi:door
-
-          - type: custom:button-card
-            entity: switch.tv_switch
-            template: icon_only
-            tap_action:
-              action: call-service
-              service: script.tv_off_on
-            hold_action:
-              action: navigate
-              navigation_path: /lovelace/tv
-            lock:
-              enabled: >
-                [[[
-                  return states['script.tv_off_on'].state == "on";
-                ]]]
-          - type: custom:button-card
-            icon: mdi:blinds
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/blinds
-          - type: custom:button-card
-            icon: mdi:home-thermometer
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/temperature
-          - type: custom:button-card
-            icon: mdi:transmission-tower
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/energy
 
       - type: grid
         columns: 7

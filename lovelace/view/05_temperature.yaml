@@ -6,9 +6,15 @@ badges: []
 cards:
   - type: grid
     columns: 1
+    square: false
     cards:
+
+#      - type: custom:mini-climate
+#        entity: climate.heating_thermostat
+#            hide: on
       - type: thermostat
-        entity: climate.heating_thermostat
+        entity: climate.heating
+        name: Heating Thermostat
 
       - type: grid
         columns: 7

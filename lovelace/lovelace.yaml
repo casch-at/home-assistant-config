@@ -8,8 +8,8 @@ resources:
     # type: module
   - url: /hacsfiles/button-card/button-card.js
     type: module
-  # - url: /hacsfiles/mini-climate-card/mini-climate-card-bundle.js
-    # type: module
+  - url: /hacsfiles/mini-climate-card/mini-climate-card-bundle.js
+    type: module
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
     type: module
   # - url: /hacsfiles/mini-humidifier/mini-humidifier-bundle.js
