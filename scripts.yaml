@@ -107,13 +107,13 @@ tv_off_on:
       - delay: 00:00:02
       - service: remote.send_command
         data:
-          entity_id: remote.broadlink_rm3_mini_office_remote
+          entity_id: remote.parlor_ir_remote
           device: tv
           command: power
     default:
     - service: remote.send_command
       data:
-        entity_id: remote.broadlink_rm3_mini_office_remote
+        entity_id: remote.parlor_ir_remote
         device: tv
         command: power
   mode: single

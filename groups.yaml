@@ -54,6 +54,7 @@ all_lights_extra:
   name: Lights and Switch Lights
   entities:
     - switch.nightstand_switch
+    - switch.upstairs_lamp_switch
     - light.all_lights
 
 door_window_sensor:

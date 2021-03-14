@@ -143,8 +143,9 @@ shutter_base:
 
 remote_parlor:
   aspect_ratio: 1/1
+  show_name: false
   tap_action:
     action: call-service
     service: remote.send_command
     service_data:
-      entity_id: remote.broadlink_rm3_mini_office_remote
+      entity_id: remote.parlor_ir_remote

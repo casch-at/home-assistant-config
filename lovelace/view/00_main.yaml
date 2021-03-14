@@ -37,15 +37,15 @@ cards:
             entity: switch.tv_switch
             template: icon_only
             tap_action:
+              action: navigate
+              navigation_path: /lovelace/tv            
+            double_tap_action:
               action: call-service
               service: script.tv_off_on
-            hold_action:
-              action: navigate
-              navigation_path: /lovelace/tv
             lock:
-              enabled: >
+              enabled: >-
                 [[[
-                  return states['script.tv_off_on'].state == "on";
+                  return states['script.tv_off_on'].state === "on";
                 ]]]
           - type: custom:button-card
             icon: mdi:blinds
@@ -155,35 +155,35 @@ cards:
             columns: 2
             cards:
               - type: custom:button-card
-                entity: light.stairs_led
-                template: icon_only_more_info
-                icon: mdi:stairs
-              - type: custom:button-card
-                entity: light.all_lights
-                template: icon_only
-                tap_action:
-                  action: call-service
-                  service: homeassistant.turn_off
-                  service_data:
-                    entity_id: group.all_lights_extra
-                  confirmation:
-                    text: Do you really want to turn off all lights?
-                hold_action:
-                  action: navigate
-                  navigation_path: /lovelace/lights
-              - type: custom:button-card
                 entity: group.switches
                 template: icon_only
                 tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/switches
+                double_tap_action:
                   action: call-service
                   service: homeassistant.turn_off
                   service_data:
                     entity_id: group.switches
                   confirmation:
                     text: Do you really want to turn all switches off?
-                hold_action:
+              - type: custom:button-card
+                entity: light.all_lights
+                template: icon_only
+                tap_action:
                   action: navigate
-                  navigation_path: /lovelace/switches
+                  navigation_path: /lovelace/lights
+                double_tap_action:
+                  action: call-service
+                  service: homeassistant.turn_off
+                  service_data:
+                    entity_id: group.all_lights_extra
+                  confirmation:
+                    text: Do you really want to turn off all lights?
+              - type: custom:button-card
+                entity: light.stairs_led
+                template: icon_only_more_info
+                icon: mdi:stairs
               - type: custom:button-card
                 icon: mdi:cctv
                 template: icon_only
@@ -215,11 +215,21 @@ cards:
             icon: mdi:air-humidifier
             hold_action:
               entity: light.aroma_diffuser_light
-              # action: call-service
-              # service: switch.toggle
-              # entity: switch.aroma_diffuser_light
-              # service_data:
-              #   entity_id: switch.aroma_diffuser_light
+          - type: custom:button-card
+            entity: remote.parlor_ir_remote
+            template: remote_parlor
+            icon: mdi:robot-vacuum-variant
+            tap_action:
+              service_data:
+                device: kevin
+                command: clean
+            double_tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.parlor_ir_remote
+                device: kevin
+                command: home                
           - type: custom:button-card
             entity: scene.chill
             template: icon_only_more_info
@@ -232,17 +242,17 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.chill
-          - type: custom:button-card
-            entity: scene.love
-            template: icon_only_more_info
-            styles:
-              icon:
-                - color: "#C10B0B"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.love
+        #   - type: custom:button-card
+        #     entity: scene.love
+        #     template: icon_only_more_info
+        #     styles:
+        #       icon:
+        #         - color: "#C10B0B"
+        #     tap_action:
+        #       action: call-service
+        #       service: scene.turn_on
+        #       service_data:
+        #         entity_id: scene.love
           - type: custom:button-card
             entity: scene.night
             template: icon_only_more_info
