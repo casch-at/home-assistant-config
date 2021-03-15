@@ -210,6 +210,14 @@ cards:
               confirmation:
                 text: Do you really want to wake the Tower?
           - type: custom:button-card
+            entity: switch.upstairs_lamp_switch
+            template: icon_only_more_info
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.upstairs_lamp_usb_switch
+          - type: custom:button-card
             entity: switch.aroma_diffuser
             template: icon_only_more_info
             icon: mdi:air-humidifier
@@ -229,19 +237,19 @@ cards:
               service_data:
                 entity_id: remote.parlor_ir_remote
                 device: kevin
-                command: home                
-          - type: custom:button-card
-            entity: scene.chill
-            template: icon_only_more_info
-            icon: mdi:palette
-            styles:
-              icon:
-                - color: "#0BC129"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.chill
+                command: home
+        #   - type: custom:button-card
+        #     entity: scene.chill
+        #     template: icon_only_more_info
+        #     icon: mdi:palette
+        #     styles:
+        #       icon:
+        #         - color: "#0BC129"
+        #     tap_action:
+        #       action: call-service
+        #       service: scene.turn_on
+        #       service_data:
+        #         entity_id: scene.chill
         #   - type: custom:button-card
         #     entity: scene.love
         #     template: icon_only_more_info

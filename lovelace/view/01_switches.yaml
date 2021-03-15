@@ -62,5 +62,5 @@ cards:
           entity: switch.upstairs_lamp_switch
           template: icon_only_more_info
         - type: custom:button-card
-          entity: switch.upstairs_lamp_usb
+          entity: switch.upstairs_lamp_usb_switch
           template: icon_only_more_info

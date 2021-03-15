@@ -1,6 +1,13 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+logbook:
+  exclude:
+    entity_globs:
+      - sensor.date_time_*
+    entities:
+      - binary_sensor.c200_camera_motion_detection
+
 homeassistant:
   customize: !include customize.yaml
   allowlist_external_dirs:
