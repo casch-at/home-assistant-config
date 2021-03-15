@@ -209,3 +209,9 @@ cards:
           - entity: sensor.balcony_door_sensor_battery_level
             name: Balcony multi sensor
             tap_action: more-info
+          - entity: sensor.doorbell_switch_battery_level
+            name: Doorbell switch
+            tap_action: more-info
+          - entity: sensor.office_magic_cube_battery_level
+            name: Office magic cube
+            tap_action: more-info

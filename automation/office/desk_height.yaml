@@ -19,7 +19,7 @@
         data:
           entity_id: switch.desk_control_button_down
       - delay:
-          milliseconds: 150
+          milliseconds: 250
       - service: switch.turn_on
         data:
           entity_id: switch.desk_control_button_up
@@ -41,7 +41,7 @@
         data:
           entity_id: switch.desk_control_button_up
       - delay:
-          milliseconds: 150
+          milliseconds: 250
       - service: switch.turn_on
         entity_id: switch.desk_control_button_down
       - wait_template: >-
