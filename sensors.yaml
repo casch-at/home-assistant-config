@@ -71,6 +71,13 @@
       device_class: power
       unit_of_measurement: 'kWh'
       unique_id: mysensor0007
+    sun_elevation:
+      friendly_name: "Sun Elevation"
+      value_template: >-
+        {{
+          state_attr('sun.sun', 'elevation') | float 
+        }}
+      unique_id: mysensor0008
 
 - platform: time_date
   display_options:
