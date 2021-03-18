@@ -75,9 +75,16 @@
       friendly_name: "Sun Elevation"
       value_template: >-
         {{
-          state_attr('sun.sun', 'elevation') | float 
+          state_attr('sun.sun', 'elevation') | float
         }}
       unique_id: mysensor0008
+    sun_azimuth:
+      friendly_name: "Sun Azimuth"
+      value_template: >-
+        {{
+          state_attr('sun.sun', 'azimuth') | float
+        }}
+      unique_id: mysensor0009
 
 - platform: time_date
   display_options:
