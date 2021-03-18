@@ -12,15 +12,16 @@
     value_template: |
       {% set gesture = trigger.event.data.gesture | int %}
       {{
-        gesture == 1 or gesture == 3 or
-        gesture == 4 or gesture == 7 or
-        gesture == 8
+        gesture == 1 or gesture == 2 or
+        gesture == 3 or gesture == 4 or 
+        gesture == 5 or gesture == 6 or
+        gesture == 7 or gesture == 8 
       }}
   action:
-  # - service: persistent_notification.create
-  #   data:
-  #     title: '{{ trigger.event.data.gesture }}'
-  #     message: '{{ trigger.event.data }}'
+#   - service: persistent_notification.create
+#     data:
+#       title: '{{ trigger.event.data.gesture }}'
+#       message: '{{ trigger.event.data }}'
 
   - choose:
     # GESTURE_SHAKE light on/off
