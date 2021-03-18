@@ -13,35 +13,35 @@
       {% set gesture = trigger.event.data.gesture | int %}
       {{
         gesture == 1 or gesture == 2 or
-        gesture == 3 or gesture == 4 or 
+        gesture == 3 or gesture == 4 or
         gesture == 5 or gesture == 6 or
-        gesture == 7 or gesture == 8 
+        gesture == 7 or gesture == 8
       }}
   action:
-#   - service: persistent_notification.create
-#     data:
-#       title: '{{ trigger.event.data.gesture }}'
-#       message: '{{ trigger.event.data }}'
+  # - service: persistent_notification.create
+  #   data:
+  #     title: '{{ trigger.event.data.gesture }}'
+  #     message: '{{ trigger.event.data }}'
 
+  # GESTURE_NONE 0
   - choose:
-    # GESTURE_SHAKE light on/off
+    # GESTURE_SHAKE next scene
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.gesture | int == 1 }}'
       sequence:
-      - choose:
-        - conditions:
-          - condition: state
-            entity_id: light.office_led
-            state: 'on'
-          sequence:
-          - service: light.turn_off
-            target:
-              entity_id: light.office_led
-        default:
-        - service: scene.turn_on
-          target:
-            entity_id: scene.office_work_light
+      - service: scene.turn_on
+        data:
+          entity_id: '{{ states("input_select.office_scenes") }}'
+      - service: input_select.select_next
+        data:
+          entity_id: input_select.office_scenes
+
+    # GESTURE_DROP 2
+    # - conditions:
+    #   - condition: template
+    #     value_template: '{{ trigger.event.data.gesture | int == 2 }}'
+    #   sequence:
 
     # GESTURE_FLIP_90 shutters
     - conditions:
@@ -103,70 +103,126 @@
               entity_id: cover.office_roller_shutter_right_level
 
     # GESTURE_FLIP_180 desk up/down
+    # - conditions:
+    #   - condition: template
+    #     value_template: '{{ trigger.event.data.gesture | int == 4 }}'
+    #   sequence:
+    #   - choose:
+    #     - conditions:
+    #       - condition: template
+    #         value_template: '{{ trigger.event.data.event | int == 1006 }}'
+    #       sequence:
+    #       - service: switch.turn_off
+    #         target:
+    #           entity_id:
+    #             - switch.desk_control_button_4
+    #             - switch.desk_control_button_up
+    #             - switch.desk_control_button_down
+    #       - delay:
+    #           milliseconds: 250
+    #       - service: switch.turn_on
+    #         target:
+    #           entity_id: switch.desk_control_button_1
+
+    #     - conditions:
+    #       - condition: template
+    #         value_template: '{{ trigger.event.data.event | int == 6001 }}'
+    #       sequence:
+    #       - service: switch.turn_off
+    #         target:
+    #           entity_id:
+    #             - switch.desk_control_button_1
+    #             - switch.desk_control_button_up
+    #             - switch.desk_control_button_down
+    #       - delay:
+    #           milliseconds: 250
+    #       - service: switch.turn_on
+    #         target:
+    #           entity_id: switch.desk_control_button_4
+    #     default: []
+
+    # GESTURE_PUSH
+    # - conditions:
+    #   - condition: template
+    #     value_template: '{{ trigger.event.data.gesture | int == 5 }}'
+    #   sequence:
+
+    # GESTURE_DOUBLE_TAB toggle light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 4 }}'
+        value_template: '{{ trigger.event.data.gesture | int == 6 }}'
       sequence:
       - choose:
         - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.event | int == 1006 }}'
+          - condition: state
+            entity_id: light.office_led
+            state: 'on'
           sequence:
-          - service: switch.turn_off
+          - service: light.turn_off
             target:
-              entity_id:
-                - switch.desk_control_button_4
-                - switch.desk_control_button_up
-                - switch.desk_control_button_down
-          - delay:
-              milliseconds: 250
-          - service: switch.turn_on
-            target:
-              entity_id: switch.desk_control_button_1
+              entity_id: light.office_led
+        default:
+        - service: light.turn_on
+          target:
+            entity_id: light.office_led
 
+    # GESTURE_ROTATE_CLOCKWISE
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.gesture | int == 7 }}'
+      sequence:
+      - choose:
         - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.event | int == 6001 }}'
+          - condition: state
+            entity_id: switch.desk_control_button_1
+            state: 'on'
           sequence:
           - service: switch.turn_off
             target:
               entity_id:
                 - switch.desk_control_button_1
-                - switch.desk_control_button_up
-                - switch.desk_control_button_down
-          - delay:
-              milliseconds: 250
-          - service: switch.turn_on
-            target:
-              entity_id: switch.desk_control_button_4
-        default: []
+        default:
+        - service: switch.turn_off
+          target:
+            entity_id:
+              - switch.desk_control_button_4
+        - delay:
+            milliseconds: 250
+        - service: switch.turn_on
+          target:
+            entity_id: switch.desk_control_button_1
 
-    # GESTURE_ROTATE_CLOCKWISE next scene
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 7 }}'
-      sequence:
-      - service: input_select.select_next
-        data:
-          entity_id: input_select.office_scenes
-      - service: scene.turn_on
-        data:
-          entity_id: '{{ states("input_select.office_scenes") }}'
-
-    # GESTURE_ROTATE_COUNTER_CLOCKWISE privouse
+    # GESTURE_ROTATE_COUNTER_CLOCKWISE
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.gesture | int == 8 }}'
       sequence:
-      - service: input_select.select_previous
-        data:
-          entity_id: input_select.office_scenes
-      - service: scene.turn_on
-        data:
-          entity_id: '{{ states("input_select.office_scenes") }}'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.desk_control_button_4
+            state: 'on'
+          sequence:
+          - service: switch.turn_off
+            target:
+              entity_id:
+                - switch.desk_control_button_4
+        default:
+        - service: switch.turn_off
+          target:
+            entity_id:
+              - switch.desk_control_button_1
+        - delay:
+            milliseconds: 250
+        - service: switch.turn_on
+          target:
+            entity_id: switch.desk_control_button_4
+
+    #   - service: input_select.select_previous
+    #     data:
+    #       entity_id: input_select.office_scenes
+    #   - service: scene.turn_on
+    #     data:
+    #       entity_id: '{{ states("input_select.office_scenes") }}'
 
     default: []
-# GESTURE_NONE                     0
-# GESTURE_DROP                     2
-# GESTURE_PUSH                     5
-# GESTURE_DOUBLE_TAP               6
