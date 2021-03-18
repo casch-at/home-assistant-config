@@ -15,6 +15,9 @@
   - condition: state
     entity_id: input_boolean.lower_kitchen_switch_active
     state: 'off'
+  - condition: state
+    entity_id: light.lower_kitchen
+    state: 'on'
   action:
   - type: turn_off
     device_id: 99c4272d194811eb9a33c1747a3f77e4

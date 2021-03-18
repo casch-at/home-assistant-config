@@ -15,6 +15,9 @@
   - condition: state
     entity_id: input_boolean.front_floor_switch_active
     state: 'off'
+  - condition: state
+    entity_id: light.front_floor
+    state: 'on'
   action:
   - type: turn_off
     device_id: 9a999d4e84bd4c8eb7c7779363b97b26
