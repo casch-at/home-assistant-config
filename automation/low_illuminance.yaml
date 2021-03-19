@@ -13,7 +13,7 @@
     below: 100
     for:
       hours: 0
-      minutes: 10
+      minutes: 5
   - platform: state
     entity_id: person.christian_schwarzgruber
     to: home

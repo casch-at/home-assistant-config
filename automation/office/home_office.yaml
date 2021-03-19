@@ -4,7 +4,6 @@
   trigger:
   - platform: state
     entity_id: input_select.daytime
-    to: Morning
   - platform: state
     entity_id: input_boolean.presence
     to: 'on'    
