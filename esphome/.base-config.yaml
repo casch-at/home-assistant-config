@@ -1,6 +1,6 @@
 wifi:
   ssid: !secret ssid
-  password: !secret password
+  password: !secret wlan_password
   fast_connect: true
 
 
@@ -23,7 +23,7 @@ logger:
 
 # Enable Home Assistant API
 api:
-  password: !secret password
+  password: !secret wlan_password
 
 ota:
-  password: !secret password
+  password: !secret wlan_password

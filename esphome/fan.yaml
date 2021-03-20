@@ -1,10 +1,10 @@
 substitutions:
   name: "fan"
-  ap_ssid: "Desk Control Fallback Hotspot"
+  ap_ssid: "Fan Fallback Hotspot"
 
 esphome:
   <<: !include .board-config.yaml
-  # Fix for low output signal on transmit gpio after boot/power on
+  # Fix for low output signal on transmit gpio after boot
   on_boot:
     then:
       - remote_transmitter.transmit_raw:
@@ -17,7 +17,7 @@ remote_receiver:
   pin:
     number: 25
     mode: INPUT_PULLUP
-    # When using a MOSFET to convert the signal to 3.3V to signal than also gets inverted
+    # When using a MOSFET to convert the signal to 3.3V than the signal also gets inverted
     # inverted: true
   # Note 1: Use "raw" not "all", otherwise it gets detected as a rc_switch code but transmitting that will produce the wrong code.
   # Note 2: Just press the buttons very shortly while right in front of the receiver to get the shortest yet most accurate result.

@@ -163,7 +163,6 @@ bathroom_switch_helper_script:
   alias: Bathroom Switch Helper Script
   sequence:
   - choose:
-    # Turn left <-> right lights on
     - conditions:
       - condition: template
         value_template: '{{ event == 3002 }}'
@@ -177,12 +176,12 @@ bathroom_switch_helper_script:
               state: 'off'
             - condition: and
               conditions:
-                - condition: state
-                  entity_id: light.bathroom_back_left
-                  state: 'on'
-                - condition: state
-                  entity_id: light.bathroom_front_left
-                  state: 'on'
+              - condition: state
+                entity_id: light.bathroom_back_left
+                state: 'on'
+              - condition: state
+                entity_id: light.bathroom_front_left
+                state: 'on'
             - condition: template
               value_template: '{{ state_attr("light.bathroom", "all_on") }}'
           sequence:
@@ -192,13 +191,13 @@ bathroom_switch_helper_script:
               color_temp: '{{ color_temp }}'
             target:
               entity_id:
-                - light.bathroom_back_right
-                - light.bathroom_front_right
+              - light.bathroom_back_right
+              - light.bathroom_front_right
           - service: light.turn_off
             target:
               entity_id:
-                - light.bathroom_front_left
-                - light.bathroom_back_left
+              - light.bathroom_front_left
+              - light.bathroom_back_left
         default:
         - service: light.turn_on
           data:
@@ -206,15 +205,13 @@ bathroom_switch_helper_script:
             color_temp: '{{ color_temp }}'
           target:
             entity_id:
-              - light.bathroom_front_left
-              - light.bathroom_back_left
+            - light.bathroom_front_left
+            - light.bathroom_back_left
         - service: light.turn_off
           target:
             entity_id:
-              - light.bathroom_front_right
-              - light.bathroom_back_right
-
-    # Toggle ceiling lights
+            - light.bathroom_front_right
+            - light.bathroom_back_right
     - conditions:
       - condition: template
         value_template: '{{ event == 2002 }}'
@@ -231,7 +228,7 @@ bathroom_switch_helper_script:
               color_temp: '{{ color_temp }}'
             target:
               entity_id:
-                - light.bathroom
+              - light.bathroom
         default:
         - service: light.turn_off
           entity_id: light.bathroom
