@@ -38,7 +38,7 @@ cards:
             template: icon_only
             tap_action:
               action: navigate
-              navigation_path: /lovelace/tv            
+              navigation_path: /lovelace/tv
             double_tap_action:
               action: call-service
               service: script.tv_off_on
@@ -364,6 +364,46 @@ cards:
                   entity: switch.desk_control_button_down
 
       - type: grid
+        columns: 6
+        cards:
+          - type: custom:button-card
+            entity: binary_sensor.office_window_sensor
+            show_icon: true
+            icon: mdi:window-open
+            name: "Office"
+            template: name_card_round
+          - type: custom:button-card
+            entity: binary_sensor.parlor_window_sensor
+            show_icon: true
+            icon: mdi:window-open
+            name: "Parlor"
+            template: name_card_round
+          - type: custom:button-card
+            entity: binary_sensor.lower_kitchen_window_sensor
+            show_icon: true
+            icon: mdi:window-open
+            name: "Lower K."
+            template: name_card_round
+          - type: custom:button-card
+            entity: binary_sensor.bedroom_window_sensor
+            show_icon: true
+            icon: mdi:window-open
+            name: "Bedroom"
+            template: name_card_round
+          - type: custom:button-card
+            entity: binary_sensor.upstairs_window_sensor
+            show_icon: true
+            icon: mdi:window-open
+            name: "Upstairs"
+            template: name_card_round
+          - type: custom:button-card
+            entity: binary_sensor.balcony_door_sensor
+            show_icon: true
+            name: "Balcony"
+            icon: mdi:door-open
+            template: name_card_round
+
+      - type: grid
         columns: 7
         cards:
           - type: custom:button-card
@@ -392,23 +432,3 @@ cards:
             color_type: blank-card
           - type: custom:button-card
             color_type: blank-card
-
-      - type: grid
-        columns: 6
-        cards:
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            entity: binary_sensor.balcony_door_sensor
-            show_icon: true
-            name: Balcony
-            icon: mdi:door-open
-            template: name_card_round
-          - type: custom:button-card
-            entity: binary_sensor.bedroom_window_sensor
-            show_icon: true
-            icon: mdi:window-open
-            name: "Bedroom"
-            template: name_card_round

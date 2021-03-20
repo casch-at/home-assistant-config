@@ -29,6 +29,14 @@
   - platform: template
     value_template: "{{ states('sensor.balcony_door_sensor_battery_level') | int < 10 }}"
   - platform: template
+    value_template: "{{ states('sensor.parlor_window_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.office_window_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.lower_kitchen_window_sensor_battery_level') | int < 10 }}"
+  - platform: template
+    value_template: "{{ states('sensor.upstairs_window_sensor_battery_level') | int < 10 }}"
+  - platform: template
     value_template: "{{ states('sensor.floor_switch_battery_level') | int < 10 }}"
   - platform: template
     value_template: "{{ states('sensor.doorbell_switch_battery_level') | int < 10 }}"

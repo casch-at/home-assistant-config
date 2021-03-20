@@ -8,6 +8,18 @@
   - platform: template
     value_template: "{{ is_state('binary_sensor.bedroom_window_sensor', 'on') }}"
     for: "{{ states('input_number.window_or_door_open') | int(0) }}"
+  - platform: template
+    value_template: "{{ is_state('binary_sensor.office_window_sensor', 'on') }}"
+    for: "{{ states('input_number.window_or_door_open') | int(0) }}"
+  - platform: template
+    value_template: "{{ is_state('binary_sensor.parlor_window_sensor', 'on') }}"
+    for: "{{ states('input_number.window_or_door_open') | int(0) }}"
+  - platform: template
+    value_template: "{{ is_state('binary_sensor.lower_kitchen_window_sensor', 'on') }}"
+    for: "{{ states('input_number.window_or_door_open') | int(0) }}"
+  - platform: template
+    value_template: "{{ is_state('binary_sensor.upstairs_window_sensor', 'on') }}"
+    for: "{{ states('input_number.window_or_door_open') | int(0) }}"
   condition:
   - condition: template
     value_template: "{{ state_attr('weather.home', 'temperature') | float < 20 }}"
