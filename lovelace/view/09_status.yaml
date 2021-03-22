@@ -145,3 +145,38 @@ cards:
             label: Clear
           - value: "on"
             label: Detected
+
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.asuswrt_download
+            name: Download
+          - entity: sensor.asuswrt_upload
+            name: Upload
+        name: Download/Upload
+        line_width: 2
+        smoothing: false
+        show:
+          labels: true
+
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.asuswrt_download_speed
+            name: Download
+          - entity: sensor.asuswrt_upload_speed
+            name: Upload
+        name: Download/Upload Speed
+        line_width: 2
+        smoothing: false
+        show:
+          labels: true
+
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.asuswrt_devices_connected
+            name: Devices
+        name: Connected Devices
+        line_width: 2
+        smoothing: false
+        show:
+          labels: true
+          # points: false

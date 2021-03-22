@@ -33,18 +33,6 @@ shell_command:
   # Need to specify IP (resolve doesn't work :-?),
   turn_off_tower: !secret tower_off
 
-device_tracker:
-  - platform: ping
-    hosts:
-      huawei_p20_router: 192.168.1.15
-      galaxy_a2_router: 192.168.1.7
-      lap_02_lan_router: 192.168.1.18
-      lap_02_wlan_router: 192.168.1.19
-      work_wlan_router: 192.168.1.11
-      tower_lan_router: 192.168.1.17
-    count: 3
-    consider_home: 600
-
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 lovelace: !include lovelace/lovelace.yaml
