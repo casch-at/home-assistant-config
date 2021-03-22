@@ -1,0 +1,65 @@
+- id: low_battery_level_warning
+  alias: Low Battery Level Warning
+  description: ''
+  mode: queued
+  max: 50
+  trigger:
+  - platform: state
+    entity_id: sensor.bathroom_switch_battery_level
+  - platform: state
+    entity_id: sensor.bedroom_motion_battery_level
+  - platform: state
+    entity_id: sensor.front_floor_motion_battery_level
+  - platform: state
+    entity_id: sensor.lower_kitchen_motion_battery_level
+  - platform: state
+    entity_id: sensor.lower_kitchen_switch_battery_level
+  - platform: state
+    entity_id: sensor.office_multi_sensor_battery_level
+  - platform: state
+    entity_id: sensor.tablet_battery_level
+  - platform: state
+    entity_id: sensor.upstairs_multi_sensor_battery_level
+  - platform: state
+    entity_id: sensor.parlor_multi_sensor_battery_level
+  - platform: state
+    entity_id: sensor.bedroom_multi_sensor_battery_level
+  - platform: state
+    entity_id: sensor.bathroom_multi_sensor_battery_level
+  - platform: state
+    entity_id: sensor.bedroom_window_sensor_battery_level
+  - platform: state
+    entity_id: sensor.balcony_door_sensor_battery_level
+  - platform: state
+    entity_id: sensor.parlor_window_sensor_battery_level
+  - platform: state
+    entity_id: sensor.office_window_sensor_battery_level
+  - platform: state
+    entity_id: sensor.lower_kitchen_window_sensor_battery_level
+  - platform: state
+    entity_id: sensor.upstairs_window_sensor_battery_level
+  - platform: state
+    entity_id: sensor.floor_switch_battery_level
+  - platform: state
+    entity_id: sensor.doorbell_switch_battery_level
+  - platform: state
+    entity_id: sensor.office_magic_cube_battery_level
+  condition:
+  - condition: template
+    value_template: "{{ not is_state(trigger.entity_id, 'unavailable') }}"
+  - condition: template
+    value_template: "{{ states(trigger.entity_id) | int < 10 }}"
+  action:
+  - service: notify.persistent_notification
+    data:
+      message: '{{ trigger.to_state.name }} Below 10 % ({{ trigger.to_state.state }} %)'
+      title: '{{ trigger.to_state.name }} Critical'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: "{{ trigger.to_state.object_id == 'tablet_battery_level' }}"
+      sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.tv_usb
+    default: []
