@@ -103,11 +103,15 @@
               entity_id: cover.office_roller_shutter_right_level
 
     # GESTURE_FLIP_180 desk up/down
-    # - conditions:
-    #   - condition: template
-    #     value_template: '{{ trigger.event.data.gesture | int == 4 }}'
-    #   sequence:
-    #   - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.gesture | int == 4 }}'
+      sequence:
+      - service: homeassistant.turn_on
+        target:
+          entity_id: group.desk_and_laptop
+
+      # - choose:
     #     - conditions:
     #       - condition: template
     #         value_template: '{{ trigger.event.data.event | int == 1006 }}'
