@@ -43,6 +43,7 @@ switches_and_lights:
   entities:
     - group.switches
     - light.all_lights
+    - switch.upstairs_lamp_switch
     - group.devices
 
 devices:
