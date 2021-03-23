@@ -1,0 +1,25 @@
+alias: Turn on/off TV
+mode: single
+icon: mdi:television
+sequence:
+- choose:
+  - conditions:
+    - condition: state
+      entity_id: switch.tv_switch
+      state: 'off'
+    sequence:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_switch
+    - delay: 00:00:02
+    - service: remote.send_command
+      data:
+        entity_id: remote.parlor_ir_remote
+        device: tv
+        command: power
+  default:
+  - service: remote.send_command
+    data:
+      entity_id: remote.parlor_ir_remote
+      device: tv
+      command: power

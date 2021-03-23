@@ -1,41 +1,34 @@
-- id: lower_kitchen_motion_detected
-  alias: Turn on lights in lower kitchen -- motion detected
+- id: lower_kitchen_motion
+  alias: Lower kitchen motion
   description: ''
+  mode: restart
   trigger:
-  - type: motion
-    platform: device
-    device_id: a22002cc0fddfe438687ff5a86b3fd3b
+  - platform: state
     entity_id: binary_sensor.lower_kitchen_motion
-    domain: binary_sensor
+    from: 'off'
+    to: 'on'
   condition:
   - condition: template
-    value_template: '{{ states(''sensor.lower_kitchen_lightlevel'')|float < 40.0 }}'
+    value_template: '{{ states(''sensor.lower_kitchen_lightlevel'') | float < 40.0 }}'
   - condition: state
     entity_id: input_boolean.lower_kitchen_switch_active
     state: 'off'
   action:
-  - service: input_boolean.turn_on
+  - service: light.turn_on
     data:
-      entity_id: input_boolean.lower_kitchen_motion_running
-  - service: scene.apply
-    data:
-      entities:
-        light.lower_kitchen:
-          brightness: |
-            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-              254
-            {% elif states('input_select.daytime') == 'Evening' -%}
-              140
-            {% elif states('input_select.daytime') == 'Night' -%}
-              80
-            {% endif %}
-          color_temp: |
-            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-              271
-            {% elif states('input_select.daytime') == 'Evening' -%}
-              400
-            {% elif states('input_select.daytime') == 'Night' -%}
-              480
-            {% endif %}
-          state: 'on'
-  mode: single
+      brightness: "{{ states('sensor.daytime_light_brightness') }}"
+      color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+    target:
+      entity_id: light.lower_kitchen
+  - wait_for_trigger:
+      platform: state
+      entity_id: binary_sensor.lower_kitchen_motion
+      from: 'on'
+      to: 'off'
+      for: '30'
+  - condition: state
+    entity_id: input_boolean.lower_kitchen_switch_active
+    state: 'off'
+  - service: light.turn_off
+    target:
+      entity_id: light.lower_kitchen

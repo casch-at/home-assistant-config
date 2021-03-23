@@ -1,5 +1,5 @@
-- id: reset_lower_kitchen_switch_active
-  alias: Reset lower kitchen switch active state when lights where turned off manually
+- id: lower_kitchen_switch_active_state
+  alias: Lower kitchen switch reset active state
   description: ''
   mode: single
   trigger:

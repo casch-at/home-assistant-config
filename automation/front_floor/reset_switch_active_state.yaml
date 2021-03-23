@@ -1,5 +1,5 @@
-- id: reset_front_floor_switch_active_state
-  alias: Reset front floor switch active state when lights where turned off manually
+- id: front_floor_switch_active_state
+  alias: Front floor switch reset active state
   description: ''
   mode: single
   trigger:

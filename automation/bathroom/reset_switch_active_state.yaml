@@ -1,5 +1,5 @@
-- id: reset_bathroom_switch_active_state
-  alias: Reset bathroom switch active state when lights where turned off manually
+- id: bathroom_switch_active_state
+  alias: Bathroom switch reset active state
   description: ''
   mode: single
   trigger:

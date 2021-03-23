@@ -1,0 +1,40 @@
+alias: Parlor Off
+mode: single
+sequence:
+- choose:
+  - conditions:
+    - condition: device
+      type: is_on
+      device_id: 611cb71e0e0411ebbb5f87403d317985
+      entity_id: light.parlor
+      domain: light
+    sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.parlor
+  default: []
+- choose:
+  - conditions:
+    - type: is_power
+      condition: device
+      device_id: 5548196bdfae70373fa44fdefe4752c2
+      entity_id: sensor.tv_switch_energy_power
+      domain: sensor
+      above: 40
+    sequence:
+    - service: script.tv_off_on
+      data: {}
+    - service: light.turn_off
+      data:
+        entity_id: switch.tv_switch
+  - conditions:
+    - condition: device
+      type: is_on
+      device_id: 5548196bdfae70373fa44fdefe4752c2
+      entity_id: switch.tv_switch
+      domain: switch
+    sequence:
+    - service: light.turn_off
+      data:
+        entity_id: switch.tv_switch
+  default: []

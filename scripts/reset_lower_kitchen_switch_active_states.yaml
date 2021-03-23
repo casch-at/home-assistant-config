@@ -1,0 +1,23 @@
+alias: Reset Lower Kitchen Switch Active States
+mode: single
+sequence:
+- choose:
+  - conditions:
+    - condition: state
+      entity_id: input_boolean.lower_kitchen_switch_active
+      state: 'on'
+    sequence:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lower_kitchen_switch_active
+  default: []
+- choose:
+  - conditions:
+    - condition: state
+      entity_id: input_boolean.front_floor_switch_active
+      state: 'on'
+    sequence:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.front_floor_switch_active
+  default: []

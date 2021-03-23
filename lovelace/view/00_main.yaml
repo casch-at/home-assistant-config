@@ -201,14 +201,16 @@ cards:
             template: icon_only
             hold_action:
               action: call-service
-              service: script.tower_off
+              service: script.tower_on_off
+              service_data:
+                state: 'off'
               confirmation:
                 text: Do you really want to turn off the Tower?
             double_tap_action:
               action: call-service
-              service: script.wake_tower
+              service: script.tower_on_off
               confirmation:
-                text: Do you really want to wake the Tower?
+                text: Do you really want to turn on the Tower?
           - type: custom:button-card
             entity: switch.upstairs_lamp_switch
             template: icon_only_more_info

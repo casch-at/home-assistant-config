@@ -85,6 +85,28 @@
           state_attr('sun.sun', 'azimuth') | float
         }}
       unique_id: mysensor0009
+    daytime_light_brightness:
+      friendly_name: "Daytime Light Brightness"
+      value_template: |
+        {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+          254
+        {% elif states('input_select.daytime') == 'Evening' -%}
+          140
+        {% elif states('input_select.daytime') == 'Night' -%}
+          80
+        {% endif %}
+      unique_id: mysensor0010
+    daytime_light_color_temp:
+      friendly_name: "Daytime Light Color Temp"
+      value_template: |
+        {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+          271
+        {% elif states('input_select.daytime') == 'Evening' -%}
+          400
+        {% elif states('input_select.daytime') == 'Night' -%}
+          480
+        {% endif %}
+      unique_id: mysensor0011
 
 - platform: time_date
   display_options:

@@ -1,5 +1,5 @@
-- id: bathroom_switch_automations
-  alias: Bathroom Switch Automations
+- id: bathroom_light
+  alias: Bathroom light
   description: ''
   mode: single
   trigger:
@@ -60,35 +60,87 @@
               {{ state_attr('light.bathroom', 'brightness') + 30 }}
             {% endif %}
 
-    # Turn left <-> right lights on
     # Toggle ceiling lights
     - conditions:
       - condition: template
-        value_template: >-
-          {% set event = trigger.event.data.event | int %}
-          {{
-            event == 3002 or event == 2002
-          }}
+        value_template: '{{ trigger.event.data.event | int == 2002 }}'
       sequence:
-      - service: script.bathroom_switch_helper_script
-        data:
-          event: '{{ trigger.event.data.event | int }}'
-          brightness: >-
-            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-              254
-            {% elif states('input_select.daytime') == 'Evening' -%}
-              130
-            {% elif states('input_select.daytime') == 'Night' -%}
-              80
-            {% endif %}
-          color_temp: >-
-            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-              150
-            {% elif states('input_select.daytime') == 'Evening' -%}
-              400
-            {% elif states('input_select.daytime') == 'Night' -%}
-              480
-            {% endif %}
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.bathroom_switch_active
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.bathroom_switch_active
+          - condition: state
+            entity_id: light.bathroom
+            state: 'off'
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id: light.bathroom
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.bathroom
+
+    # Turn left <-> right lights on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bathroom_switch_active
+      - choose:
+        - conditions:
+          - condition: or
+            conditions:
+            - condition: state
+              entity_id: light.bathroom
+              state: 'off'
+            - condition: and
+              conditions:
+              - condition: state
+                entity_id: light.bathroom_back_left
+                state: 'on'
+              - condition: state
+                entity_id: light.bathroom_front_left
+                state: 'on'
+            - condition: template
+              value_template: '{{ state_attr("light.bathroom", "all_on") }}'
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id:
+              - light.bathroom_back_right
+              - light.bathroom_front_right
+          - service: light.turn_off
+            target:
+              entity_id:
+              - light.bathroom_front_left
+              - light.bathroom_back_left
+        default:
+        - service: light.turn_on
+          data:
+            brightness: "{{ states('sensor.daytime_light_brightness') }}"
+            color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+          target:
+            entity_id:
+            - light.bathroom_front_left
+            - light.bathroom_back_left
+        - service: light.turn_off
+          target:
+            entity_id:
+            - light.bathroom_front_right
+            - light.bathroom_back_right
 
     # Color temperature colder
     - conditions:
@@ -133,8 +185,4 @@
             {% if state_attr('light.bathroom', 'brightness') > 40 %}
               {{ state_attr('light.bathroom', 'brightness') - 30 }}
             {% endif %}
-
-    default:
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.bath_left_right
+    default: []
