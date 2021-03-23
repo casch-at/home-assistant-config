@@ -1,6 +1,15 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# https://www.home-assistant.io/integrations/logger/
+# logger:
+#  default: info # defaults to warning
+#  logs:
+#     pydeconz: debug
+#     homeassistant.core: debug
+#     homeassistant.components.deconz: debug
+
+# https://www.home-assistant.io/integrations/logbook/
 logbook:
   exclude:
     entity_globs:
@@ -58,9 +67,12 @@ calendar:
 light: !include lights.yaml
 cover: !include covers.yaml
 
-# logger:
-#   default: info
-#   logs:
-#     pydeconz: debug
-#     homeassistant.core: debug
-#     homeassistant.components.deconz: debug
+# https://www.home-assistant.io/integrations/influxdb
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: !secret influxdb_name
+  username: !secret influxdb_name
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
