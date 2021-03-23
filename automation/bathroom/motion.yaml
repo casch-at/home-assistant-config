@@ -1,0 +1,41 @@
+- id: bathroom_motion_detected
+  alias: Turn on lights in bathroom -- motion detected
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 73f4a73af2f5102c49b38dca1f3b9458
+    entity_id: binary_sensor.bathroom_motion
+    domain: binary_sensor
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.bathroom_lightlevel'')|float < 55.0 }}'
+  - condition: state
+    entity_id: input_boolean.bathroom_switch_active
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.bathroom_motion_running
+  - service: scene.apply
+    data:
+      entities:
+        light.bathroom:
+          brightness: |
+            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+              254
+            {% elif states('input_select.daytime') == 'Evening' -%}
+              140
+            {% elif states('input_select.daytime') == 'Night' -%}
+              80
+            {% endif %}
+          color_temp: |
+            {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+              271
+            {% elif states('input_select.daytime') == 'Evening' -%}
+              400
+            {% elif states('input_select.daytime') == 'Night' -%}
+              480
+            {% endif %}
+          state: 'on'
+  mode: single

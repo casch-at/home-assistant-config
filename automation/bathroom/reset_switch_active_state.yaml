@@ -1,0 +1,17 @@
+- id: reset_bathroom_switch_active_state
+  alias: Reset bathroom switch active state when lights where turned off manually
+  description: ''
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: light.bathroom
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.bathroom_switch_active
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.bathroom_switch_active

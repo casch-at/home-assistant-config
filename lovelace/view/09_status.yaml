@@ -138,6 +138,8 @@ cards:
         align_icon: left
         align_header: left
         show:
+          name_adaptive_color: true
+          icon_adaptive_color: true
           labels: true
           points: false
         state_map:
@@ -146,37 +148,53 @@ cards:
           - value: "on"
             label: Detected
 
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.asuswrt_download
-            name: Download
-          - entity: sensor.asuswrt_upload
-            name: Upload
-        name: Download/Upload
-        line_width: 2
-        smoothing: false
-        show:
-          labels: true
+      # - type: custom:mini-graph-card
+      #   entities:
+      #     - entity: sensor.asuswrt_download
+      #       name: Download
+      #     - entity: sensor.asuswrt_upload
+      #       name: Upload
+      #   name: Download/Upload
+      #   aggregate_func: last
+      #   points_per_hour: 60
+      #   line_width: 2
+      #   smoothing: true
+      #   show:
+      #     name_adaptive_color: true
+      #     icon_adaptive_color: true
+      #     labels: true
+      #     fill: false
 
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.asuswrt_download_speed
-            name: Download
-          - entity: sensor.asuswrt_upload_speed
-            name: Upload
-        name: Download/Upload Speed
-        line_width: 2
-        smoothing: false
-        show:
-          labels: true
+      # - type: custom:mini-graph-card
+      #   entities:
+      #     - entity: sensor.asuswrt_download_speed
+      #       name: Download
+      #     - entity: sensor.asuswrt_upload_speed
+      #       name: Upload
+      #   name: Download/Upload Speed
+      #   aggregate_func: last
+      #   hours_to_show: 2
+      #   points_per_hour: 600
+      #   line_width: 2
+      #   smoothing: false
+      #   show:
+      #     name_adaptive_color: true
+      #     icon_adaptive_color: true
+      #     labels: true
+      #     fill: false
 
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.asuswrt_devices_connected
-            name: Devices
-        name: Connected Devices
-        line_width: 2
-        smoothing: false
-        show:
-          labels: true
-          # points: false
+      # - type: custom:mini-graph-card
+      #   entities:
+      #     - entity: sensor.asuswrt_devices_connected
+      #       name: Devices
+      #   name: Connected Devices
+      #   aggregate_func: last
+      #   points_per_hour: 60
+      #   line_width: 2
+      #   smoothing: false
+      #   decimals: 0
+      #   show:
+      #     name_adaptive_color: true
+      #     icon_adaptive_color: true
+      #     labels: true
+      #     fill: false

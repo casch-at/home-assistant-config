@@ -280,6 +280,11 @@ cards:
                 type: custom:button-card
                 entity: sensor.parlor_pressure
                 template: embedded_card
+          l8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_motion_lightlevel
+                template: embedded_card
           t8:
             card:
                 type: custom:button-card
@@ -300,3 +305,55 @@ cards:
                 type: custom:button-card
                 entity: sensor.heating_temperature
                 template: embedded_card
+
+      # - type: custom:mini-graph-card
+      #   entities:
+      #     - entity: sensor.bathroom_temperature
+      #       name: Bathroom
+      #     - entity: sensor.bedroom_temperature
+      #       name: Bedroom
+      #     - entity: sensor.office_temperature
+      #       name: Office
+      #     - entity: sensor.parlor_temperature
+      #       name: Parlor
+      #     - entity: sensor.upstairs_temperature
+      #       name: Upstairs
+      #     - entity: sensor.lower_kitchen_temperature
+      #       name: Lower Kitchen
+      #     - entity: sensor.front_floor_temperature
+      #       name: Front Floor
+      #     - entity: sensor.heating_temperature
+      #       name: Heating
+      #   name: Temperature
+      #   aggregate_func: last
+      #   hours_to_show: 24
+      #   points_per_hour: 6
+      #   line_width: 2
+      #   show:
+      #     name_adaptive_color: true
+      #     icon_adaptive_color: true
+      #     labels: true
+      #     fill: false
+
+      # - type: custom:mini-graph-card
+      #   entities:
+      #     - entity: sensor.bathroom_humidity
+      #       name: Bathroom
+      #     - entity: sensor.bedroom_humidity
+      #       name: Bedroom
+      #     - entity: sensor.office_humidity
+      #       name: Office
+      #     - entity: sensor.parlor_humidity
+      #       name: Parlor
+      #     - entity: sensor.upstairs_humidity
+      #       name: Upstairs
+      #   name: Humidity
+      #   aggregate_func: last
+      #   hours_to_show: 24
+      #   points_per_hour: 6
+      #   line_width: 2
+      #   show:
+      #     name_adaptive_color: true
+      #     icon_adaptive_color: true
+      #     labels: true
+      #     fill: false
