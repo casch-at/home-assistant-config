@@ -25,7 +25,7 @@
       entity_id: binary_sensor.front_floor_motion
       from: 'on'
       to: 'off'
-      for: '30'
+      for: 30
   - condition: state
     entity_id: input_boolean.front_floor_switch_active
     state: 'off'
