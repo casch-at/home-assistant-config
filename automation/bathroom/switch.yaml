@@ -74,9 +74,6 @@
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.bathroom_switch_active
-          - condition: state
-            entity_id: light.bathroom
-            state: 'off'
           - service: light.turn_on
             data:
               brightness: "{{ states('sensor.daytime_light_brightness') }}"

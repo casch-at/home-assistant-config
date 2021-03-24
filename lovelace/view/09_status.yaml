@@ -96,57 +96,57 @@ cards:
       - type: weather-forecast
         entity: weather.home
 
-      - type: grid
-        square: false
-        columns: 2
-        # title: State and Service Buttons
-        cards:
-          - type: grid
-            columns: 1
-            square: false
-            cards:
-              - type: custom:button-card
-                entity: sun.sun
-                show_state: true
-                show_name: false
-                show_icon: false
+      # - type: grid
+      #   square: false
+      #   columns: 2
+      #   # title: State and Service Buttons
+      #   cards:
+      #     - type: grid
+      #       columns: 1
+      #       square: false
+      #       cards:
+      #         - type: custom:button-card
+      #           entity: sun.sun
+      #           show_state: true
+      #           show_name: false
+      #           show_icon: false
 
-          - type: grid
-            columns: 1
-            square: false
-            cards:
-              - type: custom:button-card
-                entity: sensor.daylight
-                show_state: true
-                show_name: false
-                show_icon: false
+      #     - type: grid
+      #       columns: 1
+      #       square: false
+      #       cards:
+      #         - type: custom:button-card
+      #           entity: sensor.daylight
+      #           show_state: true
+      #           show_name: false
+      #           show_icon: false
 
-      - type: custom:mini-graph-card
-        entities:
-          - entity: binary_sensor.lower_kitchen_motion
-            name: Lower Kitchen
-          - entity: binary_sensor.front_floor_motion
-            name: Front Floor
-          - entity: binary_sensor.bedroom_motion
-            name: Bedroom
-        name: Motion
-        aggregate_func: max
-        hours_to_show: 12   # 24 default
-        points_per_hour: 30 # 0.5 default
-        line_width: 1
-        smoothing: false
-        align_icon: left
-        align_header: left
-        show:
-          name_adaptive_color: true
-          icon_adaptive_color: true
-          labels: true
-          points: false
-        state_map:
-          - value: "off"
-            label: Clear
-          - value: "on"
-            label: Detected
+      # - type: custom:mini-graph-card
+      #   entities:
+      #     - entity: binary_sensor.lower_kitchen_motion
+      #       name: Lower Kitchen
+      #     - entity: binary_sensor.front_floor_motion
+      #       name: Front Floor
+      #     - entity: binary_sensor.bedroom_motion
+      #       name: Bedroom
+      #   name: Motion
+      #   aggregate_func: max
+      #   hours_to_show: 12   # 24 default
+      #   points_per_hour: 30 # 0.5 default
+      #   line_width: 1
+      #   smoothing: false
+      #   align_icon: left
+      #   align_header: left
+      #   show:
+      #     name_adaptive_color: true
+      #     icon_adaptive_color: true
+      #     labels: true
+      #     points: false
+      #   state_map:
+      #     - value: "off"
+      #       label: Clear
+      #     - value: "on"
+      #       label: Detected
 
       # - type: custom:mini-graph-card
       #   entities:
