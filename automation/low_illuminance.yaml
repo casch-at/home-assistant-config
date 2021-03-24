@@ -1,22 +1,18 @@
 - id: low_illuminance
   alias: Low illuminance light
   description: Turn on lights when the sun goes down or on low light condition
+  mode: single
   trigger:
-  - platform: template
-    value_template: >-
-      {{ not state_attr('sensor.daylight', 'daylight') }}
-  - type: illuminance
-    platform: device
-    device_id: d362c802f675d2a59d2080b94ebef8e4
+  - platform: numeric_state
     entity_id: sensor.front_floor_lightlevel
-    domain: sensor
     below: 100
     for:
-      hours: 0
       minutes: 5
+
   - platform: state
     entity_id: person.christian_schwarzgruber
     to: home
+
   - platform: state
     entity_id: person.sonia_avramidis
     to: home
@@ -29,9 +25,11 @@
     - condition: state
       entity_id: person.sonia_avramidis
       state: 'home'
-  - condition: template
-    value_template: >-
-      {{ states('sensor.front_floor_lightlevel')|float < 100 }}
+
+  - condition: numeric_state
+    entity_id: sensor.front_floor_lightlevel
+    below: 100
+
   - condition: not
     conditions:
     - condition: state
@@ -40,55 +38,43 @@
   action:
   - choose:
     - conditions:
-      - condition: device
-        type: is_off
-        device_id: 03baa6e6081411eb958e6b58c8805747
+      - condition: state
         entity_id: light.stairs_led
-        domain: light
+        state: 'off'
       sequence:
-      - service: scene.apply
+      - service: light.turn_on
         data:
-          entities:
-            light.stairs_led:
-              brightness: 180
-              color_temp: 375
-              state: 'on'
+          brightness: 180
+          color_temp: 375
+        target:
+          entity_id: light.stairs_led
     default: []
+
   - choose:
     - conditions:
-      - condition: device
-        type: is_off
-        device_id: 15f7180d0e0411eb814e538c319c793d
+      - condition: state
         entity_id: light.parlor_shelve
-        domain: light
-      - condition: template
-        value_template: >-
-          {{ not state_attr('sensor.daylight', 'daylight') }}
-      - condition: template
-        value_template: >-
-          {{ states('person.sonia_avramidis') == 'home' }}
+        state: 'off'
+      - condition: state
+        entity_id: person.sonia_avramidis
+        state: 'home'
       sequence:
-      - service: scene.apply
+      - service: light.turn_on
         data:
-          entities:
-            light.parlor_shelve:
-              brightness: 100
-              color_temp: 370
-              state: 'on'
+          brightness: 100
+          color_temp: 370
+        target:
+          entity_id: light.parlor_shelve
     default: []
+
   - choose:
     - conditions:
-      - condition: device
-        type: is_off
-        device_id: 8d47ffa289962b1efba2b9b35b3bbc9b
+      - condition: state
         entity_id: light.parlor_plants
-        domain: light
-      - condition: template
-        value_template: >-
-          {{ not state_attr('sensor.daylight', 'daylight') }}
-      - condition: template
-        value_template: >-
-          {{ states('person.sonia_avramidis') == 'home' }}
+        state: 'off'
+      - condition: state
+        entity_id: person.sonia_avramidis
+        state: 'home'
       sequence:
       - service: scene.apply
         data:
@@ -107,22 +93,17 @@
               - 0.459
               state: 'on'
     default: []
+
   - choose:
     - conditions:
-      - condition: device
-        type: is_off
-        device_id: 064385de065911eb86921ff8f4822c34
+      - condition: state
         entity_id: light.office_led
-        domain: light
+        state: 'off'
       - condition: state
         entity_id: switch.desk_switch
         state: 'on'
-      - condition: template
-        value_template: >-
-          {{ not state_attr('sensor.daylight', 'daylight') }}
       sequence:
       - service: scene.turn_on
         data:
           entity_id: scene.office_work_light
     default: []
-  mode: single

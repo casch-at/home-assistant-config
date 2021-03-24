@@ -1,0 +1,49 @@
+- id: handy_alaram
+  alias: Handy alarm
+  description: ''
+  trigger:
+  - platform: template
+    #  - 60 seconds because otherwise we miss it
+    value_template: >-
+      {{
+        (not is_state('sensor.huawei_p20_next_alarm', 'unavailable') and
+         (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
+           == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M') and
+         states('person.christian_schwarzgruber') == 'home') or
+        (not is_state('sensor.galaxy_a2_next_alarm', 'unavailable') and
+         (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
+           == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M') and
+         states('person.sonia_avramidis') == 'home')
+      }}
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.front_floor_lightlevel
+        below: 100
+      sequence:
+      - service: scene.turn_on
+        data:
+          transition: 10
+        target:
+          entity_id: scene.stairs_morning_light
+    default: []
+
+  # Check if it is safe to open the cover, otherwise stop here
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.cover_operation_to_cold
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_sensor
+      state: 'off'
+
+  - service: cover.stop_cover
+    target:
+      entity_id: cover.bedroom_roller_shutter_level
+
+  - service: cover.open_cover
+    target:
+      entity_id: cover.bedroom_roller_shutter_level

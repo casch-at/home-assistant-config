@@ -1,23 +1,21 @@
 - id: toilet_light
   alias: Night toilet light
   description: ''
+  mode: single
   trigger:
-  - type: motion
-    platform: device
-    device_id: d6016e8c8c59fbd93b03136917a223b4
+  - platform: state
     entity_id: binary_sensor.bedroom_motion
-    domain: binary_sensor
+    from: 'off'
+    to: 'on'
   condition:
-  - condition: template
-    value_template: '{{ not state_attr(''sensor.daylight'', ''daylight'') }}'
   - condition: state
     entity_id: input_select.daytime
     state: 'Night'
-  - condition: device
-    type: is_off
-    device_id: 03baa6e6081411eb958e6b58c8805747
+
+  - condition: state
     entity_id: light.stairs_led
-    domain: light
+    state: 'off'
+
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
@@ -25,91 +23,98 @@
   - service: scene.turn_on
     data:
       entity_id: scene.night_toilet_light
+
   - delay: 00:00:30
+
   - choose:
     - conditions:
       - condition: and
         conditions:
-        - condition: device
-          type: is_on
-          device_id: 03baa6e6081411eb958e6b58c8805747
+        - condition: state
           entity_id: light.stairs_led
-          domain: light
+          state: 'on'
         - condition: template
-          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
-            state_attr(''light.stairs_led'', ''brightness'') <= 14 and state_attr(''light.stairs_led'',
-            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
-            495 }}'
+          value_template: >-
+            {{
+              state_attr('light.stairs_led', 'brightness') and
+              state_attr('light.stairs_led', 'brightness') <= 14 and
+              state_attr('light.stairs_led', 'color_temp') and
+              state_attr('light.stairs_led', 'color_temp') == 495
+            }}
       sequence:
-      - type: turn_on
-        device_id: 03baa6e6081411eb958e6b58c8805747
-        entity_id: light.stairs_led
-        domain: light
-        brightness_pct: 3
+      - service: light.turn_on
+        target:
+          entity_id: light.stairs_led
+        data:
+          brightness_pct: 3
       - delay: 00:00:30
     default: []
+
   - choose:
     - conditions:
       - condition: and
         conditions:
-        - condition: device
-          type: is_on
-          device_id: 03baa6e6081411eb958e6b58c8805747
+        - condition: state
           entity_id: light.stairs_led
-          domain: light
+          state: 'on'
         - condition: template
-          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
-            state_attr(''light.stairs_led'', ''brightness'') <= 8 and state_attr(''light.stairs_led'',
-            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
-            495 }}'
+          value_template: >-
+            {{
+              state_attr('light.stairs_led', 'brightness') and
+              state_attr('light.stairs_led', 'brightness') <= 8 and
+              state_attr('light.stairs_led', 'color_temp') and
+              state_attr('light.stairs_led', 'color_temp') == 495
+            }}
       sequence:
-      - type: turn_on
-        device_id: 03baa6e6081411eb958e6b58c8805747
-        entity_id: light.stairs_led
-        domain: light
-        brightness_pct: 2
+      - service: light.turn_on
+        target:
+          entity_id: light.stairs_led
+        data:
+          brightness_pct: 2
       - delay: 00:01:00
     default: []
+
   - choose:
     - conditions:
       - condition: and
         conditions:
-        - condition: device
-          type: is_on
-          device_id: 03baa6e6081411eb958e6b58c8805747
+        - condition: state
           entity_id: light.stairs_led
-          domain: light
+          state: 'on'
         - condition: template
-          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
-            state_attr(''light.stairs_led'', ''brightness'') <= 6 and state_attr(''light.stairs_led'',
-            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
-            495 }}'
+          value_template: >-
+            {{
+              state_attr('light.stairs_led', 'brightness') and
+              state_attr('light.stairs_led', 'brightness') <= 6 and
+              state_attr('light.stairs_led', 'color_temp') and
+              state_attr('light.stairs_led', 'color_temp') == 495
+            }}
       sequence:
-      - type: turn_on
-        device_id: 03baa6e6081411eb958e6b58c8805747
-        entity_id: light.stairs_led
-        domain: light
-        brightness_pct: 1
+      - service: light.turn_on
+        target:
+          entity_id: light.stairs_led
+        data:
+          brightness_pct: 1
       - delay: 00:01:00
     default: []
+
   - choose:
     - conditions:
       - condition: and
         conditions:
-        - condition: device
-          type: is_on
-          device_id: 03baa6e6081411eb958e6b58c8805747
+        - condition: state
           entity_id: light.stairs_led
-          domain: light
+          state: 'on'
         - condition: template
-          value_template: '{{ state_attr(''light.stairs_led'', ''brightness'') and
-            state_attr(''light.stairs_led'', ''brightness'') <= 3 and state_attr(''light.stairs_led'',
-            ''color_temp'') and state_attr(''light.stairs_led'', ''color_temp'') ==
-            495 }}'
+          value_template: >-
+            {{
+              state_attr('light.stairs_led', 'brightness') and
+              state_attr('light.stairs_led', 'brightness') <= 3 and
+              state_attr('light.stairs_led', 'color_temp') and
+              state_attr('light.stairs_led', 'color_temp') == 495
+            }}
       sequence:
-      - type: turn_off
-        device_id: 03baa6e6081411eb958e6b58c8805747
-        entity_id: light.stairs_led
-        domain: light
+      - service: light.turn_off
+        target:
+          entity_id: light.stairs_led
     default: []
-  mode: single

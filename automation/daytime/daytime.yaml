@@ -2,44 +2,50 @@
   alias: Set daytime
   description: ''
   trigger:
-  - platform: template
-    #  - 60 seconds because otherwise we miss it
-    value_template: >-
-      {{
-        not is_state('sensor.huawei_p20_next_alarm', 'unavailable')
-        and (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
-        == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
-        or not is_state('sensor.galaxy_a2_next_alarm', 'unavailable')
-        and (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
-        == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
-      }}
-  - platform: time
-    at: '18:00:00'
+  # Sets Morning daytime
+  - platform: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    above: 5
+
+  # Sets DAYTIMES daytime
+  - platform: numeric_state
+    entity_id: sensor.front_floor_lightlevel
+    below: '100'
+    for: '600'
+
+  # Sets EVENING daytime
+  - platform: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    below: 5
   condition: []
   action:
   - choose:
     - conditions:
       - condition: template
-        value_template: '{{ trigger.entity_id == "sensor.date_time_iso" }}'
-      - condition: state
-        entity_id: input_select.daytime
-        state: 'Night'
-      - condition: state
-        entity_id: input_boolean.presence
-        state: 'on'
+        value_template: "{{ trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising') }}"
       sequence:
       - service: input_select.select_option
         entity_id: input_select.daytime
         data:
-          option: Morning
+          option: 'Morning'
     - conditions:
-      - condition: time
-        before: '18:05:00'
-        after: '17:55:00'
+      - condition: template
+        value_template: "{{ trigger.entity_id == 'sensor.front_floor_lightlevel' }}"
       sequence:
       - service: input_select.select_option
         entity_id: input_select.daytime
         data:
-          option: Evening
+          option: 'Daytimes'
+    - conditions:
+      - condition: template
+        value_template: "{{ trigger.entity_id == 'sun.sun' }}"
+      sequence:
+      - service: input_select.select_option
+        entity_id: input_select.daytime
+        data:
+          option: 'Evening'
+    # State Night will be set be the NIGHT mode
     default: []
   mode: single
