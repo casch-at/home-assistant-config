@@ -1,6 +1,7 @@
 - id: daytime
   alias: Set daytime
-  description: ''
+  description: Set daytime "Morning" and "Evening" based on sun elevation and "Daytimes" based on lightlevel.
+  mode: single
   trigger:
   # Sets Morning daytime
   - platform: numeric_state
@@ -11,8 +12,9 @@
   # Sets DAYTIMES daytime
   - platform: numeric_state
     entity_id: sensor.front_floor_lightlevel
-    below: 100
-    for: 600
+    above: 100
+    for:
+      minutes: 10
 
   # Sets EVENING daytime
   - platform: numeric_state
@@ -25,7 +27,7 @@
 
     - conditions:
       - condition: template
-        value_template: "{{ trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising') }}"
+        value_template: "{{ trigger.entity_id == 'sun.sun' }}"
       sequence:
       - service: input_select.select_option
         entity_id: input_select.daytime
@@ -43,7 +45,7 @@
 
     - conditions:
       - condition: template
-        value_template: "{{ trigger.entity_id == 'sun.sun' and not state_attr(trigger.entity_id, 'rising') }}"
+        value_template: "{{ trigger.entity_id == 'sun.sun' }}"
       sequence:
       - service: input_select.select_option
         entity_id: input_select.daytime
@@ -52,4 +54,3 @@
 
     # State Night will be set be the NIGHT mode
     default: []
-  mode: single

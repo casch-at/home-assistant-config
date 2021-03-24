@@ -4,44 +4,44 @@ icon: mdi:shower
 sequence:
 - service: light.turn_on
   data:
-    entity_id: light.bathroom_light_1
+    entity_id: light.bathroom_front_right
 - delay: 00:00:01
 - service: light.turn_on
   data:
-    entity_id: light.bathroom_light_2
+    entity_id: light.bathroom_back_right
 - delay: 00:00:01
 - service: light.turn_on
   data:
-    entity_id: light.bathroom_light_3
+    entity_id: light.bathroom_back_left
 - delay: 00:00:01
 - service: light.turn_on
   data:
-    entity_id: light.bathroom_light_4
+    entity_id: light.bathroom_front_left
 - delay: 00:00:01
 - service: light.turn_off
   data:
-    entity_id: light.bathroom_light_4
+    entity_id: light.bathroom_front_left
 - delay: 00:00:01
 - service: light.turn_off
   data:
-    entity_id: light.bathroom_light_3
+    entity_id: light.bathroom_back_left
 - delay: 00:00:01
 - service: light.turn_off
   data:
-    entity_id: light.bathroom_light_2
+    entity_id: light.bathroom_back_right
 - delay: 00:00:01
 - service: light.turn_off
   data:
-    entity_id: light.bathroom_light_1
+    entity_id: light.bathroom_front_right
 - delay: 00:00:01
 - service: scene.turn_on
-  data:
-    entity_id: scene.bathroom_bath
+  target:
+    entity_id: scene.bathroom_warm
 - delay: 00:00:01
 - service: scene.turn_on
-  data:
-    entity_id: scene.bathroom_morning
+  target:
+    entity_id: scene.bathroom_cold
 - delay: 00:00:01
 - service: light.turn_off
-  data:
+  target:
     entity_id: light.bathroom
