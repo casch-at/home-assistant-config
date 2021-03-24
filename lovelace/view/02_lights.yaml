@@ -5,59 +5,15 @@ icon: mdi:lightbulb-group
 badges: []
 cards:
   - type: grid
-    columns: 6
+    columns: 7
     cards:
       - type: grid
         columns: 1
         cards:
           - type: custom:button-card
-            entity: light.led_stripes
-            template: icon_only_more_info
-          - type: custom:button-card
             entity: light.stairs_led
+            template: icon_only_more_info
             icon: mdi:stairs
-            template: icon_only_more_info
-            name: 'S'
-            show_name: true
-          - type: custom:button-card
-            entity: light.office_led
-            icon: mdi:desk
-            template: icon_only_more_info
-            name: 'D'
-            show_name: true
-          - type: custom:button-card
-            entity: light.office_led
-            template: icon_only_more_info
-            styles:
-              icon:
-                - color: "#FFFFFF"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.office_work_light
-          - type: custom:button-card
-            entity: light.office_led
-            template: icon_only_more_info
-            styles:
-              icon:
-                - color: "#A54CFF"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.office_purple
-          - type: custom:button-card
-            entity: light.office_led
-            template: icon_only_more_info
-            styles:
-              icon:
-                - color: "#00FF41"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.office_green
           - type: custom:button-card
             entity: light.stairs_led
             template: icon_only_more_info
@@ -113,6 +69,47 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.stairs_purple
+
+      - type: grid
+        columns: 1
+        cards:
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            icon: mdi:desk
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFFFFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_work_light
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#A54CFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_purple
+          - type: custom:button-card
+            entity: light.office_led
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#00FF41"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.office_green
 
       - type: grid
         columns: 1
