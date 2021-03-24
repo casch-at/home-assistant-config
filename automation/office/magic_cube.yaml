@@ -111,40 +111,6 @@
         target:
           entity_id: group.desk_and_laptop
 
-      # - choose:
-    #     - conditions:
-    #       - condition: template
-    #         value_template: '{{ trigger.event.data.event | int == 1006 }}'
-    #       sequence:
-    #       - service: switch.turn_off
-    #         target:
-    #           entity_id:
-    #             - switch.desk_control_button_4
-    #             - switch.desk_control_button_up
-    #             - switch.desk_control_button_down
-    #       - delay:
-    #           milliseconds: 250
-    #       - service: switch.turn_on
-    #         target:
-    #           entity_id: switch.desk_control_button_1
-
-    #     - conditions:
-    #       - condition: template
-    #         value_template: '{{ trigger.event.data.event | int == 6001 }}'
-    #       sequence:
-    #       - service: switch.turn_off
-    #         target:
-    #           entity_id:
-    #             - switch.desk_control_button_1
-    #             - switch.desk_control_button_up
-    #             - switch.desk_control_button_down
-    #       - delay:
-    #           milliseconds: 250
-    #       - service: switch.turn_on
-    #         target:
-    #           entity_id: switch.desk_control_button_4
-    #     default: []
-
     # GESTURE_PUSH
     # - conditions:
     #   - condition: template

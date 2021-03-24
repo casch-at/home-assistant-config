@@ -9,7 +9,7 @@
     to: 'on'
   condition:
   - condition: numeric_state
-    entity_id: sensor.bathroom_lightlevel
+    entity_id: sensor.bathroom_motion_lightlevel
     below: 45
   - condition: state
     entity_id: input_boolean.bathroom_switch_active

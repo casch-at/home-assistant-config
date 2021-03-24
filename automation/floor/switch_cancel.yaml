@@ -16,8 +16,6 @@
   action:
   - choose:
     - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event | int == 1001 }}'
       - condition: state
         entity_id: input_boolean.state_night_running
         state: 'on'
@@ -26,18 +24,19 @@
           count: '2'
           sequence:
           - service: automation.toggle
-            data:
+            target:
               entity_id: automation.floor_switch_automations
       - service: light.turn_on
         data:
-          entity_id: light.stairs_led
           rgb_color: [50, 200, 0]
           brightness: 150
+        target:
+          entity_id: light.stairs_led
       - delay: 00:00:02
       - service: scene.turn_on
-        data:
+        target:
           entity_id: scene.stairs_backup
       - service: input_boolean.turn_off
-        data:
+        target:
           entity_id: input_boolean.state_night_running
     default: []

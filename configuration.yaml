@@ -76,3 +76,10 @@ influxdb:
   password: !secret influxdb_password
   max_retries: 3
   default_measurement: state
+  ignore_attributes:
+    - friendly_name
+  exclude:
+    entities:
+      - sensor.hacs
+    entity_globs:
+      - sensor.*_switch_energy_totalstarttime
