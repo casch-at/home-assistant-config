@@ -27,7 +27,7 @@
 
     - conditions:
       - condition: template
-        value_template: "{{ trigger.entity_id == 'sun.sun' }}"
+        value_template: "{{ trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising') }}"
       sequence:
       - service: input_select.select_option
         entity_id: input_select.daytime
@@ -45,7 +45,7 @@
 
     - conditions:
       - condition: template
-        value_template: "{{ trigger.entity_id == 'sun.sun' }}"
+        value_template: "{{ trigger.entity_id == 'sun.sun' and not state_attr(trigger.entity_id, 'rising') }}"
       sequence:
       - service: input_select.select_option
         entity_id: input_select.daytime

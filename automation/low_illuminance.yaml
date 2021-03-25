@@ -2,6 +2,7 @@
   alias: Low illuminance light
   description: Turn on lights when the sun goes down or on low light condition
   mode: single
+  max_exceeded: silent
   trigger:
   - platform: numeric_state
     entity_id: sensor.front_floor_lightlevel
@@ -11,20 +12,22 @@
 
   - platform: state
     entity_id: person.christian_schwarzgruber
+    from: not_home
     to: home
 
   - platform: state
     entity_id: person.sonia_avramidis
+    from: not_home
     to: home
   condition:
   - condition: or
     conditions:
     - condition: state
       entity_id: person.christian_schwarzgruber
-      state: 'home'
+      state: home
     - condition: state
       entity_id: person.sonia_avramidis
-      state: 'home'
+      state: home
 
   - condition: numeric_state
     entity_id: sensor.front_floor_lightlevel
@@ -34,7 +37,7 @@
     conditions:
     - condition: state
       entity_id: input_select.daytime
-      state: 'Night'
+      state: Night
   action:
   - choose:
     - conditions:
@@ -57,7 +60,7 @@
         state: 'off'
       - condition: state
         entity_id: person.sonia_avramidis
-        state: 'home'
+        state: home
       sequence:
       - service: light.turn_on
         data:
@@ -74,7 +77,7 @@
         state: 'off'
       - condition: state
         entity_id: person.sonia_avramidis
-        state: 'home'
+        state: home
       sequence:
       - service: scene.apply
         data:
