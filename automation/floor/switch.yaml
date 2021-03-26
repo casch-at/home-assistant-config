@@ -67,20 +67,26 @@
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1002 }}'
       sequence:
-      - service: switch.toggle
-        target:
-          entity_id: switch.nightstand_switch
       - service: script.turn_on
         data:
           variables:
             entity_id: 'switch.nightstand_switch'
         target:
           entity_id: script.stairs_light_based_on_entity_state
+      - service: switch.toggle
+        target:
+          entity_id: switch.nightstand_switch
 
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 2001 }}'
       sequence:
+      - service: script.turn_on
+        data:
+          variables:
+            entity_id: 'group.office'
+        target:
+          entity_id: script.stairs_light_based_on_entity_state
       - service: homeassistant.toggle
         target:
           entity_id: group.office
@@ -89,31 +95,31 @@
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 3002 }}'
       sequence:
-      - event: deconz_event
-        event_data:
-          id: bathroom_switch
-          event: 2002
       - service: script.turn_on
         data:
           variables:
             entity_id: 'light.bathroom'
         target:
           entity_id: script.stairs_light_based_on_entity_state
+      - event: deconz_event
+        event_data:
+          id: bathroom_switch
+          event: 2002
 
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 3004 }}'
       sequence:
-      - event: deconz_event
-        event_data:
-          id: bathroom_switch
-          event: 3002
       - service: script.turn_on
         data:
           variables:
             entity_id: 'light.bathroom'
         target:
           entity_id: script.stairs_light_based_on_entity_state
+      - event: deconz_event
+        event_data:
+          id: bathroom_switch
+          event: 3002
 
     - conditions:
       - condition: template
@@ -125,15 +131,15 @@
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 4002 }}'
       sequence:
-      - service: homeassistant.toggle
-        target:
-          entity_id: light.parlor
       - service: script.turn_on
         data:
           variables:
             entity_id: 'light.parlor'
         target:
           entity_id: script.stairs_light_based_on_entity_state
+      - service: homeassistant.toggle
+        target:
+          entity_id: light.parlor
 
     - conditions:
       - condition: template
@@ -147,45 +153,45 @@
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 5001 }}'
       sequence:
-      - service: switch.toggle
-        target:
-          entity_id: switch.upstairs_lamp_switch
       - service: script.turn_on
         data:
           variables:
             entity_id: 'switch.upstairs_lamp_switch'
         target:
           entity_id: script.stairs_light_based_on_entity_state
+      - service: switch.toggle
+        target:
+          entity_id: switch.upstairs_lamp_switch
 
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 5002 }}'
       sequence:
-      - event: deconz_event
-        event_data:
-          id: lower_kitchen_switch
-          event: 1002
       - service: script.turn_on
         data:
           variables:
             entity_id: 'light.front_floor'
         target:
           entity_id: script.stairs_light_based_on_entity_state
+      - event: deconz_event
+        event_data:
+          id: lower_kitchen_switch
+          event: 1002
 
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 5004 }}'
       sequence:
-      - event: deconz_event
-        event_data:
-          id: lower_kitchen_switch
-          event: 2002
       - service: script.turn_on
         data:
           variables:
             entity_id: 'light.lower_kitchen'
         target:
           entity_id: script.stairs_light_based_on_entity_state
+      - event: deconz_event
+        event_data:
+          id: lower_kitchen_switch
+          event: 2002
 
     - conditions:
       - condition: template
