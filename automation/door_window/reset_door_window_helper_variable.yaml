@@ -5,6 +5,7 @@
   trigger:
     - platform: state
       entity_id: group.door_window_sensor
+      from: 'on'
       to: 'off'
   condition:
     - condition: state
