@@ -9,13 +9,18 @@ default_config:
 #     homeassistant.core: debug
 #     homeassistant.components.deconz: debug
 
+# https://www.home-assistant.io/integrations/recorder
+recorder:
+  purge_keep_days: 2
+  commit_interval: 10
+
 # https://www.home-assistant.io/integrations/logbook/
 logbook:
   exclude:
     entity_globs:
       - sensor.date_time_*
-    entities:
-      - binary_sensor.c200_camera_motion_detection
+    # entities:
+    #   - binary_sensor.c200_camera_motion_detection
 
 homeassistant:
   customize: !include customize.yaml
@@ -50,6 +55,8 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+light: !include lights.yaml
+cover: !include covers.yaml
 
 calendar:
   - platform: caldav
@@ -63,9 +70,6 @@ calendar:
       - name: Home Office
         calendar: Work
         search: '^Schwarzgruber_HO'
-
-light: !include lights.yaml
-cover: !include covers.yaml
 
 # https://www.home-assistant.io/integrations/influxdb
 influxdb:
