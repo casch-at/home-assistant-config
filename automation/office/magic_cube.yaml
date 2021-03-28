@@ -50,6 +50,9 @@
       - condition: state
         entity_id: binary_sensor.cover_operation_to_cold
         state: 'off'
+      - condition: state
+        entity_id: binary_sensor.office_window_sensor
+        state: 'off'
       sequence:
       - choose:
         - conditions:
