@@ -1,49 +1,65 @@
 - id: handy_alaram
   alias: Handy alarm
   description: ''
+  mode: queued
+  max: 2
   trigger:
-  - platform: template
-    #  - 60 seconds because otherwise we miss it
-    value_template: >-
-      {{
-        (not is_state('sensor.huawei_p20_next_alarm', 'unavailable') and
-         (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
-           == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M') and
-         states('person.christian_schwarzgruber') == 'home') or
-        (not is_state('sensor.galaxy_a2_next_alarm', 'unavailable') and
-         (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
-           == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M') and
-         states('person.sonia_avramidis') == 'home')
-      }}
+  - platform: state
+    entity_id: binary_sensor.sonia_avramidis_alarm
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.christian_schwarzgruber_alarm
+    from: 'off'
+    to: 'on'
   condition: []
   action:
+  # Turn on stairs light
   - choose:
     - conditions:
       - condition: numeric_state
         entity_id: sensor.front_floor_lightlevel
         below: 100
+      - condition: state
+        entity_id: light.stairs_led
+        state: 'off'
       sequence:
       - service: scene.turn_on
         data:
-          transition: 10
+          transition: 5
         target:
           entity_id: scene.stairs_morning_light
     default: []
 
-  # Check if it is safe to open the cover, otherwise stop here
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.cover_operation_to_cold
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.bedroom_window_sensor
-      state: 'off'
+  # Open cover in bedroom
+  - choose:
+    # Check if it is safe to open the cover, otherwise stop here
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.cover_operation_to_cold
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.bedroom_window_sensor
+        state: 'off'
+      sequence:
+      # - service: cover.stop_cover
+      #   target:
+      #     entity_id: cover.bedroom_roller_shutter_level
+      - service: cover.open_cover
+        target:
+          entity_id: cover.bedroom_roller_shutter_level
+    default: []
 
-  - service: cover.stop_cover
-    target:
-      entity_id: cover.bedroom_roller_shutter_level
+  # Home office
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: "{{ trigger.entity_id == 'binary_sensor.christian_schwarzgruber_alarm' }}"
+      sequence:
+      - service: automation.trigger
+        data:
+          skip_condition: false
+        target:
+          entity_id: automation.home_office
 
-  - service: cover.open_cover
-    target:
-      entity_id: cover.bedroom_roller_shutter_level
+    default: []

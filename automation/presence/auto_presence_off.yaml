@@ -2,19 +2,12 @@
   alias: Automatically turn presence off
   description: ''
   trigger:
-  - platform: state
-    entity_id: person.christian_schwarzgruber
-    to: not_home
-  - platform: state
-    entity_id: person.sonia_avramidis
-    to: not_home
-  condition:
-  - condition: state
-    entity_id: person.christian_schwarzgruber
-    state: 'not_home'
-  - condition: state
-    entity_id: person.sonia_avramidis
-    state: 'not_home'
+  - platform: template
+    value_template: >-
+      {{
+        is_state('person.christian_schwarzgruber', 'not_home') and is_state('person.sonia_avramidis', 'not_home')
+      }}
+  condition: []
   action:
   - service: notify.mobile_app_huawei_p20
     data:

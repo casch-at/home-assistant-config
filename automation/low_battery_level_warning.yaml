@@ -1,5 +1,5 @@
 - id: low_battery_level_warning
-  alias: Low Battery Level Warning
+  alias: Low battery level warning
   description: ''
   mode: queued
   max: 50
@@ -13,7 +13,7 @@
   - platform: state
     entity_id: sensor.lower_kitchen_motion_battery_level
   - platform: state
-    entity_id: sensor.lower_kitchen_switch_battery_level
+    entity_id: sensor.front_floor_switch_battery_level
   - platform: state
     entity_id: sensor.office_multi_sensor_battery_level
   - platform: state
@@ -57,7 +57,7 @@
   - choose:
     - conditions:
       - condition: template
-        value_template: "{{ trigger.to_state.object_id == 'tablet_battery_level' }}"
+        value_template: "{{ trigger.entity_id == 'sensor.tablet_battery_level' }}"
       sequence:
       - service: switch.turn_on
         data:

@@ -1,25 +1,24 @@
 - id: presence_everything_off
   alias: Turn everything off on presence state off
   description: ''
+  mode: single
   trigger:
   - platform: state
     entity_id: input_boolean.presence
+    from: 'on'
     to: 'off'
   condition: []
   action:
-
-  # Reset lower kitchen switch helper variables
-  - service: script.reset_lower_kitchen_switch_active_states
-
   # Lights
   - service: homeassistant.turn_off
-    data:
+    target:
       entity_id: group.all_lights_extra
 
   # Group devices
   - service: homeassistant.turn_off
-    data:
+    target:
       entity_id: group.devices
+
   - delay: 00:00:05
 
   # Desk and laptop
@@ -30,11 +29,11 @@
           {{
             is_state('device_tracker.lap_02_lan_router', 'not_home') and
             is_state('device_tracker.lap_02_wlan_router', 'not_home') and
-            is_state('device_tracker.work_wlan_router', 'not_home')
+            is_state('device_tracker.lap_work_router', 'not_home')
           }}
       sequence:
       - service: homeassistant.turn_off
-        data:
+        target:
           entity_id: group.desk_and_laptop
     default: []
 
@@ -45,17 +44,15 @@
         value_template: '{{ is_state(''device_tracker.tower_lan_router'', ''not_home'') }}'
       sequence:
       - service: switch.turn_off
-        data:
+        target:
           entity_id: switch.tower
     default: []
 
   # Switches off
   - service: switch.turn_off
-    data:
+    target:
       entity_id:
         - switch.printer
         - switch.tv_switch
         - switch.tv_usb
         - switch.nightstand_usb
-
-  mode: single

@@ -1,23 +1,23 @@
-alias: Reset Lower Kitchen Switch Active States
+alias: Reset Front Floor Switch Lights Active State
 mode: single
 sequence:
 - choose:
   - conditions:
     - condition: state
-      entity_id: input_boolean.lower_kitchen_switch_active
+      entity_id: input_boolean.lower_kitchen_light_active
       state: 'on'
     sequence:
     - service: input_boolean.turn_off
       data:
-        entity_id: input_boolean.lower_kitchen_switch_active
+        entity_id: input_boolean.lower_kitchen_light_active
   default: []
 - choose:
   - conditions:
     - condition: state
-      entity_id: input_boolean.front_floor_switch_active
+      entity_id: input_boolean.front_floor_light_active
       state: 'on'
     sequence:
     - service: input_boolean.turn_off
       data:
-        entity_id: input_boolean.front_floor_switch_active
+        entity_id: input_boolean.front_floor_light_active
   default: []

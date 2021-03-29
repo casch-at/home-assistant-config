@@ -1,5 +1,5 @@
-- id: bathroom_switch_active_state
-  alias: Bathroom switch reset active state
+- id: bathroom_switch_light_state
+  alias: Bathroom switch light reset active state
   description: ''
   mode: single
   trigger:
@@ -9,9 +9,9 @@
     to: 'off'
   condition:
   - condition: state
-    entity_id: input_boolean.bathroom_switch_active
+    entity_id: input_boolean.bathroom_light_active
     state: 'on'
   action:
   - service: input_boolean.turn_off
     data:
-      entity_id: input_boolean.bathroom_switch_active
+      entity_id: input_boolean.bathroom_light_active

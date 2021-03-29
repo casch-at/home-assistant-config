@@ -2,12 +2,38 @@
   sensors:
     cover_operation_to_cold:
       friendly_name: "Cover Operation To Cold"
-      unique_id: cover_operation_to_cold
+      unique_id: binary_sensor0001
       device_class: cold
       value_template: >-
         {{
           states('weather.home') == 'snowy' or
           states('sensor.outdoor_temperature') | float <= 1.0
+        }}
+    sonia_avramidis_alarm:
+      friendly_name: "Sonia Avramidis Alaram"
+      unique_id: binary_sensor0002
+      value_template: >-
+        {{
+          not
+            is_state('sensor.galaxy_a2_next_alarm', 'unavailable')
+          and
+            (as_timestamp(states('sensor.galaxy_a2_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
+              == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+          and
+            states('person.sonia_avramidis') == 'home'
+        }}
+    christian_schwarzgruber_alarm:
+      friendly_name: "Christian Schwarzgruber Alaram"
+      unique_id: binary_sensor0003
+      value_template: >-
+        {{
+          not
+            is_state('sensor.huawei_p20_NEXT_alarm', 'unavailable')
+          and
+            (as_timestamp(states('sensor.huawei_p20_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
+              == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+          and
+           states('person.christian_schwarzgruber') == 'home'
         }}
 
 - platform: workday

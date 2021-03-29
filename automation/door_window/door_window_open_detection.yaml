@@ -1,5 +1,5 @@
 - id: door_window_open_detection
-  alias: Door and Window Open Detection
+  alias: Door and window open detection
   description: Send notification when it is cold outside and door/window is longer than 10 minutes open
   trigger:
   - platform: template

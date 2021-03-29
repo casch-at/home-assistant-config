@@ -12,15 +12,13 @@
   # Sets DAYTIMES daytime
   - platform: numeric_state
     entity_id: sensor.front_floor_lightlevel
-    above: 100
-    for:
-      minutes: 10
+    above: 130
 
   # Sets EVENING daytime
   - platform: numeric_state
     entity_id: sun.sun
     attribute: elevation
-    below: 2
+    below: 3
   condition: []
   action:
   - choose:
@@ -30,27 +28,30 @@
         value_template: "{{ trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising') }}"
       sequence:
       - service: input_select.select_option
-        entity_id: input_select.daytime
         data:
           option: 'Morning'
+        target:
+          entity_id: input_select.daytime
 
     - conditions:
       - condition: template
         value_template: "{{ trigger.entity_id == 'sensor.front_floor_lightlevel' }}"
       sequence:
       - service: input_select.select_option
-        entity_id: input_select.daytime
         data:
           option: 'Daytimes'
+        target:
+          entity_id: input_select.daytime
 
     - conditions:
       - condition: template
         value_template: "{{ trigger.entity_id == 'sun.sun' and not state_attr(trigger.entity_id, 'rising') }}"
       sequence:
       - service: input_select.select_option
-        entity_id: input_select.daytime
         data:
           option: 'Evening'
+        target:
+          entity_id: input_select.daytime
 
     # State Night will be set be the NIGHT mode
     default: []

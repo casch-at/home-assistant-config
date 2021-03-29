@@ -1,0 +1,16 @@
+- id: enough_illuminance
+  alias: Enough illuminance light
+  description: Turn off lights when there on enough natural illuminance light.
+  mode: single
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.front_floor_lightlevel
+    above: 130
+  condition:
+  - condition: state
+    entity_id: light.all_lights
+    state: 'on'
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.all_lights

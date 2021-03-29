@@ -1,5 +1,5 @@
 - id: mirror_desk_height
-  alias: Mirror Sensor Desk Height with Input Number Desk Height
+  alias: Mirror sensor desk height with input number desk height
   description: Insure input_number.desk_height gets updated when desk height changes without using the input_number.desk_height entity
   mode: single
   trigger:

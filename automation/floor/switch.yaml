@@ -1,8 +1,7 @@
-- id: floor_switch_automations
-  alias: Floor Switch Automations
+- id: floor_switch
+  alias: Floor switch
   description: ''
-  mode: parallel
-  max: 10
+  mode: restart
   trigger:
   - platform: event
     event_type: deconz_event
@@ -22,47 +21,64 @@
       }}
   action:
   - choose:
+    # State night
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1001 }}'
-      - condition: state
-        entity_id: input_boolean.state_night_running
-        state: 'off'
       sequence:
-      - service: scene.create
-        data:
-          scene_id: stairs_backup
-          snapshot_entities:
-          - light.stairs_led
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.state_night_running
-      - repeat:
-          count: '3'
+      # Activate state night
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.state_night_running
+            state: 'off'
           sequence:
-          - service: light.turn_on
-            data:
-              rgb_color: [200, 50, 0]
-              brightness: 150
+          - service: input_boolean.turn_on
             target:
-              entity_id: light.stairs_led
-          - delay: 00:00:02
-          - service: light.turn_on
+              entity_id: input_boolean.state_night_running
+          - service: scene.create
             data:
-              rgb_color: [200, 50, 0]
-              brightness: 20
+              scene_id: stairs_backup
+              snapshot_entities:
+              - light.stairs_led
+          - repeat:
+              count: '3'
+              sequence:
+              - service: light.turn_on
+                data:
+                  rgb_color: [200, 50, 0]
+                  brightness: 150
+                target:
+                  entity_id: light.stairs_led
+              - delay: 00:00:02
+              - service: light.turn_on
+                data:
+                  rgb_color: [200, 50, 0]
+                  brightness: 20
+                target:
+                  entity_id: light.stairs_led
+              - delay: 00:00:02
+          - service: input_select.select_option
+            data:
+              option: 'Night'
             target:
-              entity_id: light.stairs_led
-          - delay: 00:00:02
-      - service: input_select.select_option
-        data:
-          option: 'Night'
-        target:
-          entity_id: input_select.daytime
-      - service: input_boolean.turn_off
-        target:
-          entity_id: input_boolean.state_night_running
+              entity_id: input_select.daytime
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.state_night_running
 
+        # Cancel state night
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.state_night_running
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.state_night_running
+        default: []
+
+    # Bedroom nightstand light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1002 }}'
@@ -77,6 +93,7 @@
         target:
           entity_id: switch.nightstand_switch
 
+    # Toggle office
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 2001 }}'
@@ -91,6 +108,7 @@
         target:
           entity_id: group.office
 
+    # Toggle bathroom light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 3002 }}'
@@ -106,6 +124,7 @@
           id: bathroom_switch
           event: 2002
 
+    # Toggle bathroom light left/right
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 3004 }}'
@@ -121,12 +140,14 @@
           id: bathroom_switch
           event: 3002
 
+    # TV off/on
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 4001 }}'
       sequence:
       - service: script.tv_off_on
 
+    # TV toggle parlor lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 4002 }}'
@@ -141,6 +162,7 @@
         target:
           entity_id: light.parlor
 
+    # Activate scene.night
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 4004 }}'
@@ -149,6 +171,7 @@
         target:
           entity_id: scene.night
 
+    # Toggle upstairs lamp
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 5001 }}'
@@ -163,6 +186,7 @@
         target:
           entity_id: switch.upstairs_lamp_switch
 
+    # Toggle front floor lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 5002 }}'
@@ -178,6 +202,7 @@
           id: lower_kitchen_switch
           event: 1002
 
+    # Toggle lower kitchen lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 5004 }}'
@@ -193,6 +218,7 @@
           id: lower_kitchen_switch
           event: 2002
 
+    # Toggle aroma diffuser
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 6001 }}'
@@ -201,6 +227,7 @@
         target:
           entity_id: switch.aroma_diffuser
 
+    # Cycle stairs scense
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 6002 }}'
@@ -212,6 +239,7 @@
         target:
           entity_id: input_select.stairs_scenes
 
+    # Toggle stairs light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 6004 }}'

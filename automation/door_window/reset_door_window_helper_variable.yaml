@@ -1,5 +1,5 @@
 - id: reset_window_or_door_open_input_boolean
-  alias: Reset Window or Door Open Input Boolean
+  alias: Reset window or door open input boolean
   description: ''
   mode: single
   trigger:

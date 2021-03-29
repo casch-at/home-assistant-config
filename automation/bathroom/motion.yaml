@@ -12,7 +12,7 @@
     entity_id: sensor.bathroom_motion_lightlevel
     below: 45
   - condition: state
-    entity_id: input_boolean.bathroom_switch_active
+    entity_id: input_boolean.bathroom_light_active
     state: 'off'
   action:
   - service: light.turn_on
@@ -28,7 +28,7 @@
       to: 'off'
       for: 30
   - condition: state
-    entity_id: input_boolean.front_floor_switch_active
+    entity_id: input_boolean.bathroom_light_active
     state: 'off'
   - service: light.turn_off
     target:

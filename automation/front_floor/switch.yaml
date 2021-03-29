@@ -1,43 +1,133 @@
-- id: front_floor_light
-  alias: Front floor light
+- id: front_floor_switch
+  alias: Front floor switch
   description: ''
-  mode: single
+  mode: restart
   trigger:
   - platform: event
     event_type: deconz_event
     event_data:
-      id: lower_kitchen_switch
+      id: front_floor_switch
   condition:
   - condition: template
     value_template: |-
       {% set event = trigger.event.data.event | int %}
-      {{ event == 1002 or event == 1004 }}
+      {{
+        event == 1001 or event == 1002 or event == 1004 or
+        event == 2002 or event == 2004
+      }}
   action:
   - choose:
+    # Presence on/off
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 1001 }}'
+      sequence:
+      - choose:
+        # Presence off
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.presence
+            state: 'on'
+          - condition: state
+            entity_id: input_boolean.presence_off_running
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.presence_off_running
+          - repeat:
+              count: '2'
+              sequence:
+              - type: flash
+                device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+                entity_id: light.front_floor
+                domain: light
+              - delay: 00:00:10
+          - repeat:
+              count: '2'
+              sequence:
+              - type: flash
+                device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+                entity_id: light.front_floor
+                domain: light
+              - delay: 00:00:05
+          - service: input_boolean.turn_off
+            target:
+              entity_id:
+                - input_boolean.presence
+                - input_boolean.presence_off_running
+
+        # Presence cancel
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.presence_off_running
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.presence_off_running
+          - service: persistent_notification.create
+            data:
+              title: Presence 'off' Canceled
+          - repeat:
+              count: '2'
+              sequence:
+              - type: flash
+                device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+                entity_id: light.front_floor
+                domain: light
+
+        # Presence on
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.presence
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.presence
+          - repeat:
+              count: '2'
+              sequence:
+              - type: flash
+                device_id: 9a999d4e84bd4c8eb7c7779363b97b26
+                entity_id: light.front_floor
+                domain: light
+        default: []
+
+    # Front floor light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1002 }}'
-      - condition: state
-        entity_id: input_boolean.front_floor_switch_active
-        state: 'off'
       sequence:
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.front_floor_switch_active
-      - service: light.turn_on
-        data:
-          brightness: "{{ states('sensor.daytime_light_brightness') }}"
-          color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
-        target:
-          entity_id: light.front_floor
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.front_floor_light_active
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.front_floor_light_active
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id: light.front_floor
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.front_floor
 
+    # Front floor scene
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event | int == 1004 }}'
       sequence:
       - service: input_boolean.turn_on
         target:
-          entity_id: input_boolean.front_floor_switch_active
+          entity_id: input_boolean.front_floor_light_active
       - service: light.turn_on
         data:
           brightness: 254
@@ -45,7 +135,44 @@
         target:
           entity_id: light.front_floor
 
-    default:
-    - service: light.turn_off
-      target:
-        entity_id: light.front_floor
+    # Lower kitchen light
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 2002 }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.lower_kitchen_light_active
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.lower_kitchen_light_active
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id: light.lower_kitchen
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.lower_kitchen
+
+    # Lower kitchen scene
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event | int == 2004 }}'
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.lower_kitchen_light_active
+      - service: light.turn_on
+        data:
+          brightness: 254
+          color_temp: 271
+        target:
+          entity_id: light.lower_kitchen
+
+    default: []

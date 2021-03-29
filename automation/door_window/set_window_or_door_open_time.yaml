@@ -1,0 +1,106 @@
+- id: set_window_or_door_open_time
+  alias: Set window or door open time
+  description: Automatically sets window or door open time based on outdoor temperature
+  mode: single
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.outdoor_temperature
+      above: 25  
+    - platform: numeric_state
+      entity_id: sensor.outdoor_temperature
+      above: 20
+      below: 25
+    - platform: numeric_state
+      entity_id: sensor.outdoor_temperature
+      above: 15
+      below: 20
+    - platform: numeric_state
+      entity_id: sensor.outdoor_temperature
+      above: 10
+      below: 15
+    - platform: numeric_state
+      entity_id: sensor.outdoor_temperature
+      above: 5
+      below: 10
+    - platform: numeric_state
+      entity_id: sensor.outdoor_temperature
+      below: 5
+  condition: []
+  action:
+    - choose:
+        # 30 minutes
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.outdoor_temperature
+              above: 25
+          sequence:
+            - service: input_number.set_value
+              data:
+                value: 1800
+              target:
+                entity_id: input_number.window_or_door_open
+
+        # 2 hours
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.outdoor_temperature
+              above: 20
+              below: 25
+          sequence:
+            - service: input_number.set_value
+              data:
+                value: 7200
+              target:
+                entity_id: input_number.window_or_door_open
+
+        # 1 hours
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.outdoor_temperature
+              above: 15
+              below: 20
+          sequence:
+            - service: input_number.set_value
+              data:
+                value: 3600
+              target:
+                entity_id: input_number.window_or_door_open
+
+        # 30 minutes
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.outdoor_temperature
+              above: 10
+              below: 15
+          sequence:
+            - service: input_number.set_value
+              data:
+                value: 1800
+              target:
+                entity_id: input_number.window_or_door_open
+
+        # 15 minutes
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.outdoor_temperature
+              above: 5
+              below: 10
+          sequence:
+            - service: input_number.set_value
+              data:
+                value: 900
+              target:
+                entity_id: input_number.window_or_door_open
+
+        # 10 minutes
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.outdoor_temperature
+              below: 5
+          sequence:
+            - service: input_number.set_value
+              data:
+                value: 600
+              target:
+                entity_id: input_number.window_or_door_open
+      default: []

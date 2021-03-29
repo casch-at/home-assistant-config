@@ -1,5 +1,5 @@
-- id: toilet_light
-  alias: Night toilet light
+- id: bedroom_motion
+  alias: Bedroom Motion
   description: ''
   mode: single
   trigger:

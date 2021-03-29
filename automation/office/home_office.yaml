@@ -1,29 +1,25 @@
 - id: home_office
-  alias: Home Office
+  alias: Home office
   description: ''
-  trigger:
-  - platform: state
-    entity_id: input_select.daytime
-  - platform: state
-    entity_id: input_boolean.presence
-    to: 'on'    
+  mode: single
+  trigger: []
   condition:
   - condition: state
     entity_id: calendar.work_home_office
     state: 'on'
-  - condition: state
-    entity_id: input_boolean.presence
-    state: 'on'
   - condition: time
-    before: '16:00:00'
+    before: '17:00:00'
     after: '06:00:00'
-  - condition: not
-    conditions:
-    - condition: state
-      entity_id: input_select.daytime
-      state: Night    
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  - condition: state
+    entity_id: group.desk_and_laptop
+    state: 'off'
   action:
   - service: homeassistant.turn_on
     data:
         entity_id: group.desk_and_laptop
-  mode: single
