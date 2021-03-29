@@ -19,9 +19,15 @@
     from: not_home
     to: home
   condition:
-  - condition: state
-    entity_id: input_boolean.presence
-    state: 'on'
+  # NOTE(cschwarzgruber): Don't use input_boolean.presence here
+  - condition: or
+    conditions:
+    - platform: state
+      entity_id: person.sonia_avramidis
+      state: home
+    - platform: state
+      entity_id: person.christian_schwarzgruber
+      state: home
 
   - condition: numeric_state
     entity_id: sensor.front_floor_lightlevel
@@ -33,6 +39,7 @@
       entity_id: input_select.daytime
       state: Night
   action:
+  # Turn on stairs light
   - choose:
     - conditions:
       - condition: state
@@ -47,6 +54,7 @@
           entity_id: light.stairs_led
     default: []
 
+  # Turn on parlor shelve light
   - choose:
     - conditions:
       - condition: state
@@ -64,6 +72,7 @@
           entity_id: light.parlor_shelve
     default: []
 
+  # Turn on plants light
   - choose:
     - conditions:
       - condition: state
@@ -91,6 +100,7 @@
               state: 'on'
     default: []
 
+  # Turn on desk when home office
   - choose:
     - conditions:
       - condition: state
