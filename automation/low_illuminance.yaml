@@ -13,21 +13,17 @@
     entity_id: person.christian_schwarzgruber
     from: not_home
     to: home
+    for: 2
 
   - platform: state
     entity_id: person.sonia_avramidis
     from: not_home
     to: home
+    for: 2
   condition:
-  # NOTE(cschwarzgruber): Don't use input_boolean.presence here
-  - condition: or
-    conditions:
-    - platform: state
-      entity_id: person.sonia_avramidis
-      state: home
-    - platform: state
-      entity_id: person.christian_schwarzgruber
-      state: home
+  - platform: state
+    entity_id: input_boolean.presence
+    state: 'on'
 
   - condition: numeric_state
     entity_id: sensor.front_floor_lightlevel
