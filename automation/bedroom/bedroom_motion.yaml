@@ -1,7 +1,8 @@
 - id: bedroom_motion
-  alias: Bedroom Motion
+  alias: Bedroom motion
   description: ''
   mode: single
+  max_exceeded: silent
   trigger:
   - platform: state
     entity_id: binary_sensor.bedroom_motion
