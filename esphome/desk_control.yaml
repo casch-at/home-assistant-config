@@ -20,6 +20,10 @@ esphome:
 
 <<: !include .base-config.yaml
 
+####
+# Section -- Desk Controll
+####
+
 # UART2
 uart:
   baud_rate: 1000
@@ -31,6 +35,9 @@ uart:
 
 # Custom height sensor
 sensor:
+  ####
+  # Desk Control
+  ####
   - platform: custom
     lambda: |-
       auto desk_height_sensor = new DeskHeightSensor(id(desk_height_uart_bus));
@@ -41,6 +48,15 @@ sensor:
       name: Desk Control Height
       unit_of_measurement: "cm"
       icon: mdi:human-male-height
+  ####
+  # Office AC
+  ####
+  - platform: homeassistant
+    id: office_temperature
+    name: "Office Temperature"
+    entity_id: sensor.office_temperature
+    internal: true
+
 
 switch:
   # id is wire color of "Desk Control 520"
@@ -231,3 +247,33 @@ switch:
             - switch.turn_on: green
     turn_off_action:
       - switch.turn_off: green
+
+####
+# Section -- Office AC
+####
+
+### Receiver RF
+remote_receiver:
+  id: rcvr
+  pin:
+    number: 32
+    inverted: True
+    mode: INPUT_PULLUP
+  tolerance: 55%
+
+### Transmit IR
+
+# https://www.esphome.io/components/remote_transmitter.html
+remote_transmitter:
+  id: tamtr
+  pin: 27
+  carrier_duty_percent: 50%
+
+# https://esphome.io/components/climate/ir_climate.html
+climate:
+  - platform: toshiba
+    id: office_ac
+    name: 'Office AC'
+    receiver_id: rcvr
+    transmitter_id: tamtr
+    sensor: office_temperature
