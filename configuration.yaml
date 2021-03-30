@@ -72,18 +72,4 @@ calendar:
         search: '^Schwarzgruber_HO'
 
 # https://www.home-assistant.io/integrations/influxdb
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: !secret influxdb_name
-  username: !secret influxdb_name
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
-  # ignore_attributes:
-  #   - friendly_name
-  exclude:
-    entities:
-      - sensor.hacs
-    entity_globs:
-      - sensor.*_switch_energy_totalstarttime
+influxdb: !include influxdb.yaml

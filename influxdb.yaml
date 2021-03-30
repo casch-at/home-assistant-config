@@ -1,0 +1,66 @@
+host: a0d7b954-influxdb
+port: 8086
+database: !secret influxdb_name
+username: !secret influxdb_name
+password: !secret influxdb_password
+max_retries: 3
+default_measurement: state
+# ignore_attributes:
+#   - friendly_name
+exclude:
+  entities:
+    - binary_sensor.updater
+    - sensor.date_time_iso
+    - sensor.hacs
+    - zone.home
+  entity_globs:
+    - sensor.*_switch_energy_totalstarttime
+    # - cover.*
+  domains:
+    - camera
+# This would only include those entities listed here -- comment-out exclude filter
+# include:
+#   entities:
+#     - sun.sun
+#   entity_globs:
+#     - sensor.*_temperature
+#     - sensor.*_humidity
+#     - sensor.*_lightlevel
+#     - sensor.asuswrt_*
+component_config:
+  sun.sun:
+    override_measurement: sun
+  weather.home:
+    override_measurement: weather
+component_config_glob:
+  input_*.*:
+    override_measurement: helpers
+component_config_domain:
+  automation:
+    override_measurement: automation
+  binary_sensor:
+    override_measurement: binary_sensor
+  calendar:
+    override_measurement: calendar
+  person:
+    override_measurement: person
+  remote:
+    override_measurement: remote
+  climate:
+    override_measurement: climate
+  cover:
+    override_measurement: cover
+  device_tracker:
+    override_measurement: device_tracker
+  group:
+    override_measurement: group
+  light:
+    override_measurement: light
+  scene:
+    override_measurement: scene
+  script:
+    override_measurement: script
+  # sensor:
+  #   override_measurement: sensor
+  switch:
+    override_measurement: switch

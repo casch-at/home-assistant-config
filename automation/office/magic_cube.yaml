@@ -1,5 +1,5 @@
 - id: magic_cube
-  alias: Office magic cube automations
+  alias: Office magic cube
   description: ''
   mode: restart
   trigger:
