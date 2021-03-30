@@ -185,8 +185,8 @@ cards:
           - entity: sensor.bathroom_switch_battery_level
             name: Bathroom switch
             tap_action: more-info
-          - entity: sensor.lower_kitchen_switch_battery_level
-            name: Lower kitchen switch
+          - entity: sensor.front_floor_switch_battery_level
+            name: Front floor switch
             tap_action: more-info
           - entity: sensor.office_multi_sensor_battery_level
             name: Office multi sensor

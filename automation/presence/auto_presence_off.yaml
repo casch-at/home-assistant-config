@@ -13,5 +13,5 @@
     data:
       message: Christian and Sonia are away
   - service: input_boolean.turn_off
-    data:
+    target:
       entity_id: input_boolean.presence

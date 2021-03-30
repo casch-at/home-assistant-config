@@ -31,10 +31,10 @@
         value_template: '{{ trigger.event.data.gesture | int == 1 }}'
       sequence:
       - service: scene.turn_on
-        data:
+        target:
           entity_id: '{{ states("input_select.office_scenes") }}'
       - service: input_select.select_next
-        data:
+        target:
           entity_id: input_select.office_scenes
 
     # GESTURE_DROP 2

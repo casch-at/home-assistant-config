@@ -1,9 +1,11 @@
 - id: night_mode
   alias: Night mode
   description: ''
+  mode: single
   trigger:
   - platform: state
     entity_id: input_select.daytime
+    from: Evening
     to: Night
   condition:
   - condition: state
@@ -30,7 +32,5 @@
     data:
       entity_id: group.switches_and_lights
   - service: automation.trigger
-    data:
-      entity_id: automation.night_toilet_light
-  mode: single
-  max: 10
+    target:
+      entity_id: automation.bedroom_motion

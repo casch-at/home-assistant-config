@@ -41,7 +41,7 @@
   - choose:
     - conditions:
       - condition: template
-        value_template: '{{ is_state(''device_tracker.tower_lan_router'', ''not_home'') }}'
+        value_template: "{{ is_state('device_tracker.tower_lan_router', 'not_home') }}"
       sequence:
       - service: switch.turn_off
         target:

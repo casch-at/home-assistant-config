@@ -1,6 +1,6 @@
 - id: enough_illuminance
   alias: Enough illuminance light
-  description: Turn off lights when there on enough natural illuminance light.
+  description: Turn off lights on enough natural illuminance light.
   mode: single
   trigger:
   - platform: numeric_state

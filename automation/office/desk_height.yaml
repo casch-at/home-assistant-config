@@ -16,19 +16,19 @@
           }}
       sequence:
       - service: switch.turn_off
-        data:
+        target:
           entity_id: switch.desk_control_button_down
       - delay:
           milliseconds: 250
       - service: switch.turn_on
-        data:
+        target:
           entity_id: switch.desk_control_button_up
       - wait_template: >-
           {{
             (states('sensor.desk_control_height') | int + 1) == states('input_number.desk_height') | int
           }}
       - service: switch.turn_off
-        data:
+        target:
           entity_id: switch.desk_control_button_up
     - conditions:
       - condition: template
@@ -38,17 +38,18 @@
           }}
       sequence:
       - service: switch.turn_off
-        data:
+        target:
           entity_id: switch.desk_control_button_up
       - delay:
           milliseconds: 250
       - service: switch.turn_on
-        entity_id: switch.desk_control_button_down
+        target:
+          entity_id: switch.desk_control_button_down
       - wait_template: >-
           {{
             (states('sensor.desk_control_height') | int - 1) == states('input_number.desk_height') | int
           }}
       - service: switch.turn_off
-        data:
+        target:
           entity_id: switch.desk_control_button_down
     default: []

@@ -60,6 +60,6 @@
         value_template: "{{ trigger.entity_id == 'sensor.tablet_battery_level' }}"
       sequence:
       - service: switch.turn_on
-        data:
+        target:
           entity_id: switch.tv_usb
     default: []
