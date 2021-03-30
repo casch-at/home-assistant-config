@@ -48,14 +48,6 @@ sensor:
       name: Desk Control Height
       unit_of_measurement: "cm"
       icon: mdi:human-male-height
-  ####
-  # Office AC
-  ####
-  - platform: homeassistant
-    id: office_temperature
-    name: "Office Temperature"
-    entity_id: sensor.office_temperature
-    internal: true
 
 
 switch:
@@ -276,4 +268,3 @@ climate:
     name: 'Office AC'
     receiver_id: rcvr
     transmitter_id: tamtr
-    sensor: office_temperature
