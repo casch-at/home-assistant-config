@@ -8,8 +8,6 @@ cards:
     columns: 1
     square: false
     cards:
-      # - type: climate
-      #   entity: climate.fan
       - type: custom:simple-thermostat
         entity: climate.heating
         name: Heating Thermostat
@@ -23,9 +21,22 @@ cards:
             auto:
               icon: mdi:calendar-clock
 
-#      - type: thermostat
-#        entity: climate.heating
-#        name: Heating Thermostat
+      - type: custom:simple-thermostat
+        entity: climate.office_ac
+        step_size: 1
+        hide:
+          temperature: true
+        icon:
+          'off': mdi:snowflake-off
+          cool: hass:snowflake
+          heat: hass:fire
+          heat_cool: hass:autorenew
+        control:
+          _headings: false
+          _names: false
+        sensors:
+          - entity: sensor.office_temperature
+            name: Temperature
 
       - type: grid
         columns: 4
