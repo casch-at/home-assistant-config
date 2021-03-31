@@ -248,7 +248,7 @@ switch:
 remote_receiver:
   id: rcvr
   pin:
-    number: 32
+    number: 12
     inverted: True
     mode: INPUT_PULLUP
   tolerance: 55%
@@ -258,7 +258,7 @@ remote_receiver:
 # https://www.esphome.io/components/remote_transmitter.html
 remote_transmitter:
   id: tamtr
-  pin: 27
+  pin: 14
   carrier_duty_percent: 50%
 
 # https://esphome.io/components/climate/ir_climate.html
