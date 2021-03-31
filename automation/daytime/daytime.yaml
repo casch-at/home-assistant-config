@@ -1,6 +1,6 @@
 - id: daytime
   alias: Set daytime
-  description: Set daytime "Morning" and "Evening" based on sun elevation and "Daytimes" based on lightlevel.
+  description: Set daytime "Morning" (also on alarm) and "Evening" based on sun elevation and "Daytimes" based on lightlevel.
   mode: single
   trigger:
   # Sets Morning daytime
@@ -8,6 +8,16 @@
     entity_id: sun.sun
     attribute: elevation
     above: 5
+
+  - platform: state
+    entity_id: binary_sensor.christian_schwarzgruber_alarm
+    from: 'off'
+    to: 'on'
+
+  - platform: state
+    entity_id: binary_sensor.sonia_avramidis_alarm
+    from: 'off'
+    to: 'on'
 
   # Sets DAYTIMES daytime
   - platform: numeric_state
@@ -18,14 +28,24 @@
   - platform: numeric_state
     entity_id: sun.sun
     attribute: elevation
-    below: 3
+    below: 2.5
   condition: []
   action:
   - choose:
 
     - conditions:
       - condition: template
-        value_template: "{{ trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising') }}"
+        value_template: >-
+          {{
+              states('input_select.select_option') == 'Night'
+            and (
+              trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising')
+            or
+              trigger.entity_id == 'binary_sensor.christian_schwarzgruber_alarm'
+            or
+              trigger.entity_id == 'binary_sensor.sonia_avramidis_alarm'
+            )
+          }}
       sequence:
       - service: input_select.select_option
         data:
