@@ -38,6 +38,23 @@ cards:
           - entity: sensor.office_temperature
             name: Temperature
 
+      - type: custom:simple-thermostat
+        entity: climate.upstairs_ac
+        step_size: 1
+        hide:
+          temperature: true
+        icon:
+          'off': mdi:snowflake-off
+          cool: hass:snowflake
+          heat: hass:fire
+          heat_cool: hass:autorenew
+        control:
+          _headings: false
+          _names: false
+        sensors:
+          - entity: sensor.upstairs_temperature
+            name: Temperature
+
       - type: grid
         columns: 4
         square: false

@@ -1,0 +1,37 @@
+substitutions:
+  ap_ssid: "Upstairs IR R. Fallback Hotspot"
+
+esphome:
+  name: upstairs_ir_remote
+  platform: ESP8266
+  board: esp01_1m
+
+<<: !include .base-config.yaml
+
+# GPIO4 Status LED (blue)
+# GPIO13 Reset button
+
+### Receiver IR
+remote_receiver:
+  id: rcvr
+  pin:
+    number: 5
+    mode: INPUT_PULLUP
+    inverted: True
+  dump: rc_switch
+
+### Transmit IR
+
+# https://www.esphome.io/components/remote_transmitter.html
+remote_transmitter:
+  id: tamtr
+  pin: 14
+  carrier_duty_percent: 50%
+  
+# https://esphome.io/components/climate/ir_climate.html
+climate:
+  - platform: toshiba
+    id: office_ac
+    name: 'Upstairs AC'
+    receiver_id: rcvr
+    transmitter_id: tamtr

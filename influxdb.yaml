@@ -15,6 +15,9 @@ exclude:
     - zone.home
   entity_globs:
     - sensor.*_switch_energy_totalstarttime
+    - switch.toshiba*
+    - climate.toshiba*
+    - sensor.toshiba*
     # - cover.*
   domains:
     - camera
