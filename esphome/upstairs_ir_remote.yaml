@@ -1,3 +1,33 @@
+# Device is a AVATTO S06 IR Remote Controller bought from AliExpress
+# Initial flash:
+# <https://1technophile.blogspot.com/2020/07/avatto-s06-ir-gateway-compatible-with.html?m=1>
+# Connecting -- Powered via USB
+#   -------------------
+#    Serial   ESP
+#   -------------------
+#    RX   ->  TX
+#    TX   ->  RX
+#    RTS  ->  RESET
+#    3.3V ->  3.3V
+#    GND  ->  GND
+#             IO0 (GND)
+#   -------------------
+#
+# - Flashing
+#   https://github.com/espressif/esptool -- but a short "pip install esphome" is fine too
+#   ,----
+#   | esptool.py -p /dev/ttyUSB0 -b 460800 read_flash 0x00000 0x100000 avotta_s06_original_firmware.bin
+#   | esptool.py -p /dev/ttyUSB0 erase_flash
+#   | esptool.py -p /dev/ttyUSB0 write_flash -fs 1MB 0x0 upstairs_ir_remote.bin
+#   `----
+#
+# Reset button is connected to GPIO13
+#
+# Hack -- Wire between GPIO13 <-> RESET pin:
+#  Connected reset button to RESET pin too, so the device can be woken when
+#  in deep sleep mode without the need to unplug the usb cable.
+#
+
 substitutions:
   ap_ssid: "Upstairs IR R. Fallback Hotspot"
 
@@ -8,10 +38,13 @@ esphome:
 
 <<: !include .base-config.yaml
 
-# GPIO4 Status LED (blue)
-# GPIO13 Reset button
+# Status LED (blue)
+# https://esphome.io/components/status_led.html
+status_led:
+  pin: 4
 
 ### Receiver IR
+# https://esphome.io/components/remote_receiver.html
 remote_receiver:
   id: rcvr
   pin:
@@ -21,17 +54,35 @@ remote_receiver:
   dump: rc_switch
 
 ### Transmit IR
-
 # https://www.esphome.io/components/remote_transmitter.html
 remote_transmitter:
   id: tamtr
   pin: 14
   carrier_duty_percent: 50%
-  
+
+### Toshiba climate
 # https://esphome.io/components/climate/ir_climate.html
 climate:
   - platform: toshiba
-    id: office_ac
+    id: upstairs_ac
     name: 'Upstairs AC'
     receiver_id: rcvr
     transmitter_id: tamtr
+
+switch:
+  - platform: template
+    name: 'Upstairs AC Preset'
+    id: upstairs_ac_preset
+    icon: mdi:cached
+    turn_on_action:
+      - climate.control:
+          id: upstairs_ac
+          mode: COOL
+          target_temperature: 24°C
+          fan_mode: AUTO
+          swing_mode: VERTICAL
+
+  # https://esphome.io/components/switch/shutdown.html
+  - platform: shutdown
+    name: "Upstairs IR Remote Shutdown"
+    id: upstairs_ir_remote_shutdown
