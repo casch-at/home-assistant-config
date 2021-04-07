@@ -1,7 +1,10 @@
-# Device is a AVATTO S06 IR Remote Controller bought from AliExpress
-# Initial flash:
-# <https://1technophile.blogspot.com/2020/07/avatto-s06-ir-gateway-compatible-with.html?m=1>
-# Connecting -- Powered via USB
+# Device is a AVATTO S06 IR ESP8266 remote controller bought from AliExpress for ~ 9 Euro.
+#
+# Initial flash: <https://1technophile.blogspot.com/2020/07/avatto-s06-ir-gateway-compatible-with.html?m=1>
+#
+# - Connecting
+#   Powered with a mobile charger connected to the usb port. Serial cable sets voltage
+#   level for communication based on the input voltage.
 #   -------------------
 #    Serial   ESP
 #   -------------------
@@ -21,11 +24,10 @@
 #   | esptool.py -p /dev/ttyUSB0 write_flash -fs 1MB 0x0 upstairs_ir_remote.bin
 #   `----
 #
-# Reset button is connected to GPIO13
+# - **HACK** Connect GPIO13 <-> RESET pin
+#   By default the button is connected to GPIO13
 #
-# Hack -- Wire between GPIO13 <-> RESET pin:
-#  Connected reset button to RESET pin too, so the device can be woken when
-#  in deep sleep mode without the need to unplug the usb cable.
+#   This allows you to wake the device from deep sleep mode with button.
 #
 
 substitutions:
@@ -33,6 +35,7 @@ substitutions:
 
 esphome:
   name: upstairs_ir_remote
+  # https://esphome.io/devices/esp8266.html
   platform: ESP8266
   board: esp01_1m
 
@@ -51,7 +54,6 @@ remote_receiver:
     number: 5
     mode: INPUT_PULLUP
     inverted: True
-  dump: rc_switch
 
 ### Transmit IR
 # https://www.esphome.io/components/remote_transmitter.html
