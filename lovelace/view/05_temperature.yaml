@@ -41,8 +41,11 @@ cards:
       - type: custom:simple-thermostat
         entity: climate.upstairs_ac
         step_size: 1
+        label:
+          state: 'Hello'
         hide:
           temperature: true
+          state: false
         icon:
           'off': mdi:snowflake-off
           cool: hass:snowflake

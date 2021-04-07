@@ -314,8 +314,8 @@ switch:
           id: office_ac
           mode: COOL
           target_temperature: 24°C
-          fan_mode: AUTO
-          swing_mode: VERTICAL
+          fan_mode: 'AUTO'
+          swing_mode: 'OFF'
 
   - platform: template
     name: "Office AC Swing"
