@@ -219,7 +219,7 @@ cards:
             name: Upstairs window sensor
             tap_action: more-info
           - entity: sensor.balcony_door_sensor_battery_level
-            name: Balcony multi sensor
+            name: Balcony door sensor
             tap_action: more-info
           - entity: sensor.doorbell_switch_battery_level
             name: Doorbell switch

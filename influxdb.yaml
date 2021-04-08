@@ -18,7 +18,7 @@ exclude:
     - switch.toshiba*
     - climate.toshiba*
     - sensor.toshiba*
-    # - cover.*
+    - switch.marantz*
   domains:
     - camera
 # This would only include those entities listed here -- comment-out exclude filter
