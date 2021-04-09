@@ -46,9 +46,13 @@
     entity_id: sensor.office_magic_cube_battery_level
   condition:
   - condition: template
-    value_template: "{{ not is_state(trigger.entity_id, 'unavailable') }}"
-  - condition: template
-    value_template: "{{ states(trigger.entity_id) | int < 10 }}"
+    value_template: >-
+      {{
+        not
+          is_state(trigger.entity_id, 'unavailable')
+        and
+          states(trigger.entity_id) | int < 10
+      }}
   action:
   - service: notify.persistent_notification
     data:
