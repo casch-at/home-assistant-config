@@ -11,11 +11,11 @@ cards:
       - type: custom:simple-thermostat
         entity: climate.heating
         name: Heating Thermostat
-        #show_header: false
-        #step_layout: row
+        layout:
+          mode:
+            headings: false
+            names: false
         control:
-          _headings: false
-          _names: false
           presets: false
           hvac:
             auto:
@@ -24,39 +24,48 @@ cards:
       - type: custom:simple-thermostat
         entity: climate.office_ac
         step_size: 1
+        decimals: 0
         hide:
           temperature: true
-        icon:
-          'off': mdi:snowflake-off
-          cool: hass:snowflake
-          heat: hass:fire
-          heat_cool: hass:autorenew
+        layout:
+          mode:
+            headings: false
+            names: false
+        header:
+          icon:
+            'off': mdi:snowflake-off
+            cool: hass:snowflake
+            heat: hass:fire
+            heat_cool: hass:autorenew
         control:
-          _headings: false
-          _names: false
+            presets: false
+            hvac: true
         sensors:
           - entity: sensor.office_temperature
-            name: Temperature
+            name: Currently
 
       - type: custom:simple-thermostat
         entity: climate.upstairs_ac
         step_size: 1
-        label:
-          state: 'Hello'
+        decimals: 0
         hide:
           temperature: true
-          state: false
-        icon:
-          'off': mdi:snowflake-off
-          cool: hass:snowflake
-          heat: hass:fire
-          heat_cool: hass:autorenew
+        layout:
+          mode:
+            headings: false
+            names: false
+        header:
+          icon:
+            'off': mdi:snowflake-off
+            cool: hass:snowflake
+            heat: hass:fire
+            heat_cool: hass:autorenew
         control:
-          _headings: false
-          _names: false
+            presets: false
+            hvac: true
         sensors:
           - entity: sensor.upstairs_temperature
-            name: Temperature
+            name: Currently
 
       - type: grid
         columns: 4
