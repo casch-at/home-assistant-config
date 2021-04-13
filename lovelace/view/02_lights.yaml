@@ -9,7 +9,7 @@ cards:
     square: false
     cards:
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: light.stairs_led
@@ -72,7 +72,7 @@ cards:
                  entity_id: scene.stairs_purple
 
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: light.office_led
@@ -113,7 +113,7 @@ cards:
                  entity_id: scene.office_green
 
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: light.parlor
@@ -124,6 +124,12 @@ cards:
              template: icon_only_more_info
              icon: mdi:library-shelves
              name: 'S'
+             show_name: true
+           - type: custom:button-card
+             entity: light.parlor_led
+             template: icon_only_more_info
+             icon: mdi:bookshelf
+             name: 'W'
              show_name: true
            - type: custom:button-card
              entity: light.parlor_plant_right
@@ -172,7 +178,7 @@ cards:
                  entity_id: scene.parlor_tv
 
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: light.bathroom
@@ -221,7 +227,7 @@ cards:
                  entity_id: scene.bathroom_morning
 
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: light.front_floor
@@ -239,7 +245,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: light.lower_kitchen
@@ -257,7 +263,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: switch.nightstand_switch
@@ -265,7 +271,7 @@ cards:
              icon: mdi:bed
 
        - type: grid
-         columns: 7
+         columns: 8
          cards:
            - type: custom:button-card
              entity: switch.upstairs_lamp_switch

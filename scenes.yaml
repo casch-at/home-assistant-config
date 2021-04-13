@@ -43,7 +43,7 @@
       - 0.747
       is_deconz_group: true
       all_on: true
-      friendly_name: Plants
+      friendly_name: Parlor Plants
       supported_features: 63
       state: 'on'
     light.parlor_shelve:
@@ -218,7 +218,7 @@
       - 0.459
       is_deconz_group: true
       all_on: true
-      friendly_name: Plants
+      friendly_name: Parlor Plants
       icon: mdi:flower
       supported_features: 63
       state: 'on'
@@ -357,7 +357,7 @@
       state: 'on'
   icon: mdi:stairs
 - id: '1614371683931'
-  name: 'Parlor Plants Light Green '
+  name: Parlor Plants Light Green
   entities:
     light.parlor_plants:
       min_mireds: 153
@@ -377,7 +377,7 @@
       - 0.408
       is_deconz_group: true
       all_on: true
-      friendly_name: Plants
+      friendly_name: Palor Plants
       icon: mdi:flower
       supported_features: 63
       state: 'on'

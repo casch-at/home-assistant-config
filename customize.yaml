@@ -21,6 +21,8 @@ light.parlor_plant_left:
   friendly_name: Plant Left
 light.parlor_shelve:
   friendly_name: Shelve
+light.parlor_led:
+  friendly_name: Big Shelve
 light.led_stripes:
   friendly_name: All
 light.office_led:
