@@ -28,9 +28,11 @@
         data:
           entity_id: cover.bedroom_roller_shutter_level
     default: []
-  - service: homeassistant.turn_off
-    data:
-      entity_id: group.switches_and_lights_group
+
+  - service: automation.trigger
+    target:
+      entity_id: automation.bedroom_motion
+
   - service: automation.trigger
     target:
       entity_id: automation.bedroom_motion

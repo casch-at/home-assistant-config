@@ -41,7 +41,7 @@
   - choose:
     - conditions:
       - condition: template
-        value_template: "{{ is_state('device_tracker.tower_lan_router', 'not_home') }}"
+        value_template: '{{ is_state("device_tracker.tower_lan_router", "not_home") }}'
       sequence:
       - service: switch.turn_off
         target:
@@ -55,4 +55,13 @@
         - switch.printer
         - switch.tv_switch
         - switch.tv_usb
-        - switch.nightstand_usb
+
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ is_state("device_tracker.galaxy_a2_router", "not_home") }}'
+      sequence:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.nightstand_usb
+    default: []
