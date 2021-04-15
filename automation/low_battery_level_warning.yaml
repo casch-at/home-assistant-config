@@ -44,6 +44,12 @@
     entity_id: sensor.doorbell_switch_battery_level
   - platform: state
     entity_id: sensor.office_magic_cube_battery_level
+  - platform: state
+    entity_id: sensor.office_smoke_sensor_battery_level
+  - platform: state
+    entity_id: sensor.upstairs_smoke_sensor_battery_level
+  - platform: state
+    entity_id: sensor.lower_kitchen_smoke_sensor_battery_level
   condition:
   - condition: template
     value_template: >-
