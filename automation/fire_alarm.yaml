@@ -1,0 +1,29 @@
+- id: fire_alarm
+  alias: Fire Alarm
+  description: ''
+  mode: parallel
+  max: 10
+  trigger:
+  - platform: state
+    entity_id: sensor.office_smoke_sensor
+  - platform: state
+    entity_id: sensor.upstairs_smoke_sensor
+  - platform: state
+    entity_id: sensor.lower_kitchen_smoke_sensor
+  condition:
+  - condition: template
+    value_template: '{{ not is_state(trigger.entity_id, "unavailable") }}'
+  action:
+  - service: notify.persistent_notification
+    data:
+      message: |
+        {{ trigger }}
+
+        ------------------------------------------
+
+        {{ trigger.to_state }}
+      title: 'test'
+  - service: notify.persistent_notification
+    data:
+      message: '{{ trigger.to_state.name }} Panic'
+      title: '{{ trigger.to_state.name }} Critical'
