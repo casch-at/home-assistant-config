@@ -4,7 +4,7 @@
   mode: single
   trigger:
     - platform: state
-      entity_id: group.door_window_sensor
+      entity_id: group.door_window_sensor_group
       from: 'on'
       to: 'off'
   condition:

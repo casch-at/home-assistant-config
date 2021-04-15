@@ -18,10 +18,10 @@
   - choose:
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.front_floor_lightlevel
+        entity_id: sensor.front_floor_motion_sensor_light_level
         below: 100
       - condition: state
-        entity_id: light.stairs_led
+        entity_id: light.stairs_light
         state: 'off'
       sequence:
       - service: scene.turn_on

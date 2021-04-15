@@ -4,7 +4,7 @@
   mode: single
   trigger:
   - platform: state
-    entity_id: light.front_floor
+    entity_id: light.front_floor_lights
     from: 'on'
     to: 'off'
   condition:

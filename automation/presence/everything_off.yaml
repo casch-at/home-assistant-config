@@ -12,12 +12,12 @@
   # Lights
   - service: homeassistant.turn_off
     target:
-      entity_id: group.all_lights_extra
+      entity_id: group.all_lights_extra_group
 
   # Group devices
   - service: homeassistant.turn_off
     target:
-      entity_id: group.devices
+      entity_id: group.devices_group
 
   - delay: 00:00:05
 
@@ -34,7 +34,7 @@
       sequence:
       - service: homeassistant.turn_off
         target:
-          entity_id: group.desk_and_laptop
+          entity_id: group.desk_and_laptop_group
     default: []
 
   # Switch tower off

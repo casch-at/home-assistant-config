@@ -4,12 +4,12 @@
   mode: restart
   trigger:
   - platform: state
-    entity_id: binary_sensor.front_floor_motion
+    entity_id: binary_sensor.front_floor_motion_sensor
     from: 'off'
     to: 'on'
   condition:
   - condition: template
-    value_template: '{{ states(''sensor.front_floor_lightlevel'') | float < 55.0 }}'
+    value_template: '{{ states(''sensor.front_floor_motion_sensor_light_level'') | float < 55.0 }}'
   - condition: state
     entity_id: input_boolean.front_floor_light_active
     state: 'off'
@@ -19,10 +19,10 @@
       brightness: "{{ states('sensor.daytime_light_brightness') }}"
       color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
     target:
-      entity_id: light.front_floor
+      entity_id: light.front_floor_lights
   - wait_for_trigger:
       platform: state
-      entity_id: binary_sensor.front_floor_motion
+      entity_id: binary_sensor.front_floor_motion_sensor
       from: 'on'
       to: 'off'
       for: 30
@@ -31,4 +31,4 @@
     state: 'off'
   - service: light.turn_off
     target:
-      entity_id: light.front_floor
+      entity_id: light.front_floor_lights

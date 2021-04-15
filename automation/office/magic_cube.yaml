@@ -4,31 +4,24 @@
   mode: restart
   trigger:
   - platform: event
-    event_type: deconz_event
+    event_type: zha_event
     event_data:
-      id: office_magic_cube
+      device_id: 6933643e75b1542b3b5e5e24f34d8b0b
   condition:
   - condition: template
-    value_template: |
-      {% set gesture = trigger.event.data.gesture | int %}
+    value_template: |-
       {{
-        gesture == 1 or gesture == 2 or
-        gesture == 3 or gesture == 4 or
-        gesture == 5 or gesture == 6 or
-        gesture == 7 or gesture == 8
+        trigger.event.data.command in [
+          'shake', 'flip', 'knock', 'rotate_left', 'rotate_right'
+        ]
       }}
   action:
-  # - service: persistent_notification.create
-  #   data:
-  #     title: '{{ trigger.event.data.gesture }}'
-  #     message: '{{ trigger.event.data }}'
-
-  # GESTURE_NONE 0
+   # GESTURE_NONE 0
   - choose:
     # GESTURE_SHAKE next scene
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 1 }}'
+        value_template: '{{ trigger.event.data.command == "shake" }}'
       sequence:
       - service: scene.turn_on
         target:
@@ -40,13 +33,13 @@
     # GESTURE_DROP 2
     # - conditions:
     #   - condition: template
-    #     value_template: '{{ trigger.event.data.gesture | int == 2 }}'
+    #     value_template: '{{ trigger.event.data.command | int == 2 }}'
     #   sequence:
 
     # GESTURE_FLIP_90 shutters
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 3 }}'
+        value_template: '{{ trigger.event.data.command == "flip" }}'
       - condition: state
         entity_id: binary_sensor.cover_operation_to_cold
         state: 'off'
@@ -58,7 +51,7 @@
         - conditions:
           # Left shutter automations
           - condition: template
-            value_template: '{{ trigger.event.data.event | int == 2001 }}'
+            value_template: '{{ trigger.event.data.args.activated_face == 5 }}'
           sequence:
           - service: cover.close_cover
             target:
@@ -66,7 +59,7 @@
 
         - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.event | int == 1002 or trigger.event.data.event | int == 1005 }}'
+            value_template: '{{ trigger.event.data.args.value == 96 or trigger.event.data.args.value == 72 }}'
           sequence:
           - service: cover.stop_cover
             target:
@@ -74,7 +67,7 @@
 
         - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.event | int == 5001 }}'
+            value_template: '{{ trigger.event.data.args.activated_face == 2 }}'
           sequence:
           - service: cover.open_cover
             target:
@@ -83,7 +76,7 @@
         # Right shutter automations
         - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.event | int == 3001 }}'
+            value_template: '{{ trigger.event.data.args.value  == 69 }}'
           sequence:
           - service: cover.close_cover
             target:
@@ -91,7 +84,7 @@
 
         - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.event | int == 1003 or trigger.event.data.event | int == 1004 }}'
+            value_template: '{{ trigger.event.data.args.value == 80 or trigger.event.data.args.value == 104 }}'
           sequence:
           - service: cover.stop_cover
             target:
@@ -99,50 +92,50 @@
 
         - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.event | int == 4001 }}'
+            value_template: '{{ trigger.event.data.args.value == 66 }}'
           sequence:
           - service: cover.open_cover
             target:
               entity_id: cover.office_roller_shutter_right_level
 
-    # GESTURE_FLIP_180 desk up/down
+    # GESTURE_FLIP_180
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 4 }}'
+        value_template: '{{ trigger.event.data.command == "flip" }}'
       sequence:
       - service: homeassistant.turn_on
         target:
-          entity_id: group.desk_and_laptop
+          entity_id: group.desk_and_laptop_group
 
     # GESTURE_PUSH
     # - conditions:
     #   - condition: template
-    #     value_template: '{{ trigger.event.data.gesture | int == 5 }}'
+    #     value_template: '{{ trigger.event.data.command | int == 5 }}'
     #   sequence:
 
     # GESTURE_DOUBLE_TAB toggle light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 6 }}'
+        value_template: '{{ trigger.event.data.command == "knock" }}'
       sequence:
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.office_led
+            entity_id: light.office_desk_light
             state: 'on'
           sequence:
           - service: light.turn_off
             target:
-              entity_id: light.office_led
+              entity_id: light.office_desk_light
         default:
         - service: light.turn_on
           target:
-            entity_id: light.office_led
+            entity_id: light.office_desk_light
 
     # GESTURE_ROTATE_CLOCKWISE
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 7 }}'
+        value_template: '{{ trigger.event.data.command == "rotate_right" }}'
       sequence:
       - choose:
         - conditions:
@@ -168,7 +161,7 @@
     # GESTURE_ROTATE_COUNTER_CLOCKWISE
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.gesture | int == 8 }}'
+        value_template: '{{ trigger.event.data.command == "rotate_left" }}'
       sequence:
       - choose:
         - conditions:

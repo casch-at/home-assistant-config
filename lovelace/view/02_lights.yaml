@@ -12,11 +12,11 @@ cards:
          columns: 8
          cards:
            - type: custom:button-card
-             entity: light.stairs_led
+             entity: light.stairs_light
              template: icon_only_more_info
              icon: mdi:stairs
            - type: custom:button-card
-             entity: light.stairs_led
+             entity: light.stairs_light
              template: icon_only_more_info
              styles:
                icon:
@@ -27,7 +27,7 @@ cards:
                service_data:
                  entity_id: scene.stairs_morning_light
            - type: custom:button-card
-             entity: light.stairs_led
+             entity: light.stairs_light
              template: icon_only_more_info
              styles:
                icon:
@@ -38,7 +38,7 @@ cards:
                service_data:
                  entity_id: scene.stairs_night
            - type: custom:button-card
-             entity: light.stairs_led
+             entity: light.stairs_light
              template: icon_only_more_info
              styles:
                icon:
@@ -49,7 +49,7 @@ cards:
                service_data:
                  entity_id: scene.stairs_green
            - type: custom:button-card
-             entity: light.stairs_led
+             entity: light.stairs_light
              template: icon_only_more_info
              styles:
                icon:
@@ -60,7 +60,7 @@ cards:
                service_data:
                  entity_id: scene.stairs_blue
            - type: custom:button-card
-             entity: light.stairs_led
+             entity: light.stairs_light
              template: icon_only_more_info
              styles:
                icon:
@@ -75,11 +75,11 @@ cards:
          columns: 8
          cards:
            - type: custom:button-card
-             entity: light.office_led
+             entity: light.office_desk_light
              template: icon_only_more_info
              icon: mdi:desk
            - type: custom:button-card
-             entity: light.office_led
+             entity: light.office_desk_light
              template: icon_only_more_info
              styles:
                icon:
@@ -90,7 +90,7 @@ cards:
                service_data:
                  entity_id: scene.office_work_light
            - type: custom:button-card
-             entity: light.office_led
+             entity: light.office_desk_light
              template: icon_only_more_info
              styles:
                icon:
@@ -101,7 +101,7 @@ cards:
                service_data:
                  entity_id: scene.office_purple
            - type: custom:button-card
-             entity: light.office_led
+             entity: light.office_desk_light
              template: icon_only_more_info
              styles:
                icon:
@@ -116,35 +116,35 @@ cards:
          columns: 8
          cards:
            - type: custom:button-card
-             entity: light.parlor
+             entity: light.parlor_lights
              template: icon_only_more_info
              icon: mdi:sofa
            - type: custom:button-card
-             entity: light.parlor_shelve
+             entity: light.parlor_shelve_light
              template: icon_only_more_info
              icon: mdi:library-shelves
              name: 'S'
              show_name: true
            - type: custom:button-card
-             entity: light.parlor_led
+             entity: light.parlor_big_shelve_light
              template: icon_only_more_info
              icon: mdi:bookshelf
              name: 'W'
              show_name: true
            - type: custom:button-card
-             entity: light.parlor_plant_right
+             entity: light.parlor_plant_right_light
              template: icon_only_more_info
              icon: mdi:flower
              name: 'C'
              show_name: true
            - type: custom:button-card
-             entity: light.parlor_plant_left
+             entity: light.parlor_plant_left_light
              template: icon_only_more_info
              icon: mdi:flower
              name: 'T'
              show_name: true
            - type: custom:button-card
-             entity: light.parlor_plants
+             entity: light.parlor_plants_light
              template: icon_only_more_info
              styles:
                icon:
@@ -155,7 +155,7 @@ cards:
                service_data:
                  entity_id: scene.parlor_plants_purple
            - type: custom:button-card
-             entity: light.parlor_plants
+             entity: light.parlor_plants_light
              template: icon_only_more_info
              styles:
                icon:
@@ -166,7 +166,7 @@ cards:
                service_data:
                  entity_id: scene.parlor_plants_light_green
            - type: custom:button-card
-             entity: light.parlor
+             entity: light.parlor_lights
              template: icon_only_more_info
              styles:
                icon:
@@ -181,30 +181,30 @@ cards:
          columns: 8
          cards:
            - type: custom:button-card
-             entity: light.bathroom
+             entity: light.bathroom_lights
              template: icon_only_more_info
            - type: custom:button-card
-             entity: light.bathroom_front_left
+             entity: light.bathroom_front_left_light
              template: icon_only_more_info
              name: 'FL'
              show_name: true
            - type: custom:button-card
-             entity: light.bathroom_front_right
+             entity: light.bathroom_front_right_light
              template: icon_only_more_info
              name: 'FR'
              show_name: true
            - type: custom:button-card
-             entity: light.bathroom_back_left
+             entity: light.bathroom_back_left_light
              template: icon_only_more_info
              name: 'BL'
              show_name: true
            - type: custom:button-card
-             entity: light.bathroom_back_right
+             entity: light.bathroom_back_right_light
              template: icon_only_more_info
              name: 'BR'
              show_name: true
            - type: custom:button-card
-             entity: light.bathroom
+             entity: light.bathroom_lights
              template: icon_only_more_info
              styles:
                icon:
@@ -215,7 +215,7 @@ cards:
                service_data:
                  entity_id: scene.bathroom_bath
            - type: custom:button-card
-             entity: light.bathroom
+             entity: light.bathroom_lights
              template: icon_only_more_info
              styles:
                icon:
@@ -230,16 +230,16 @@ cards:
          columns: 8
          cards:
            - type: custom:button-card
-             entity: light.front_floor
+             entity: light.front_floor_lights
              template: icon_only_more_info
              icon: mdi:door
            - type: custom:button-card
-             entity: light.front_floor_front
+             entity: light.front_floor_front_light
              template: icon_only_more_info
              name: 'F'
              show_name: true
            - type: custom:button-card
-             entity: light.front_floor_middle
+             entity: light.front_floor_middle_light
              template: icon_only_more_info
              name: 'M'
              show_name: true
@@ -248,16 +248,16 @@ cards:
          columns: 8
          cards:
            - type: custom:button-card
-             entity: light.lower_kitchen
+             entity: light.lower_kitchen_lights
              template: icon_only_more_info
              icon: mdi:coffee
            - type: custom:button-card
-             entity: light.lower_kitchen_back
+             entity: light.lower_kitchen_front_light
              template: icon_only_more_info
              name: 'F'
              show_name: true
            - type: custom:button-card
-             entity: light.lower_kitchen_back
+             entity: light.lower_kitchen_back_light
              template: icon_only_more_info
              name: 'B'
              show_name: true

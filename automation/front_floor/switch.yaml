@@ -4,23 +4,24 @@
   mode: restart
   trigger:
   - platform: event
-    event_type: deconz_event
+    event_type: zha_event
     event_data:
-      id: front_floor_switch
+      device_id: c2cff687003dd88942aa8597fe9f8734
   condition:
   - condition: template
     value_template: |-
-      {% set event = trigger.event.data.event | int %}
       {{
-        event == 1001 or event == 1002 or event == 1004 or
-        event == 2002 or event == 2004
+        trigger.event.data.command in [
+          '1_single', '1_double', '1_long press',
+          '2_single', '2_double'
+        ]
       }}
   action:
   - choose:
     # Presence on/off
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 1001 }}'
+        value_template: '{{ trigger.event.data.command == "1_long press" }}'
       sequence:
       - choose:
         # Presence off
@@ -40,7 +41,7 @@
               sequence:
               - type: flash
                 device_id: 9a999d4e84bd4c8eb7c7779363b97b26
-                entity_id: light.front_floor
+                entity_id: light.front_floor_lights
                 domain: light
               - delay: 00:00:10
           - repeat:
@@ -48,7 +49,7 @@
               sequence:
               - type: flash
                 device_id: 9a999d4e84bd4c8eb7c7779363b97b26
-                entity_id: light.front_floor
+                entity_id: light.front_floor_lights
                 domain: light
               - delay: 00:00:05
           - service: input_boolean.turn_off
@@ -74,7 +75,7 @@
               sequence:
               - type: flash
                 device_id: 9a999d4e84bd4c8eb7c7779363b97b26
-                entity_id: light.front_floor
+                entity_id: light.front_floor_lights
                 domain: light
 
         # Presence on
@@ -91,14 +92,14 @@
               sequence:
               - type: flash
                 device_id: 9a999d4e84bd4c8eb7c7779363b97b26
-                entity_id: light.front_floor
+                entity_id: light.front_floor_lights
                 domain: light
         default: []
 
     # Front floor light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 1002 }}'
+        value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
       - choose:
         - conditions:
@@ -114,16 +115,16 @@
               brightness: "{{ states('sensor.daytime_light_brightness') }}"
               color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
             target:
-              entity_id: light.front_floor
+              entity_id: light.front_floor_lights
         default:
         - service: light.turn_off
           target:
-            entity_id: light.front_floor
+            entity_id: light.front_floor_lights
 
     # Front floor scene
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 1004 }}'
+        value_template: '{{ trigger.event.data.command == "1_double" }}'
       sequence:
       - service: input_boolean.turn_on
         target:
@@ -133,12 +134,12 @@
           brightness: 254
           color_temp: 271
         target:
-          entity_id: light.front_floor
+          entity_id: light.front_floor_lights
 
     # Lower kitchen light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 2002 }}'
+        value_template: '{{ trigger.event.data.command == "2_single" }}'
       sequence:
       - choose:
         - conditions:
@@ -154,16 +155,16 @@
               brightness: "{{ states('sensor.daytime_light_brightness') }}"
               color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
             target:
-              entity_id: light.lower_kitchen
+              entity_id: light.lower_kitchen_lights
         default:
         - service: light.turn_off
           target:
-            entity_id: light.lower_kitchen
+            entity_id: light.lower_kitchen_lights
 
     # Lower kitchen scene
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 2004 }}'
+        value_template: '{{ trigger.event.data.command == "2_double" }}'
       sequence:
       - service: input_boolean.turn_on
         target:
@@ -173,6 +174,6 @@
           brightness: 254
           color_temp: 271
         target:
-          entity_id: light.lower_kitchen
+          entity_id: light.lower_kitchen_lights
 
     default: []

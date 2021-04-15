@@ -1,5 +1,5 @@
-switches:
-  name: Switches
+switches_group:
+  name: Switches Group
   icon: mdi:dip-switch
   entities:
     - switch.desk_switch
@@ -10,56 +10,60 @@ switches:
     - switch.tv_switch
 #    - switch.tv_usb
 
-desk_and_laptop:
-  name: Desktop and Laptop
+desk_and_laptop_group:
+  name: Desktop and Laptop Group
   icon: mdi:laptop
   entities:
     - switch.desk_switch
     - switch.laptop_switch
 
-office:
-  name: Office
+office_group:
+  name: Office Group
   icon: mdi:laptop
   entities:
     - switch.laptop_switch
     - switch.desk_switch
-    - light.office_led
+    - light.office_desk_light
 
-parlor:
-  name: Parlor
+parlor_group:
+  name: Parlor Group
   icon: mdi:sofa
   entities:
     - switch.tv_switch
     - light.parlor
 
-bedroom:
-  name: Bedroom
+bedroom_group:
+  name: Bedroom Group
   icon: mdi:bed
   entities:
     - switch.nightstand_switch
 
-switches_and_lights:
-  name: Lights and Switches
+switches_and_lights_group:
+  name: Lights and Switches Group
   entities:
-    - group.switches
+    - group.switches_group
     - light.all_lights
     - switch.upstairs_lamp_switch
-    - group.devices
+    - group.devices_group
 
-devices:
-  name: Devices
+devices_group:
+  name: Devices Group
   entities:
     - switch.aroma_diffuser
 
-all_lights_extra:
-  name: Lights and Switch Lights
+all_lights_extra_group:
+  name: Lights and Switch Lights Group
   entities:
     - switch.nightstand_switch
     - switch.upstairs_lamp_switch
     - light.all_lights
 
-door_window_sensor:
-  name: Door or Window Open Sensors
+door_window_sensor_group:
+  name: Door or Window Open Sensors Group
   entities:
     - binary_sensor.balcony_door_sensor
+    - binary_sensor.parlor_window_sensor
+    - binary_sensor.office_window_sensor
+    - binary_sensor.lower_kitchen_window_sensor
+    - binary_sensor.upstairs_window_sensor
     - binary_sensor.bedroom_window_sensor

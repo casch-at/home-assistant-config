@@ -4,12 +4,12 @@
   mode: restart
   trigger:
   - platform: state
-    entity_id: binary_sensor.lower_kitchen_motion
+    entity_id: binary_sensor.lower_kitchen_motion_sensor
     from: 'off'
     to: 'on'
   condition:
   - condition: template
-    value_template: '{{ states(''sensor.lower_kitchen_lightlevel'') | float < 40.0 }}'
+    value_template: '{{ states(''sensor.lower_kitchen_motion_sensor_light_level'') | float < 40.0 }}'
   - condition: state
     entity_id: input_boolean.lower_kitchen_light_active
     state: 'off'
@@ -19,10 +19,10 @@
       brightness: "{{ states('sensor.daytime_light_brightness') }}"
       color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
     target:
-      entity_id: light.lower_kitchen
+      entity_id: light.lower_kitchen_lights
   - wait_for_trigger:
       platform: state
-      entity_id: binary_sensor.lower_kitchen_motion
+      entity_id: binary_sensor.lower_kitchen_motion_sensor
       from: 'on'
       to: 'off'
       for: '30'
@@ -31,4 +31,4 @@
     state: 'off'
   - service: light.turn_off
     target:
-      entity_id: light.lower_kitchen
+      entity_id: light.lower_kitchen_lights

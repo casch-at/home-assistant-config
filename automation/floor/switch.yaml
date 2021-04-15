@@ -4,27 +4,28 @@
   mode: restart
   trigger:
   - platform: event
-    event_type: deconz_event
+    event_type: zha_event
     event_data:
-      id: floor_switch
+      device_id: 0157c2c1971568f115955e032e5de269
   condition:
   - condition: template
-    value_template: |
-      {% set event = trigger.event.data.event | int %}
+    value_template: |-
       {{
-        event == 1001 or event == 1002 or
-        event == 2001 or
-        event == 3002 or event == 3004 or
-        event == 4001 or event == 4002 or event == 4004 or
-        event == 5001 or event == 5002 or event == 5004 or
-        event == 6001 or event == 6002 or event == 6004
+        trigger.event.data.command in [
+          '1_single',             '1_long press',
+                                  '2_long press',
+          '3_single', '3_double',
+          '4_single', '4_double', '4_long press',
+          '5_single', '5_double', '5_long press',
+          '6_single', '6_double', '6_long press'
+        ]
       }}
   action:
   - choose:
     # State night
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 1001 }}'
+        value_template: '{{ trigger.event.data.command == "1_long press" }}'
       sequence:
       # Activate state night
       - choose:
@@ -40,7 +41,7 @@
             data:
               scene_id: stairs_backup
               snapshot_entities:
-              - light.stairs_led
+              - light.stairs_light
           - repeat:
               count: '3'
               sequence:
@@ -49,14 +50,14 @@
                   rgb_color: [200, 50, 0]
                   brightness: 150
                 target:
-                  entity_id: light.stairs_led
+                  entity_id: light.stairs_light
               - delay: 00:00:02
               - service: light.turn_on
                 data:
                   rgb_color: [200, 50, 0]
                   brightness: 20
                 target:
-                  entity_id: light.stairs_led
+                  entity_id: light.stairs_light
               - delay: 00:00:02
           - service: input_select.select_option
             data:
@@ -81,7 +82,7 @@
     # Bedroom nightstand light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 1002 }}'
+        value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
       - service: script.turn_on
         data:
@@ -96,76 +97,76 @@
     # Toggle office
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 2001 }}'
+        value_template: '{{ trigger.event.data.command == "2_long press" }}'
       sequence:
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'group.office'
+            entity_id: 'group.office_group'
         target:
           entity_id: script.stairs_light_based_on_entity_state
       - service: homeassistant.toggle
         target:
-          entity_id: group.office
+          entity_id: group.office_group
 
     # Toggle bathroom light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 3002 }}'
+        value_template: '{{ trigger.event.data.command == "3_single" }}'
       sequence:
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.bathroom'
+            entity_id: 'light.bathroom_lights'
         target:
           entity_id: script.stairs_light_based_on_entity_state
-      - event: deconz_event
+      - event: zha_event
         event_data:
-          id: bathroom_switch
-          event: 2002
+          device_id: 5066dc0a0d6a11eba736919d4fa21431
+          command: "2_single"
 
     # Toggle bathroom light left/right
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 3004 }}'
+        value_template: '{{ trigger.event.data.command == "3_double" }}'
       sequence:
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.bathroom'
+            entity_id: 'light.bathroom_lights'
         target:
           entity_id: script.stairs_light_based_on_entity_state
-      - event: deconz_event
+      - event: zha_event
         event_data:
-          id: bathroom_switch
-          event: 3002
+          device_id: 5066dc0a0d6a11eba736919d4fa21431
+          command: "3_single"
 
     # TV off/on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 4001 }}'
+        value_template: '{{ trigger.event.data.command == "4_long press" }}'
       sequence:
       - service: script.tv_off_on
 
     # TV toggle parlor lights
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 4002 }}'
+        value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.parlor'
+            entity_id: 'light.parlor_lights'
         target:
           entity_id: script.stairs_light_based_on_entity_state
       - service: homeassistant.toggle
         target:
-          entity_id: light.parlor
+          entity_id: light.parlor_lights
 
     # Activate scene.night
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 4004 }}'
+        value_template: '{{ trigger.event.data.command == "4_double" }}'
       sequence:
       - service: scene.turn_on
         target:
@@ -174,7 +175,7 @@
     # Toggle upstairs lamp
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 5001 }}'
+        value_template: '{{ trigger.event.data.command == "5_long press" }}'
       sequence:
       - service: script.turn_on
         data:
@@ -189,7 +190,7 @@
     # Toggle front floor lights
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 5002 }}'
+        value_template: '{{ trigger.event.data.command == "5_single" }}'
       sequence:
       - service: script.turn_on
         data:
@@ -197,15 +198,15 @@
             entity_id: 'light.front_floor'
         target:
           entity_id: script.stairs_light_based_on_entity_state
-      - event: deconz_event
+      - event: zha_event
         event_data:
-          id: lower_kitchen_switch
-          event: 1002
+          device_id: c2cff687003dd88942aa8597fe9f8734
+          command: "1_single"
 
     # Toggle lower kitchen lights
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 5004 }}'
+        value_template: '{{ trigger.event.data.command == "5_double" }}'
       sequence:
       - service: script.turn_on
         data:
@@ -213,15 +214,15 @@
             entity_id: 'light.lower_kitchen'
         target:
           entity_id: script.stairs_light_based_on_entity_state
-      - event: deconz_event
+      - event: zha_event
         event_data:
-          id: lower_kitchen_switch
-          event: 2002
+          device_id: c2cff687003dd88942aa8597fe9f8734
+          command: "2_single"
 
     # Toggle aroma diffuser
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 6001 }}'
+        value_template: '{{ trigger.event.data.command == "6_long press" }}'
       sequence:
       - service: switch.toggle
         target:
@@ -230,7 +231,7 @@
     # Cycle stairs scense
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 6002 }}'
+        value_template: '{{ trigger.event.data.command == "6_single" }}'
       sequence:
       - service: scene.turn_on
         target:
@@ -242,10 +243,10 @@
     # Toggle stairs light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event | int == 6004 }}'
+        value_template: '{{ trigger.event.data.command == "6_double" }}'
       sequence:
       - service: light.toggle
         target:
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
 
     default: []

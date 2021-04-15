@@ -4,7 +4,7 @@
   mode: single
   trigger:
   - platform: numeric_state
-    entity_id: sensor.front_floor_lightlevel
+    entity_id: sensor.front_floor_motion_sensor_light_level
     above: 130
   condition:
   - condition: state

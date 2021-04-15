@@ -30,7 +30,7 @@
     default: []
   - service: homeassistant.turn_off
     data:
-      entity_id: group.switches_and_lights
+      entity_id: group.switches_and_lights_group
   - service: automation.trigger
     target:
       entity_id: automation.bedroom_motion

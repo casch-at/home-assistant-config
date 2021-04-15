@@ -13,31 +13,31 @@ views:
         state_color: true
         entities:
           - type: custom:slider-entity-row
-            entity: light.parlor_shelve
+            entity: light.parlor_shelve_light
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.parlor_plants
+            entity: light.parlor_plants_light
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.parlor_plant_right
+            entity: light.parlor_plant_right_light
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.parlor_plant_left
+            entity: light.parlor_plant_left_light
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.stairs_led
+            entity: light.stairs_light
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.bathroom
+            entity: light.bathroom_lights
             toggle: true
             hide_when_off: true
           - type: custom:slider-entity-row
-            entity: light.lower_kitchen
+            entity: light.lower_kitchen_lights
             toggle: true
             hide_when_off: true
           - entity: switch.printer
@@ -53,7 +53,7 @@ views:
               action: call-service
               service: homeassistant.turn_off
               service_data:
-                entity_id: group.all_lights_extra
+                entity_id: group.all_lights_extra_group
               confirmation:
                 text: Do you really want to turn off all lights?
           - type: custom:button-card

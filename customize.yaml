@@ -13,19 +13,19 @@ switch.nightstand_switch:
   icon: mdi:lamp
 light.parlor:
   friendly_name: All
-light.parlor_plants:
+light.parlor_plants_light:
   friendly_name: Plants
-light.parlor_plant_right:
+light.parlor_plant_right_light:
   friendly_name: Plant Right
-light.parlor_plant_left:
+light.parlor_plant_left_light:
   friendly_name: Plant Left
-light.parlor_shelve:
+light.parlor_shelve_light:
   friendly_name: Shelve
-light.parlor_led:
+light.parlor_big_shelve_light:
   friendly_name: Big Shelve
 light.led_stripes:
   friendly_name: All
-light.office_led:
+light.office_desk_light:
   friendly_name: Office
-light.stairs_led:
+light.stairs_light:
   friendly_name: Stairs

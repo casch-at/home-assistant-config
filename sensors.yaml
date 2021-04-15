@@ -1,19 +1,19 @@
 - platform: template
   sensors:
-    lower_kitchen_temperature_fixed:
-      friendly_name: "Lower Kitchen Temperature"
+    lower_kitchen_motion_sensor_temperature_fixed:
+      friendly_name: "Lower Kitchen Motion Sensor Temperature Fixed"
       value_template: >-
         {{
-          (states('sensor.lower_kitchen_temperature') | float + 1.8) | round(2)
+          (states('sensor.lower_kitchen_motion_sensor_temperature') | float + 1.8) | round(2)
         }}
       device_class: temperature
       unit_of_measurement: '°C'
       unique_id: mysensor0001
-    front_floor_temperature_fixed:
-      friendly_name: "Front Floor Temperature"
+    front_floor_motion_sensor_temperature_fixed:
+      friendly_name: "Front Floor Motion Sensor Temperature Fixed"
       value_template: >-
         {{
-          (states('sensor.front_floor_temperature') | float + 1.8) | round(2)
+          (states('sensor.front_floor_motion_sensor_temperature') | float + 1.8) | round(2)
         }}
       device_class: temperature
       unit_of_measurement: '°C'

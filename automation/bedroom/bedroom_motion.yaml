@@ -14,7 +14,7 @@
     state: 'Night'
 
   - condition: state
-    entity_id: light.stairs_led
+    entity_id: light.stairs_light
     state: 'off'
 
   - condition: state
@@ -32,20 +32,20 @@
       - condition: and
         conditions:
         - condition: state
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
           state: 'on'
         - condition: template
           value_template: >-
             {{
-              state_attr('light.stairs_led', 'brightness') and
-              state_attr('light.stairs_led', 'brightness') <= 14 and
-              state_attr('light.stairs_led', 'color_temp') and
-              state_attr('light.stairs_led', 'color_temp') == 495
+              state_attr('light.stairs_light', 'brightness') and
+              state_attr('light.stairs_light', 'brightness') <= 14 and
+              state_attr('light.stairs_light', 'color_temp') and
+              state_attr('light.stairs_light', 'color_temp') == 495
             }}
       sequence:
       - service: light.turn_on
         target:
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
         data:
           brightness_pct: 3
       - delay: 00:00:30
@@ -56,20 +56,20 @@
       - condition: and
         conditions:
         - condition: state
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
           state: 'on'
         - condition: template
           value_template: >-
             {{
-              state_attr('light.stairs_led', 'brightness') and
-              state_attr('light.stairs_led', 'brightness') <= 8 and
-              state_attr('light.stairs_led', 'color_temp') and
-              state_attr('light.stairs_led', 'color_temp') == 495
+              state_attr('light.stairs_light', 'brightness') and
+              state_attr('light.stairs_light', 'brightness') <= 8 and
+              state_attr('light.stairs_light', 'color_temp') and
+              state_attr('light.stairs_light', 'color_temp') == 495
             }}
       sequence:
       - service: light.turn_on
         target:
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
         data:
           brightness_pct: 2
       - delay: 00:01:00
@@ -80,20 +80,20 @@
       - condition: and
         conditions:
         - condition: state
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
           state: 'on'
         - condition: template
           value_template: >-
             {{
-              state_attr('light.stairs_led', 'brightness') and
-              state_attr('light.stairs_led', 'brightness') <= 6 and
-              state_attr('light.stairs_led', 'color_temp') and
-              state_attr('light.stairs_led', 'color_temp') == 495
+              state_attr('light.stairs_light', 'brightness') and
+              state_attr('light.stairs_light', 'brightness') <= 6 and
+              state_attr('light.stairs_light', 'color_temp') and
+              state_attr('light.stairs_light', 'color_temp') == 495
             }}
       sequence:
       - service: light.turn_on
         target:
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
         data:
           brightness_pct: 1
       - delay: 00:01:00
@@ -104,18 +104,18 @@
       - condition: and
         conditions:
         - condition: state
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
           state: 'on'
         - condition: template
           value_template: >-
             {{
-              state_attr('light.stairs_led', 'brightness') and
-              state_attr('light.stairs_led', 'brightness') <= 3 and
-              state_attr('light.stairs_led', 'color_temp') and
-              state_attr('light.stairs_led', 'color_temp') == 495
+              state_attr('light.stairs_light', 'brightness') and
+              state_attr('light.stairs_light', 'brightness') <= 3 and
+              state_attr('light.stairs_light', 'color_temp') and
+              state_attr('light.stairs_light', 'color_temp') == 495
             }}
       sequence:
       - service: light.turn_off
         target:
-          entity_id: light.stairs_led
+          entity_id: light.stairs_light
     default: []

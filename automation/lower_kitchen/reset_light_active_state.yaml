@@ -4,7 +4,7 @@
   mode: single
   trigger:
   - platform: state
-    entity_id: light.lower_kitchen
+    entity_id: light.lower_kitchen_lights
     from: 'on'
     to: 'off'
   condition:

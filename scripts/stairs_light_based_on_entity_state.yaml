@@ -11,7 +11,7 @@ sequence:
   data:
     scene_id: stairs_backup
     snapshot_entities:
-      - light.stairs_led
+      - light.stairs_light
 - service: light.turn_on
   data:
     rgb_color: >-
@@ -22,7 +22,7 @@ sequence:
       {% endif %}
     brightness: 150
   target:
-    entity_id: light.stairs_led
+    entity_id: light.stairs_light
 - delay: 2
 - service: scene.turn_on
   target:

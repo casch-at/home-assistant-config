@@ -41,7 +41,7 @@ cards:
             presets: false
             hvac: true
         sensors:
-          - entity: sensor.office_temperature
+          - entity: sensor.office_multi_sensor_temperature
             name: Currently
 
       - type: custom:simple-thermostat
@@ -64,7 +64,7 @@ cards:
             presets: false
             hvac: true
         sensors:
-          - entity: sensor.office_temperature
+          - entity: sensor.office_multi_sensor_temperature
             name: Currently
 
       - type: custom:simple-thermostat
@@ -87,7 +87,7 @@ cards:
             presets: false
             hvac: true
         sensors:
-          - entity: sensor.upstairs_temperature
+          - entity: sensor.upstairs_multi_sensor_temperature
             name: Currently
 
       - type: grid
@@ -251,52 +251,52 @@ cards:
           l1:
             card:
                 type: custom:button-card
-                entity: sensor.lower_kitchen_lightlevel
+                entity: sensor.lower_kitchen_motion_sensor_light_level
                 template: embedded_card
           t1:
             card:
                 type: custom:button-card
-                entity: sensor.lower_kitchen_temperature_fixed
+                entity: sensor.lower_kitchen_motion_sensor_temperature_fixed
                 template: embedded_card
           t2:
             card:
                 type: custom:button-card
-                entity: sensor.office_temperature
+                entity: sensor.office_multi_sensor_temperature
                 template: embedded_card
           h2:
             card:
                 type: custom:button-card
-                entity: sensor.office_humidity
+                entity: sensor.office_multi_sensor_humidity
                 template: embedded_card
           p2:
             card:
                 type: custom:button-card
-                entity: sensor.office_pressure
+                entity: sensor.office_multi_sensor_pressure
                 template: embedded_card
           t3:
             card:
                 type: custom:button-card
-                entity: sensor.front_floor_temperature_fixed
+                entity: sensor.front_floor_motion_sensor_temperature_fixed
                 template: embedded_card
           l3:
             card:
                 type: custom:button-card
-                entity: sensor.front_floor_lightlevel
+                entity: sensor.front_floor_motion_sensor_light_level
                 template: embedded_card
           t4:
             card:
                 type: custom:button-card
-                entity: sensor.upstairs_temperature
+                entity: sensor.upstairs_multi_sensor_temperature
                 template: embedded_card
           h4:
             card:
                 type: custom:button-card
-                entity: sensor.upstairs_humidity
+                entity: sensor.upstairs_multi_sensor_humidity
                 template: embedded_card
           p4:
             card:
                 type: custom:button-card
-                entity: sensor.upstairs_pressure
+                entity: sensor.upstairs_multi_sensor_pressure
                 template: embedded_card
           t5:
             card:
@@ -316,52 +316,52 @@ cards:
           t6:
             card:
                 type: custom:button-card
-                entity: sensor.bedroom_temperature
+                entity: sensor.bedroom_multi_sensor_temperature
                 template: embedded_card
           h6:
             card:
                 type: custom:button-card
-                entity: sensor.bedroom_humidity
+                entity: sensor.bedroom_multi_sensor_humidity
                 template: embedded_card
           p6:
             card:
                 type: custom:button-card
-                entity: sensor.bedroom_pressure
+                entity: sensor.bedroom_multi_sensor_pressure
                 template: embedded_card
           t7:
             card:
                 type: custom:button-card
-                entity: sensor.parlor_temperature
+                entity: sensor.parlor_multi_sensor_temperature
                 template: embedded_card
           h7:
             card:
                 type: custom:button-card
-                entity: sensor.parlor_humidity
+                entity: sensor.parlor_multi_sensor_humidity
                 template: embedded_card
           p7:
             card:
                 type: custom:button-card
-                entity: sensor.parlor_pressure
+                entity: sensor.parlor_multi_sensor_pressure
                 template: embedded_card
           l8:
             card:
                 type: custom:button-card
-                entity: sensor.bathroom_motion_lightlevel
+                entity: sensor.bathroom_motion_sensor_light_level
                 template: embedded_card
           t8:
             card:
                 type: custom:button-card
-                entity: sensor.bathroom_temperature
+                entity: sensor.bathroom_multi_sensor_temperature
                 template: embedded_card
           h8:
             card:
                 type: custom:button-card
-                entity: sensor.bathroom_humidity
+                entity: sensor.bathroom_multi_sensor_humidity
                 template: embedded_card
           p8:
             card:
                 type: custom:button-card
-                entity: sensor.bathroom_pressure
+                entity: sensor.bathroom_multi_sensor_pressure
                 template: embedded_card
           t9:
             card:
@@ -371,19 +371,19 @@ cards:
 
       # - type: custom:mini-graph-card
       #   entities:
-      #     - entity: sensor.bathroom_temperature
+      #     - entity: sensor.bathroom_multi_sensor_temperature
       #       name: Bathroom
-      #     - entity: sensor.bedroom_temperature
+      #     - entity: sensor.bedroom_multi_sensor_temperature
       #       name: Bedroom
-      #     - entity: sensor.office_temperature
+      #     - entity: sensor.office_multi_sensor_temperature
       #       name: Office
-      #     - entity: sensor.parlor_temperature
+      #     - entity: sensor.parlor_multi_sensor_temperature
       #       name: Parlor
-      #     - entity: sensor.upstairs_temperature
+      #     - entity: sensor.upstairs_multi_sensor_temperature
       #       name: Upstairs
-      #     - entity: sensor.lower_kitchen_temperature
+      #     - entity: sensor.lower_kitchen_motion_sensor_temperature
       #       name: Lower Kitchen
-      #     - entity: sensor.front_floor_temperature
+      #     - entity: sensor.front_floor_motion_sensor_temperature
       #       name: Front Floor
       #     - entity: sensor.heating_temperature
       #       name: Heating
@@ -400,15 +400,15 @@ cards:
 
       # - type: custom:mini-graph-card
       #   entities:
-      #     - entity: sensor.bathroom_humidity
+      #     - entity: sensor.bathroom_multi_sensor_humidity
       #       name: Bathroom
-      #     - entity: sensor.bedroom_humidity
+      #     - entity: sensor.bedroom_multi_sensor_humidity
       #       name: Bedroom
-      #     - entity: sensor.office_humidity
+      #     - entity: sensor.office_multi_sensor_humidity
       #       name: Office
-      #     - entity: sensor.parlor_humidity
+      #     - entity: sensor.parlor_multi_sensor_humidity
       #       name: Parlor
-      #     - entity: sensor.upstairs_humidity
+      #     - entity: sensor.upstairs_multi_sensor_humidity
       #       name: Upstairs
       #   name: Humidity
       #   aggregate_func: last
