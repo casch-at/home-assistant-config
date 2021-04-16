@@ -39,7 +39,7 @@
     # GESTURE_FLIP_90 shutters
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "flip" }}'
+        value_template: '{{ trigger.event.data.command == "flip" and trigger.event.data.args.flip_degrees == 90 }}'
       - condition: state
         entity_id: binary_sensor.cover_operation_to_cold
         state: 'off'
@@ -101,7 +101,7 @@
     # GESTURE_FLIP_180
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "flip" }}'
+        value_template: '{{ trigger.event.data.command == "flip" and trigger.event.data.args.flip_degrees == 180 }}'
       sequence:
       - service: homeassistant.turn_on
         target:
