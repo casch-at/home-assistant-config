@@ -19,8 +19,6 @@
     target:
       entity_id: group.devices_group
 
-  - delay: 00:00:05
-
   # Desk and laptop
   - choose:
     - conditions:

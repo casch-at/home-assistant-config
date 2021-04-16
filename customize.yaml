@@ -15,6 +15,7 @@ light.parlor:
   friendly_name: All
 light.parlor_plants_light:
   friendly_name: Plants
+  icon: mdi:flower
 light.parlor_plant_right_light:
   friendly_name: Plant Right
 light.parlor_plant_left_light:
@@ -23,9 +24,17 @@ light.parlor_shelve_light:
   friendly_name: Shelve
 light.parlor_big_shelve_light:
   friendly_name: Big Shelve
+  icon: mdi:led-strip-variant
 light.led_stripes:
   friendly_name: All
+  icon: mdi:led-strip-variant
 light.office_desk_light:
   friendly_name: Office
 light.stairs_light:
   friendly_name: Stairs
+light.office_desk_light:
+  icon: mdi:desk
+light.bathroom_lights:
+  icon: mdi:shower
+light.parlor_lights:
+  icon: mdi:sofa
