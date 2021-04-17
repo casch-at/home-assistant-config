@@ -9,7 +9,7 @@
       }}
   condition: []
   action:
-  - service: notify.mobile_app_huawei_p20
+  - service: notify.mobile_app_phone_christian
     data:
       message: Christian and Sonia are away
   - service: input_boolean.turn_off

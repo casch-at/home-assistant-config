@@ -157,19 +157,19 @@ cards:
               state: "on"
               icon: mdi:flash
               color: yellow
-          - entity: sensor.huawei_p20_battery_level
-            name: Huawei P20
+          - entity: sensor.phone_christian_battery_level
+            name: Phone Christian
             tap_action: more-info
             charging_state:
-              entity_id: binary_sensor.huawei_p20_is_charging
+              entity_id: binary_sensor.phone_christian_is_charging
               state: "on"
               icon: mdi:flash
               color: yellow
-          - entity: sensor.galaxy_a2_battery_level
-            name: Galaxy A2
+          - entity: sensor.phone_sonia_battery_level
+            name: Phone Sonia
             tap_action: more-info
             charging_state:
-              entity_id: binary_sensor.galaxy_a2_is_charging
+              entity_id: binary_sensor.phone_sonia_is_charging
               state: "on"
               icon: mdi:flash
               color: yellow

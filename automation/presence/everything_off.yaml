@@ -57,7 +57,7 @@
   - choose:
     - conditions:
       - condition: template
-        value_template: '{{ is_state("device_tracker.galaxy_a2_router", "not_home") }}'
+        value_template: '{{ is_state("device_tracker.phone_sonia_router", "not_home") }}'
       sequence:
       - service: switch.turn_off
         target:
