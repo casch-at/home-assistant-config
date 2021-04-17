@@ -96,7 +96,7 @@
               state: 'on'
     default: []
 
-  # Turn on desk when home office
+  # Turn on desk light
   - choose:
     - conditions:
       - condition: state
