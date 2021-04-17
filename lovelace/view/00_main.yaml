@@ -14,7 +14,7 @@ cards:
     square: false
     cards:
       - type: grid
-        columns: 6
+        columns: 7
         cards:
           - type: custom:button-card
             entity: group.desk_and_laptop_group
@@ -47,6 +47,10 @@ cards:
                 [[[
                   return states['script.tv_off_on'].state === "on";
                 ]]]
+          - type: custom:button-card
+            template: icon_only_more_info
+            entity: switch.marantz_amp_power
+            icon: mdi:account-music
           - type: custom:button-card
             icon: mdi:blinds
             template: icon_only
