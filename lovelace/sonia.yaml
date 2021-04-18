@@ -53,7 +53,7 @@ views:
               action: call-service
               service: homeassistant.turn_off
               service_data:
-                entity_id: group.all_lights_extra_group
+                entity_id: group.all_lights_group
               confirmation:
                 text: Do you really want to turn off all lights?
           - type: custom:button-card

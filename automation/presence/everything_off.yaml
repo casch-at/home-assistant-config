@@ -12,7 +12,7 @@
   # Lights
   - service: homeassistant.turn_off
     target:
-      entity_id: group.all_lights_extra_group
+      entity_id: group.all_lights_group
 
   # Group devices
   - service: homeassistant.turn_off

@@ -17,7 +17,7 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: group.desk_and_laptop_group
+            entity: group.office_group
             template: icon_only_more_info
             tap_action:
               action: call-service
@@ -181,7 +181,7 @@ cards:
                   action: call-service
                   service: homeassistant.turn_off
                   service_data:
-                    entity_id: group.all_lights_extra_group
+                    entity_id: group.all_lights_group
                   confirmation:
                     text: Do you really want to turn off all lights?
               - type: custom:button-card
