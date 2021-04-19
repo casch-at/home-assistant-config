@@ -28,7 +28,7 @@
       max_mireds: 500
       effect_list:
       - colorloop
-      brightness: 178
+      brightness: 170
       hs_color:
       - 120
       - 100
@@ -39,34 +39,21 @@
       xy_color:
       - 0.172
       - 0.747
-      all_on: true
       friendly_name: Parlor Plants
       supported_features: 63
       state: 'on'
     light.parlor_big_shelve_light:
       min_mireds: 155
       max_mireds: 495
-      effect_list:
-      - colorloop
-      brightness: 178
-      hs_color:
-      - 120
-      - 100
-      rgb_color:
-      - 0
-      - 255
-      - 0
-      xy_color:
-      - 0.172
-      - 0.747
-      all_on: true
+      brightness: 150
+      color_temp: 370
       friendly_name: Parlor Big Shelve Light
       supported_features: 63
       state: 'on'
     light.parlor_shelve_light:
       min_mireds: 140
       max_mireds: 650
-      brightness: 178
+      brightness: 150
       color_temp: 370
       friendly_name: Shelve
       supported_features: 43
@@ -91,7 +78,6 @@
       xy_color:
       - 0.172
       - 0.747
-      all_on: true
       friendly_name: LED Stripes
       icon: mdi:led-strip-variant
       supported_features: 63
@@ -112,7 +98,6 @@
       xy_color:
       - 0.171
       - 0.718
-      all_on: true
       friendly_name: Parlor Plants
       supported_features: 63
       state: 'on'
@@ -165,7 +150,6 @@
       xy_color:
       - 0.659
       - 0.28
-      all_on: true
       friendly_name: Parlor Plants
       supported_features: 63
       state: 'on'
@@ -185,7 +169,6 @@
       xy_color:
       - 0.701
       - 0.299
-      all_on: true
       friendly_name: LED Stripes
       icon: mdi:led-strip-variant
       supported_features: 63
@@ -225,7 +208,6 @@
       xy_color:
       - 0.361
       - 0.459
-      all_on: true
       friendly_name: Parlor Plants
       icon: mdi:flower
       supported_features: 63
@@ -250,7 +232,6 @@
       - colorloop
       brightness: 84
       color_temp: 370
-      all_on: true
       friendly_name: Bathroom
       supported_features: 47
       state: 'on'
@@ -265,7 +246,6 @@
       - colorloop
       brightness: 254
       color_temp: 200
-      all_on: true
       friendly_name: Bathroom
       supported_features: 47
       state: 'on'
@@ -376,7 +356,6 @@
       xy_color:
       - 0.275
       - 0.408
-      all_on: true
       friendly_name: Palor Plants
       icon: mdi:flower
       supported_features: 63
@@ -480,7 +459,6 @@
       xy_color:
       - 0.227
       - 0.082
-      all_on: true
       friendly_name: Plants
       icon: mdi:flower
       supported_features: 63

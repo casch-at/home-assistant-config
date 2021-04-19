@@ -42,12 +42,9 @@
         entity_id: light.stairs_light
         state: 'off'
       sequence:
-      - service: light.turn_on
-        data:
-          brightness: 180
-          color_temp: 375
+      - service: scene.turn_on
         target:
-          entity_id: light.stairs_light
+          entity_id: scene.stairs_night
     default: []
 
   # Turn on parlor shelve light
@@ -62,7 +59,7 @@
       sequence:
       - service: light.turn_on
         data:
-          brightness: 100
+          brightness: 150
           color_temp: 370
         target:
           entity_id: light.parlor_shelve_light
@@ -79,7 +76,7 @@
       sequence:
       - service: light.turn_on
         data:
-          brightness: 100
+          brightness: 150
           color_temp: 370
         target:
           entity_id: light.parlor_big_shelve_light
