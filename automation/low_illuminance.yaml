@@ -68,6 +68,23 @@
           entity_id: light.parlor_shelve_light
     default: []
 
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.parlor_big_shelve_light
+        state: 'off'
+      - condition: state
+        entity_id: person.sonia_avramidis
+        state: home
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 100
+          color_temp: 370
+        target:
+          entity_id: light.parlor_big_shelve_light
+    default: []
+
   # Turn on plants light
   - choose:
     - conditions:
