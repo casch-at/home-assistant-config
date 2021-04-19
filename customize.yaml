@@ -29,11 +29,10 @@ light.led_stripes:
   friendly_name: All
   icon: mdi:led-strip-variant
 light.office_desk_light:
-  friendly_name: Office
+  icon: mdi:desk
+  #friendly_name: Office
 light.stairs_light:
   friendly_name: Stairs
-light.office_desk_light:
-  icon: mdi:desk
 light.bathroom_lights:
   icon: mdi:shower
 light.parlor_lights:
