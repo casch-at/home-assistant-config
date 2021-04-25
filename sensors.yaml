@@ -100,3 +100,40 @@
 #    - 'date_time_utc'
     - 'date_time_iso'
 #    - 'time_utc'
+
+
+- platform: apcupsd
+  resources:
+    - hostname
+    - version
+    - upsname
+    - cable
+    - driver
+    - upsmode
+    - starttime
+    - model
+    - status
+    - linev
+    - loadpct
+    - bcharge
+    - timeleft
+    - mbattchg
+    - mintimel
+    - maxtime
+    - sense
+    - lotrans
+    - hitrans
+    - alarmdel
+    - battv
+    - lastxfer
+    - numxfers
+    - tonbatt
+    - cumonbatt
+    - xoffbatt
+    - selftest
+    - statflag
+    - battdate
+    - nominv
+    - nombattv
+    - nompower
+    - firmware

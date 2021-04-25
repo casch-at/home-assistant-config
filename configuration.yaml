@@ -30,6 +30,9 @@ homeassistant:
 frontend:
   themes: !include_dir_merge_named themes
 
+apcupsd:
+  host: 192.168.1.29
+
 # Enable WOL integration
 wake_on_lan:
 
@@ -73,3 +76,5 @@ calendar:
 
 # https://www.home-assistant.io/integrations/influxdb
 influxdb: !include influxdb.yaml
+
+

@@ -38,3 +38,5 @@
 
 - platform: workday
   country: AT
+
+- platform: apcupsd
