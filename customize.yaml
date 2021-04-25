@@ -33,6 +33,7 @@ light.office_desk_light:
   #friendly_name: Office
 light.stairs_light:
   friendly_name: Stairs
+  icon: mdi:stairs
 light.bathroom_lights:
   icon: mdi:shower
 light.parlor_lights:
