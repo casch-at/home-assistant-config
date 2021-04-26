@@ -39,11 +39,11 @@
               entity_id: input_boolean.state_night_running
           - service: scene.create
             data:
-              scene_id: stairs_backup
+              scene_id: state_night_stairs_backup
               snapshot_entities:
               - light.stairs_light
           - repeat:
-              count: '3'
+              count: '6'
               sequence:
               - service: light.turn_on
                 data:
@@ -51,14 +51,14 @@
                   brightness: 150
                 target:
                   entity_id: light.stairs_light
-              - delay: 00:00:02
+              - delay: 00:00:01
               - service: light.turn_on
                 data:
                   rgb_color: [200, 50, 0]
-                  brightness: 20
+                  brightness: 50
                 target:
                   entity_id: light.stairs_light
-              - delay: 00:00:02
+              - delay: 00:00:01
           - service: input_select.select_option
             data:
               option: 'Night'
@@ -77,6 +77,9 @@
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.state_night_running
+          - service: scene.turn_on
+            target:
+              entity_id: scene.state_night_stairs_backup
         default: []
 
     # Bedroom nightstand light

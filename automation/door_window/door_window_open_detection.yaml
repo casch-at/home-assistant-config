@@ -39,7 +39,7 @@
     value_template: "{{ is_state(trigger.entity_id, 'on') }}"
   - service: scene.create
     data:
-      scene_id: stairs_backup
+      scene_id: door_window_open_detection_stairs_backup
       snapshot_entities:
       - light.stairs_light
   - service: light.turn_on
@@ -50,7 +50,7 @@
   - wait_template: "{{ is_state(trigger.entity_id, 'off') }}"
   - service: scene.turn_on
     data:
-      entity_id: scene.stairs_backup
+      entity_id: scene.door_window_open_detection_stairs_backup
   - service: input_boolean.turn_off
     entity_id: input_boolean.window_or_door_open
   mode: parallel
