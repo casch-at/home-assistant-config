@@ -5,7 +5,7 @@
   max_exceeded: silent
   trigger:
   - platform: state
-    entity_id: binary_sensor.bedroom_motion
+    entity_id: binary_sensor.bedroom_motion_sensor
     from: 'off'
     to: 'on'
   condition:
