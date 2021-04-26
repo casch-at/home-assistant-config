@@ -21,28 +21,28 @@ cards:
             auto:
               icon: mdi:calendar-clock
 
-      - type: custom:simple-thermostat
-        entity: climate.toshiba_ac
-        step_size: 1
-        decimals: 0
-        hide:
-          temperature: true
-        layout:
-          mode:
-            headings: false
-            names: false
-        header:
-          icon:
-            'off': mdi:snowflake-off
-            cool: hass:snowflake
-            heat: hass:fire
-            heat_cool: hass:autorenew
-        control:
-            presets: false
-            hvac: true
-        sensors:
-          - entity: sensor.office_multi_sensor_temperature
-            name: Currently
+    #   - type: custom:simple-thermostat
+    #     entity: climate.toshiba_ac
+    #     step_size: 1
+    #     decimals: 0
+    #     hide:
+    #       temperature: true
+    #     layout:
+    #       mode:
+    #         headings: false
+    #         names: false
+    #     header:
+    #       icon:
+    #         'off': mdi:snowflake-off
+    #         cool: hass:snowflake
+    #         heat: hass:fire
+    #         heat_cool: hass:autorenew
+    #     control:
+    #         presets: false
+    #         hvac: true
+    #     sensors:
+    #       - entity: sensor.office_multi_sensor_temperature
+    #         name: Currently
 
       - type: custom:simple-thermostat
         entity: climate.office_ac
