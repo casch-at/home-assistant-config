@@ -12,7 +12,7 @@
     value_template: |-
       {{
         trigger.event.data.command in [
-          'shake', 'flip', 'knock', 'rotate_left', 'rotate_right'
+          'shake', 'flip', 'knock', 'rotate_left', 'rotate_right', 'slide'
         ]
       }}
   action:
@@ -39,7 +39,12 @@
     # GESTURE_FLIP_90 shutters
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "flip" and trigger.event.data.args.flip_degrees == 90 }}'
+        value_template: >-
+          {{
+              trigger.event.data.command == "flip"
+            and
+              trigger.event.data.args.flip_degrees == 90
+          }}
       - condition: state
         entity_id: binary_sensor.cover_operation_to_cold
         state: 'off'
@@ -59,7 +64,12 @@
 
         - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.args.value == 96 or trigger.event.data.args.value == 72 }}'
+            value_template: >-
+              {{
+                trigger.event.data.args.value == 96
+              or
+                trigger.event.data.args.value == 72
+              }}
           sequence:
           - service: cover.stop_cover
             target:
@@ -84,7 +94,12 @@
 
         - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.args.value == 80 or trigger.event.data.args.value == 104 }}'
+            value_template: >-
+              {{
+                  trigger.event.data.args.value == 80
+                or
+                  trigger.event.data.args.value == 104
+              }}
           sequence:
           - service: cover.stop_cover
             target:
@@ -101,7 +116,12 @@
     # GESTURE_FLIP_180
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "flip" and trigger.event.data.args.flip_degrees == 180 }}'
+        value_template: >-
+          {{
+              trigger.event.data.command == "flip"
+            and
+              trigger.event.data.args.flip_degrees == 180
+          }}
       sequence:
       - service: homeassistant.turn_on
         target:
@@ -122,7 +142,10 @@
     # GESTURE_DOUBLE_TAB toggle light
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "knock" }}'
+        value_template: >-
+          {{
+              trigger.event.data.command == "knock"
+          }}
       sequence:
       - choose:
         - conditions:
@@ -177,8 +200,7 @@
           sequence:
           - service: switch.turn_off
             target:
-              entity_id:
-                - switch.desk_control_button_4
+              entity_id: switch.desk_control_button_4
         default:
         - service: switch.turn_off
           target:
@@ -189,6 +211,15 @@
         - service: switch.turn_on
           target:
             entity_id: switch.desk_control_button_4
+
+    # GESTURE_ROTATE_COUNTER_PUSH
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "slide" }}'
+      sequence:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.marantz_amp_power
 
     #   - service: input_select.select_previous
     #     data:
