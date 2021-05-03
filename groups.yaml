@@ -30,7 +30,7 @@ parlor_group:
   icon: mdi:sofa
   entities:
     - switch.tv_switch
-    - light.parlor
+    - light.parlor_lights
 
 bedroom_group:
   name: Bedroom Group

@@ -6,12 +6,12 @@ sequence:
     - condition: device
       type: is_on
       device_id: 611cb71e0e0411ebbb5f87403d317985
-      entity_id: light.parlor
+      entity_id: light.parlor_lights
       domain: light
     sequence:
     - service: light.turn_off
       data:
-        entity_id: light.parlor
+        entity_id: light.parlor_lights
   default: []
 - choose:
   - conditions:
