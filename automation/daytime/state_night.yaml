@@ -33,6 +33,14 @@
     target:
       entity_id: automation.turn_everything_off_on_presence_state_off
 
+  - service: scene.turn_on
+    data:
+      entity_id: scene.night_toilet_light
+
+  - wait_template: '{{ states("light.stairs_light") == ''off'' }}'
+    timeout: '00:00:01'
+    continue_on_timeout: true
+
   - service: automation.trigger
     target:
       entity_id: automation.bedroom_motion
