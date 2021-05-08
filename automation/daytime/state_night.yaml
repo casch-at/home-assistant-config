@@ -29,6 +29,10 @@
           entity_id: cover.bedroom_roller_shutter_level
     default: []
 
+  - service: scene.turn_on
+    data:
+      entity_id: scene.night_toilet_light
+
   - service: automation.trigger
     target:
       entity_id: automation.turn_everything_off_on_presence_state_off

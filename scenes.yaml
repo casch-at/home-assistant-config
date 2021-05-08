@@ -360,6 +360,19 @@
       icon: mdi:flower
       supported_features: 63
       state: 'on'
+    light.parlor_big_shelve_light:
+      brightness: 254
+      hs_color:
+      - 134.795
+      - 28.627
+      rgb_color:
+      - 182
+      - 255
+      - 200
+      xy_color:
+      - 0.275
+      - 0.408
+      state: 'on'
   icon: mdi:flower
 - id: '1615231929151'
   name: test
@@ -462,5 +475,18 @@
       friendly_name: Plants
       icon: mdi:flower
       supported_features: 63
+      state: 'on'
+    light.parlor_big_shelve_light:
+      brightness: 163
+      hs_color:
+      - 271.765
+      - 100
+      rgb_color:
+      - 135
+      - 0
+      - 255
+      xy_color:
+      - 0.227
+      - 0.082
       state: 'on'
   icon: mdi:flower
