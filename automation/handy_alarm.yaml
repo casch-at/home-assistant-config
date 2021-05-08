@@ -50,6 +50,18 @@
           entity_id: cover.bedroom_roller_shutter_level
     default: []
 
+  # Turn parlor remote on
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: remote.parlor_ir_remote
+        state: 'off'
+      sequence:
+      - service: remote.turn_on
+        target:
+          entity_id: remote.parlor_ir_remote
+    default: []
+
   # Home office
   - choose:
     - conditions:

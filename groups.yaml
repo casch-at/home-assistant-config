@@ -38,6 +38,12 @@ bedroom_group:
   entities:
     - switch.nightstand_switch
 
+devices_group:
+  name: Devices Group
+  entities:
+    - switch.aroma_diffuser
+    - remote.parlor_ir_remote
+
 switches_and_lights_group:
   name: Lights and Switches Group
   entities:
@@ -45,11 +51,6 @@ switches_and_lights_group:
     - light.all_lights
     - switch.upstairs_lamp_switch
     - group.devices_group
-
-devices_group:
-  name: Devices Group
-  entities:
-    - switch.aroma_diffuser
 
 all_lights_group:
   name: Lights Group
