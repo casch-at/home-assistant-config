@@ -10,6 +10,7 @@
   condition:
   - condition: template
     value_template: '{{ states(''sensor.front_floor_motion_sensor_light_level'') | float < 55.0 }}'
+
   - condition: state
     entity_id: input_boolean.front_floor_light_active
     state: 'off'
@@ -20,15 +21,18 @@
       color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
     target:
       entity_id: light.front_floor_lights
+
   - wait_for_trigger:
       platform: state
       entity_id: binary_sensor.front_floor_motion_sensor
       from: 'on'
       to: 'off'
-      for: 30
+      for: "{{ (states('input_number.motion_timeout') | int) }}"
+
   - condition: state
     entity_id: input_boolean.front_floor_light_active
     state: 'off'
+
   - service: light.turn_off
     target:
       entity_id: light.front_floor_lights

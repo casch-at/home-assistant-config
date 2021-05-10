@@ -11,6 +11,7 @@
   - condition: numeric_state
     entity_id: sensor.bathroom_motion_sensor_light_level
     below: 45
+
   - condition: state
     entity_id: input_boolean.bathroom_light_active
     state: 'off'
@@ -42,7 +43,12 @@
       entity_id: binary_sensor.bathroom_motion_sensor
       from: 'on'
       to: 'off'
-      for: "{{ 30 * (states('input_number.bathroom_motion_multiplier') | int) }}"
+      for: >-
+        {{
+          (states('input_number.motion_timeout') | int)
+            *
+          (states('input_number.bathroom_motion_multiplier') | int)
+        }}
 
   - service: light.turn_off
     target:
