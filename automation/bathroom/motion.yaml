@@ -15,21 +15,41 @@
     entity_id: input_boolean.bathroom_light_active
     state: 'off'
   action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: >-
+          {{
+            (states('input_number.bathroom_motion_multiplier') | int)
+              <
+            (state_attr('input_number.bathroom_motion_multiplier', 'max') | int)
+          }}
+      sequence:
+      - service: input_number.increment
+        target:
+          entity_id: input_number.bathroom_motion_multiplier
+    default: []
+
   - service: light.turn_on
     data:
       brightness: "{{ states('sensor.daytime_light_brightness') }}"
       color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
     target:
       entity_id: light.bathroom_lights
+
   - wait_for_trigger:
       platform: state
       entity_id: binary_sensor.bathroom_motion_sensor
       from: 'on'
       to: 'off'
-      for: 30
-  - condition: state
-    entity_id: input_boolean.bathroom_light_active
-    state: 'off'
+      for: "{{ 30 * (states('input_number.bathroom_motion_multiplier') | int) }}"
+
   - service: light.turn_off
     target:
       entity_id: light.bathroom_lights
+
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.bathroom_motion_multiplier
+    data:
+      value: 0
