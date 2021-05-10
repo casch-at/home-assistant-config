@@ -195,7 +195,16 @@ cards:
                 hold_action:
                   action: navigate
                   navigation_path: /lovelace/cameras
-
+                triggers_update:
+                  - device_tracker.tapo_c200
+                state:
+                  - operator: template
+                    # equivalent to: {{ states['device_tracker.tapo_c200'] == 'home' }}
+                    value: >-
+                      [[[
+                        return states['device_tracker.tapo_c200'].state === 'home';
+                      ]]]
+                    color: var(--paper-item-icon-active-color)
 
       - type: grid
         columns: 7
