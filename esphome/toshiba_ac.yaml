@@ -1,6 +1,6 @@
 substitutions:
-  name: "toshiba-ac"
-  ap_ssid: "Toshiba AC Fallback Hotspot"
+  name: toshiba-ac
+  ap_ssid: Toshiba AC Fallback Hotspot
 
 esphome:
   <<: !include .board-config.yaml
@@ -32,13 +32,14 @@ remote_transmitter:
 climate:
  - platform: toshiba
    id: toshiba_ac
-   name: 'Toshiba AC'
+   name: Toshiba AC
    transmitter_id: tsmtr
    receiver_id: rcvr
+   model: MODEL_2
 
 switch:
   - platform: template
-    name: 'Toshiba AC Preset'
+    name: Toshiba AC Preset
     id: toshiba_ac_preset
     icon: mdi:cached
     turn_on_action:

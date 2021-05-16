@@ -1,7 +1,7 @@
 substitutions:
-  name: "desk_control"
-  base_button_name: "Desk Control Button"
-  ap_ssid: "Desk Control Fallback Hotspot"
+  name: desk-control
+  base_button_name: Desk Control Button
+  ap_ssid: Desk Control Fallback Hotspot
 
 # See for reusing: https://esphome.io/guides/configuration-types.html#config-substitutions
 esphome:
@@ -46,7 +46,7 @@ sensor:
     sensors:
       id: desk_control_height
       name: Desk Control Height
-      unit_of_measurement: "cm"
+      unit_of_measurement: cm
       icon: mdi:human-male-height
 
 switch:
@@ -242,7 +242,7 @@ switch:
   #### Office Marantz
   - platform: template
     id: marantz_amp_power
-    name: 'Marantz AMP Power'
+    name: Marantz AMP Power
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -250,7 +250,7 @@ switch:
 
   - platform: template
     id: marantz_volume_up
-    name: 'Marantz Volume Up'
+    name: Marantz Volume Up
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -258,7 +258,7 @@ switch:
 
   - platform: template
     id: marantz_volume_down
-    name: 'Marantz Volume Down'
+    name: Marantz Volume Down
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -266,7 +266,7 @@ switch:
 
   - platform: template
     id: marantz_mute
-    name: 'Marantz Mute'
+    name: Marantz Mute
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -274,7 +274,7 @@ switch:
 
   - platform: template
     id: marantz_cd
-    name: 'Marantz CD'
+    name: Marantz CD
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -282,7 +282,7 @@ switch:
 
   - platform: template
     id: marantz_network
-    name: 'Marantz Network'
+    name: Marantz Network
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -290,7 +290,7 @@ switch:
 
   - platform: template
     id: marantz_tune
-    name: 'Marantz Tune'
+    name: Marantz Tune
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -298,7 +298,7 @@ switch:
 
   - platform: template
     id: marantz_source_direct
-    name: 'Marantz Source Direct'
+    name: Marantz Source Direct
     turn_on_action:
       - remote_transmitter.transmit_raw:
           carrier_frequency: 38kHz
@@ -306,7 +306,7 @@ switch:
 
   #### Office AC
   - platform: template
-    name: 'Office AC Preset'
+    name: Office AC Preset
     id: office_ac_preset
     icon: mdi:cached
     turn_on_action:
@@ -314,11 +314,11 @@ switch:
           id: office_ac
           mode: COOL
           target_temperature: 24°C
-          fan_mode: 'AUTO'
+          fan_mode: AUTO
           swing_mode: 'OFF'
 
   - platform: template
-    name: "Office AC Swing"
+    name: Office AC Swing
     id: office_ac_swing
     icon: mdi:fan
     turn_on_action:
@@ -357,6 +357,6 @@ remote_transmitter:
 climate:
   - platform: toshiba
     id: office_ac
-    name: 'Office AC'
+    name: Office AC
     receiver_id: rcvr
     transmitter_id: tamtr

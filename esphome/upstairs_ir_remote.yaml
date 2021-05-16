@@ -31,10 +31,10 @@
 #
 
 substitutions:
-  ap_ssid: "Upstairs IR R. Fallback Hotspot"
+  ap_ssid: Upstairs IR R. Fallback Hotspot
 
 esphome:
-  name: upstairs_ir_remote
+  name: upstairs-ir-remote
   # https://esphome.io/devices/esp8266.html
   platform: ESP8266
   board: esp01_1m
@@ -67,13 +67,13 @@ remote_transmitter:
 climate:
   - platform: toshiba
     id: upstairs_ac
-    name: 'Upstairs AC'
+    name: Upstairs AC
     receiver_id: rcvr
     transmitter_id: tamtr
 
 switch:
   - platform: template
-    name: 'Upstairs AC Preset'
+    name: Upstairs AC Preset
     id: upstairs_ac_preset
     icon: mdi:cached
     turn_on_action:
@@ -86,5 +86,5 @@ switch:
 
   # https://esphome.io/components/switch/shutdown.html
   - platform: shutdown
-    name: "Upstairs IR Remote Shutdown"
+    name: Upstairs IR Remote Shutdown
     id: upstairs_ir_remote_shutdown
