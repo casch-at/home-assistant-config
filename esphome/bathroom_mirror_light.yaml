@@ -1,0 +1,28 @@
+substitutions:
+  name: bath-mirror-light
+  ap_ssid: Bath Mirror Light Fallb. Hotspot
+
+esphome:
+  <<: !include .board-config.yaml
+
+<<: !include .base-config.yaml
+
+
+light:
+  - platform: cwww
+    name: Bathroom Mirror Light
+    cold_white: cold_white
+    warm_white: warm_white
+    cold_white_color_temperature: 6000K
+    warm_white_color_temperature: 3000K
+
+
+output:
+  - platform: ledc
+    pin: 32
+    id: cold_white
+    frequency: 2000Hz
+  - platform: ledc
+    pin: 33
+    id: warm_white
+    frequency: 2000Hz
