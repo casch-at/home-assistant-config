@@ -3,7 +3,7 @@ substitutions:
   ap_ssid: Bath Mirror Light Fallb. Hotspot
 
 esphome:
-  <<: !include .board-config.yaml
+  <<: !include .board-config-az-delivery-devkit-v4.yaml
 
 <<: !include .base-config.yaml
 
@@ -19,10 +19,10 @@ light:
 
 output:
   - platform: ledc
-    pin: 32
+    pin: 33
     id: cold_white
     frequency: 2000Hz
   - platform: ledc
-    pin: 33
+    pin: 32
     id: warm_white
     frequency: 2000Hz
