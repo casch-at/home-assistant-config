@@ -21,13 +21,13 @@
   action:
   - choose:
     # Mirror light
-    # - conditions:
-    #   - condition: template
-    #     value_template: '{{ trigger.event.data.event | int == 1002 }}'
-    #   sequence:
-    #   - service: light.toggle
-    #     data:
-    #       entity_id: light.bathroom_mirror_light
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "1_single" }}'
+      sequence:
+      - service: light.toggle
+        data:
+          entity_id: light.bathroom_mirror_light
 
     # Color temperature warmer
     - conditions:
