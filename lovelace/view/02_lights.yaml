@@ -184,6 +184,9 @@ cards:
              entity: light.bathroom_lights
              template: icon_only_more_info
            - type: custom:button-card
+             entity: light.bathroom_mirror_light
+             template: icon_only_more_info
+           - type: custom:button-card
              entity: light.bathroom_front_left_light
              template: icon_only_more_info
              name: 'FL'
