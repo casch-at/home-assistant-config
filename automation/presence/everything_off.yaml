@@ -12,12 +12,9 @@
   # Lights
   - service: homeassistant.turn_off
     target:
-      entity_id: group.all_lights_group
-
-  # Group devices
-  - service: homeassistant.turn_off
-    target:
-      entity_id: group.devices_group
+      entity_id: 
+        - group.all_lights_group
+        - group.devices_group
 
   # Desk and laptop
   - choose:
@@ -35,17 +32,6 @@
           entity_id: group.desk_and_laptop_group
     default: []
 
-  # Switch tower off
-  - choose:
-    - conditions:
-      - condition: template
-        value_template: '{{ is_state("device_tracker.tower_lan_router", "not_home") }}'
-      sequence:
-      - service: switch.turn_off
-        target:
-          entity_id: switch.tower
-    default: []
-
   # Switches off
   - service: switch.turn_off
     target:
@@ -56,6 +42,7 @@
 
   - choose:
     - conditions:
+        # TODO: Use charging state
       - condition: template
         value_template: '{{ is_state("device_tracker.phone_sonia_router", "not_home") }}'
       sequence:
