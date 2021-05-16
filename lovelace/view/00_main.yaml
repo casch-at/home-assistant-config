@@ -116,11 +116,9 @@ cards:
               - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info
-                icon: mdi:shower
               - type: custom:button-card
                 entity: light.lower_kitchen_lights
                 template: icon_only_more_info
-                icon: mdi:coffee
               - type: custom:button-card
                 entity: light.front_floor_lights
                 template: icon_only_more_info

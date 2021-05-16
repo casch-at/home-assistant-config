@@ -132,7 +132,7 @@
       state: 'on'
   icon: hass:toilet
 - id: '1602522741384'
-  name: 'Love 😍'
+  name: Love 😍
   entities:
     light.parlor_plants_light:
       min_mireds: 153
@@ -225,15 +225,65 @@
 - id: '1610138242037'
   name: Bathroom Warm
   entities:
-    light.bathroom_lights:
+    light.bathroom_mirror_light:
+      min_mireds: 166.6666717529297
+      max_mireds: 333.3333435058594
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 64
+      color_temp: 321
+      friendly_name: Bathroom Mirror Light
+      icon: mdi:mirror
+      supported_features: 43
+      state: 'on'
+    light.bathroom_back_left_light:
       min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      brightness: 84
-      color_temp: 370
-      friendly_name: Bathroom
-      supported_features: 47
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 64
+      color_temp: 359
+      off_brightness:
+      friendly_name: Bathroom Back Left Light
+      supported_features: 43
+      state: 'on'
+    light.bathroom_back_right_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 64
+      color_temp: 360
+      off_brightness:
+      friendly_name: Bathroom Back Right Light
+      supported_features: 43
+      state: 'on'
+    light.bathroom_front_left_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 64
+      color_temp: 359
+      off_brightness:
+      friendly_name: Bathroom Front Left Light
+      supported_features: 43
+      state: 'on'
+    light.bathroom_front_right_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 64
+      color_temp: 359
+      off_brightness:
+      friendly_name: Bathroom Front Right Light
+      supported_features: 43
       state: 'on'
   icon: mdi:shower
 - id: '1610138327508'
