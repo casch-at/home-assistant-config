@@ -3,7 +3,7 @@ substitutions:
   ap_ssid: "Fan Fallback Hotspot"
 
 esphome:
-  <<: !include .board-config.yaml
+  <<: !include .board-config-az-delivery-devkit-v4.yaml
   # Fix for low output signal on transmit gpio after boot
   on_boot:
     then:

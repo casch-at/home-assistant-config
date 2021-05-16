@@ -34,10 +34,7 @@ substitutions:
   ap_ssid: Upstairs IR R. Fallback Hotspot
 
 esphome:
-  name: upstairs-ir-remote
-  # https://esphome.io/devices/esp8266.html
-  platform: ESP8266
-  board: esp01_1m
+  <<: !include .board-config-esp8266.yaml
 
 <<: !include .base-config.yaml
 

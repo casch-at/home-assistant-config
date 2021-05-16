@@ -5,7 +5,7 @@ substitutions:
 
 # See for reusing: https://esphome.io/guides/configuration-types.html#config-substitutions
 esphome:
-  <<: !include .board-config.yaml
+  <<: !include .board-config-az-delivery-devkit-v4.yaml
   includes:
     - desk_height_sensor.h
   on_boot:

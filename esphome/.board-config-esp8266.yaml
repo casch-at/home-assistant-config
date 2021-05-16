@@ -1,0 +1,4 @@
+# https://esphome.io/devices/esp8266.html
+name: ${name}
+platform: ESP8266
+board: esp01_1m

@@ -3,7 +3,7 @@ substitutions:
   ap_ssid: Toshiba AC Fallback Hotspot
 
 esphome:
-  <<: !include .board-config.yaml
+  <<: !include .board-config-az-delivery-devkit-v4.yaml
 
 <<: !include .base-config.yaml
 
