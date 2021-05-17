@@ -92,7 +92,7 @@
           - condition: or
             conditions:
               - condition: state
-                entity_id: light.bathroom_ceiling_light
+                entity_id: light.bathroom_ceiling_lights
                 state: 'off'
               - condition: state
                 entity_id: input_boolean.bathroom_light_active
