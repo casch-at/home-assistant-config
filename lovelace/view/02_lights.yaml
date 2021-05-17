@@ -216,7 +216,7 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.bathroom_bath
+                 entity_id: scene.bathroom_warm
            - type: custom:button-card
              entity: light.bathroom_lights
              template: icon_only_more_info
@@ -227,7 +227,7 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.bathroom_morning
+                 entity_id: scene.bathroom_cold
 
        - type: grid
          columns: 8
