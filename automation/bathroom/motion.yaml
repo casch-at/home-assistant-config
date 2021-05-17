@@ -8,13 +8,20 @@
     from: 'off'
     to: 'on'
   condition:
-  - condition: numeric_state
-    entity_id: sensor.bathroom_motion_sensor_light_level
-    below: 45
+  - condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.bathroom_motion_sensor_light_level
+      below: 45
+    - condition: numeric_state
+      entity_id: automation.bathroom_motion
+      above: '0'
+      attribute: current
 
   - condition: state
     entity_id: input_boolean.bathroom_light_active
     state: 'off'
+
   action:
   - choose:
     - conditions:
@@ -31,12 +38,25 @@
           entity_id: input_number.bathroom_motion_multiplier
     default: []
 
-  - service: light.turn_on
-    data:
-      brightness: "{{ states('sensor.daytime_light_brightness') }}"
-      color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
-    target:
-      entity_id: light.bathroom_lights
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: "{{ states('sensor.daytime_light_brightness') }}"
+          color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+        target:
+          entity_id: light.bathroom_mirror_light
+    default:
+    - service: light.turn_on
+      data:
+        brightness: "{{ states('sensor.daytime_light_brightness') }}"
+        color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+      target:
+        entity_id: light.bathroom_lights
 
   - wait_for_trigger:
       platform: state
@@ -45,7 +65,7 @@
       to: 'off'
       for: >-
         {{
-          (states('input_number.motion_timeout') | int)
+          (states('input_number.motion_timeout') | int - 10)
             *
           (states('input_number.bathroom_motion_multiplier') | int)
         }}
