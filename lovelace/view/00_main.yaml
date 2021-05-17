@@ -170,11 +170,13 @@ cards:
                   confirmation:
                     text: Do you really want to turn all switches off?
               - type: custom:button-card
-                entity: light.all_lights
+                entity: group.all_lights_group
                 template: icon_only
                 tap_action:
                   action: navigate
                   navigation_path: /lovelace/lights
+                hold_action:
+                  action: more-info
                 double_tap_action:
                   action: call-service
                   service: homeassistant.turn_off

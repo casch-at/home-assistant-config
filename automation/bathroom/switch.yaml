@@ -25,9 +25,30 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
-      - service: light.toggle
-        data:
-          entity_id: light.bathroom_mirror_light
+      - choose:
+        - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.bathroom_mirror_light
+                state: 'off'
+              - condition: state
+                entity_id: input_boolean.bathroom_light_active
+                state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.bathroom_light_active
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id: light.bathroom_mirror_light
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.bathroom_mirror_light
 
     # Color temperature warmer
     - conditions:
@@ -68,9 +89,14 @@
       sequence:
       - choose:
         - conditions:
-          - condition: state
-            entity_id: input_boolean.bathroom_light_active
-            state: 'off'
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.bathroom_ceiling_light
+                state: 'off'
+              - condition: state
+                entity_id: input_boolean.bathroom_light_active
+                state: 'off'
           sequence:
           - service: input_boolean.turn_on
             target:
@@ -80,11 +106,11 @@
               brightness: "{{ states('sensor.daytime_light_brightness') }}"
               color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
             target:
-              entity_id: light.bathroom_lights
+              entity_id: light.bathroom_ceiling_lights
         default:
         - service: light.turn_off
           target:
-            entity_id: light.bathroom_lights
+            entity_id: light.bathroom_ceiling_lights
 
     # Turn left <-> right lights on
     - conditions:
@@ -99,7 +125,7 @@
           - condition: or
             conditions:
             - condition: state
-              entity_id: light.bathroom_lights
+              entity_id: light.bathroom_ceiling_lights
               state: 'off'
             - condition: and
               conditions:

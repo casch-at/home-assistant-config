@@ -86,9 +86,9 @@
       friendly_name: "Daytime Light Color Temp"
       value_template: |
         {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
-          271
+          180
         {% elif states('input_select.daytime') == 'Evening' -%}
-          400
+          350
         {% elif states('input_select.daytime') == 'Night' -%}
           480
         {% endif %}

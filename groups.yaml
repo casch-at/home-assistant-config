@@ -6,7 +6,7 @@ switches_group:
     - switch.laptop_switch
 #    - switch.nightstand_usb
     - switch.printer
-    - switch.tower
+#    - switch.tower
     - switch.tv_switch
 #    - switch.tv_usb
 
@@ -45,15 +45,14 @@ devices_group:
     - remote.parlor_ir_remote
 
 switches_and_lights_group:
-  name: Lights and Switches Group
+  name: All Lights and Switches Group
   entities:
-    - group.switches_group
-    - light.all_lights
-    - switch.upstairs_lamp_switch
     - group.devices_group
+    - group.switches_group
+    - group.all_lights_group
 
 all_lights_group:
-  name: Lights Group
+  name: All Lights Group + Light Switches
   entities:
     - switch.nightstand_switch
     - switch.upstairs_lamp_switch

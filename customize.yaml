@@ -11,6 +11,8 @@ switch.laptop_switch:
   icon: mdi:laptop
 switch.nightstand_switch:
   icon: mdi:lamp
+light.parlor_lights:
+  icon: mdi:sofa
 light.parlor_plants_light:
   friendly_name: Plants
   icon: mdi:flower
@@ -34,7 +36,16 @@ light.stairs_light:
   icon: mdi:stairs
 light.bathroom_lights:
   icon: mdi:shower
-light.parlor_lights:
-  icon: mdi:sofa
+light.bathroom_mirror_light:
+  icon: mdi:mirror
+light.bathroom_ceiling_lights:
+  icon: mdi:ceiling-light
 light.lower_kitchen_lights:
   icon: mdi:coffee
+light.all_zigbee_lights:
+  icon: mdi:lightbulb-group
+group.all_lights_group:
+  icon: mdi:lightbulb-group
+light.all_lights:
+  icon: mdi:lightbulb-group
+

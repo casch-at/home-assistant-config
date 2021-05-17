@@ -8,6 +8,7 @@ esphome:
 <<: !include .base-config.yaml
 
 
+# https://esphome.io/components/light/index.html#config-light
 light:
   - platform: cwww
     name: Bathroom Mirror Light
@@ -15,14 +16,18 @@ light:
     warm_white: warm_white
     cold_white_color_temperature: 6000K
     warm_white_color_temperature: 3000K
-
-
+    # Reduce flickering when both channels are on -- to much power?
+    constant_brightness: true
+    default_transition_length: 0s
+    gamma_correct: 0
+  
 output:
+  # https://esphome.io/components/output/ledc.html?highlight=ledc
   - platform: ledc
     pin: 33
     id: cold_white
-    frequency: 2000Hz
+    frequency: 19531Hz
   - platform: ledc
     pin: 32
     id: warm_white
-    frequency: 2000Hz
+    frequency: 19531Hz
