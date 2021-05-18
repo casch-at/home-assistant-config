@@ -5,37 +5,47 @@ username: !secret influxdb_name
 password: !secret influxdb_password
 max_retries: 3
 default_measurement: state
-# ignore_attributes:
-#   - friendly_name
-exclude:
+include:
   entities:
-    - binary_sensor.updater
-    - sensor.date_time_iso
-    - sensor.hacs
-    - zone.home
+    - sun.sun
   entity_globs:
-    - sensor.*_switch_energy_totalstarttime
-    - switch.toshiba*
-    - climate.toshiba*
-    - sensor.toshiba*
-    - switch.marantz*
+    - sensor.*_temperature*
+    - sensor.*_humidity
+    - sensor.*_light_level
+    - sensor.*_battery_level
+    - sensor.*_pressure
+    - sensor.*_energy_*
+    - sensor.asuswrt_*
+    - sensor.ups_battery
+    - sensor.ups_transfer_count
+    - sensor.ups_load
+    - sensor.ups_time_left
+    - sensor.ups_transfer_from_battery
+    - sensor.ups_time_on_battery
+    - sensor.ups_total_time_on_battery
+    - sensor.ups_input_voltage
   domains:
-    - camera
-# This would only include those entities listed here -- comment-out exclude filter
-# include:
-#   entities:
-#     - sun.sun
-#   entity_globs:
-#     - sensor.*_temperature
-#     - sensor.*_humidity
-#     - sensor.*_lightlevel
-#     - sensor.asuswrt_*
+    - person
+    - input_numbers
+    - input_boolean
+    - weather
+    - device_tracker
+    - climate
+    - binary_sensor
 component_config:
   sun.sun:
     override_measurement: sun
   weather.home:
     override_measurement: weather
 component_config_glob:
+  # sensor.*_temperature*:
+  #   override_measurement: temperature
+  # sensor.*_humidity:
+  #   override_measurement: humidity
+  # sensor.*_light_level:
+  #   override_measurement: humidity
+  sensor.asuswrt_*:
+    override_measurement: router
   input_*.*:
     override_measurement: helpers
 component_config_domain:
@@ -63,7 +73,7 @@ component_config_domain:
     override_measurement: scene
   script:
     override_measurement: script
-  # sensor:
-  #   override_measurement: sensor
+  sensor:
+    override_measurement: sensor
   switch:
     override_measurement: switch

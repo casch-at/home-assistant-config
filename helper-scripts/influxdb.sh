@@ -97,6 +97,9 @@ function print_and_set_entities()
 function drop_series()
 {
     print_and_set_entities
+    if (( $# == 0)); then
+        return 0
+    fi
     for e in "$@"; do
         if [[ ${ENTITIES[*]} =~ $e ]]; then
             echo -n "Dropping series \"$e\"..."
@@ -109,6 +112,9 @@ function drop_series()
 function drop_measurement()
 {
     print_and_set_measurements
+    if (( $# == 0)); then
+        return 0
+    fi
     for m in "$*"; do
         if [[ ${MEASUREMENTS[*]} =~ $m ]]; then
             echo -n "Dropping measurement \"$m\"..."
@@ -117,8 +123,9 @@ function drop_measurement()
         fi
     done
 }
+
 # TODO(cschwarzgruber): add possibility to filter ENTITIES by regex
-drop_series marantz marantz_power_state
-# drop_measurement
+# drop_series marantz marantz_power_state
+drop_measurement
 
 exit 0
