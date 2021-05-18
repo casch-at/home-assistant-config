@@ -22,20 +22,9 @@
     entity_id: input_boolean.front_floor_light_active
     state: 'off'
   action:
-  - choose:
-    - conditions:
-      - condition: template
-        value_template: >-
-          {{
-            (states('input_number.front_floor_motion_timeout_multiplier') | int)
-              <
-            (state_attr('input_number.front_floor_motion_timeout_multiplier', 'max') | int)
-          }}
-      sequence:
-      - service: input_number.increment
-        target:
-          entity_id: input_number.front_floor_motion_timeout_multiplier
-    default: []
+  - service: input_number.increment
+    target:
+      entity_id: input_number.front_floor_motion_timeout_multiplier
 
   - service: light.turn_on
     data:
