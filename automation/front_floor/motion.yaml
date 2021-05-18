@@ -8,13 +8,35 @@
     from: 'off'
     to: 'on'
   condition:
-  - condition: template
-    value_template: '{{ states(''sensor.front_floor_motion_sensor_light_level'') | float < 55.0 }}'
+  - condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.front_floor_motion_sensor_light_level
+      below: 55
+    - condition: numeric_state
+      entity_id: automation.front_floor_motion
+      above: '0'
+      attribute: current
 
   - condition: state
     entity_id: input_boolean.front_floor_light_active
     state: 'off'
   action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: >-
+          {{
+            (states('input_number.front_floor_motion_multiplier') | int)
+              <
+            (state_attr('input_number.front_floor_motion_multiplier', 'max') | int)
+          }}
+      sequence:
+      - service: input_number.increment
+        target:
+          entity_id: input_number.front_floor_motion_multiplier
+    default: []
+
   - service: light.turn_on
     data:
       brightness: "{{ states('sensor.daytime_light_brightness') }}"
@@ -27,7 +49,12 @@
       entity_id: binary_sensor.front_floor_motion_sensor
       from: 'on'
       to: 'off'
-      for: "{{ (states('input_number.motion_timeout') | int) }}"
+      for: >-
+        {{
+          (states('input_number.motion_timeout') | int)
+            *
+          (states('input_number.front_floor_motion_multiplier') | int)
+        }}
 
   - condition: state
     entity_id: input_boolean.front_floor_light_active
@@ -36,3 +63,9 @@
   - service: light.turn_off
     target:
       entity_id: light.front_floor_lights
+
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.front_floor_motion_multiplier
+    data:
+      value: 0

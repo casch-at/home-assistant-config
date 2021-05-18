@@ -21,7 +21,6 @@
   - condition: state
     entity_id: input_boolean.bathroom_light_active
     state: 'off'
-
   action:
   - choose:
     - conditions:
@@ -65,7 +64,7 @@
       to: 'off'
       for: >-
         {{
-          (states('input_number.motion_timeout') | int - 10)
+          (states('input_number.motion_timeout') | int)
             *
           (states('input_number.bathroom_motion_multiplier') | int)
         }}
