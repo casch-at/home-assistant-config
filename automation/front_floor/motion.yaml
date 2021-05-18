@@ -27,14 +27,14 @@
       - condition: template
         value_template: >-
           {{
-            (states('input_number.front_floor_motion_multiplier') | int)
+            (states('input_number.front_floor_motion_timeout_multiplier') | int)
               <
-            (state_attr('input_number.front_floor_motion_multiplier', 'max') | int)
+            (state_attr('input_number.front_floor_motion_timeout_multiplier', 'max') | int)
           }}
       sequence:
       - service: input_number.increment
         target:
-          entity_id: input_number.front_floor_motion_multiplier
+          entity_id: input_number.front_floor_motion_timeout_multiplier
     default: []
 
   - service: light.turn_on
@@ -53,7 +53,7 @@
         {{
           (states('input_number.motion_timeout') | int)
             *
-          (states('input_number.front_floor_motion_multiplier') | int)
+          (states('input_number.front_floor_motion_timeout_multiplier') | int)
         }}
 
   - condition: state
@@ -66,6 +66,6 @@
 
   - service: input_number.set_value
     target:
-      entity_id: input_number.front_floor_motion_multiplier
+      entity_id: input_number.front_floor_motion_timeout_multiplier
     data:
       value: 0
