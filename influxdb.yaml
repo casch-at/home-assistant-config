@@ -26,7 +26,7 @@ include:
     - sensor.ups_input_voltage
   domains:
     - person
-    - input_numbers
+    - input_number
     - input_boolean
     - weather
     - device_tracker
