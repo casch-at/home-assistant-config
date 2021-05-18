@@ -1,0 +1,24 @@
+presence:
+  name: Presence
+  icon: mdi:home-search
+lower_kitch_light_active:
+  name: Lower Kitchen Light Active
+  icon: mdi:coffee
+front_floor_light_active:
+  name: Front Floor Light Active
+  icon: mdi:door
+state_night_running:
+  name: State Night Running
+  icon: mdi:sleep
+presence_off_running:
+  name: Presence Off Running
+  icon: mdi:home-search
+window_or_door_open:
+  name: Window Or Door Open
+  icon: mdi:window-open
+  initial: "off"
+bathroom_light_active:
+  name: Bathroom Light Active
+  icon: mdi:shower
+marantz_power_state:
+  name: Marantz Power State

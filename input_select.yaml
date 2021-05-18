@@ -1,0 +1,30 @@
+daytime:
+  name: Daytime
+  icon: mdi:theme-light-dark
+  options:
+    - Morning
+    - Daytimes
+    - Evening
+    - Night
+bathroom_scenes:
+  name: Bathroom Scenes
+  icon: mdi:shower
+  options:
+    - scene.bathroom_warm
+    - scene.bathroom_cold
+office_scenes:
+  name: Office Scenes
+  icon: mdi:desk
+  options:
+    - scene.office_purple
+    - scene.work_light
+    - scene.office_green
+stairs_scenes:
+  name: Stairs Scenes
+  icon: mdi:desk
+  options:
+    - scene.stairs_green
+    - scene.stairs_blue
+    - scene.stairs_purple
+    - scene.stairs_night
+    - scene.stairs_morning_light

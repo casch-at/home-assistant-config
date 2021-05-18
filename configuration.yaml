@@ -50,16 +50,19 @@ shell_command:
   # Need to specify IP (resolve doesn't work :-?),
   turn_off_tower: !secret tower_off
 
-sensor: !include sensors.yaml
-binary_sensor: !include binary_sensors.yaml
-lovelace: !include lovelace/lovelace.yaml
-switch: !include switch.yaml
-group: !include groups.yaml
 automation: !include automations.yaml
-script: !include scripts.yaml
-scene: !include scenes.yaml
-light: !include lights.yaml
+binary_sensor: !include binary_sensors.yaml
 cover: !include covers.yaml
+group: !include groups.yaml
+input_boolean: !include input_boolean.yaml
+input_number: !include input_number.yaml
+input_select: !include input_select.yaml
+light: !include lights.yaml
+lovelace: !include lovelace/lovelace.yaml
+scene: !include scenes.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+switch: !include switch.yaml
 
 calendar:
   - platform: caldav
@@ -76,5 +79,3 @@ calendar:
 
 # https://www.home-assistant.io/integrations/influxdb
 influxdb: !include influxdb.yaml
-
-
