@@ -32,14 +32,13 @@
   condition: []
   action:
   - choose:
-
     - conditions:
       - condition: template
         value_template: >-
           {{
-              states('input_select.select_option') == 'Night'
+              states('input_select.daytime') == 'Night'
             and (
-              trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising')
+              (trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising'))
             or
               trigger.entity_id == 'binary_sensor.christian_schwarzgruber_alarm'
             or
@@ -73,5 +72,5 @@
         target:
           entity_id: input_select.daytime
 
-    # State Night will be set be the NIGHT mode
+    # State Night will be set by the NIGHT mode
     default: []
