@@ -2,7 +2,7 @@ window_or_door_open:
   name: Window or Door Open
   icon: mdi:window-open
   unit_of_measurement: sec
-  min: 60
+  min: 300
   max: 14400
   step: 60
 desk_height:
@@ -16,8 +16,8 @@ motion_timeout:
   name: Motion Timeout
   icon: mdi:motion
   min: 15
-  max: 600
-  step: 5
+  max: 30
+  step: 1
   mode: box
 bathroom_motion_timeout_multiplier:
   name: Bathroom Motion Timeout Multiplier
