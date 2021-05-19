@@ -84,19 +84,19 @@ cards:
             triggers_update:
               - climate.heating
             state:
+              # html colors: https://html-color.codes
               - operator: template
                 value: >-
                   [[[
                     return states['climate.heating'].attributes.hvac_action === 'heating';
                   ]]]
                 color: red
-              # TODO(cschwarzgruber): Get state of ac unit, if running it should draw the icon in blue
-              # - operator: template
-              #   value: >-
-              #     [[[
-              #       return states['climate.heating'].attributes.hvac_action == 'idle'
-              #     ]]]
-              #   color: blue
+              - operator: template
+                value: >-
+                  [[[
+                    return states['climate.office_ac'].state !== 'off' || states['climate.upstairs_ac'].state !== 'off'
+                  ]]]
+                color: dodgerblue
           - type: custom:button-card
             icon: mdi:transmission-tower
             template: icon_only
