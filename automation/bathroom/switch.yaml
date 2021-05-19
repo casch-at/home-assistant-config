@@ -62,8 +62,8 @@
         data:
           entity_id: light.bathroom_lights
           color_temp: |
-            {% if state_attr('light.bathroom_lights', 'color_temp') < 340 %}
-              {{ state_attr('light.bathroom_lights', 'color_temp') + 30 }}
+            {% if state_attr('light.bathroom_lights', 'color_temp') | int < 340 %}
+              {{ state_attr('light.bathroom_lights', 'color_temp') | int + 30 }}
             {% endif %}
 
     # Brightness up
@@ -78,8 +78,8 @@
         data:
           entity_id: light.bathroom_lights
           brightness: |
-            {% if state_attr('light.bathroom_lights', 'brightness') < 225 %}
-              {{ state_attr('light.bathroom_lights', 'brightness') + 30 }}
+            {% if state_attr('light.bathroom_lights', 'brightness') | int < 225 %}
+              {{ state_attr('light.bathroom_lights', 'brightness') | int + 30 }}
             {% endif %}
 
     # Toggle ceiling lights
@@ -178,8 +178,8 @@
         data:
           entity_id: light.bathroom_lights
           color_temp: |
-            {% if state_attr('light.bathroom_lights', 'color_temp') > 183 %}
-              {{ state_attr('light.bathroom_lights', 'color_temp') - 30 }}
+            {% if state_attr('light.bathroom_lights', 'color_temp') | int > 183 %}
+              {{ state_attr('light.bathroom_lights', 'color_temp') | int - 30 }}
             {% endif %}
 
     # Cycle scense
@@ -206,7 +206,7 @@
         data:
           entity_id: light.bathroom_lights
           brightness: |
-            {% if state_attr('light.bathroom_lights', 'brightness') > 40 %}
-              {{ state_attr('light.bathroom_lights', 'brightness') - 30 }}
+            {% if state_attr('light.bathroom_lights', 'brightness') | int > 40 %}
+              {{ state_attr('light.bathroom_lights', 'brightness') | int - 30 }}
             {% endif %}
     default: []
