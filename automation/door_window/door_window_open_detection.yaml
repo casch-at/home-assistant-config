@@ -1,6 +1,6 @@
 - id: door_window_open_detection
   alias: Door and window open detection
-  description: Send notification when it is cold outside and door/window is longer than 10 minutes open
+  description: Send notification when it is cold outside and door/window is too long open
   trigger:
   - platform: template
     value_template: "{{ is_state('binary_sensor.balcony_door_sensor', 'on') }}"
