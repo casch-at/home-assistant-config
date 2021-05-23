@@ -1,8 +1,6 @@
 person.christian_schwarzgruber: {}
-switch.printer:
+switch.printer_switch:
   icon: mdi:printer
-switch.tower:
-  icon: mdi:desktop-tower
 switch.tv_switch:
   icon: mdi:television
 switch.desk_switch:
@@ -48,4 +46,3 @@ group.all_lights_group:
   icon: mdi:lightbulb-group
 light.all_lights:
   icon: mdi:lightbulb-group
-

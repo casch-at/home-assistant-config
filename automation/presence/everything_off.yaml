@@ -12,7 +12,7 @@
   # Lights
   - service: homeassistant.turn_off
     target:
-      entity_id: 
+      entity_id:
         - group.all_lights_group
         - group.devices_group
 
@@ -36,7 +36,7 @@
   - service: switch.turn_off
     target:
       entity_id:
-        - switch.printer
+        - switch.printer_switch
         - switch.tv_switch
         - switch.tv_usb
 

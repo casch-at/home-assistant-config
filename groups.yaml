@@ -5,7 +5,7 @@ switches_group:
     - switch.desk_switch
     - switch.laptop_switch
 #    - switch.nightstand_usb
-    - switch.printer
+    - switch.printer_switch
 #    - switch.tower
     - switch.tv_switch
 #    - switch.tv_usb

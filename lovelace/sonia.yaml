@@ -40,7 +40,7 @@ views:
             entity: light.lower_kitchen_lights
             toggle: true
             hide_when_off: true
-          - entity: switch.printer
+          - entity: switch.printer_switch
           - entity: switch.nightstand_switch
 
       - type: horizontal-stack

@@ -13,12 +13,17 @@ esphome:
 ### Receiver RF
 remote_receiver:
   id: rcvr
-  pin:
-    number: 32
-    mode: INPUT_PULLUP
-    inverted: True
-  dump: all
+  pin: 32
+    #number: 32
+    #mode: INPUT_PULLUP
+    #inverted: True
+  dump: rc_switch
   # dump: raw
+  tolerance: 50%
+  filter: 250us
+  idle: 4ms
+  buffer_size: 2kb
+
 
 ### Transmit IR
 
@@ -35,7 +40,7 @@ climate:
    name: Toshiba AC
    transmitter_id: tsmtr
    receiver_id: rcvr
-   model: MODEL_2
+   #model: MODEL_2
 
 switch:
   - platform: template

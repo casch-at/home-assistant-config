@@ -1,0 +1,174 @@
+# Device is a Sonoff RF Bridge 433 MHz ESP8266 - bought from AliExpress for ~ 12 Euro.
+#
+# Initial flash and hack:
+#   https://everythingsmarthome.co.uk/sonoff/using-esphome-on-sonoff-rf-bridge
+#   https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack
+#
+# - Connecting
+#   Powered with a mobile charger connected to the usb port. Serial cable sets voltage
+#   level for communication based on the input voltage.
+#   -------------------
+#    Serial   ESP
+#   -------------------
+#    RX   ->  TX
+#    TX   ->  RX
+#    3.3V ->  3.3V
+#    GND  ->  GND
+#   -------------------
+#
+#   Dip switch need to be set to off (GPIO0?)
+#
+# - Flashing
+#   https://github.com/espressif/esptool -- but a short "pip install esphome" is fine too
+#   ,----
+#   | esptool.py -p /dev/ttyUSB0 -b 460800 read_flash 0x00000 0x100000 sonoff_rf_bridge_original_firmware.bin
+#   | esptool.py -p /dev/ttyUSB0 erase_flash
+#   | esptool.py -p /dev/ttyUSB0 write_flash -fs 1MB 0x0 sonoff_ir_bridge.bin
+#   `----
+#
+
+substitutions:
+  ap_ssid: "RF Bridge Fallback Hotspot"
+  name: sonoff-rf-bridge
+
+esphome:
+  <<: !include .board-config-esp8266.yaml
+  # https://esphome.io/devices/esp8266.html
+  platform: ESP8266
+  board: esp01_1m
+
+<<: !include .base-config.yaml
+
+# Status LED (blue)
+# https://esphome.io/components/status_led.html
+status_led:
+  pin:
+    number: 13
+    inverted: yes
+
+### Receiver IR
+# https://esphome.io/components/remote_receiver.html
+remote_receiver:
+   id: receiver
+   pin: 4
+   dump: rc_switch
+   filter: 50us
+   idle: 2ms
+   tolerance: 50%
+
+### Transmit IR
+# https://www.esphome.io/components/remote_transmitter.html
+remote_transmitter:
+  #id: transmitter
+  pin: 5
+  carrier_duty_percent: 100%
+
+
+switch:
+  - platform: template
+    name: "Printer Switch"
+    # Assume sent state -- prevent switch to go to off state after sending on code
+    optimistic: True
+    turn_on_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101110100000011'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+    turn_off_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101110100001100'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+  - platform: template
+    name: "Switch 1"
+    # Assume sent state -- prevent switch to go to off state after sending on code
+    optimistic: True
+    turn_on_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000111010100000011'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+    turn_off_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000111010100001100'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+
+  - platform: template
+    name: "Switch 2"
+    # Assume sent state -- prevent switch to go to off state after sending on code
+    optimistic: True
+    turn_on_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101010111000011'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+    turn_off_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101010111001100'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+
+  - platform: template
+    name: "Switch 3"
+    # Assume sent state -- prevent switch to go to off state after sending on code
+    optimistic: True
+    turn_on_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101011100000011'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+    turn_off_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101011100001100'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+
+  - platform: template
+    name: "Switch 4"
+    # Assume sent state -- prevent switch to go to off state after sending on code
+    optimistic: True
+    turn_on_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101010100110011'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+    turn_off_action:
+      remote_transmitter.transmit_rc_switch_raw:
+        code: '010101000101010100111100'
+        protocol:
+          pulse_length: 165
+        repeat:
+          times: 10
+          wait_time: 0s
+
+  #         pulse_length: 175
+  #         pulse_length: 155
+  #         pulse_length: 160
