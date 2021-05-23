@@ -1,5 +1,5 @@
 substitutions:
-  name: bath-mirror-light
+  name: bathroom-mirror-light
   ap_ssid: Bath Mirror Light Fallb. Hotspot
 
 esphome:
@@ -20,7 +20,7 @@ light:
     constant_brightness: true
     default_transition_length: 0s
     gamma_correct: 0
-  
+
 # https://esphome.io/components/output/index.html
 output:
   # https://esphome.io/components/output/ledc.html?highlight=ledc
@@ -29,10 +29,10 @@ output:
     id: cold_white
     frequency: 9765Hz # 19531Hz, 39061Hz
     # decrease max power to prevend flickering
-    max_power: 0.92 
+    max_power: 0.92
   - platform: ledc
     pin: 32
     id: warm_white
-    frequency: 9765Hz # 19531Hz, 39061Hz 
+    frequency: 9765Hz # 19531Hz, 39061Hz
     # decrease max power to prevend flickering
     max_power: 0.92
