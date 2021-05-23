@@ -25,8 +25,13 @@ cards:
       columns: 1
       cards:
         - type: custom:button-card
-          entity: switch.tower
+          entity: remote.parlor_ir_remote
           template: icon_only_more_info
+          tap_action:
+            action: call-service
+            service: remote.toggle
+            service_data:
+              entity_id: remote.parlor_ir_remote
 
     - type: grid
       columns: 1

@@ -17,7 +17,7 @@ office_scenes:
   icon: mdi:desk
   options:
     - scene.office_purple
-    - scene.work_light
+    - scene.office_work_light
     - scene.office_green
 stairs_scenes:
   name: Stairs Scenes

@@ -5,21 +5,36 @@ sequence:
 - choose:
   - conditions:
     - condition: state
+      entity_id: remote.parlor_ir_remote
+      state: 'off'
+    sequence:
+    - service: remote.turn_on
+      target:
+        entity_id: remote.parlor_ir_remote
+  default: []
+
+- choose:
+  - conditions:
+    - condition: state
       entity_id: switch.tv_switch
       state: 'off'
     sequence:
     - service: switch.turn_on
-      data:
+      target:
         entity_id: switch.tv_switch
+
     - delay: 00:00:02
+
     - service: remote.send_command
       data:
-        entity_id: remote.parlor_ir_remote
         device: tv
         command: power
+      target:
+        entity_id: remote.parlor_ir_remote
   default:
   - service: remote.send_command
     data:
-      entity_id: remote.parlor_ir_remote
       device: tv
       command: power
+    target:
+      entity_id: remote.parlor_ir_remote
