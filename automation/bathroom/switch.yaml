@@ -1,7 +1,8 @@
 - id: bathroom_light
   alias: Bathroom light
   description: ''
-  mode: single
+  mode: queued
+  max: 5
   trigger:
   - platform: event
     event_type: zha_event
@@ -13,7 +14,7 @@
       {{
         trigger.event.data.command in [
           '1_single', '1_double',
-          '2_single', '2_double',
+          '2_single',
           '3_single', '3_double',
           '4_single', '4_double'
         ]
@@ -50,37 +51,44 @@
           target:
             entity_id: light.bathroom_mirror_light
 
-    # Color temperature warmer
+    # Toggle lower kitchen lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
-      - condition: state
-        entity_id: light.bathroom_lights
-        state: 'on'
       sequence:
-      - service: light.turn_on
-        data:
-          entity_id: light.bathroom_lights
-          color_temp: |
-            {% if state_attr('light.bathroom_lights', 'color_temp') | int < 340 %}
-              {{ state_attr('light.bathroom_lights', 'color_temp') | int + 30 }}
-            {% endif %}
+      - event: zha_event
+        event_data:
+          device_id: c2cff687003dd88942aa8597fe9f8734
+          command: "2_single"
 
-    # Brightness up
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "2_double" }}'
-      - condition: state
-        entity_id: light.bathroom_lights
-        state: 'on'
+        value_template: '{{ trigger.event.data.command == "1_double" }}'
       sequence:
-      - service: light.turn_on
-        data:
-          entity_id: light.bathroom_lights
-          brightness: |
-            {% if state_attr('light.bathroom_lights', 'brightness') | int < 225 %}
-              {{ state_attr('light.bathroom_lights', 'brightness') | int + 30 }}
-            {% endif %}
+      - choose:
+        - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.bathroom_mirror_light
+                state: 'off'
+              - condition: state
+                entity_id: input_boolean.bathroom_light_active
+                state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.bathroom_light_active
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id: light.bathroom_mirror_light
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.bathroom_mirror_light
 
     # Toggle ceiling lights
     - conditions:
@@ -115,7 +123,7 @@
     # Turn left <-> right lights on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "3_single" }}'
+        value_template: '{{ trigger.event.data.command == "2_double" }}'
       sequence:
       - service: input_boolean.turn_on
         target:
@@ -166,21 +174,40 @@
             - light.bathroom_front_right_light
             - light.bathroom_back_right_light
 
-    # Color temperature colder
+    # All lights
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "3_single" }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.bathroom_lights
+            state: 'off'
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id:
+                - light.bathroom_ceiling_lights
+                - light.bathroom_mirror_light
+        default:
+        - service: light.turn_off
+          target:
+            entity_id:
+              - light.bathroom_ceiling_lights
+              - light.bathroom_mirror_light
+
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_double" }}'
-      - condition: state
-        entity_id: light.bathroom_lights
-        state: 'on'
       sequence:
-      - service: light.turn_on
-        data:
-          entity_id: light.bathroom_lights
-          color_temp: |
-            {% if state_attr('light.bathroom_lights', 'color_temp') | int > 183 %}
-              {{ state_attr('light.bathroom_lights', 'color_temp') | int - 30 }}
-            {% endif %}
+      - event: zha_event
+        event_data:
+          device_id: c2cff687003dd88942aa8597fe9f8734
+          command: "1_single"
 
     # Cycle scense
     - conditions:
@@ -194,19 +221,4 @@
         data:
           entity_id: input_select.bathroom_scenes
 
-    # Brightness down
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "4_double" }}'
-      - condition: state
-        entity_id: light.bathroom_lights
-        state: 'on'
-      sequence:
-      - service: light.turn_on
-        data:
-          entity_id: light.bathroom_lights
-          brightness: |
-            {% if state_attr('light.bathroom_lights', 'brightness') | int > 40 %}
-              {{ state_attr('light.bathroom_lights', 'brightness') | int - 30 }}
-            {% endif %}
     default: []
