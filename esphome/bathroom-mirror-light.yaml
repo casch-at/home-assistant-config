@@ -29,10 +29,10 @@ output:
     id: cold_white
     frequency: 9765Hz # 19531Hz, 39061Hz
     # decrease max power to prevend flickering
-    max_power: 0.92
+    max_power: 0.85
   - platform: ledc
     pin: 32
     id: warm_white
     frequency: 9765Hz # 19531Hz, 39061Hz
     # decrease max power to prevend flickering
-    max_power: 0.92
+    max_power: 0.85
