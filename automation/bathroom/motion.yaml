@@ -13,6 +13,9 @@
     - condition: numeric_state
       entity_id: sensor.bathroom_motion_sensor_light_level
       below: 60
+    - condition: state
+      entity_id: input_boolean.bathroom_low_light_condition
+      state: 'on'
     - condition: numeric_state
       entity_id: automation.bathroom_motion
       above: '0'

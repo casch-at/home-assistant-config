@@ -1,0 +1,33 @@
+- id: bathroom_set_low_light_condition
+  alias: Bathroom set low light condition
+  description: 'Hack to keep motion sensor in an active state even when light illuminance is > 120 due to mirror light'
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: light.bathroom_mirror_light
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.bathroom_motion_sensor_light_level
+    below: 61
+
+  - condition: state
+    entity_id: input_boolean.bathroom_low_light_condition
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.bathroom_low_light_condition
+
+  - wait_for_trigger:
+    - platform: state
+      entity_id: light.bathroom_mirror_light
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 6
+
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.bathroom_low_light_condition
