@@ -13,13 +13,11 @@
     - condition: numeric_state
       entity_id: sensor.bathroom_motion_sensor_light_level
       below: 60
-    - condition: state
-      entity_id: input_boolean.bathroom_low_light_condition
-      state: 'on'
-    - condition: numeric_state
-      entity_id: automation.bathroom_motion
-      above: '0'
-      attribute: current
+    - condition: template
+      value_template: >-
+        {% set now = now() | as_timestamp %}
+        {% set last = state_attr('automation.bathroom_motion', 'last_triggered') | as_timestamp %}
+        {{ ((now - last) / 60 | int) < 6 }}
 
   - condition: state
     entity_id: input_boolean.bathroom_light_active
