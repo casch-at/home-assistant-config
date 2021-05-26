@@ -13,7 +13,7 @@
       {{
         trigger.event.data.command in [
           '1_single', '1_double', '1_long press',
-          '2_single', '2_double'
+          '2_single', '2_double', '2_triple', '2_long press', '2_release'
         ]
       }}
   action:
@@ -175,5 +175,29 @@
           color_temp: 271
         target:
           entity_id: light.lower_kitchen_lights
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_triple" }}'
+      sequence:
+      - service: cover.open_cover
+        target:
+          entity_id: cover.lower_kitchen_roller_shutter_left_level
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_long press" }}'
+      sequence:
+      - service: cover.close_cover
+        target:
+          entity_id: cover.lower_kitchen_roller_shutter_left_level
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_release" }}'
+      sequence:
+      - service: cover.stop_cover
+        target:
+          entity_id: cover.lower_kitchen_roller_shutter_left_level
 
     default: []
