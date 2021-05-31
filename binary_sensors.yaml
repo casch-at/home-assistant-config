@@ -1,7 +1,7 @@
 - platform: template
   sensors:
     cover_operation_to_cold:
-      friendly_name: "Cover Operation To Cold"
+      friendly_name: Cover Operation To Cold
       unique_id: binary_sensor0001
       device_class: cold
       value_template: >-
@@ -10,7 +10,7 @@
           states('sensor.outdoor_temperature') | float <= 1.0
         }}
     sonia_avramidis_alarm:
-      friendly_name: "Sonia Avramidis Alaram"
+      friendly_name: Sonia Avramidis Alaram
       unique_id: binary_sensor0002
       value_template: >-
         {{
@@ -23,7 +23,7 @@
             states('person.sonia_avramidis') == 'home'
         }}
     christian_schwarzgruber_alarm:
-      friendly_name: "Christian Schwarzgruber Alaram"
+      friendly_name: Christian Schwarzgruber Alaram
       unique_id: binary_sensor0003
       value_template: >-
         {{
@@ -33,11 +33,27 @@
             (as_timestamp(states('sensor.phone_christian_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
               == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
           and
-           states('person.christian_schwarzgruber') == 'home'
+            states('person.christian_schwarzgruber') == 'home'
+        }}
+    door_window_sensors:
+      friendly_name: Door Window Sensors
+      unique_id: binary_sensor0004
+      value_template: >-
+        {{
+            states('binary_sensor.balcony_door_sensor') == 'on'
+          or
+            states('binary_sensor.parlor_window_sensor') == 'on'
+          or
+            states('binary_sensor.office_window_sensor') == 'on'
+          or
+            states('binary_sensor.lower_kitchen_window_sensor') == 'on'
+          or
+            states('binary_sensor.upstairs_window_sensor') == 'on'
+          or
+            states('binary_sensor.bedroom_window_sensor') == 'on'
         }}
 
 - platform: workday
   country: AT
 
 - platform: apcupsd
-
