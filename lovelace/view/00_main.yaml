@@ -125,8 +125,9 @@ cards:
             columns: 2
             cards:
               - type: custom:button-card
-                entity: group.bedroom_group
+                entity: light.nightstand_lights
                 template: icon_only
+                icon: mdi:bed
               - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info
@@ -184,7 +185,7 @@ cards:
                   confirmation:
                     text: Do you really want to turn all switches off?
               - type: custom:button-card
-                entity: group.all_lights_group
+                entity: light.all_lights
                 template: icon_only
                 tap_action:
                   action: navigate
@@ -195,7 +196,7 @@ cards:
                   action: call-service
                   service: homeassistant.turn_off
                   service_data:
-                    entity_id: group.all_lights_group
+                    entity_id: light.all_lights
                   confirmation:
                     text: Do you really want to turn off all lights?
               - type: custom:button-card
@@ -224,13 +225,8 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: switch.upstairs_lamp_switch
+            entity: light.upstairs_lamp_light
             template: icon_only_more_info
-            double_tap_action:
-              action: call-service
-              service: switch.toggle
-              service_data:
-                entity_id: switch.upstairs_lamp_usb_switch
           - type: custom:button-card
             entity: switch.aroma_diffuser
             template: icon_only_more_info

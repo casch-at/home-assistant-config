@@ -49,6 +49,23 @@
     {% endif %}
   rgb_state_topic: "tele/aroma_diffuser/RESULT"
 
+- platform: switch
+  name: Nightstand Sonia Light
+  entity_id: switch.nightstand_sonia_switch
+
+- platform: switch
+  name: Nightstand Christian Light
+  entity_id: switch.nightstand_christian_switch
+
+- platform: switch
+  name: Upstairs Lamp Light
+  entity_id: switch.upstairs_lamp_switch
+
+- platform: group
+  name: Nightstand Lights
+  entities:
+    - light.nightstand_sonia_light
+    - light.nightstand_christian_light
 
 - platform: group
   name: Bathroom Lights
@@ -64,3 +81,5 @@
   entities:
     - light.all_zigbee_lights
     - light.bathroom_mirror_light
+    - light.nightstand_lights
+    - light.upstairs_lamp_light

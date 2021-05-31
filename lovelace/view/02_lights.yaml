@@ -268,9 +268,19 @@ cards:
          columns: 8
          cards:
            - type: custom:button-card
-             entity: switch.nightstand_switch
+             entity: light.nightstand_lights
              template: icon_only_more_info
              icon: mdi:bed
+           - type: custom:button-card
+             entity: light.nightstand_sonia_light
+             template: icon_only_more_info
+             name: 'S'
+             show_name: true
+           - type: custom:button-card
+             entity: light.nightstand_christian_light
+             template: icon_only_more_info
+             name: 'C'
+             show_name: true
 
        - type: grid
          columns: 8

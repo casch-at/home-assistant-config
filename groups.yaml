@@ -44,16 +44,9 @@ devices_group:
     - switch.aroma_diffuser
     - remote.parlor_ir_remote
 
-switches_and_lights_group:
-  name: All Lights and Switches Group
+all_group:
+  name: All Group
   entities:
     - group.devices_group
     - group.switches_group
-    - group.all_lights_group
-
-all_lights_group:
-  name: All Lights Group + Light Switches
-  entities:
-    - switch.nightstand_switch
-    - switch.upstairs_lamp_switch
     - light.all_lights

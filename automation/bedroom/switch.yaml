@@ -1,0 +1,78 @@
+- id: bedroom_switch
+  alias: Bedroom switch
+  description: ''
+  mode: queued
+  max: 5
+  trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 2ae648159981b31b3bf901fb4ac2a579
+  condition:
+  - condition: template
+    value_template: |-
+      {{
+        trigger.event.data.command in [
+          '1_single', '1_long press',
+          '2_single',
+          '3_single',
+          '4_single',
+        ]
+      }}
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "1_single" }}'
+      sequence:
+      - service: light.toggle
+        target:
+          entity_id: light.nightstand_sonia_light
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "1_long press" }}'
+      sequence:
+      - event: zha_event
+        event_data:
+          device_id: 0157c2c1971568f115955e032e5de269
+          command: "1_long press"
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_single" }}'
+      sequence:
+      - service: light.toggle
+        target:
+          entity_id: light.nightstand_christian_light
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "3_single" }}'
+      sequence:
+      - service: light.toggle
+        target:
+          entity_id: light.nightstand_lights
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "4_single" }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: light.stairs_light
+            state: 'off'
+          sequence:
+          - service: scene.turn_on
+            target:
+              entity_id: scene.night_toilet_light
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.stairs_light
+    default: []

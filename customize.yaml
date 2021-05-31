@@ -7,7 +7,13 @@ switch.desk_switch:
   icon: mdi:desk
 switch.laptop_switch:
   icon: mdi:laptop
-switch.nightstand_switch:
+light.upstairs_lamp_light:
+  icon: mdi:floor-lamp
+light.nightstand_lights:
+  icon: mdi:lamp
+light.nightstand_sonia_light:
+  icon: mdi:lamp
+light.nightstand_christian_light:
   icon: mdi:lamp
 light.parlor_lights:
   icon: mdi:sofa
@@ -28,7 +34,6 @@ light.led_stripes:
   icon: mdi:led-strip-variant
 light.office_desk_light:
   icon: mdi:desk
-  #friendly_name: Office
 light.stairs_light:
   friendly_name: Stairs
   icon: mdi:stairs
@@ -41,8 +46,6 @@ light.bathroom_ceiling_lights:
 light.lower_kitchen_lights:
   icon: mdi:coffee
 light.all_zigbee_lights:
-  icon: mdi:lightbulb-group
-group.all_lights_group:
   icon: mdi:lightbulb-group
 light.all_lights:
   icon: mdi:lightbulb-group
