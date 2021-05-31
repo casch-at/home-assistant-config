@@ -236,3 +236,9 @@ cards:
           - entity: sensor.lower_kitchen_smoke_sensor_battery_level
             name: Lower kitchen smoke sensor
             tap_action: more-info
+          - entity: sensor.bedroom_sonia_switch_battery_level
+            name: Bedroom sonia switch
+            tap_action: more-info
+          - entity: sensor.bedroom_christian_switch_battery_level
+            name: Bedroom christian switch
+            tap_action: more-info
