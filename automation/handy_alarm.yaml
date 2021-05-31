@@ -28,7 +28,7 @@
         data:
           transition: 5
         target:
-          entity_id: scene.stairs_morning_light
+          entity_id: scene.stairs_white
     default: []
 
   # Open cover in bedroom

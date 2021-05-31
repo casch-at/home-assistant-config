@@ -23,8 +23,8 @@ stairs_scenes:
   name: Stairs Scenes
   icon: mdi:desk
   options:
-    - scene.stairs_green
-    - scene.stairs_blue
+    # - scene.stairs_green
+    # - scene.stairs_blue
     - scene.stairs_purple
     - scene.stairs_night
-    - scene.stairs_morning_light
+    - scene.stairs_white

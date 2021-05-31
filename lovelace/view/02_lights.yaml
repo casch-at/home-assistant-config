@@ -25,7 +25,7 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.stairs_morning_light
+                 entity_id: scene.stairs_white
            - type: custom:button-card
              entity: light.stairs_light
              template: icon_only_more_info

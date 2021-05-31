@@ -102,7 +102,7 @@
       supported_features: 63
       state: 'on'
 - id: '1602060945201'
-  name: Stairs Morning Light
+  name: Stairs White
   entities:
     light.stairs_light:
       min_mireds: 140
