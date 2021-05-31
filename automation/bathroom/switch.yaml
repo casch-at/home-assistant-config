@@ -14,9 +14,9 @@
       {{
         trigger.event.data.command in [
           '1_single', '1_double',
-          '2_single',
+          '2_single', '2_double',
           '3_single', '3_double',
-          '4_single', '4_double'
+          '4_single',
         ]
       }}
   action:
