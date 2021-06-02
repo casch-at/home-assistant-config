@@ -90,12 +90,12 @@
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'switch.nightstand_switch'
+            entity_id: 'light.nightstand_lights'
         target:
           entity_id: script.stairs_light_based_on_entity_state
-      - service: switch.toggle
+      - service: light.toggle
         target:
-          entity_id: switch.nightstand_switch
+          entity_id: light.nightstand_lights
 
     # Toggle office
     - conditions:

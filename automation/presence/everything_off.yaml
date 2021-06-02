@@ -13,7 +13,7 @@
   - service: homeassistant.turn_off
     target:
       entity_id:
-        - group.all_lights_group
+        - light.all_lights
         - group.devices_group
 
   # Desk and laptop
