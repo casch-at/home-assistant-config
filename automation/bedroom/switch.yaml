@@ -17,10 +17,10 @@
     value_template: |-
       {{
         trigger.event.data.command in [
-          '1_single', '1_long press',
-          '2_single',
-          '3_single',
-          '4_single',
+          '1_single', '1_double', '1_long press',
+          '2_single', '2_double',
+          '3_single', '3_double',
+          '4_single', '4_double',
         ]
       }}
   action:
@@ -32,6 +32,17 @@
       - service: light.toggle
         target:
           entity_id: light.nightstand_sonia_light
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "1_double" }}'
+      sequence:
+      - condition: state
+        entity_id: binary_sensor.bedroom_window_sensor
+        state: 'off'
+      - service: cover.close_cover
+        target:
+          entity_id: cover.bedroom_roller_shutter_level
 
     - conditions:
       - condition: template
@@ -52,11 +63,30 @@
 
     - conditions:
       - condition: template
+        value_template: '{{ trigger.event.data.command == "2_double" }}'
+      sequence:
+      - condition: state
+        entity_id: binary_sensor.bedroom_window_sensor
+        state: 'off'
+      - service: cover.open_cover
+        target:
+          entity_id: cover.bedroom_roller_shutter_level
+
+    - conditions:
+      - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
       sequence:
       - service: light.toggle
         target:
           entity_id: light.nightstand_lights
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "3_double" or trigger.event.data.command == "4_double" }}'
+      sequence:
+      - service: cover.stop_cover
+        target:
+          entity_id: cover.bedroom_roller_shutter_level
 
     - conditions:
       - condition: template
