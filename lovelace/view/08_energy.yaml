@@ -16,11 +16,11 @@ cards:
                 "n1 w1 t1"
                 "n2 w2 t2"
                 "n3 w3 t3"
-                "n4 w4 t4"
                 "n6 w6 t6"
                 "n5 w5 t5"
             - grid-template-columns: min-content 1fr 1fr
-            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr
+                # "n4 w4 t4"
           custom_fields:
             n1:
               - justify-self: start
@@ -34,10 +34,10 @@ cards:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
-            n4:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
+            # n4:
+            #   - justify-self: start
+            #   - padding-left: 10px
+            #   - font-weight: bold
             n6:
               - justify-self: start
               - padding-left: 10px
@@ -69,7 +69,7 @@ cards:
           n1: 'TV'
           n2: 'Desk'
           n3: 'Laptop'
-          n4: 'Nightstand'
+          # n4: 'Nightstand'
           n6: 'Server...'
           n5: 'Total'
           w1:
@@ -87,11 +87,11 @@ cards:
               type: custom:button-card
               entity: sensor.laptop_switch_energy_power
               template: embedded_card
-          w4:
-            card:
-              type: custom:button-card
-              entity: sensor.nightstand_switch_energy_power
-              template: embedded_card
+          # w4:
+          #   card:
+          #     type: custom:button-card
+          #     entity: sensor.nightstand_switch_energy_power
+          #     template: embedded_card
           w5:
             card:
               type: custom:button-card
@@ -121,11 +121,11 @@ cards:
               type: custom:button-card
               entity: sensor.laptop_switch_energy_total
               template: embedded_card
-          t4:
-            card:
-              type: custom:button-card
-              entity: sensor.nightstand_switch_energy_total
-              template: embedded_card
+          # t4:
+          #   card:
+          #     type: custom:button-card
+          #     entity: sensor.nightstand_switch_energy_total
+          #     template: embedded_card
           t5:
             card:
               type: custom:button-card
@@ -221,8 +221,8 @@ cards:
           - entity: sensor.balcony_door_sensor_battery_level
             name: Balcony door sensor
             tap_action: more-info
-          - entity: sensor.doorbell_switch_battery_level
-            name: Doorbell switch
+          - entity: sensor.office_switch_battery_level
+            name: Office switch
             tap_action: more-info
           - entity: sensor.office_magic_cube_battery_level
             name: Office magic cube

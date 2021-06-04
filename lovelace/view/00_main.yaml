@@ -27,7 +27,7 @@ cards:
               confirmation:
                 text: Do you really want to turn on/off office?
             hold_action:
-              entity: light.office_desk_light
+              entity: light.office_lights
           - type: custom:button-card
             entity: group.parlor_group
             template: icon_only_more_info

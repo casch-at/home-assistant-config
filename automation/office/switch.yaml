@@ -1,0 +1,104 @@
+- id: office_switch
+  alias: Office switch
+  description: ''
+  mode: queued
+  max: 5
+  trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 642b984be9421b3292c2416ee01bf22c
+  condition:
+  - condition: template
+    value_template: |-
+      {{
+        trigger.event.data.command in [
+          'single', 'double', 'hold', 'release',
+        ]
+      }}
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "single" }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.office_ceiling_lights
+                state: 'off'
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id: light.office_ceiling_lights
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.office_ceiling_lights
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "double" }}'
+      sequence:
+      - service: scene.turn_on
+        target:
+          entity_id: '{{ states("input_select.office_ceiling_scenes") }}'
+      - service: input_select.select_next
+        target:
+          entity_id: input_select.office_ceiling_scenes
+
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: or
+            conditions:
+            - condition: state
+              entity_id: light.office_ceiling_lights
+              state: 'off'
+            - condition: and
+              conditions:
+              - condition: state
+                entity_id: light.office_4_light
+                state: 'on'
+              - condition: state
+                entity_id: light.office_5_light
+                state: 'on'
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id:
+              - light.office_1_light
+              - light.office_2_light
+              - light.office_3_light
+          - service: light.turn_off
+            target:
+              entity_id:
+              - light.office_4_light
+              - light.office_5_light
+        default:
+        - service: light.turn_on
+          data:
+            brightness: "{{ states('sensor.daytime_light_brightness') }}"
+            color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+          target:
+            entity_id:
+            - light.office_4_light
+            - light.office_5_light
+        - service: light.turn_off
+          target:
+            entity_id:
+            - light.office_1_light
+            - light.office_2_light
+            - light.office_3_light

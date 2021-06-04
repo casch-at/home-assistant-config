@@ -12,13 +12,19 @@ bathroom_scenes:
   options:
     - scene.bathroom_warm
     - scene.bathroom_cold
-office_scenes:
-  name: Office Scenes
+office_desk_scenes:
+  name: Office Desk Scenes
   icon: mdi:desk
   options:
-    - scene.office_purple
-    - scene.office_work_light
-    - scene.office_green
+    - scene.office_desk_purple
+    - scene.office_desk_work_light
+    - scene.office_desk_green
+office_ceiling_scenes:
+  name: Office Ceiling Scenes
+  icon: emdi:ceiling-light
+  options:
+    - scene.office_ceiling_cold
+    - scene.office_ceiling_warm
 stairs_scenes:
   name: Stairs Scenes
   icon: mdi:desk

@@ -49,3 +49,7 @@ light.all_zigbee_lights:
   icon: mdi:lightbulb-group
 light.all_lights:
   icon: mdi:lightbulb-group
+light.office_lights:
+  icon: mdi:lightbulb-group
+light.office_ceiling_lights:
+  icon: mdi:ceiling-light

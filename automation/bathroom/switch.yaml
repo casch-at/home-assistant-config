@@ -143,8 +143,6 @@
               - condition: state
                 entity_id: light.bathroom_front_left_light
                 state: 'on'
-            - condition: template
-              value_template: '{{ state_attr("light.bathroom_lights", "all_on") }}'
           sequence:
           - service: light.turn_on
             data:
@@ -215,10 +213,10 @@
         value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
       - service: scene.turn_on
-        data:
+        target:
           entity_id: '{{ states("input_select.bathroom_scenes") }}'
       - service: input_select.select_next
-        data:
+        target:
           entity_id: input_select.bathroom_scenes
 
     default: []

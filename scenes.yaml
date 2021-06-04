@@ -175,7 +175,7 @@
       state: 'on'
   icon: mdi:head-heart
 - id: '1607445104403'
-  name: Office Work Light
+  name: Office Desk Work Light
   entities:
     light.office_desk_light:
       min_mireds: 155
@@ -414,7 +414,7 @@
       supported_features: 43
       state: 'off'
 - id: '1615493477115'
-  name: Office Purple
+  name: Office Desk Purple
   entities:
     light.office_desk_light:
       min_mireds: 140
@@ -438,7 +438,7 @@
       state: 'on'
   icon: mdi:desk
 - id: '1615493508591'
-  name: Office Green
+  name: Office Desk Green
   entities:
     light.office_desk_light:
       min_mireds: 140
@@ -498,3 +498,131 @@
       - 0.082
       state: 'on'
   icon: mdi:flower
+- id: '1622798264178'
+  name: Office Ceiling Cold
+  entities:
+    light.office_1_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 153
+      off_brightness:
+      friendly_name: Office 1 Light
+      supported_features: 43
+      state: 'on'
+    light.office_2_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 153
+      off_brightness:
+      friendly_name: Office 2 Light
+      supported_features: 43
+      state: 'on'
+    light.office_3_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 153
+      off_brightness:
+      friendly_name: Office 3 Light
+      supported_features: 43
+      state: 'on'
+    light.office_4_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 153
+      off_brightness:
+      friendly_name: Office 4 Light
+      supported_features: 43
+      state: 'on'
+    light.office_5_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 153
+      off_brightness:
+      friendly_name: Office 5 Light
+      supported_features: 43
+      state: 'on'
+  icon: mdi:ceiling-light
+- id: '1622798341640'
+  name: Office Ceiling Warm
+  entities:
+    light.office_1_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 370
+      off_brightness:
+      friendly_name: Office 1 Light
+      supported_features: 43
+      state: 'on'
+    light.office_2_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 370
+      off_brightness:
+      friendly_name: Office 2 Light
+      supported_features: 43
+      state: 'on'
+    light.office_3_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 370
+      off_brightness:
+      friendly_name: Office 3 Light
+      supported_features: 43
+      state: 'on'
+    light.office_4_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 370
+      off_brightness:
+      friendly_name: Office 4 Light
+      supported_features: 43
+      state: 'on'
+    light.office_5_light:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 254
+      color_temp: 370
+      off_brightness:
+      friendly_name: Office 5 Light
+      supported_features: 43
+      state: 'on'
+  icon: mdi:ceiling-light

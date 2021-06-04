@@ -111,6 +111,15 @@
       - service: homeassistant.toggle
         target:
           entity_id: group.office_group
+      - wait_for_trigger:
+        - platform: state
+          entity_id: group.office_group
+          to: 'off'
+        timeout: '00:00:05'
+        continue_on_timeout: false
+      - service: light.turn_off
+        target:
+          entity_id: light.office_ceiling_lights
 
     # Toggle bathroom light
     - conditions:
