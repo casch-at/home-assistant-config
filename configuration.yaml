@@ -1,6 +1,17 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# https://www.home-assistant.io/integrations/http
+http:
+  login_attempts_threshold: 5
+  cors_allowed_origins:
+    - https://ha.casch.at
+    - https://homeassistant.casch.at
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.0.0.1
+    - 192.168.1.29
+
 # https://www.home-assistant.io/integrations/logger/
 # logger:
 #  default: info # defaults to warning
