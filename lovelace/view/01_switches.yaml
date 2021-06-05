@@ -50,16 +50,6 @@ cards:
           entity: switch.tv_usb
           template: icon_only_more_info
 
-    # - type: grid
-    #   columns: 1
-    #   cards:
-    #     - type: custom:button-card
-    #       entity: switch.nightstand_switch
-    #       template: icon_only_more_info
-    #     - type: custom:button-card
-    #       entity: switch.nightstand_usb
-    #       template: icon_only_more_info
-
     - type: grid
       columns: 1
       cards:
