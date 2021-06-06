@@ -32,10 +32,20 @@ cards:
           - type: custom:button-card
             entity: binary_sensor.updater
             template: name_card_round
+            tap_action:
+              action: navigate
+              navigation_path: /hassio/dashboard
+            hold_action:
+              action: more-info
           - type: custom:button-card
             entity: sensor.hacs
             name: HACS U.
             template: name_card_round
+            tap_action:
+              action: navigate
+              navigation_path: /hacs/entry
+            hold_action:
+              action: more-info
             state:
               - value: 1
                 operator: '>='
@@ -139,7 +149,7 @@ cards:
           - sensor.ups_startup_time
           - sensor.ups_status_flag
           #- sensor.ups_status
-          
+
 
 
       # - type: grid
