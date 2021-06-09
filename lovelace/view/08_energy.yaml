@@ -242,3 +242,6 @@ cards:
           - entity: sensor.bedroom_christian_switch_battery_level
             name: Bedroom christian switch
             tap_action: more-info
+          - entity: sensor.floor_switch_battery_level
+            name: Floor switch
+            tap_action: more-info
