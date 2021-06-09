@@ -49,14 +49,14 @@
                 data:
                   rgb_color: [200, 50, 0]
                   brightness: 150
-                  transition: 00:00:01
+                  transition: 1
                 target:
                   entity_id: light.stairs_light
               - service: light.turn_on
                 data:
                   rgb_color: [200, 50, 0]
                   brightness: 50
-                  transition: 00:00:01
+                  transition: 1
                 target:
                   entity_id: light.stairs_light
           - service: input_select.select_option

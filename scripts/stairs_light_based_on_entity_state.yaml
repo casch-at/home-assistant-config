@@ -21,7 +21,7 @@ sequence:
         [200, 50, 0]
       {% endif %}
     brightness: 150
-    transition: 00:00:01
+    transition: 1
   target:
     entity_id: light.stairs_light
 - service: scene.turn_on
