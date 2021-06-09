@@ -87,6 +87,11 @@ cards:
             tap_action:
               action: call-service
               service: script.tv_off_on
+            lock:
+              enabled: >-
+                [[[
+                  return states['script.tv_off_on'].state === "on";
+                ]]]
           - type: custom:button-card
             icon: mdi:arrow-up
             template: remote_parlor
