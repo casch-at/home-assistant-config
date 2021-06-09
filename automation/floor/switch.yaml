@@ -49,16 +49,16 @@
                 data:
                   rgb_color: [200, 50, 0]
                   brightness: 150
+                  transition: 00:00:01
                 target:
                   entity_id: light.stairs_light
-              - delay: 00:00:01
               - service: light.turn_on
                 data:
                   rgb_color: [200, 50, 0]
                   brightness: 50
+                  transition: 00:00:01
                 target:
                   entity_id: light.stairs_light
-              - delay: 00:00:01
           - service: input_select.select_option
             data:
               option: 'Night'
