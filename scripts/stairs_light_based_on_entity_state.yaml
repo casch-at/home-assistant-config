@@ -24,6 +24,7 @@ sequence:
     transition: 1
   target:
     entity_id: light.stairs_light
+- delay: 00:00:01
 - service: scene.turn_on
   target:
     entity_id: scene.stairs_light_based_on_entity_state_stairs_backup

@@ -26,7 +26,7 @@
       sequence:
       - service: scene.turn_on
         data:
-          transition: 5
+          transition: 15
         target:
           entity_id: scene.stairs_white
     default: []
