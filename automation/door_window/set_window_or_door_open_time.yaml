@@ -28,7 +28,7 @@
   condition: []
   action:
     - choose:
-        # 30 minutes -- too hot
+        # 60 minutes -- too hot
         - conditions:
             - condition: numeric_state
               entity_id: sensor.outdoor_temperature
@@ -36,11 +36,11 @@
           sequence:
             - service: input_number.set_value
               data:
-                value: 1800
+                value: 3600
               target:
                 entity_id: input_number.window_or_door_open
 
-        # 4 hours
+        # 8 hours
         - conditions:
             - condition: numeric_state
               entity_id: sensor.outdoor_temperature
@@ -49,11 +49,11 @@
           sequence:
             - service: input_number.set_value
               data:
-                value: 14400
+                value: 28800
               target:
                 entity_id: input_number.window_or_door_open
 
-        # 1 hours 30 minutes
+        # 3 hours
         - conditions:
             - condition: numeric_state
               entity_id: sensor.outdoor_temperature
@@ -62,7 +62,7 @@
           sequence:
             - service: input_number.set_value
               data:
-                value: 5400
+                value: 10800
               target:
                 entity_id: input_number.window_or_door_open
 

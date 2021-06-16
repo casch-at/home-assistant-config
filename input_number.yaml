@@ -3,7 +3,7 @@ window_or_door_open:
   icon: mdi:window-open
   unit_of_measurement: sec
   min: 300
-  max: 14400
+  max: 28800
   step: 60
 desk_height:
   name: Desk Height
