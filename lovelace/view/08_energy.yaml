@@ -245,3 +245,9 @@ cards:
           - entity: sensor.floor_switch_battery_level
             name: Floor switch
             tap_action: more-info
+          - entity: sensor.office_light_sensor_battery_level
+            name: Office light sensor
+            tap_action: more-info
+          - entity: sensor.parlor_light_sensor_battery_level
+            name: Parlor light sensor
+            tap_action: more-info

@@ -103,9 +103,6 @@ cards:
       #     # - type: custom:button-card
       #       # color_type: blank-card
 
-      - type: weather-forecast
-        entity: weather.home
-
       - type: entities
         title: UPS
         entities:

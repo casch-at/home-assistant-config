@@ -8,6 +8,215 @@ cards:
     columns: 1
     square: false
     cards:
+      - type: weather-forecast
+        entity: weather.home
+
+      - type: custom:button-card
+        styles:
+          grid:
+            - grid-template-areas: >-
+                "n  tn hn pn ln"
+                "n8 t8 h8 p8 l8"
+                "n6 t6 h6 p6 l6"
+                "n2 t2 h2 p2 l2"
+                "n5 t5 h5 p5 l5"
+                "n7 t7 h7 p7 l7"
+                "n4 t4 h4 p4 l4"
+                "n1 t1 h1 p1 l1"
+                "n3 t3 h3 p3 l3"
+                "n9 t9 h9 p9 l9"
+            - grid-template-columns: min-content 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+          custom_fields:
+            n1:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n2:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n3:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n4:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n5:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n6:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n7:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n8:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n9:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            tn:
+              - font-weight: bold
+            hn:
+              - font-weight: bold
+            pn:
+              - font-weight: bold
+            ln:
+              - font-weight: bold
+        custom_fields:
+          tn: '°C'
+          hn: '%'
+          pn: 'hPa'
+          ln: 'lx'
+          n1: 'Lower Kitchen'
+          n2: 'Office'
+          n3: 'Front Floor'
+          n4: 'Upstairs'
+          n5: 'Outdoor'
+          n6: 'Bedroom'
+          n7: 'Parlor'
+          n8: 'Bathroom'
+          n9: 'Heating Therm.'
+          l1:
+            card:
+                type: custom:button-card
+                entity: sensor.lower_kitchen_motion_sensor_light_level
+                template: embedded_card
+          t1:
+            card:
+                type: custom:button-card
+                entity: sensor.lower_kitchen_motion_sensor_temperature_fixed
+                template: embedded_card
+          t2:
+            card:
+                type: custom:button-card
+                entity: sensor.office_multi_sensor_temperature
+                template: embedded_card
+          h2:
+            card:
+                type: custom:button-card
+                entity: sensor.office_multi_sensor_humidity
+                template: embedded_card
+          p2:
+            card:
+                type: custom:button-card
+                entity: sensor.office_multi_sensor_pressure
+                template: embedded_card
+          l2:
+            card:
+                type: custom:button-card
+                entity: sensor.office_light_sensor_light_level
+                template: embedded_card
+          t3:
+            card:
+                type: custom:button-card
+                entity: sensor.front_floor_motion_sensor_temperature_fixed
+                template: embedded_card
+          l3:
+            card:
+                type: custom:button-card
+                entity: sensor.front_floor_motion_sensor_light_level
+                template: embedded_card
+          t4:
+            card:
+                type: custom:button-card
+                entity: sensor.upstairs_multi_sensor_temperature
+                template: embedded_card
+          h4:
+            card:
+                type: custom:button-card
+                entity: sensor.upstairs_multi_sensor_humidity
+                template: embedded_card
+          p4:
+            card:
+                type: custom:button-card
+                entity: sensor.upstairs_multi_sensor_pressure
+                template: embedded_card
+          t5:
+            card:
+                type: custom:button-card
+                entity: sensor.outdoor_temperature
+                template: embedded_card
+          h5:
+            card:
+                type: custom:button-card
+                entity: sensor.outdoor_humidity
+                template: embedded_card
+          p5:
+            card:
+                type: custom:button-card
+                entity: sensor.outdoor_pressure
+                template: embedded_card
+          t6:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_multi_sensor_temperature
+                template: embedded_card
+          h6:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_multi_sensor_humidity
+                template: embedded_card
+          p6:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_multi_sensor_pressure
+                template: embedded_card
+          t7:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_multi_sensor_temperature
+                template: embedded_card
+          h7:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_multi_sensor_humidity
+                template: embedded_card
+          p7:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_multi_sensor_pressure
+                template: embedded_card
+          l7:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_light_sensor_light_level
+                template: embedded_card
+          l8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_motion_sensor_light_level
+                template: embedded_card
+          t8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_multi_sensor_temperature
+                template: embedded_card
+          h8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_multi_sensor_humidity
+                template: embedded_card
+          p8:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_multi_sensor_pressure
+                template: embedded_card
+          t9:
+            card:
+                type: custom:button-card
+                entity: sensor.heating_temperature
+                template: embedded_card
+
       - type: custom:simple-thermostat
         entity: climate.heating
         name: Heating Thermostat
@@ -172,202 +381,6 @@ cards:
                     return states['binary_sensor.fan_mist'].state == 'on';
                   ]]]
                 color: var(--paper-item-icon-active-color)
-
-      - type: custom:button-card
-        styles:
-          grid:
-            - grid-template-areas: >-
-                "n  tn hn pn ln"
-                "n8 t8 h8 p8 l8"
-                "n6 t6 h6 p6 l6"
-                "n2 t2 h2 p2 l2"
-                "n5 t5 h5 p5 l5"
-                "n7 t7 h7 p7 l7"
-                "n4 t4 h4 p4 l4"
-                "n1 t1 h1 p1 l1"
-                "n3 t3 h3 p3 l3"
-                "n9 t9 h9 p9 l9"
-            - grid-template-columns: min-content 1fr 1fr 1fr 1fr
-            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
-          custom_fields:
-            n1:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n2:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n3:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n4:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n5:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n6:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n7:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n8:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n9:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            tn:
-              - font-weight: bold
-            hn:
-              - font-weight: bold
-            pn:
-              - font-weight: bold
-            ln:
-              - font-weight: bold
-        custom_fields:
-          tn: '°C'
-          hn: '%'
-          pn: 'hPa'
-          ln: 'lx'
-          n1: 'Lower Kitchen'
-          n2: 'Office'
-          n3: 'Front Floor'
-          n4: 'Upstairs'
-          n5: 'Outdoor'
-          n6: 'Bedroom'
-          n7: 'Parlor'
-          n8: 'Bathroom'
-          n9: 'Heating Therm.'
-          l1:
-            card:
-                type: custom:button-card
-                entity: sensor.lower_kitchen_motion_sensor_light_level
-                template: embedded_card
-          t1:
-            card:
-                type: custom:button-card
-                entity: sensor.lower_kitchen_motion_sensor_temperature_fixed
-                template: embedded_card
-          t2:
-            card:
-                type: custom:button-card
-                entity: sensor.office_multi_sensor_temperature
-                template: embedded_card
-          h2:
-            card:
-                type: custom:button-card
-                entity: sensor.office_multi_sensor_humidity
-                template: embedded_card
-          p2:
-            card:
-                type: custom:button-card
-                entity: sensor.office_multi_sensor_pressure
-                template: embedded_card
-          t3:
-            card:
-                type: custom:button-card
-                entity: sensor.front_floor_motion_sensor_temperature_fixed
-                template: embedded_card
-          l3:
-            card:
-                type: custom:button-card
-                entity: sensor.front_floor_motion_sensor_light_level
-                template: embedded_card
-          t4:
-            card:
-                type: custom:button-card
-                entity: sensor.upstairs_multi_sensor_temperature
-                template: embedded_card
-          h4:
-            card:
-                type: custom:button-card
-                entity: sensor.upstairs_multi_sensor_humidity
-                template: embedded_card
-          p4:
-            card:
-                type: custom:button-card
-                entity: sensor.upstairs_multi_sensor_pressure
-                template: embedded_card
-          t5:
-            card:
-                type: custom:button-card
-                entity: sensor.outdoor_temperature
-                template: embedded_card
-          h5:
-            card:
-                type: custom:button-card
-                entity: sensor.outdoor_humidity
-                template: embedded_card
-          p5:
-            card:
-                type: custom:button-card
-                entity: sensor.outdoor_pressure
-                template: embedded_card
-          t6:
-            card:
-                type: custom:button-card
-                entity: sensor.bedroom_multi_sensor_temperature
-                template: embedded_card
-          h6:
-            card:
-                type: custom:button-card
-                entity: sensor.bedroom_multi_sensor_humidity
-                template: embedded_card
-          p6:
-            card:
-                type: custom:button-card
-                entity: sensor.bedroom_multi_sensor_pressure
-                template: embedded_card
-          t7:
-            card:
-                type: custom:button-card
-                entity: sensor.parlor_multi_sensor_temperature
-                template: embedded_card
-          h7:
-            card:
-                type: custom:button-card
-                entity: sensor.parlor_multi_sensor_humidity
-                template: embedded_card
-          p7:
-            card:
-                type: custom:button-card
-                entity: sensor.parlor_multi_sensor_pressure
-                template: embedded_card
-          l8:
-            card:
-                type: custom:button-card
-                entity: sensor.bathroom_motion_sensor_light_level
-                template: embedded_card
-          t8:
-            card:
-                type: custom:button-card
-                entity: sensor.bathroom_multi_sensor_temperature
-                template: embedded_card
-          h8:
-            card:
-                type: custom:button-card
-                entity: sensor.bathroom_multi_sensor_humidity
-                template: embedded_card
-          p8:
-            card:
-                type: custom:button-card
-                entity: sensor.bathroom_multi_sensor_pressure
-                template: embedded_card
-          t9:
-            card:
-                type: custom:button-card
-                entity: sensor.heating_temperature
-                template: embedded_card
 
       # - type: custom:mini-graph-card
       #   entities:

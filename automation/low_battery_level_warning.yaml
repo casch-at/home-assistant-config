@@ -7,11 +7,11 @@
   - platform: state
     entity_id: sensor.bathroom_switch_battery_level
   - platform: state
-    entity_id: sensor.bedroom_motion_battery_level
+    entity_id: sensor.bedroom_motion_sensor_battery_level
   - platform: state
-    entity_id: sensor.front_floor_motion_battery_level
+    entity_id: sensor.front_floor_motion_sensor_battery_level
   - platform: state
-    entity_id: sensor.lower_kitchen_motion_battery_level
+    entity_id: sensor.lower_kitchen_motion_sensor_battery_level
   - platform: state
     entity_id: sensor.front_floor_switch_battery_level
   - platform: state
@@ -41,7 +41,7 @@
   - platform: state
     entity_id: sensor.floor_switch_battery_level
   - platform: state
-    entity_id: sensor.doorbell_switch_battery_level
+    entity_id: sensor.office_switch_battery_level
   - platform: state
     entity_id: sensor.office_magic_cube_battery_level
   - platform: state
@@ -50,6 +50,20 @@
     entity_id: sensor.upstairs_smoke_sensor_battery_level
   - platform: state
     entity_id: sensor.lower_kitchen_smoke_sensor_battery_level
+  - platform: state
+    entity_id: sensor.bedroom_christian_switch_battery_level
+  - platform: state
+    entity_id: sensor.bedroom_sonia_switch_battery_level
+  - platform: state
+    entity_id: sensor.office_light_sensor_battery_level
+  - platform: state
+    entity_id: sensor.office_switch_battery_level
+  - platform: state
+    entity_id: sensor.parlor_light_sensor_battery_level
+#   - platform: state
+#     entity_id: sensor.phone_christian_battery_level
+#   - platform: state
+#     entity_id: sensor.phone_sonia_battery_level
   condition:
   - condition: template
     value_template: >-
