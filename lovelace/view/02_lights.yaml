@@ -249,6 +249,11 @@ cards:
              template: icon_only_more_info
              name: 'M'
              show_name: true
+           - type: custom:button-card
+             entity: light.front_floor_back_light
+             template: icon_only_more_info
+             name: 'B'
+             show_name: true
 
        - type: grid
          columns: 8
