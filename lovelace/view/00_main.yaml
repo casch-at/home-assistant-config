@@ -306,7 +306,7 @@ cards:
               action: call-service
               service: scene.turn_on
               service_data:
-                entity_id: scene.office_work_light
+                entity_id: scene.office_desk_work_light
           - type: custom:button-card
             entity: light.stairs_light
             template: icon_only_more_info
