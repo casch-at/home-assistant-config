@@ -1,0 +1,103 @@
+- id: parlor_low_illuminance
+  alias: Parlor low illuminance light
+  description: Turn on lights on low natural illumance light.
+  mode: single
+  max_exceeded: silent
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.parlor_light_sensor_light_level
+    below: 100
+    for: 10
+
+  - platform: state
+    entity_id: person.christian_schwarzgruber
+    from: not_home
+    to: home
+    for: 2
+
+  - platform: state
+    entity_id: person.sonia_avramidis
+    from: not_home
+    to: home
+    for: 2
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
+
+  - condition: numeric_state
+    entity_id: sensor.parlor_light_sensor_light_level
+    below: 100
+
+  - condition: numeric_state
+    entity_id: sensor.front_floor_motion_sensor_light_level
+    below: 100
+
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.daytime
+      state: Night
+  action:
+  # Turn on parlor shelve light
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.parlor_shelve_light
+        state: 'off'
+      - condition: state
+        entity_id: person.sonia_avramidis
+        state: home
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 150
+          color_temp: 370
+        target:
+          entity_id: light.parlor_shelve_light
+    default: []
+
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.parlor_big_shelve_light
+        state: 'off'
+      - condition: state
+        entity_id: person.sonia_avramidis
+        state: home
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 150
+          color_temp: 370
+        target:
+          entity_id: light.parlor_big_shelve_light
+    default: []
+
+  # Turn on plants light
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.parlor_plants_light
+        state: 'off'
+      - condition: state
+        entity_id: person.sonia_avramidis
+        state: home
+      sequence:
+      - service: scene.apply
+        data:
+          entities:
+            light.parlor_plants_light:
+              brightness: 170
+              hs_color:
+              - 75.818
+              - 43.137
+              rgb_color:
+              - 200
+              - 255
+              - 145
+              xy_color:
+              - 0.361
+              - 0.459
+              state: 'on'
+    default: []
