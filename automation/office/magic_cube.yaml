@@ -127,11 +127,11 @@
         target:
           entity_id: group.desk_and_laptop_group
       - condition: numeric_state
-        entity_id: sensor.front_floor_motion_sensor_light_level
+        entity_id: sensor.office_light_sensor_light_level
         below: 100
       - service: scene.turn_on
         target:
-          entity_id: scene.office_work_light
+          entity_id: scene.office_desk_work_light
 
     # GESTURE_PUSH
     # - conditions:

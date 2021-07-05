@@ -20,6 +20,11 @@
     from: not_home
     to: home
     for: 2
+
+  - platform: state
+    entity_id: switch.desk_switch
+    from: 'off'
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.presence
@@ -38,6 +43,10 @@
     - condition: state
       entity_id: input_select.daytime
       state: Night
+
+  - condition: state
+    entity_id: person.christian_schwarzgruber
+    state: 'on'
   action:
   # Turn on desk light
   - choose:
@@ -51,5 +60,5 @@
       sequence:
       - service: scene.turn_on
         target:
-          entity_id: scene.office_work_light
+          entity_id: scene.office_desk_work_light
     default: []
