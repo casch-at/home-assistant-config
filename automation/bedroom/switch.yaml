@@ -17,8 +17,8 @@
     value_template: |-
       {{
         trigger.event.data.command in [
-          '1_single', '1_double', '1_long press',
-          '2_single', '2_double',
+          '1_single', '1_double', '1_triple', '1_long press',
+          '2_single', '2_double', '2_triple', '2_long press',
           '3_single', '3_double',
           '4_single', '4_double',
         ]
@@ -43,6 +43,14 @@
       - service: cover.close_cover
         target:
           entity_id: cover.bedroom_roller_shutter_level
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "1_triple" }}'
+      sequence:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.fan_speed_switch
 
     - conditions:
       - condition: template
@@ -71,6 +79,22 @@
       - service: cover.open_cover
         target:
           entity_id: cover.bedroom_roller_shutter_level
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_triple" }}'
+      sequence:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.fan_mist_switch
+
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_long press" }}'
+      sequence:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.fan_off_switch
 
     - conditions:
       - condition: template
