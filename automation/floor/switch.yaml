@@ -186,21 +186,6 @@
         target:
           entity_id: scene.night
 
-    # Toggle upstairs lamp
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "5_long press" }}'
-      sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: 'switch.upstairs_lamp_switch'
-        target:
-          entity_id: script.stairs_light_based_on_entity_state
-      - service: switch.toggle
-        target:
-          entity_id: switch.upstairs_lamp_switch
-
     # Toggle front floor lights
     - conditions:
       - condition: template
@@ -225,13 +210,27 @@
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.lower_kitchen'
+            entity_id: 'light.front_floor'
         target:
           entity_id: script.stairs_light_based_on_entity_state
-      - event: zha_event
-        event_data:
-          device_id: c2cff687003dd88942aa8597fe9f8734
-          command: "2_single"
+      - service: light.toggle
+        target:
+          entity_id: light.front_floor_back_light
+
+    # Toggle upstairs lamp
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "5_long press" }}'
+      sequence:
+      - service: script.turn_on
+        data:
+          variables:
+            entity_id: 'switch.upstairs_lamp_switch'
+        target:
+          entity_id: script.stairs_light_based_on_entity_state
+      - service: switch.toggle
+        target:
+          entity_id: switch.upstairs_lamp_switch
 
     # Toggle aroma diffuser
     - conditions:
