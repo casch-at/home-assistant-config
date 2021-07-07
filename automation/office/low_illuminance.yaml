@@ -16,20 +16,10 @@
     for: 2
 
   - platform: state
-    entity_id: person.sonia_avramidis
-    from: not_home
-    to: home
-    for: 2
-
-  - platform: state
     entity_id: switch.desk_switch
     from: 'off'
     to: 'on'
   condition:
-  - condition: state
-    entity_id: input_boolean.presence
-    state: 'on'
-
   - condition: numeric_state
     entity_id: sensor.office_light_sensor_light_level
     below: 100
@@ -47,18 +37,15 @@
   - condition: state
     entity_id: person.christian_schwarzgruber
     state: 'on'
+
+  - condition: state
+    entity_id: light.office_desk_light
+    state: 'off'
+
+  - condition: state
+    entity_id: switch.desk_switch
+    state: 'on'    
   action:
-  # Turn on desk light
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: light.office_desk_light
-        state: 'off'
-      - condition: state
-        entity_id: switch.desk_switch
-        state: 'on'
-      sequence:
-      - service: scene.turn_on
-        target:
-          entity_id: scene.office_desk_work_light
-    default: []
+  - service: scene.turn_on
+    target:
+      entity_id: scene.office_desk_work_light
