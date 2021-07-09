@@ -12,8 +12,8 @@
     value_template: |-
       {{
         trigger.event.data.command in [
-          '1_single', '1_double', '1_long press',
-          '2_single', '2_double', '2_triple', '2_long press', '2_release'
+          '1_single', '1_double', '1_hold',
+          '2_single', '2_double', '2_triple', '2_hold', '2_release'
         ]
       }}
   action:
@@ -21,7 +21,7 @@
     # Presence on/off
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "1_long press" }}'
+        value_template: '{{ trigger.event.data.command == "1_hold" }}'
       sequence:
       - choose:
         # Presence off
@@ -186,7 +186,7 @@
 
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "2_long press" }}'
+        value_template: '{{ trigger.event.data.command == "2_hold" }}'
       sequence:
       - service: cover.close_cover
         target:

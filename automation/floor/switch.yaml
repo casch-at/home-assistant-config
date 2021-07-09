@@ -12,12 +12,12 @@
     value_template: |-
       {{
         trigger.event.data.command in [
-          '1_single',             '1_long press',
-                                  '2_long press',
+          '1_single',             '1_hold',
+                                  '2_hold',
           '3_single', '3_double',
-          '4_single', '4_double', '4_long press',
-          '5_single', '5_double', '5_long press',
-          '6_single', '6_double', '6_long press'
+          '4_single', '4_double', '4_hold',
+          '5_single', '5_double', '5_hold',
+          '6_single', '6_double', '6_hold'
         ]
       }}
   action:
@@ -25,7 +25,7 @@
     # State night
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "1_long press" }}'
+        value_template: '{{ trigger.event.data.command == "1_hold" }}'
       sequence:
       # Activate state night
       - choose:
@@ -102,7 +102,7 @@
     # Toggle office
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "2_long press" }}'
+        value_template: '{{ trigger.event.data.command == "2_hold" }}'
       sequence:
       - service: script.turn_on
         data:
@@ -158,7 +158,7 @@
     # TV off/on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "4_long press" }}'
+        value_template: '{{ trigger.event.data.command == "4_hold" }}'
       sequence:
       - service: script.tv_off_on
 
@@ -220,7 +220,7 @@
     # Toggle upstairs lamp
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "5_long press" }}'
+        value_template: '{{ trigger.event.data.command == "5_hold" }}'
       sequence:
       - service: script.turn_on
         data:
@@ -235,7 +235,7 @@
     # Toggle aroma diffuser
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "6_long press" }}'
+        value_template: '{{ trigger.event.data.command == "6_hold" }}'
       sequence:
       - service: switch.toggle
         target:
