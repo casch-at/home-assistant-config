@@ -13,7 +13,7 @@
       {{
         trigger.event.data.command in [
           '1_single',             '1_hold',
-                                  '2_hold',
+          '2_single',             '2_hold',
           '3_single', '3_double',
           '4_single', '4_double', '4_hold',
           '5_single', '5_double', '5_hold',
@@ -99,29 +99,25 @@
         target:
           entity_id: light.nightstand_lights
 
-    # Toggle office
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_single" }}'
+      sequence:
+      - service: light.toggle
+        data:
+          brightness: "{{ states('sensor.daytime_light_brightness') }}"
+          color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+        target:
+          entity_id: light.office_ceiling_lights
+
+    # Turn off office
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_hold" }}'
       sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: 'group.office_group'
-        target:
-          entity_id: script.stairs_light_based_on_entity_state
-      - service: homeassistant.toggle
+      - service: homeassistant.turn_off
         target:
           entity_id: group.office_group
-      - wait_for_trigger:
-        - platform: state
-          entity_id: group.office_group
-          to: 'off'
-        timeout: '00:00:05'
-        continue_on_timeout: false
-      - service: light.turn_off
-        target:
-          entity_id: light.office_ceiling_lights
 
     # Toggle bathroom light
     - conditions:

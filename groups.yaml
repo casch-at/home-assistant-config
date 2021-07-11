@@ -20,9 +20,8 @@ office_group:
   name: Office Group
   icon: mdi:laptop
   entities:
-    - switch.laptop_switch
-    - switch.desk_switch
-    - light.office_desk_light
+    - group.desk_and_laptop_group
+    - light.office_lights
 
 parlor_group:
   name: Parlor Group

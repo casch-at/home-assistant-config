@@ -36,7 +36,7 @@
 
   - condition: state
     entity_id: person.christian_schwarzgruber
-    state: 'on'
+    state: 'home'
 
   - condition: state
     entity_id: light.office_desk_light
@@ -44,8 +44,10 @@
 
   - condition: state
     entity_id: switch.desk_switch
-    state: 'on'    
+    state: 'on'
   action:
   - service: scene.turn_on
     target:
       entity_id: scene.office_desk_work_light
+    data:
+      transition: 60
