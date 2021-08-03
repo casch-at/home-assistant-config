@@ -50,10 +50,10 @@ sequence:
 
 # - delay: 00:00:01
 
-- service: remote.send_command
-  data:
-    device: soundbar
-    command: tv
-    hold_secs: 0.5
-  target:
-    entity_id: remote.parlor_ir_remote
+# - service: remote.send_command
+#   data:
+    # device: soundbar
+    # command: tv
+    # hold_secs: 0.5
+#   target:
+    # entity_id: remote.parlor_ir_remote
