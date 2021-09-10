@@ -53,3 +53,7 @@ light.office_lights:
   icon: mdi:lightbulb-group
 light.office_ceiling_lights:
   icon: mdi:ceiling-light
+light.office_ceiling_back_lights:
+  icon: mdi:ceiling-light
+light.office_ceiling_front_lights:
+  icon: mdi:ceiling-light

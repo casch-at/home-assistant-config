@@ -1,6 +1,6 @@
 title: Lights
 path: lights
-panel: false
+panel: true
 icon: mdi:lightbulb-group
 badges: []
 cards:
@@ -9,7 +9,7 @@ cards:
     square: false
     cards:
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: light.stairs_light
@@ -72,7 +72,7 @@ cards:
                  entity_id: scene.stairs_purple
 
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: light.office_lights
@@ -89,6 +89,16 @@ cards:
            - type: custom:button-card
              entity: light.office_ceiling_lights
              template: icon_only_more_info
+           - type: custom:button-card
+             entity: light.office_ceiling_back_lights
+             template: icon_only_more_info
+             name: 'B'
+             show_name: true
+           - type: custom:button-card
+             entity: light.office_ceiling_front_lights
+             template: icon_only_more_info
+             name: 'F'
+             show_name: true
            - type: custom:button-card
              entity: light.office_1_light
              template: icon_only_more_info
@@ -116,7 +126,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: light.parlor_lights
@@ -181,7 +191,7 @@ cards:
                  entity_id: scene.parlor_tv
 
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: light.bathroom_lights
@@ -233,7 +243,7 @@ cards:
                  entity_id: scene.bathroom_cold
 
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: light.front_floor_lights
@@ -256,7 +266,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: light.lower_kitchen_lights
@@ -273,7 +283,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: light.nightstand_lights
@@ -291,7 +301,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 8
+         columns: 10
          cards:
            - type: custom:button-card
              entity: switch.upstairs_lamp_switch
