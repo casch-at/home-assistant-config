@@ -28,7 +28,7 @@ cards:
             tap_action:
               action: toggle
               confirmation:
-                text: Do you really want to turn on/off office?
+                text: Do you really want to turn toggle the presence status?
           - type: custom:button-card
             entity: binary_sensor.updater
             template: name_card_round
