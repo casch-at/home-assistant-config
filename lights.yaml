@@ -5,7 +5,7 @@
     connections: !secret aroma_diffuser_connections
   command_topic: "cmnd/aroma_diffuser/EVENT"
   state_topic: "tele/aroma_diffuser/RESULT"
-  value_template: >-
+  state_value_template: >-
     {% if value_json.TuyaReceived is defined and '5' in value_json['TuyaReceived'] -%}
       {% if value_json['TuyaReceived'].DpType1Id5 -%}
         on
