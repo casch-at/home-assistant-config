@@ -7,7 +7,7 @@
       value_template: >-
         {{
           states('weather.home') == 'snowy' or
-          states('sensor.outdoor_temperature') | float <= 1.0
+          states('sensor.outdoor_temperature') | float(0.0) <= 1.0
         }}
     sonia_avramidis_alarm:
       friendly_name: Sonia Avramidis Alaram

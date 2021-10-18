@@ -4,7 +4,7 @@
       friendly_name: "Lower Kitchen Motion Sensor Temperature Fixed"
       value_template: >-
         {{
-          (states('sensor.lower_kitchen_motion_sensor_temperature') | float + 1.8) | round(2)
+          (states('sensor.lower_kitchen_motion_sensor_temperature') | float(0.0) + 1.8) | round(2)
         }}
       device_class: temperature
       unit_of_measurement: '°C'
@@ -13,7 +13,7 @@
       friendly_name: "Front Floor Motion Sensor Temperature Fixed"
       value_template: >-
         {{
-          (states('sensor.front_floor_motion_sensor_temperature') | float + 1.8) | round(2)
+          (states('sensor.front_floor_motion_sensor_temperature') | float(0.0) + 1.8) | round(2)
         }}
       device_class: temperature
       unit_of_measurement: '°C'
@@ -22,7 +22,7 @@
       friendly_name: "Outdoor Temperature"
       value_template: >-
         {{
-          state_attr('weather.home', 'temperature') | float
+          state_attr('weather.home', 'temperature') | float(0.0)
         }}
       device_class: temperature
       unit_of_measurement: '°C'
@@ -31,7 +31,7 @@
       friendly_name: "Outdoor Humidity"
       value_template: >-
         {{
-          state_attr('weather.home', 'humidity') | float
+          state_attr('weather.home', 'humidity') | float(0.0)
         }}
       device_class: humidity
       unit_of_measurement: '%'
@@ -62,11 +62,11 @@
       friendly_name: "Energy Power Total"
       value_template: >-
         {{
-          states('sensor.nightstand_switch_energy_total') | float +
-          states('sensor.tv_switch_energy_total') | float +
-          states('sensor.desk_switch_energy_total') | float +
-          states('sensor.laptop_switch_energy_total') | float +
-          states('sensor.generic1_switch_energy_total') | float
+          states('sensor.nightstand_switch_energy_total') | float(0.0) +
+          states('sensor.tv_switch_energy_total') | float(0.0) +
+          states('sensor.desk_switch_energy_total') | float(0.0) +
+          states('sensor.laptop_switch_energy_total') | float(0.0) +
+          states('sensor.generic1_switch_energy_total') | float(0.0)
         }}
       device_class: power
       unit_of_measurement: 'kWh'
