@@ -1,7 +1,7 @@
 /.HA_VERSION
 *.bak
 /custom_components/
-/home-assistant.log
+/home-assistant.log*
 /home-assistant_v2.db
 /storage/auth
 /.storage/auth
