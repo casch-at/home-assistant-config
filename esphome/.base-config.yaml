@@ -7,6 +7,12 @@ wifi:
     ssid: ${ap_ssid}
     password: !secret ap_password
 
+  # Optional manual IP
+  manual_ip:
+    static_ip: ${ip}
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+
 captive_portal:
 
 # Enable logging

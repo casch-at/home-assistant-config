@@ -30,6 +30,7 @@
 substitutions:
   ap_ssid: "RF Bridge Fallback Hotspot"
   name: sonoff-rf-bridge
+  ip: 192.168.1.46
 
 esphome:
   <<: !include .board-config-esp8266.yaml

@@ -2,6 +2,7 @@ substitutions:
   name: desk-control
   base_button_name: Desk Control Button
   ap_ssid: Desk Control Fallback Hotspot
+  ip: 192.168.1.40
 
 # See for reusing: https://esphome.io/guides/configuration-types.html#config-substitutions
 esphome:

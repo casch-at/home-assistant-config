@@ -1,6 +1,7 @@
 substitutions:
   name: "fan"
   ap_ssid: "Fan Fallback Hotspot"
+  ip: 192.168.1.41
 
 esphome:
   <<: !include .board-config-az-delivery-devkit-v4.yaml
