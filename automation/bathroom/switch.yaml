@@ -179,10 +179,18 @@
       sequence:
       - choose:
         - conditions:
-          - condition: state
-            entity_id: light.bathroom_lights
-            state: 'off'
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.bathroom_lights
+                state: 'off'
+              - condition: state
+                entity_id: input_boolean.bathroom_light_active
+                state: 'off'
           sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.bathroom_light_active
           - service: light.turn_on
             data:
               brightness: "{{ states('sensor.daytime_light_brightness') }}"

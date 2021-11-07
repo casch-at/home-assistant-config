@@ -59,6 +59,10 @@
           (states('input_number.bathroom_motion_timeout_multiplier') | int)
         }}
 
+  - condition: state
+    entity_id: input_boolean.bathroom_light_active
+    state: 'off'
+
   - service: light.turn_off
     target:
       entity_id: light.bathroom_lights
