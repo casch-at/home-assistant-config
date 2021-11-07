@@ -95,7 +95,8 @@ cards:
               - operator: template
                 value: >-
                   [[[
-                    return states['climate.office_ac'].state !== 'off' || states['climate.upstairs_ac'].state !== 'off'
+                    return (states['climate.office_ac'].state !== 'off' && states['climate.office_ac'].state !== 'unavailable') ||
+                      (states['climate.upstairs_ac'].state !== 'off' && states['climate.upstairs_ac'].state !== 'unavailable')
                   ]]]
                 color: dodgerblue
                 icon: >-
