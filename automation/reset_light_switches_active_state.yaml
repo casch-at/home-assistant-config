@@ -1,0 +1,80 @@
+- id: reset_light_switches_active_state
+  alias: Reset Light Switches Active State
+  description: Reset light switches active state when lights where turned on/off manually with the switch
+  mode: parallel
+  max: 10
+  trigger:
+  - platform: event
+    event_type: state_change
+    event_data:
+      entity_id: light.lower_kitchen_lights
+      new_state:
+        state: 'off'
+      old_state:
+        state: 'on'
+  - platform: event
+    event_type: state_change
+    event_data:
+      entity_id: light.front_floor_lights
+      new_state:
+        state: 'off'
+      old_state:
+        state: 'on'
+  - platform: event
+    event_type: state_change
+    event_data:
+      entity_id: light.bathroom_lights
+      new_state:
+        state: 'off'
+      old_state:
+        state: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_boolean.bathroom_light_active
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.lower_kitchen_light_active
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.front_floor_light_active
+      state: 'on'
+  action:
+  - choose:
+
+    # Bathroom
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.entity_id == "light.bathroom_lights" }}'
+      - condition: state
+        entity_id: input_boolean.bathroom_light_active
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.bathroom_light_active
+
+    # Lower kitchen
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.entity_id == "light.lower_kitchen_lights" }}'
+      - condition: state
+        entity_id: input_boolean.lower_kitchen_light_active
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.lower_kitchen_light_active
+
+    # Front floor
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.entity_id == "light.front_floor_lights" }}'
+      - condition: state
+        entity_id: input_boolean.front_floor_light_active
+        state: 'on'
+      sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.front_floor_light_active
