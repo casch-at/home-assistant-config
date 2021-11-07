@@ -4,62 +4,153 @@
   mode: queued
   max: 50
   trigger:
-  - platform: state
+    # Template to get a list of all battery entities
+      # {% for state in states.sensor -%}
+        # {%- if state_attr(state.entity_id, 'device_class') == 'battery' -%}
+          # {{ state.entity_id }}
+          # {{ state.state | int(0) < 99 }}
+        # {% endif -%}
+      # {% endfor %}
+  - platform: numeric_state
     entity_id: sensor.bathroom_switch_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.bedroom_motion_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.front_floor_motion_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.lower_kitchen_motion_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.front_floor_switch_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.office_multi_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.tablet_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.upstairs_multi_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.parlor_multi_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.bedroom_multi_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.bathroom_multi_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.bedroom_window_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.balcony_door_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.parlor_window_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.office_window_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.lower_kitchen_window_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.upstairs_window_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.floor_switch_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.office_switch_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.office_magic_cube_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.office_smoke_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.upstairs_smoke_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.lower_kitchen_smoke_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.bedroom_christian_switch_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.bedroom_sonia_switch_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.office_light_sensor_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.office_switch_battery_level
-  - platform: state
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
     entity_id: sensor.parlor_light_sensor_battery_level
+    below: 15
+    for:
+      minutes: 5
 #   - platform: state
 #     entity_id: sensor.phone_christian_battery_level
 #   - platform: state
