@@ -49,11 +49,11 @@
       friendly_name: "Energy Power"
       value_template: >-
         {{
-          states('sensor.nightstand_switch_energy_power') | int +
-          states('sensor.tv_switch_energy_power') | int +
-          states('sensor.desk_switch_energy_power') | int +
-          states('sensor.laptop_switch_energy_power') | int +
-          states('sensor.generic1_switch_energy_power') | int
+          states('sensor.nightstand_switch_energy_power') | int(0) +
+          states('sensor.tv_switch_energy_power') | int(0) +
+          states('sensor.desk_switch_energy_power') | int(0) +
+          states('sensor.laptop_switch_energy_power') | int(0) +
+          states('sensor.generic1_switch_energy_power') | int(0)
         }}
       device_class: power
       unit_of_measurement: 'W'
