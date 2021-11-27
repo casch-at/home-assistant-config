@@ -74,6 +74,7 @@ scene: !include scenes.yaml
 script: !include scripts.yaml
 sensor: !include sensors.yaml
 switch: !include switch.yaml
+# climate: !include climate.yaml
 
 calendar:
   - platform: caldav
