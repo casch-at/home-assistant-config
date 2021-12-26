@@ -1,3 +1,4 @@
+# https://esphome.io/components/esphome.html#changing-esphome-node-name (Changing the name of the device)
 wifi:
   ssid: !secret ssid
   password: !secret wlan_password
@@ -12,6 +13,9 @@ wifi:
     static_ip: ${ip}
     gateway: 192.168.1.1
     subnet: 255.255.255.0
+
+preferences:
+  flash_write_interval: 60min
 
 captive_portal:
 

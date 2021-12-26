@@ -1,0 +1,149 @@
+substitutions:
+  name: status-board
+  ap_ssid: Status Board
+  ip: 192.168.1.44
+
+esphome:
+  <<: !include .board-config-az-delivery-devkit-v4.yaml
+
+<<: !include .base-config.yaml
+
+# logger:
+#   level: VERY_VERBOSE
+
+deep_sleep:
+  run_duration: 10s
+  # sleep_duration: 2min
+  wakeup_pin: 35
+
+text_sensor:
+  - platform: homeassistant
+    id: person_sonia
+    entity_id: person.sonia_avramidis
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: 'return x.compare("home") == 0;'
+            then:
+              - switch.turn_on: sonia
+            else:
+              - switch.turn_off: sonia
+
+  - platform: homeassistant
+    id: person_christian
+    entity_id: person.christian_schwarzgruber
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: 'return x.compare("home") == 0;'
+            then:
+              - switch.turn_on: chris
+            else:
+              - switch.turn_off: chris
+
+binary_sensor:
+  - platform: homeassistant
+    id: binary_sensor_office
+    entity_id: binary_sensor.office_window_sensor
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: 'return x;'
+            then:
+              - switch.turn_on: office
+            else:
+              - switch.turn_off: office
+
+  - platform: homeassistant
+    id: binary_sensor_parlor
+    entity_id: binary_sensor.parlor_window_sensor
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: 'return x;'
+            then:
+              - switch.turn_on: parlor
+            else:
+              - switch.turn_off: parlor
+
+  - platform: homeassistant
+    id: binary_sensor_bedroom
+    entity_id: binary_sensor.bedroom_window_sensor
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: 'return x;'
+            then:
+              - switch.turn_on: bedroom
+            else:
+              - switch.turn_off: bedroom
+
+  - platform: homeassistant
+    id: binary_sensor_lower_kitchen
+    entity_id: binary_sensor.lower_kitchen_window_sensor
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: 'return x;'
+            then:
+              - switch.turn_on: lower_kitchen
+            else:
+              - switch.turn_off: lower_kitchen
+
+  - platform: homeassistant
+    id: binary_sensor_upstairs
+    entity_id: binary_sensor.upstairs_window_sensor
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: 'return x;'
+            then:
+              - switch.turn_on: upstairs
+            else:
+              - switch.turn_off: upstairs
+
+  - platform: homeassistant
+    id: binary_sensor_balcony
+    entity_id: binary_sensor.balcony_door_sensor
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: 'return x;'
+            then:
+              - switch.turn_on: balcony
+            else:
+              - switch.turn_off: balcony
+
+switch:
+  - platform: gpio
+    pin: 13
+    id: sonia
+  - platform: gpio
+    pin: 12
+    id: chris
+  - platform: gpio
+    pin: 14
+    id: office
+  - platform: gpio
+    pin: 27
+    id: parlor
+  - platform: gpio
+    pin: 26
+    id: bedroom
+  - platform: gpio
+    pin: 25
+    id: lower_kitchen
+  - platform: gpio
+    pin: 33
+    id: upstairs
+  - platform: gpio
+    pin: 32
+    id: balcony
