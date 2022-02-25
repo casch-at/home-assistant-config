@@ -1,4 +1,3 @@
-# https://esphome.io/components/esphome.html#changing-esphome-node-name (Changing the name of the device)
 wifi:
   ssid: !secret ssid
   password: !secret wlan_password
@@ -14,6 +13,10 @@ wifi:
     gateway: 192.168.1.1
     subnet: 255.255.255.0
 
+  # https://esphome.io/components/esphome.html#changing-esphome-node-name (Changing the name of the device)
+  # use_address: desk_control.local
+  # use_address: upstairs_ir_remote.local
+
 preferences:
   flash_write_interval: 60min
 
@@ -22,10 +25,10 @@ captive_portal:
 # Enable logging
 logger:
   # level: NONE
-  # level: ERROR
+  level: ERROR
   # level: WARN
   # level: INFO
-  level: DEBUG # Default
+  # level: DEBUG # Default
   # level: VERBOSE
   # level: VERY_VERBOSE
 
