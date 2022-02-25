@@ -1,78 +1,15 @@
 title: Lights
 path: lights
-panel: true
+panel: false
 icon: mdi:lightbulb-group
 badges: []
 cards:
   - type: grid
-    columns: 1
+    columns: 8
     square: false
     cards:
        - type: grid
-         columns: 10
-         cards:
-           - type: custom:button-card
-             entity: light.stairs_light
-             template: icon_only_more_info
-             icon: mdi:stairs
-           - type: custom:button-card
-             entity: light.stairs_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFFFFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.stairs_white
-           - type: custom:button-card
-             entity: light.stairs_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFC8C8"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.stairs_night
-           - type: custom:button-card
-             entity: light.stairs_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#00FF41"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.stairs_green
-           - type: custom:button-card
-             entity: light.stairs_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#0A00FF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.stairs_blue
-           - type: custom:button-card
-             entity: light.stairs_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#A54CFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.stairs_purple
-
-       - type: grid
-         columns: 10
+         columns: 1
          cards:
            - type: custom:button-card
              entity: light.office_lights
@@ -126,7 +63,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 10
+         columns: 1
          cards:
            - type: custom:button-card
              entity: light.parlor_lights
@@ -191,7 +128,7 @@ cards:
                  entity_id: scene.parlor_tv
 
        - type: grid
-         columns: 10
+         columns: 1
          cards:
            - type: custom:button-card
              entity: light.bathroom_lights
@@ -243,7 +180,70 @@ cards:
                  entity_id: scene.bathroom_cold
 
        - type: grid
-         columns: 10
+         columns: 1
+         cards:
+           - type: custom:button-card
+             entity: light.stairs_light
+             template: icon_only_more_info
+             icon: mdi:stairs
+           - type: custom:button-card
+             entity: light.stairs_light
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#FFFFFF"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.stairs_white
+           - type: custom:button-card
+             entity: light.stairs_light
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#FFC8C8"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.stairs_night
+           - type: custom:button-card
+             entity: light.stairs_light
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#00FF41"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.stairs_green
+           - type: custom:button-card
+             entity: light.stairs_light
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#0A00FF"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.stairs_blue
+           - type: custom:button-card
+             entity: light.stairs_light
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#A54CFF"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.stairs_purple
+
+       - type: grid
+         columns: 1
          cards:
            - type: custom:button-card
              entity: light.front_floor_lights
@@ -266,7 +266,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 10
+         columns: 1
          cards:
            - type: custom:button-card
              entity: light.lower_kitchen_lights
@@ -283,7 +283,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 10
+         columns: 1
          cards:
            - type: custom:button-card
              entity: light.nightstand_lights
@@ -301,7 +301,7 @@ cards:
              show_name: true
 
        - type: grid
-         columns: 10
+         columns: 1
          cards:
            - type: custom:button-card
              entity: switch.upstairs_lamp_switch
