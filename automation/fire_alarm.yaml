@@ -5,25 +5,26 @@
   max: 10
   trigger:
   - platform: state
-    entity_id: sensor.office_smoke_sensor
+    entity_id: binary_sensor.office_smoke_sensor
+    from: 'off'
+    to: 'on'
   - platform: state
-    entity_id: sensor.upstairs_smoke_sensor
+    entity_id: binary_sensor.upstairs_smoke_sensor
+    from: 'off'
+    to: 'on'
   - platform: state
-    entity_id: sensor.lower_kitchen_smoke_sensor
+    entity_id: binary_sensor.lower_kitchen_smoke_sensor
+    from: 'off'
+    to: 'on'
   condition:
   - condition: template
     value_template: '{{ not is_state(trigger.entity_id, "unavailable") }}'
   action:
-  - service: notify.persistent_notification
+  - service: notify.notify
     data:
-      message: |
-        {{ trigger }}
-
-        ------------------------------------------
-
-        {{ trigger.to_state }}
-      title: 'test'
-  - service: notify.persistent_notification
-    data:
-      message: '{{ trigger.to_state.name }} Panic'
       title: '{{ trigger.to_state.name }} Critical'
+      message: Smoke detected
+  - service: notify.persistent_notification
+    data:
+      title: '{{ trigger.to_state.name }} Critical'
+      message: Smoke detected
