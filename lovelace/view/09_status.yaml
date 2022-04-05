@@ -30,7 +30,7 @@ cards:
               confirmation:
                 text: Do you really want to turn toggle the presence status?
           - type: custom:button-card
-            entity: binary_sensor.updater
+            entity: binary_sensor.home_assistant_versions_update_available
             template: name_card_round
             tap_action:
               action: navigate
