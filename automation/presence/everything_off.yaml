@@ -16,7 +16,29 @@
         - light.all_lights
         - group.devices_group
 
-  # Desk and laptop
+  - service: switch.turn_off
+    target:
+      entity_id:
+        - switch.printer_switch
+        - switch.tv_switch
+        - switch.tv_usb
+
+  - service: climate.turn_off
+    target:
+      entity_id:
+        - climate.office_ac
+        - climate.upstairs_ac
+
+  - wait_template: |-
+      {{
+        is_state('device_tracker.lap_02_lan_router', 'not_home') and
+        is_state('device_tracker.lap_02_wlan_router', 'not_home') and
+        is_state('device_tracker.windows_lap_lan_router', 'not_home') and
+        is_state('device_tracker.lap_work_router', 'not_home')
+      }}
+    continue_on_timeout: true
+    timeout: 600
+
   - choose:
     - conditions:
       - condition: template
@@ -32,17 +54,3 @@
         target:
           entity_id: group.desk_and_laptop_group
     default: []
-
-  # Switches off
-  - service: switch.turn_off
-    target:
-      entity_id:
-        - switch.printer_switch
-        - switch.tv_switch
-        - switch.tv_usb
-
-  - service: climate.turn_off
-    target:
-      entity_id:
-        - climate.office_ac
-        - climate.upstairs_ac
