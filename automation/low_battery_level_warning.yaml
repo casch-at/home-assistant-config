@@ -5,12 +5,15 @@
   max: 50
   trigger:
     # Template to get a list of all battery entities
-      # {% for state in states.sensor -%}
-        # {%- if state_attr(state.entity_id, 'device_class') == 'battery' -%}
-          # {{ state.entity_id }}
-          # {{ state.state | int(0) < 99 }}
-        # {% endif -%}
-      # {% endfor %}
+    # {% for state in states.sensor -%}
+    #   {%- if state_attr(state.entity_id, 'device_class') == 'battery' %}
+    #     - platform: numeric_state
+    #       entity_id: {{ state.entity_id }}
+    #       below: 15
+    #       for:
+    #         minutes: 5
+    #   {%- endif -%}
+    # {% endfor %}
   - platform: numeric_state
     entity_id: sensor.bathroom_switch_battery_level
     below: 15
@@ -162,7 +165,7 @@
         not
           is_state(trigger.entity_id, 'unavailable')
         and
-          states(trigger.entity_id) | int < 10
+          states(trigger.entity_id) | int < 15
       }}
   action:
   - service: notify.persistent_notification
