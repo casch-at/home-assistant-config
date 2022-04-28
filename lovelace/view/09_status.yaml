@@ -11,19 +11,19 @@ cards:
         cards:
           - type: custom:button-card
             entity: binary_sensor.workday_sensor
-            name: "Work"
+            name: Work
             template: name_card_round
           - type: custom:button-card
             entity: calendar.work_holiday
-            name: "Vacation"
+            name: Vacation
             template: name_card_round
           - type: custom:button-card
             entity: calendar.work_home_office
-            name: "HO"
+            name: HO
             template: name_card_round
           - type: custom:button-card
             entity: input_boolean.presence
-            name: "Presence"
+            name: Presence
             template: name_card_round
             tap_action:
               action: toggle
