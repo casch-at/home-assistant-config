@@ -53,6 +53,61 @@ cards:
               - value: 0
                 color: var( --ha-card-background, var(--card-background-color, white) )
 
+          - type: custom:button-card
+            entity: device_tracker.lap_work_router
+            name: Work
+            template: name_card_round
+            show_icon: true
+            state:
+              - value: home
+                color: var(--paper-item-icon-active-color)
+              - value: not_home
+                color: var( --ha-card-background, var(--card-background-color, white) )
+
+          - type: custom:button-card
+            entity: device_tracker.lap_02_lan_router
+            name: LL
+            template: name_card_round
+            show_icon: true
+            state:
+              - value: home
+                color: var(--paper-item-icon-active-color)
+              - value: not_home
+                color: var( --ha-card-background, var(--card-background-color, white) )
+
+          - type: custom:button-card
+            entity: device_tracker.lap_02_wlan_router
+            name: LW
+            template: name_card_round
+            show_icon: true
+            state:
+              - value: home
+                color: var(--paper-item-icon-active-color)
+              - value: not_home
+                color: var( --ha-card-background, var(--card-background-color, white) )
+
+          - type: custom:button-card
+            entity: device_tracker.windows_lap_lan_router
+            name: WL
+            template: name_card_round
+            show_icon: true
+            state:
+              - value: home
+                color: var(--paper-item-icon-active-color)
+              - value: not_home
+                color: var( --ha-card-background, var(--card-background-color, white) )
+
+          - type: custom:button-card
+            entity: device_tracker.windows_lap_wlan_router
+            name: WW
+            template: name_card_round
+            show_icon: true
+            state:
+              - value: home
+                color: var(--paper-item-icon-active-color)
+              - value: not_home
+                color: var( --ha-card-background, var(--card-background-color, white) )
+
       # - type: grid
       #   columns: 2
       #   cards:
