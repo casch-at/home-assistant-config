@@ -436,7 +436,7 @@ cards:
             icon: mdi:cogs
             tap_action:
               action: navigate
-              navigation_path: /config/server_control
+              navigation_path: /developer-tools/yaml
           - type: custom:button-card
             template: icon_only
             icon: mdi:math-log

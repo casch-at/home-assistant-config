@@ -34,7 +34,7 @@ cards:
             template: name_card_round
             tap_action:
               action: navigate
-              navigation_path: /hassio/dashboard
+              navigation_path: /config/updates
             hold_action:
               action: more-info
           - type: custom:button-card

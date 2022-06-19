@@ -170,7 +170,7 @@
   action:
   - service: notify.persistent_notification
     data:
-      message: '{{ trigger.to_state.name }} Below 10 % ({{ trigger.to_state.state }} %)'
+      message: '{{ trigger.to_state.name }} battery level bellow {{ trigger.to_state.state | int + 1}} %'
       title: '{{ trigger.to_state.name }} Critical'
   - choose:
     - conditions:
