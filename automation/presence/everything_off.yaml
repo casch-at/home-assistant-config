@@ -33,7 +33,6 @@
       {{
         is_state('device_tracker.lap_02_lan_router', 'not_home') and
         is_state('device_tracker.lap_02_wlan_router', 'not_home') and
-        is_state('device_tracker.windows_lap_lan_router', 'not_home') and
         is_state('device_tracker.lap_work_router', 'not_home')
       }}
     continue_on_timeout: true
@@ -46,7 +45,6 @@
           {{
             is_state('device_tracker.lap_02_lan_router', 'not_home') and
             is_state('device_tracker.lap_02_wlan_router', 'not_home') and
-            is_state('device_tracker.windows_lap_lan_router', 'not_home') and
             is_state('device_tracker.lap_work_router', 'not_home')
           }}
       sequence:
