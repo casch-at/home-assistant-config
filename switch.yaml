@@ -29,7 +29,10 @@
 #     #   pulselength: 165
 #     #   signal_repetitions: 10
 
-# - platform: wake_on_lan
-#   mac: !secret tower_mac
-#   name: "Wake on LAN - Tower"
-#   broadcast_address: !secret broadcast_address
+- platform: wake_on_lan
+  mac: !secret tower_mac
+  name: "Wake on LAN - Tower"
+  host: 192.168.1.29
+  broadcast_address: !secret broadcast_address
+  turn_off:
+    service: shell_command.turn_off_tower
