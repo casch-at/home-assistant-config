@@ -95,10 +95,10 @@ cards:
           w5:
             card:
               type: custom:button-card
-              entity: sensor.energy_power
+              entity: sensor.home_energy_power
               state_display: >
                 [[[
-                  return `<b style="color: green;">${(parseFloat(states['sensor.energy_power'].state))}</b>`
+                  return `<b style="color: green;">${(parseFloat(states['sensor.home_energy_power'].state))}</b>`
                 ]]]
               template: embedded_card
           w6:
@@ -129,10 +129,10 @@ cards:
           t5:
             card:
               type: custom:button-card
-              entity: sensor.energy_power_total
+              entity: sensor.home_energy_power_total
               state_display: >
                 [[[
-                  return `<b style="color: green;">${(parseFloat(states['sensor.energy_power_total'].state)).toFixed(3)}</b>`
+                  return `<b style="color: green;">${(parseFloat(states['sensor.home_energy_power_total'].state)).toFixed(3)}</b>`
                 ]]]
               template: embedded_card
           t6:
