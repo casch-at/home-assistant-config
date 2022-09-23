@@ -1,0 +1,50 @@
+light:
+  name: "Aroma Diffuser Light"
+  unique_id: "aroma_diffuser_light_01"
+  device:
+    connections: !secret aroma_diffuser_connections
+  command_topic: "cmnd/aroma_diffuser/EVENT"
+  state_topic: "tele/aroma_diffuser/RESULT"
+  state_value_template: >-
+    {% if value_json.TuyaReceived is defined and '5' in value_json['TuyaReceived'] -%}
+      {% if value_json['TuyaReceived'].DpType1Id5 -%}
+        on
+      {% else %}
+        off
+      {% endif %}
+    {% endif %}
+  payload_off: "off"
+  payload_on: "on"
+  on_command_type: "first"
+  effect_command_topic: "cmnd/aroma_diffuser/EVENT"
+  effect_state_topic: "tele/aroma_diffuser/RESULT"
+  effect_value_template: >-
+    {% if value_json.TuyaReceived is defined and '6' in value_json['TuyaReceived'] -%}
+      {% if value_json['TuyaReceived'].DpType4Id6 -%}
+        cycle
+      {% else %}
+        color
+      {% endif %}
+    {% endif %}
+  effect_list:
+    - cycle
+    - color
+  availability_topic: "tele/aroma_diffuser/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
+  rgb_command_topic: "cmnd/aroma_diffuser/TUYASEND3"
+  rgb_command_template: >-
+    {{ '8,%02x%02x%02x003cff64' | format(red, green, blue) }}
+  rgb_value_template: >-
+    {% if value_json.TuyaReceived is defined and '8' in value_json['TuyaReceived'] -%}
+      {{
+        (
+        value_json['TuyaReceived']['8'].Type3Data[0:2]|int(base=16),
+        value_json['TuyaReceived']['8'].Type3Data[2:4]|int(base=16),
+        value_json['TuyaReceived']['8'].Type3Data[4:6]|int(base=16)
+        ) | join(',')
+      }}
+    {% endif %}
+  rgb_state_topic: "tele/aroma_diffuser/RESULT"

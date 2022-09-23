@@ -84,10 +84,11 @@ calendar:
     custom_calendars:
       - name: Holiday
         calendar: Work
-        search: '^Schwarzgruber_(UR|GT)'
+        search: "^Schwarzgruber_(UR|GT)"
       - name: Home Office
         calendar: Work
-        search: '^Schwarzgruber_HO'
+        search: "^Schwarzgruber_HO"
 
 # https://www.home-assistant.io/integrations/influxdb
 influxdb: !include influxdb.yaml
+mqtt: !include mqtt.yaml
