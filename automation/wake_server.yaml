@@ -1,0 +1,22 @@
+- id: wake_server
+  alias: Wake Server
+  description: Wake Server Using WOL When state changes to Morning, Daytimes, or Evening
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: input_select.daytime
+      to: Morning
+    - platform: state
+      entity_id: input_select.daytime
+      to: Daytimes
+    - platform: state
+      entity_id: input_select.daytime
+      to: Evening
+  condition:
+    - condition: state
+      entity_id: device_tracker.casch
+      state: not_home
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.wake_on_lan_server

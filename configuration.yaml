@@ -44,7 +44,7 @@ frontend:
 apcupsd:
   host: 192.168.1.29
 
-# Enable WOL integration
+# Enable WOL integration -> https://www.home-assistant.io/integrations/wake_on_lan
 wake_on_lan:
 
 # Text to speech
@@ -59,7 +59,7 @@ tts:
 # Shell commands
 shell_command:
   # Need to specify IP (resolve doesn't work :-?),
-  turn_off_tower: !secret tower_off
+  turn_off_server: !secret server_off
 
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml

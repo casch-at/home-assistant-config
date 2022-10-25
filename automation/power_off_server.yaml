@@ -1,0 +1,20 @@
+- id: power_off_server
+  alias: Power Off Server
+  description: Power Off Server shortly after night mode
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: input_select.daytime
+      to: Night
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+  condition:
+    - condition: time
+      before: "04:30:00"
+      after: "21:00:00"
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.wake_on_lan_server

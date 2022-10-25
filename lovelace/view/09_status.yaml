@@ -108,6 +108,17 @@ cards:
               - value: not_home
                 color: var( --ha-card-background, var(--card-background-color, white) )
 
+          - type: custom:button-card
+            entity: device_tracker.casch
+            name: S
+            template: name_card_round
+            show_icon: true
+            state:
+              - value: home
+                color: var(--paper-item-icon-active-color)
+              - value: not_home
+                color: var( --ha-card-background, var(--card-background-color, white) )
+
       # - type: grid
       #   columns: 2
       #   cards:
