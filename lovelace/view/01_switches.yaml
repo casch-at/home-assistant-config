@@ -13,18 +13,12 @@ cards:
         - type: custom:button-card
           entity: switch.desk_switch
           template: icon_only_more_info
-        - type: custom:button-card
-          entity: switch.wake_on_lan_server
-          template: icon_only_more_info
 
     - type: grid
       columns: 1
       cards:
         - type: custom:button-card
           entity: switch.laptop_switch
-          template: icon_only_more_info
-        - type: custom:button-card
-          entity: switch.wake_on_lan_tower
           template: icon_only_more_info
 
     - type: grid

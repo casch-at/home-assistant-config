@@ -34,23 +34,21 @@ cards:
             hold_action:
               entity: light.parlor_lights
           - type: custom:button-card
-            entity: switch.tv_switch
-            template: icon_only
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/tv
-            double_tap_action:
-              action: call-service
-              service: script.tv_off_on
-            lock:
-              enabled: >-
-                [[[
-                  return states['script.tv_off_on'].state === "on";
-                ]]]
-          - type: custom:button-card
+            entity: switch.wake_on_lan_server
             template: icon_only_more_info
-            entity: switch.marantz_amp_power
-            icon: mdi:account-music
+            tab_action:
+              action: call-service
+              service: switch.toggle
+              confirmation:
+                text: Do you really want to suspend the server?
+
+          # - type: custom:button-card
+          #   template: icon_only_more_info
+          #   entity: switch.marantz_amp_power
+          #   icon: mdi:account-music
+          - type: custom:button-card
+            entity: switch.wake_on_lan_tower
+            template: icon_only_more_info
           - type: custom:button-card
             icon: mdi:blinds
             template: icon_only
