@@ -65,8 +65,8 @@ cards:
                 color: var( --ha-card-background, var(--card-background-color, white) )
 
           - type: custom:button-card
-            entity: device_tracker.lap_02_lan_router
-            name: LL
+            entity: device_tracker.pc01_lan_router
+            name: TL
             template: name_card_round
             show_icon: true
             state:
@@ -76,8 +76,8 @@ cards:
                 color: var( --ha-card-background, var(--card-background-color, white) )
 
           - type: custom:button-card
-            entity: device_tracker.lap_02_wlan_router
-            name: LW
+            entity: device_tracker.pc01_wlan_router
+            name: TW
             template: name_card_round
             show_icon: true
             state:
