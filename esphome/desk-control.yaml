@@ -305,39 +305,6 @@ switch:
           carrier_frequency: 38kHz
           code: [902, -879, 900, -879, 901, -877, 1787, -887, 898, -879, 900, -877, 901, -1764, 1786, -874, 912, -879, 899, -1766, 1784]
 
-  #### Office AC
-  - platform: template
-    name: Office AC Preset
-    id: office_ac_preset
-    icon: mdi:cached
-    turn_on_action:
-      - climate.control:
-          id: office_ac
-          mode: COOL
-          target_temperature: 24°C
-          fan_mode: AUTO
-          swing_mode: 'OFF'
-
-  - platform: template
-    name: Office AC Swing
-    id: office_ac_swing
-    icon: mdi:fan
-    turn_on_action:
-      - climate.control:
-          id: office_ac
-          mode: COOL
-          target_temperature: 24°C
-          fan_mode: AUTO
-          swing_mode: VERTICAL
-
-####
-# Section -- Office AC
-####
-#  Notes
-#
-#  Receiver need to be non-inverted when learning the commands, and inverted
-#  when you want to use the return value from the AC unit.
-####
 ### IR Receiver
 remote_receiver:
   id: rcvr
@@ -347,17 +314,8 @@ remote_receiver:
     mode: INPUT_PULLUP
 
 ### IR Transmit
-
 # https://www.esphome.io/components/remote_transmitter.html
 remote_transmitter:
   id: tamtr
   pin: 14
   carrier_duty_percent: 50%
-
-# https://esphome.io/components/climate/ir_climate.html
-climate:
-  - platform: toshiba
-    id: office_ac
-    name: Office AC
-    receiver_id: rcvr
-    transmitter_id: tamtr

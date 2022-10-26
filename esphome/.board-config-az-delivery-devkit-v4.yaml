@@ -6,3 +6,7 @@ platformio_options:
   board: az-delivery-devkit-v4
   board_build.mcu: esp32
   board_build.f_cpu: 240000000L
+  # Fix for compile error
+  # /root/.platformio/packages/toolchain-xtensa-esp32/xtensa-esp32-elf/include/c++/8.4.0/xtensa-esp32-elf/no-rtti/bits/gthr-default.h:781:12: error: 'pthread_mutex_timedlock' was not declared in this scope return __gthrw_(pthread_mutex_timedlock) (__mutex, __abs_timeout);
+  platform_packages:
+    - platformio/framework-arduinoespressif32 @ https://github.com/espressif/arduino-esp32.git#idf-release/v4.4

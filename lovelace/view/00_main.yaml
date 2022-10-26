@@ -90,26 +90,6 @@ cards:
                   ]]]
                 color: red
                 icon: hass:fire
-              - operator: template
-                value: >-
-                  [[[
-                    return (states['climate.office_ac'].state !== 'off' && states['climate.office_ac'].state !== 'unavailable') ||
-                      (states['climate.upstairs_ac'].state !== 'off' && states['climate.upstairs_ac'].state !== 'unavailable')
-                  ]]]
-                color: dodgerblue
-                icon: >-
-                  [[[
-                    if (states['climate.office_ac'].state === 'cool' || states['climate.upstairs_ac'].state === 'cool')
-                      return 'hass:snowflake';
-                    else if (states['climate.office_ac'].state === 'heat' || states['climate.upstairs_ac'].state === 'heat')
-                      return 'hass:fire';
-                    else if (states['climate.office_ac'].state === 'heat_cool' || states['climate.upstairs_ac'].state === 'heat_cool')
-                      return 'hass:autorenew';
-                    else if (states['climate.office_ac'].state === 'dry' || states['climate.upstairs_ac'].state === 'dry')
-                      return 'hass:water-percent';
-                    else (states['climate.office_ac'].state === 'fan_only' || states['climate.upstairs_ac'].state === 'fan_only')
-                      return 'hass:fan';
-                  ]]]
           - type: custom:button-card
             icon: mdi:transmission-tower
             template: icon_only
