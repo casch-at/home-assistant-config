@@ -45,13 +45,16 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "double" }}'
       sequence:
-      - service: scene.turn_on
-        target:
-          entity_id: '{{ states("input_select.office_ceiling_scenes") }}'
-      - service: input_select.select_next
-        target:
-          entity_id: input_select.office_ceiling_scenes
-
+      - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.wake_on_lan_tower
+              state: off
+          sequence:
+          - service: switch.turn_on
+            target:
+              entity_id: switch.wake_on_lan_tower
+      default: []
 
     - conditions:
       - condition: template

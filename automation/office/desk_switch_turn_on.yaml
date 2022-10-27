@@ -1,0 +1,24 @@
+- id: desk_switch_turn_on
+  alias: Desk Switch Turn On
+  description: 'Desk Switch Turn On'
+  mode: single
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: switch
+        service: turn_on
+        service_data:
+          entity_id: switch.wake_on_lan_tower
+  condition:
+    - condition: state
+      entity_id: switch.desk_switch
+      state: 'off'
+  action:
+    - type: turn_on
+      device_id: ed75d33e4fdc486c13f061762e77931c
+      entity_id: switch.desk_switch
+      domain: switch
+    - service: switch.turn_on
+      target:
+        entity_id: switch.desk_switch

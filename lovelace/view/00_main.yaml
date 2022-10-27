@@ -37,11 +37,11 @@ cards:
             entity: switch.wake_on_lan_server
             template: icon_only_more_info
             tab_action:
-              action: call-service
-              service: switch.toggle
+              action: more-info
+            double_tap_action:
+              action: toggle
               confirmation:
-                text: Do you really want to suspend the server?
-
+                text: Do you really want to suspend/wake the server?
           # - type: custom:button-card
           #   template: icon_only_more_info
           #   entity: switch.marantz_amp_power
@@ -49,6 +49,12 @@ cards:
           - type: custom:button-card
             entity: switch.wake_on_lan_tower
             template: icon_only_more_info
+            tab_action:
+              action: more-info
+            double_tap_action:
+              action: toggle
+              confirmation:
+                text: Do you really want to suspend/wake tower?
           - type: custom:button-card
             icon: mdi:blinds
             template: icon_only
