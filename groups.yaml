@@ -40,7 +40,6 @@ devices_group:
   name: Devices Group
   entities:
     - switch.aroma_diffuser
-    - remote.parlor_ir_remote
 
 all_group:
   name: All Group

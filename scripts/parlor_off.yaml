@@ -13,28 +13,3 @@ sequence:
       data:
         entity_id: light.parlor_lights
   default: []
-- choose:
-  - conditions:
-    - type: is_power
-      condition: device
-      device_id: 5548196bdfae70373fa44fdefe4752c2
-      entity_id: sensor.tv_switch_energy_power
-      domain: sensor
-      above: 40
-    sequence:
-    - service: script.tv_off_on
-      data: {}
-    - service: light.turn_off
-      data:
-        entity_id: switch.tv_switch
-  - conditions:
-    - condition: device
-      type: is_on
-      device_id: 5548196bdfae70373fa44fdefe4752c2
-      entity_id: switch.tv_switch
-      domain: switch
-    sequence:
-    - service: light.turn_off
-      data:
-        entity_id: switch.tv_switch
-  default: []

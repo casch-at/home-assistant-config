@@ -151,13 +151,6 @@
           device_id: 5066dc0a0d6a11eba736919d4fa21431
           command: "3_single"
 
-    # TV off/on
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "4_hold" }}'
-      sequence:
-      - service: script.tv_off_on
-
     # TV toggle parlor lights
     - conditions:
       - condition: template
