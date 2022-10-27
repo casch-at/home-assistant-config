@@ -14,11 +14,6 @@
     from: 'off'
     to: 'on'
 
-  - platform: state
-    entity_id: binary_sensor.sonia_avramidis_alarm
-    from: 'off'
-    to: 'on'
-
   # Sets DAYTIMES daytime
   - platform: numeric_state
     entity_id: sensor.front_floor_motion_sensor_light_level
@@ -41,8 +36,6 @@
               (trigger.entity_id == 'sun.sun' and state_attr(trigger.entity_id, 'rising'))
             or
               trigger.entity_id == 'binary_sensor.christian_schwarzgruber_alarm'
-            or
-              trigger.entity_id == 'binary_sensor.sonia_avramidis_alarm'
             )
           }}
       sequence:

@@ -5,10 +5,6 @@
   max: 2
   trigger:
   - platform: state
-    entity_id: binary_sensor.sonia_avramidis_alarm
-    from: 'off'
-    to: 'on'
-  - platform: state
     entity_id: binary_sensor.christian_schwarzgruber_alarm
     from: 'off'
     to: 'on'
@@ -51,16 +47,16 @@
     default: []
 
   # Turn parlor remote on
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: remote.parlor_ir_remote
-        state: 'off'
-      sequence:
-      - service: remote.turn_on
-        target:
-          entity_id: remote.parlor_ir_remote
-    default: []
+  # - choose:
+  #   - conditions:
+  #     - condition: state
+  #       entity_id: remote.parlor_ir_remote
+  #       state: 'off'
+  #     sequence:
+  #     - service: remote.turn_on
+  #       target:
+  #         entity_id: remote.parlor_ir_remote
+  #   default: []
 
   # Home office
   - choose:

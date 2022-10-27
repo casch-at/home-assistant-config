@@ -15,11 +15,6 @@
     to: home
     for: 2
 
-  - platform: state
-    entity_id: person.sonia_avramidis
-    from: not_home
-    to: home
-    for: 2
   condition:
   - condition: state
     entity_id: input_boolean.presence

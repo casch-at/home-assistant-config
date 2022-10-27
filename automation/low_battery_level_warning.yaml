@@ -154,10 +154,6 @@
     below: 15
     for:
       minutes: 5
-#   - platform: state
-#     entity_id: sensor.phone_christian_battery_level
-#   - platform: state
-#     entity_id: sensor.phone_sonia_battery_level
   condition:
   - condition: template
     value_template: >-

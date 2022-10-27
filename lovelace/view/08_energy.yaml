@@ -165,14 +165,6 @@ cards:
               state: "on"
               icon: mdi:flash
               color: yellow
-          - entity: sensor.phone_sonia_battery_level
-            name: Phone Sonia
-            tap_action: more-info
-            charging_state:
-              entity_id: binary_sensor.phone_sonia_is_charging
-              state: "on"
-              icon: mdi:flash
-              color: yellow
           - entity: sensor.bedroom_motion_sensor_battery_level
             name: Bedroom motion sensor
             tap_action: more-info

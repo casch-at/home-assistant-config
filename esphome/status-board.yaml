@@ -18,10 +18,6 @@ deep_sleep:
 
 text_sensor:
   - platform: homeassistant
-    id: person_sonia
-    entity_id: person.sonia_avramidis
-
-  - platform: homeassistant
     id: person_christian
     entity_id: person.christian_schwarzgruber
 
@@ -127,21 +123,7 @@ binary_sensor:
         return false;
       }
 
-  - platform: template
-    id: person_sonia_template
-    lambda: |
-      if (id(person_sonia).state.compare("not_home") == 0) {
-        id(sonia).turn_on();
-        return true;
-      } else if  {
-        id(sonia).turn_off();
-        return false;
-      }
-
 switch:
-  - platform: gpio
-    pin: 13
-    id: sonia
   - platform: gpio
     pin: 12
     id: chris

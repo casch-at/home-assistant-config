@@ -5,9 +5,6 @@ icon: mdi:home-assistant
 badges:
   - entity: person.christian_schwarzgruber
     show_name: false
-  - entity: person.sonia_avramidis
-    show_name: false
-
 cards:
   - type: grid
     columns: 1

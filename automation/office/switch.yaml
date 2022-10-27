@@ -49,12 +49,12 @@
         - conditions:
             - condition: state
               entity_id: switch.wake_on_lan_tower
-              state: off
+              state: 'off'
           sequence:
           - service: switch.turn_on
             target:
               entity_id: switch.wake_on_lan_tower
-      default: []
+        default: []
 
     - conditions:
       - condition: template

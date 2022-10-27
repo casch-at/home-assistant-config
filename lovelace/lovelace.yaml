@@ -47,12 +47,3 @@ resources:
 
   # - url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js?v=1.3.6
     # type: module
-
-# dashboards:
-#   lovelace-sonia:
-#     mode: yaml
-#     filename: lovelace/sonia.yaml
-#     title: Sonia's Lovelace
-#     icon: mdi:home-account
-#     show_in_sidebar: true
-#     require_admin: false
