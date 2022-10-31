@@ -14,22 +14,45 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: group.office_group
+            entity: script.office_on_off
             template: icon_only_more_info
             tap_action:
               action: call-service
-              service: homeassistant.toggle
+              service: switch.toggle
               service_data:
-                entity_id: group.desk_and_laptop_group
+                entity_id: switch.desktop_and_laptop_group
               confirmation:
                 text: Do you really want to turn on/off office?
             hold_action:
               entity: light.office_lights
+            state:
+              - operator: template
+                value: >-
+                  [[[
+                    return (states['light.office_lights'].state === 'unavailable' &&
+                        states['switch.desktop_and_laptop_group'].state === 'unavailable');
+                  ]]]
+                color: var(--state-icon-unavailable-color)
+              - operator: template
+                value: >-
+                  [[[
+                    return (states['light.office_lights'].state === 'on' &&
+                        states['switch.desktop_and_laptop_group'].state === 'on');
+                  ]]]
+                color: var(--paper-item-icon-active-color)
           - type: custom:button-card
-            entity: group.parlor_group
+            entity: script.parlor_on_off
             template: icon_only_more_info
             hold_action:
               entity: light.parlor_lights
+            state:
+              - operator: template
+                value: >-
+                  [[[
+                    return (states['light.parlor_lights'].state === 'unavailable' &&
+                        states['switch.tv_switch'].state === 'unavailable');
+                  ]]]
+                color: var(--state-icon-unavailable-color)
           - type: custom:button-card
             entity: switch.wake_on_lan_server
             template: icon_only_more_info
@@ -157,7 +180,7 @@ cards:
             columns: 2
             cards:
               - type: custom:button-card
-                entity: group.switches_group
+                entity: switch.switches_group
                 template: icon_only
                 tap_action:
                   action: navigate
@@ -166,7 +189,7 @@ cards:
                   action: call-service
                   service: homeassistant.turn_off
                   service_data:
-                    entity_id: group.switches_group
+                    entity_id: switch.switches_group
                   confirmation:
                     text: Do you really want to turn all switches off?
               - type: custom:button-card
@@ -212,6 +235,13 @@ cards:
           - type: custom:button-card
             entity: light.upstairs_lamp_light
             template: icon_only_more_info
+            state:
+              - operator: template
+                value: >-
+                  [[[
+                    return states['switch.upstairs_lamp_switch'].state === 'unavailable';
+                  ]]]
+                color: var(--state-icon-unavailable-color)
           - type: custom:button-card
             entity: switch.aroma_diffuser
             template: icon_only_more_info

@@ -60,3 +60,36 @@
   broadcast_address: !secret broadcast_address
   # turn_off:
   #   service: shell_command.turn_off_tower
+
+- platform: group
+  unique_id: desk_and_laptop_group
+  name: Desktop and Laptop Group
+  # icon: mdi:laptop
+  entities:
+    - switch.desk_switch
+    - switch.laptop_switch
+
+- platform: group
+  unique_id: switches_group
+  name: Switches Group
+  # icon: mdi:dip-switch
+  entities:
+    - switch.desk_switch
+    - switch.laptop_switch
+    - switch.printer_switch
+#    - switch.tower
+    - switch.tv_switch
+#    - switch.tv_usb
+
+- platform: group
+  unique_id: bedroom_group
+  name: Bedroom Group
+  # icon: mdi:bed
+  entities:
+    - switch.nightstand_switch
+
+- platform: group
+  unique_id: devices_group
+  name: Devices Group
+  entities:
+    - switch.aroma_diffuser

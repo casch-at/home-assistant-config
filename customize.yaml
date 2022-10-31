@@ -57,3 +57,9 @@ light.office_ceiling_back_lights:
   icon: mdi:ceiling-light
 light.office_ceiling_front_lights:
   icon: mdi:ceiling-light
+switch.desk_and_laptop_group:
+  icon: mdi:laptop
+switch.switches_group:
+  icon: mdi:dip-switch
+switch.bedroom_group:
+  icon: mdi:bed
