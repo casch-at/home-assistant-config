@@ -53,6 +53,13 @@ cards:
                         states['switch.tv_switch'].state === 'unavailable');
                   ]]]
                 color: var(--state-icon-unavailable-color)
+            lock:
+              enabled: >-
+                [[[
+                  return (states['light.parlor_lights'].state === 'unavailable' &&
+                      states['switch.tv_switch'].state === 'unavailable');
+                ]]]
+              duration: 5
           - type: custom:button-card
             entity: switch.wake_on_lan_server
             template: icon_only_more_info
@@ -97,7 +104,6 @@ cards:
                   return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                 ]]]
               duration: 0
-
           - type: custom:button-card
             icon: mdi:home-thermometer
             template: icon_only
@@ -116,6 +122,7 @@ cards:
                   ]]]
                 color: red
                 icon: hass:fire
+            lock: disabled
           - type: custom:button-card
             icon: mdi:transmission-tower
             template: icon_only
@@ -123,6 +130,7 @@ cards:
             tap_action:
               action: navigate
               navigation_path: /lovelace/energy
+            lock: disabled
 
       - type: grid
         cards:
@@ -228,7 +236,6 @@ cards:
                         return states['device_tracker.tapo_c200'].state === 'home';
                       ]]]
                     color: var(--paper-item-icon-active-color)
-
       - type: grid
         columns: 7
         cards:
@@ -448,18 +455,21 @@ cards:
             tap_action:
               action: navigate
               navigation_path: /developer-tools/yaml
+            lock: disabled
           - type: custom:button-card
             template: icon_only
             icon: mdi:math-log
             tap_action:
               action: navigate
               navigation_path: /config/logs
+            lock: disabled
           - type: custom:button-card
             template: icon_only
             icon: mdi:home-assistant
             tap_action:
               action: navigate
               navigation_path: /hassio/system
+            lock: disabled
           - type: custom:button-card
             color_type: blank-card
           - type: custom:button-card

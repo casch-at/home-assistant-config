@@ -1,6 +1,19 @@
 icon_only:
   show_name: false
   aspect_ratio: 1/1
+  lock:
+    enabled: >-
+      [[[
+        if (entity) {
+          if (entity.state === 'unavailable' || entity.state === 'unknown') {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        return true;
+      ]]]
+    duration: 5
 
 icon_only_more_info:
   template: icon_only
@@ -149,3 +162,16 @@ remote_parlor:
     service: remote.send_command
     service_data:
       entity_id: remote.parlor_ir_remote
+  lock:
+    enabled: >-
+      [[[
+        if (entity) {
+          if (entity.state === 'unavailable' || entity.state === 'unknown') {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        return true;
+      ]]]
+    duration: 5
