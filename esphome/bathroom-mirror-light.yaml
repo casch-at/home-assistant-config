@@ -5,6 +5,12 @@ substitutions:
 
 esphome:
   <<: !include .board-config-az-delivery-devkit-v4.yaml
+  on_boot:
+    priority: 200 # Network connections like MQTT/native API are set up at this priority.
+    then:
+      - light.turn_on:
+          id: bathroom_mirror_light
+          brightness: 90%
 
 <<: !include .base-config.yaml
 
@@ -13,12 +19,12 @@ esphome:
 light:
   - platform: cwww
     name: Bathroom Mirror Light
+    id: bathroom_mirror_light
     cold_white: cold_white
     warm_white: warm_white
     cold_white_color_temperature: 6000K
     warm_white_color_temperature: 3000K
-    # Reduce flickering when both channels are on -- to much power?
-    constant_brightness: true
+    constant_brightness: true # Reduce flickering when both channels are on -- to much power?
     default_transition_length: 0s
     gamma_correct: 0
 
@@ -29,11 +35,9 @@ output:
     pin: 33
     id: cold_white
     frequency: 9765Hz # 19531Hz, 39061Hz
-    # decrease max power to prevend flickering
-    max_power: 0.85
+    max_power: 0.85   # decrease max power to prevend flickering
   - platform: ledc
     pin: 32
     id: warm_white
     frequency: 9765Hz # 19531Hz, 39061Hz
-    # decrease max power to prevend flickering
-    max_power: 0.85
+    max_power: 0.85   # decrease max power to prevend flickering
