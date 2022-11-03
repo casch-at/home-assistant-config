@@ -216,16 +216,3 @@ cards:
                 type: custom:button-card
                 entity: sensor.heating_temperature
                 template: embedded_card
-
-      - type: custom:simple-thermostat
-        entity: climate.heating
-        name: Heating Thermostat
-        layout:
-          mode:
-            headings: false
-            names: false
-        control:
-          presets: false
-          hvac:
-            auto:
-              icon: mdi:calendar-clock
