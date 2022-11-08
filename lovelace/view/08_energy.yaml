@@ -14,18 +14,13 @@ cards:
             - grid-template-areas: >-
                 "n wn tn"
                 "n2 w2 t2"
-                "n3 w3 t3"
                 "n6 w6 t6"
                 "n5 w5 t5"
             - grid-template-columns: min-content 1fr 1fr
-            - grid-template-rows: min-content 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr
                 # "n4 w4 t4"
           custom_fields:
             n2:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
-            n3:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
@@ -62,7 +57,6 @@ cards:
           wn: 'W'
           tn: 'kWh'
           n2: 'Desk'
-          n3: 'Laptop'
           # n4: 'Nightstand'
           n6: 'Server...'
           n5: 'Total'
@@ -70,11 +64,6 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.desk_switch_energy_power
-              template: embedded_card
-          w3:
-            card:
-              type: custom:button-card
-              entity: sensor.laptop_switch_energy_power
               template: embedded_card
           # w4:
           #   card:
@@ -99,11 +88,6 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.desk_switch_energy_total
-              template: embedded_card
-          t3:
-            card:
-              type: custom:button-card
-              entity: sensor.laptop_switch_energy_total
               template: embedded_card
           # t4:
           #   card:
