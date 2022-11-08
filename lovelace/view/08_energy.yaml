@@ -13,19 +13,14 @@ cards:
           grid:
             - grid-template-areas: >-
                 "n wn tn"
-                "n1 w1 t1"
                 "n2 w2 t2"
                 "n3 w3 t3"
                 "n6 w6 t6"
                 "n5 w5 t5"
             - grid-template-columns: min-content 1fr 1fr
-            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr 1fr
                 # "n4 w4 t4"
           custom_fields:
-            n1:
-              - justify-self: start
-              - padding-left: 10px
-              - font-weight: bold
             n2:
               - justify-self: start
               - padding-left: 10px
@@ -66,17 +61,11 @@ cards:
         custom_fields:
           wn: 'W'
           tn: 'kWh'
-          n1: 'TV'
           n2: 'Desk'
           n3: 'Laptop'
           # n4: 'Nightstand'
           n6: 'Server...'
           n5: 'Total'
-          w1:
-            card:
-              type: custom:button-card
-              entity: sensor.tv_switch_energy_power
-              template: embedded_card
           w2:
             card:
               type: custom:button-card
@@ -105,11 +94,6 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.generic1_switch_energy_power
-              template: embedded_card
-          t1:
-            card:
-              type: custom:button-card
-              entity: sensor.tv_switch_energy_total
               template: embedded_card
           t2:
             card:
