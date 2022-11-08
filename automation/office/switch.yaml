@@ -53,7 +53,9 @@
           sequence:
           - service: switch.turn_on
             target:
-              entity_id: switch.wake_on_lan_tower
+              entity_id:
+                - switch.wake_on_lan_tower
+                - switch.desk_switch
         default: []
 
     - conditions:
