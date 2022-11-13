@@ -127,7 +127,7 @@
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.bathroom_lights'
+            entity_id: 'switch.bathroom_mirror_light_switch'
         target:
           entity_id: script.stairs_light_based_on_entity_state
       - event: zha_event
@@ -151,7 +151,7 @@
           device_id: 5066dc0a0d6a11eba736919d4fa21431
           command: "3_single"
 
-    # TV toggle parlor lights
+    # Toggle terrace plant lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
@@ -159,21 +159,24 @@
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.parlor_lights'
+            entity_id: 'light.terrace_plant_lights'
         target:
           entity_id: script.stairs_light_based_on_entity_state
       - service: homeassistant.toggle
         target:
-          entity_id: light.parlor_lights
+          entity_id: light.terrace_plant_lights
 
-    # Activate scene.night
+    # Cycle terrace plant scenes
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
       sequence:
       - service: scene.turn_on
         target:
-          entity_id: scene.night
+          entity_id: '{{ states("input_select.terrace_plant_scenes") }}'
+      - service: input_select.select_next
+        target:
+          entity_id: input_select.terrace_plant_scenes
 
     # Toggle front floor lights
     - conditions:

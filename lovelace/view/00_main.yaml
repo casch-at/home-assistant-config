@@ -41,25 +41,8 @@ cards:
                   ]]]
                 color: var(--paper-item-icon-active-color)
           - type: custom:button-card
-            entity: script.parlor_on_off
             template: icon_only_more_info
-            hold_action:
-              entity: light.parlor_lights
-            state:
-              - operator: template
-                value: >-
-                  [[[
-                    return (states['light.parlor_lights'].state === 'unavailable' &&
-                        states['switch.tv_switch'].state === 'unavailable');
-                  ]]]
-                color: var(--state-icon-unavailable-color)
-            lock:
-              enabled: >-
-                [[[
-                  return (states['light.parlor_lights'].state === 'unavailable' &&
-                      states['switch.tv_switch'].state === 'unavailable');
-                ]]]
-              duration: 5
+            entity: light.terrace_plant_lights
           - type: custom:button-card
             entity: switch.wake_on_lan_server
             template: icon_only_more_info

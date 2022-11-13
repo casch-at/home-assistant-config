@@ -82,19 +82,19 @@ cards:
              name: 'W'
              show_name: true
            - type: custom:button-card
-             entity: light.parlor_plant_right_light
+             entity: light.terrace_plant_spot_1_light
              template: icon_only_more_info
              icon: mdi:flower
              name: 'C'
              show_name: true
            - type: custom:button-card
-             entity: light.parlor_plant_left_light
+             entity: light.terrace_plant_spot_2_light
              template: icon_only_more_info
              icon: mdi:flower
              name: 'T'
              show_name: true
            - type: custom:button-card
-             entity: light.parlor_plants_light
+             entity: light.terrace_plant_lights
              template: icon_only_more_info
              styles:
                icon:
@@ -103,9 +103,9 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.parlor_plants_purple
+                 entity_id: scene.terrace_plant_spots_purple
            - type: custom:button-card
-             entity: light.parlor_plants_light
+             entity: light.terrace_plant_lights
              template: icon_only_more_info
              styles:
                icon:
@@ -114,7 +114,7 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.parlor_plants_light_green
+                 entity_id: scene.terrace_plant_spots_green
            - type: custom:button-card
              entity: light.parlor_lights
              template: icon_only_more_info

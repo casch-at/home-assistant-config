@@ -17,13 +17,13 @@ light.nightstand_christian_light:
   icon: mdi:lamp
 light.parlor_lights:
   icon: mdi:sofa
-light.parlor_plants_light:
+light.terrace_plant_lights:
   friendly_name: Plants
   icon: mdi:flower
-light.parlor_plant_right_light:
-  friendly_name: Plant Right
-light.parlor_plant_left_light:
-  friendly_name: Plant Left
+light.terrace_plant_spot_1_light:
+  friendly_name: Plant Spot 1
+light.terrace_plant_spot_2_light:
+  friendly_name: Plant Spot 2
 light.parlor_shelve_light:
   friendly_name: Shelve
 light.parlor_big_shelve_light:

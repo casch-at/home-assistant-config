@@ -23,7 +23,7 @@
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
-    light.parlor_plants_light:
+    light.terrace_plant_lights:
       min_mireds: 153
       max_mireds: 500
       effect_list:
@@ -39,7 +39,7 @@
       xy_color:
       - 0.172
       - 0.747
-      friendly_name: Parlor Plants
+      friendly_name: Terrace Plant Spots
       supported_features: 63
       state: 'on'
     light.parlor_big_shelve_light:
@@ -82,7 +82,7 @@
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
-    light.parlor_plants_light:
+    light.terrace_plant_lights:
       min_mireds: 153
       max_mireds: 500
       effect_list:
@@ -98,7 +98,7 @@
       xy_color:
       - 0.171
       - 0.718
-      friendly_name: Parlor Plants
+      friendly_name: Terrace Plant Spots
       supported_features: 63
       state: 'on'
 - id: '1602060945201'
@@ -132,9 +132,9 @@
       state: 'on'
   icon: hass:toilet
 - id: '1602522741384'
-  name: Love 😍
+  name: "Love \U0001F60D"
   entities:
-    light.parlor_plants_light:
+    light.terrace_plant_lights:
       min_mireds: 153
       max_mireds: 500
       effect_list:
@@ -150,7 +150,7 @@
       xy_color:
       - 0.659
       - 0.28
-      friendly_name: Parlor Plants
+      friendly_name: Terrace Plant Spots
       supported_features: 63
       state: 'on'
     light.led_stripes:
@@ -192,7 +192,7 @@
 - id: '1609433939121'
   name: Parlor TV
   entities:
-    light.parlor_plants_light:
+    light.terrace_plant_lights:
       min_mireds: 153
       max_mireds: 500
       effect_list:
@@ -208,7 +208,7 @@
       xy_color:
       - 0.361
       - 0.459
-      friendly_name: Parlor Plants
+      friendly_name: Terrace Plant Spots
       icon: mdi:flower
       supported_features: 63
       state: 'on'
@@ -346,42 +346,110 @@
       state: 'on'
   icon: mdi:stairs
 - id: '1614371683931'
-  name: Parlor Plants Light Green
+  name: Terrace Plant Spots Light Green
   entities:
-    light.parlor_plants_light:
+    light.terrace_plant_lights:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
       min_mireds: 153
-      max_mireds: 500
+      max_mireds: 555
       effect_list:
       - colorloop
-      brightness: 254
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 166
       hs_color:
-      - 134.795
-      - 28.627
+      - 149.882
+      - 100
       rgb_color:
-      - 182
+      - 0
       - 255
-      - 200
+      - 127
       xy_color:
-      - 0.275
-      - 0.408
-      friendly_name: Palor Plants
+      - 0.163989
+      - 0.590982
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Plants
+      supported_features: 44
       icon: mdi:flower
-      supported_features: 63
-      state: 'on'
-    light.parlor_big_shelve_light:
-      brightness: 254
-      hs_color:
-      - 134.795
-      - 28.627
-      rgb_color:
-      - 182
-      - 255
-      - 200
-      xy_color:
-      - 0.275
-      - 0.408
       state: 'on'
   icon: mdi:flower
+  metadata:
+    light.terrace_plant_lights:
+      entity_only: true
+- id: '1615504295983'
+  name: Terrace Plant Spots Light Purple
+  entities:
+    light.terrace_plant_lights:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 166
+      hs_color:
+      - 272.49
+      - 99.216
+      rgb_color:
+      - 139
+      - 2
+      - 255
+      xy_color:
+      - 0.226978
+      - 0.081987
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Plants
+      supported_features: 44
+      icon: mdi:flower
+      state: 'on'
+  icon: mdi:flower
+  metadata:
+    light.terrace_plant_lights:
+      entity_only: true
+- id: '1668357806255'
+  name: Terrace Plant Spots Light Blue
+  entities:
+    light.terrace_plant_lights:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 166
+      hs_color:
+      - 242.588
+      - 100
+      rgb_color:
+      - 11
+      - 0
+      - 255
+      xy_color:
+      - 0.135981
+      - 0.039994
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Plants
+      supported_features: 44
+      icon: mdi:flower
+      state: 'on'
+  icon: mdi:flower
+  metadata:
+    light.terrace_plant_lights:
+      entity_only: true
 - id: '1615231929151'
   name: test
   entities:
@@ -461,43 +529,6 @@
       supported_features: 63
       state: 'on'
   icon: mdi:desk
-- id: '1615504295983'
-  name: Parlor Plants Purple
-  entities:
-    light.parlor_plants_light:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      brightness: 163
-      hs_color:
-      - 271.765
-      - 100
-      rgb_color:
-      - 135
-      - 0
-      - 255
-      xy_color:
-      - 0.227
-      - 0.082
-      friendly_name: Plants
-      icon: mdi:flower
-      supported_features: 63
-      state: 'on'
-    light.parlor_big_shelve_light:
-      brightness: 163
-      hs_color:
-      - 271.765
-      - 100
-      rgb_color:
-      - 135
-      - 0
-      - 255
-      xy_color:
-      - 0.227
-      - 0.082
-      state: 'on'
-  icon: mdi:flower
 - id: '1622798264178'
   name: Office Ceiling Cold
   entities:

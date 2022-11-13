@@ -21,10 +21,17 @@ office_desk_scenes:
     - scene.office_desk_green
 office_ceiling_scenes:
   name: Office Ceiling Scenes
-  icon: emdi:ceiling-light
+  icon: mdi:ceiling-light
   options:
     - scene.office_ceiling_cold
     - scene.office_ceiling_warm
+terrace_plant_scenes:
+  name: Terrace Plant Scenes
+  icon: mdi:flower
+  options:
+    - scene.terrace_plant_spots_light_green
+    - scene.terrace_plant_spots_light_purple
+    - scene.terrace_plant_spots_light_blue
 stairs_scenes:
   name: Stairs Scenes
   icon: mdi:desk
