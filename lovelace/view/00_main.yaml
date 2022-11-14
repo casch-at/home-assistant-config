@@ -14,7 +14,9 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: script.office_on_off
+            # entity: script.office_on_off
+            entity: switch.desktop_and_laptop_group
+            icon: mdi:office-building
             template: icon_only_more_info
             tap_action:
               action: call-service
@@ -23,6 +25,11 @@ cards:
                 entity_id: switch.desktop_and_laptop_group
               confirmation:
                 text: Do you really want to turn on/off office?
+            double_tap_action:
+              action: call-service
+              service: light.toggle
+              service_data:
+                entity_id: light.office_lights
             hold_action:
               entity: light.office_lights
             state:
@@ -40,9 +47,6 @@ cards:
                         states['switch.desktop_and_laptop_group'].state === 'on');
                   ]]]
                 color: var(--paper-item-icon-active-color)
-          - type: custom:button-card
-            template: icon_only_more_info
-            entity: light.terrace_plant_lights
           - type: custom:button-card
             entity: switch.wake_on_lan_server
             template: icon_only_more_info
@@ -65,6 +69,9 @@ cards:
               action: toggle
               confirmation:
                 text: Do you really want to suspend/wake tower?
+          - type: custom:button-card
+            template: icon_only_more_info
+            entity: light.terrace_plant_lights
           - type: custom:button-card
             icon: mdi:blinds
             template: icon_only
@@ -399,28 +406,10 @@ cards:
             name: "Office"
             template: name_card_round
           - type: custom:button-card
-            entity: binary_sensor.parlor_window_sensor
-            show_icon: true
-            icon: mdi:window-open
-            name: "Parlor"
-            template: name_card_round
-          - type: custom:button-card
-            entity: binary_sensor.lower_kitchen_window_sensor
-            show_icon: true
-            icon: mdi:window-open
-            name: "Lower K."
-            template: name_card_round
-          - type: custom:button-card
             entity: binary_sensor.bedroom_window_sensor
             show_icon: true
             icon: mdi:window-open
             name: "Bedroom"
-            template: name_card_round
-          - type: custom:button-card
-            entity: binary_sensor.upstairs_window_sensor
-            show_icon: true
-            icon: mdi:window-open
-            name: "Upstairs"
             template: name_card_round
           - type: custom:button-card
             entity: binary_sensor.balcony_door_sensor
