@@ -63,3 +63,9 @@ switch.switches_group:
   icon: mdi:dip-switch
 switch.bedroom_group:
   icon: mdi:bed
+binary_sensor.office_window_sensor:
+  icon: mdi:window-open
+binary_sensor.bedroom_window_sensor:
+  icon: mdi:window-open
+binary_sensor.balcony_door_sensor:
+  icon: mdi:door-open

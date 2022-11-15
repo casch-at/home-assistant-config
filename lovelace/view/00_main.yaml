@@ -391,20 +391,17 @@ cards:
           - type: custom:button-card
             entity: binary_sensor.office_window_sensor
             show_icon: true
-            icon: mdi:window-open
             name: "Office"
             template: name_card_round
           - type: custom:button-card
             entity: binary_sensor.bedroom_window_sensor
             show_icon: true
-            icon: mdi:window-open
             name: "Bedroom"
             template: name_card_round
           - type: custom:button-card
             entity: binary_sensor.balcony_door_sensor
             show_icon: true
             name: "Balcony"
-            icon: mdi:door-open
             template: name_card_round
 
       - type: grid
