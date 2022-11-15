@@ -23,12 +23,6 @@
         - switch.tv_switch
         - switch.tv_usb
 
-  - service: climate.turn_off
-    target:
-      entity_id:
-        - climate.office_ac
-        - climate.upstairs_ac
-
   - wait_template: |-
       {{
         is_state('device_tracker.pc01_lan_router', 'not_home') and

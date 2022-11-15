@@ -101,17 +101,6 @@ cards:
             tap_action:
               action: navigate
               navigation_path: /lovelace/temperature
-            triggers_update:
-              - climate.heating
-            state:
-              # html colors: https://html-color.codes
-              - operator: template
-                value: >-
-                  [[[
-                    return states['climate.heating'].attributes.hvac_action === 'heating';
-                  ]]]
-                color: red
-                icon: hass:fire
             lock: disabled
           - type: custom:button-card
             icon: mdi:transmission-tower
