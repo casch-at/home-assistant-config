@@ -1,6 +1,6 @@
 substitutions:
   name: status-board
-  ap_ssid: Status Board
+  ap_ssid: Status Board FH
   ip: 192.168.1.44
 
 esphome:

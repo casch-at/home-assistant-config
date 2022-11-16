@@ -1,6 +1,6 @@
 substitutions:
   name: bathroom-mirror-light-switch
-  ap_ssid: Bathroom Mir... Fallback Hotspot
+  ap_ssid: Bathroom Mirror Light Switch FH
   ip: 192.168.1.36
   channel_1: Bathroom Mirror Light
   channel_2: Bathroom Mirror Light Unused

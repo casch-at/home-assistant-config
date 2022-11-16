@@ -31,7 +31,7 @@
 #
 
 substitutions:
-  ap_ssid: Upstairs IR R. Fallback Hotspot
+  ap_ssid: Upstairs IR Remote FH
   name: upstairs-ir-remote
   ip: 192.168.1.47
 
