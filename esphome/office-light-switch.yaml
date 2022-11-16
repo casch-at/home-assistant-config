@@ -1,0 +1,10 @@
+substitutions:
+  name: office-light-switch
+  ap_ssid: Office Light... Fallback Hotspot
+  ip: 192.168.1.37
+  channel_1: Office Light Front Switch 
+  channel_2: Office Light Back Switch
+  max_power: "2000.0"
+  max_temp: "70.0"
+
+<<: !include .shelly-2.5-as-light-template.yaml
