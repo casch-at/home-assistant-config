@@ -39,9 +39,9 @@
               entity_id: input_boolean.state_night_running
           - service: scene.create
             data:
-              scene_id: state_night_stairs_backup
+              scene_id: state_night_kitchen_cabinet_backup
               snapshot_entities:
-              - light.stairs_light
+              - light.kitchen_cabinet_light
           - repeat:
               count: '6'
               sequence:
@@ -51,7 +51,7 @@
                   brightness: 150
                   transition: 1
                 target:
-                  entity_id: light.stairs_light
+                  entity_id: light.kitchen_cabinet_light
               - delay: 00:00:01
               - service: light.turn_on
                 data:
@@ -59,7 +59,7 @@
                   brightness: 50
                   transition: 1
                 target:
-                  entity_id: light.stairs_light
+                  entity_id: light.kitchen_cabinet_light
               - delay: 00:00:01
           - service: input_select.select_option
             data:
@@ -81,7 +81,7 @@
               entity_id: input_boolean.state_night_running
           - service: scene.turn_on
             target:
-              entity_id: scene.state_night_stairs_backup
+              entity_id: scene.state_night_kitchen_cabinet_backup
         default: []
 
     # Bedroom nightstand light
@@ -94,7 +94,7 @@
           variables:
             entity_id: 'light.nightstand_lights'
         target:
-          entity_id: script.stairs_light_based_on_entity_state
+          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - service: light.toggle
         target:
           entity_id: light.nightstand_lights
@@ -129,7 +129,7 @@
           variables:
             entity_id: 'switch.bathroom_mirror_light_switch'
         target:
-          entity_id: script.stairs_light_based_on_entity_state
+          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - event: zha_event
         event_data:
           device_id: 5066dc0a0d6a11eba736919d4fa21431
@@ -145,7 +145,7 @@
           variables:
             entity_id: 'light.bathroom_lights'
         target:
-          entity_id: script.stairs_light_based_on_entity_state
+          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - event: zha_event
         event_data:
           device_id: 5066dc0a0d6a11eba736919d4fa21431
@@ -161,7 +161,7 @@
           variables:
             entity_id: 'light.terrace_plant_lights'
         target:
-          entity_id: script.stairs_light_based_on_entity_state
+          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - service: homeassistant.toggle
         target:
           entity_id: light.terrace_plant_lights
@@ -188,7 +188,7 @@
           variables:
             entity_id: 'light.front_floor'
         target:
-          entity_id: script.stairs_light_based_on_entity_state
+          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - event: zha_event
         event_data:
           device_id: c2cff687003dd88942aa8597fe9f8734
@@ -204,7 +204,7 @@
           variables:
             entity_id: 'light.front_floor'
         target:
-          entity_id: script.stairs_light_based_on_entity_state
+          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - service: light.toggle
         target:
           entity_id: light.front_floor_back_light
@@ -219,7 +219,7 @@
           variables:
             entity_id: 'switch.upstairs_lamp_switch'
         target:
-          entity_id: script.stairs_light_based_on_entity_state
+          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - service: switch.toggle
         target:
           entity_id: switch.upstairs_lamp_switch
@@ -233,25 +233,25 @@
         target:
           entity_id: switch.aroma_diffuser
 
-    # Cycle stairs scense
+    # Cycle kitchen_cabinet scense
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "6_single" }}'
       sequence:
       - service: scene.turn_on
         target:
-          entity_id: '{{ states("input_select.stairs_scenes") }}'
+          entity_id: '{{ states("input_select.kitchen_cabinet_scenes") }}'
       - service: input_select.select_next
         target:
-          entity_id: input_select.stairs_scenes
+          entity_id: input_select.kitchen_cabinet_scenes
 
-    # Toggle stairs light
+    # Toggle kitchen_cabinet light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "6_double" }}'
       sequence:
       - service: light.toggle
         target:
-          entity_id: light.stairs_light
+          entity_id: light.kitchen_cabinet_light
 
     default: []

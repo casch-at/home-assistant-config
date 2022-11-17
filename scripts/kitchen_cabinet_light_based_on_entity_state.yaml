@@ -1,17 +1,17 @@
 # Requires the following variables
-#  - entity_id -- the entity name for which based on the state (on/off) the stairs light should be turn on
+#  - entity_id -- the entity name for which based on the state (on/off) the kitchen_cabinet light should be turn on
 # Should be called before switching the state.
 # off -> on (green) on -> off (red)
-alias: Stairs Light Based On Entity State
+alias: Kitchen_Cabinet Light Based On Entity State
 mode: queued
 max: 10
-icon: mdi:stairs
+icon: mdi:file-cabinet
 sequence:
 - service: scene.create
   data:
-    scene_id: stairs_light_based_on_entity_state_stairs_backup
+    scene_id: kitchen_cabinet_light_based_on_entity_state_kitchen_cabinet_backup
     snapshot_entities:
-      - light.stairs_light
+      - light.kitchen_cabinet_light
 - service: light.turn_on
   data:
     rgb_color: >-
@@ -23,8 +23,8 @@ sequence:
     brightness: 150
     transition: 1
   target:
-    entity_id: light.stairs_light
+    entity_id: light.kitchen_cabinet_light
 - delay: 00:00:01
 - service: scene.turn_on
   target:
-    entity_id: scene.stairs_light_based_on_entity_state_stairs_backup
+    entity_id: scene.kitchen_cabinet_light_based_on_entity_state_kitchen_cabinet_backup

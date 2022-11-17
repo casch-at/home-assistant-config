@@ -10,21 +10,21 @@
     to: 'on'
   condition: []
   action:
-  # Turn on stairs light
+  # Turn on kitchen_cabinet light
   - choose:
     - conditions:
       - condition: numeric_state
         entity_id: sensor.front_floor_motion_sensor_light_level
         below: 100
       - condition: state
-        entity_id: light.stairs_light
+        entity_id: light.kitchen_cabinet_light
         state: 'off'
       sequence:
       - service: scene.turn_on
         data:
           transition: 15
         target:
-          entity_id: scene.stairs_white
+          entity_id: scene.kitchen_cabinet_white
     default: []
 
   # Open cover in bedroom

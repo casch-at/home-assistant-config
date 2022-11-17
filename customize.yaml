@@ -34,9 +34,6 @@ light.led_stripes:
   icon: mdi:led-strip-variant
 light.office_desk_light:
   icon: mdi:desk
-light.stairs_light:
-  friendly_name: Stairs
-  icon: mdi:stairs
 light.bathroom_lights:
   icon: mdi:shower
 light.bathroom_mirror_light:
@@ -57,6 +54,8 @@ light.office_ceiling_back_lights:
   icon: mdi:ceiling-light
 light.office_ceiling_front_lights:
   icon: mdi:ceiling-light
+light.kitchen_castle_light:
+  icon: mdi:file-cabinet
 switch.desk_and_laptop_group:
   icon: mdi:laptop
 switch.switches_group:

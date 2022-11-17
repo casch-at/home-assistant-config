@@ -183,11 +183,10 @@ cards:
          columns: 1
          cards:
            - type: custom:button-card
-             entity: light.stairs_light
+             entity: light.kitchen_cabinet_light
              template: icon_only_more_info
-             icon: mdi:stairs
            - type: custom:button-card
-             entity: light.stairs_light
+             entity: light.kitchen_cabinet_light
              template: icon_only_more_info
              styles:
                icon:
@@ -196,9 +195,9 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.stairs_white
+                 entity_id: scene.kitchen_cabinet_white
            - type: custom:button-card
-             entity: light.stairs_light
+             entity: light.kitchen_cabinet_light
              template: icon_only_more_info
              styles:
                icon:
@@ -207,9 +206,9 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.stairs_night
+                 entity_id: scene.kitchen_cabinet_night
            - type: custom:button-card
-             entity: light.stairs_light
+             entity: light.kitchen_cabinet_light
              template: icon_only_more_info
              styles:
                icon:
@@ -218,9 +217,9 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.stairs_green
+                 entity_id: scene.kitchen_cabinet_green
            - type: custom:button-card
-             entity: light.stairs_light
+             entity: light.kitchen_cabinet_light
              template: icon_only_more_info
              styles:
                icon:
@@ -229,9 +228,9 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.stairs_blue
+                 entity_id: scene.kitchen_cabinet_blue
            - type: custom:button-card
-             entity: light.stairs_light
+             entity: light.kitchen_cabinet_light
              template: icon_only_more_info
              styles:
                icon:
@@ -240,7 +239,7 @@ cards:
                action: call-service
                service: scene.turn_on
                service_data:
-                 entity_id: scene.stairs_purple
+                 entity_id: scene.kitchen_cabinet_purple
 
        - type: grid
          columns: 1

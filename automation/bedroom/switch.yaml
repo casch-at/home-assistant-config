@@ -119,7 +119,7 @@
       - choose:
         - conditions:
           - condition: state
-            entity_id: light.stairs_light
+            entity_id: light.kitchen_cabinet_light
             state: 'off'
           sequence:
           - service: scene.turn_on
@@ -128,5 +128,5 @@
         default:
         - service: light.turn_off
           target:
-            entity_id: light.stairs_light
+            entity_id: light.kitchen_cabinet_light
     default: []
