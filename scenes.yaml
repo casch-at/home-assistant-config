@@ -19,7 +19,7 @@
       - colorloop
       brightness: 179
       color_temp: 375
-      friendly_name: Kitchen_Cabinet
+      friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
@@ -102,7 +102,7 @@
       supported_features: 63
       state: 'on'
 - id: '1602060945201'
-  name: Kitchen_Cabinet White
+  name: Kitchen Cabinet White
   entities:
     light.kitchen_cabinet_light:
       min_mireds: 140
@@ -111,11 +111,11 @@
       - colorloop
       brightness: 254
       color_temp: 155
-      friendly_name: Kitchen_Cabinet
+      friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
-  icon: mdi:kitchen_cabinet
+  icon: mdi:file-cabinet
 - id: '1602355780411'
   name: Night Toilet Light
   entities:
@@ -126,7 +126,7 @@
       - colorloop
       brightness: 12
       color_temp: 495
-      friendly_name: Kitchen_Cabinet
+      friendly_name: Kitchen Cabinet
       icon: mdi:file-cabinet
       supported_features: 63
       state: 'on'
@@ -259,7 +259,7 @@
       state: 'on'
   icon: mdi:shower
 - id: '1612985607737'
-  name: Kitchen_Cabinet Green
+  name: Kitchen Cabinet Green
   entities:
     light.kitchen_cabinet_light:
       min_mireds: 140
@@ -277,13 +277,13 @@
       xy_color:
       - 0.17
       - 0.701
-      friendly_name: Kitchen_Cabinet
+      friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1612985635802'
-  name: Kitchen_Cabinet Blue
+  name: Kitchen Cabinet Blue
   entities:
     light.kitchen_cabinet_light:
       min_mireds: 140
@@ -301,13 +301,13 @@
       xy_color:
       - 0.138
       - 0.042
-      friendly_name: Kitchen_Cabinet
+      friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1612985673557'
-  name: Kitchen_Cabinet Purple
+  name: Kitchen Cabinet Purple
   entities:
     light.kitchen_cabinet_light:
       min_mireds: 140
@@ -325,13 +325,13 @@
       xy_color:
       - 0.263
       - 0.127
-      friendly_name: Kitchen_Cabinet
+      friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1612985714915'
-  name: Kitchen_Cabinet Night
+  name: Kitchen Cabinet Night
   entities:
     light.kitchen_cabinet_light:
       min_mireds: 140
@@ -340,7 +340,7 @@
       - colorloop
       brightness: 204
       color_temp: 397
-      friendly_name: Kitchen_Cabinet
+      friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63
       state: 'on'

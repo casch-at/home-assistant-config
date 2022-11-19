@@ -32,12 +32,12 @@ terrace_plant_scenes:
     - scene.terrace_plant_spots_light_green
     - scene.terrace_plant_spots_light_purple
     - scene.terrace_plant_spots_light_blue
-stairs_scenes:
-  name: Stairs Scenes
+kitchen_cabinat_scenes:
+  name: Kitchen Cabinat Scenes
   icon: mdi:desk
   options:
-    # - scene.stairs_green
-    # - scene.stairs_blue
-    - scene.stairs_purple
-    - scene.stairs_night
-    - scene.stairs_white
+    # - scene.kitchen_cabinet_green
+    # - scene.kitchen_cabinet_blue
+    - scene.kitchen_cabinet_purple
+    - scene.kitchen_cabinet_night
+    - scene.kitchen_cabinet_white

@@ -238,20 +238,20 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "6_single" }}'
       sequence:
-      - service: scene.turn_on
+      - service: light.toggle
         target:
-          entity_id: '{{ states("input_select.kitchen_cabinet_scenes") }}'
-      - service: input_select.select_next
-        target:
-          entity_id: input_select.kitchen_cabinet_scenes
+          entity_id: light.kitchen_cabinet_light
 
     # Toggle kitchen_cabinet light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "6_double" }}'
       sequence:
-      - service: light.toggle
+      - service: scene.turn_on
         target:
-          entity_id: light.kitchen_cabinet_light
+          entity_id: '{{ states("input_select.kitchen_cabinet_scenes") }}'
+      - service: input_select.select_next
+        target:
+          entity_id: input_select.kitchen_cabinet_scenes
 
     default: []
