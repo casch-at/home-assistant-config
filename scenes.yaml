@@ -6,8 +6,8 @@
       max_mireds: 495
       effect_list:
       - colorloop
-      brightness: 254
-      color_temp: 155
+      brightness: 25
+      color_temp: 420
       friendly_name: Office
       icon: mdi:led-strip-variant
       supported_features: 63
@@ -17,8 +17,8 @@
       max_mireds: 495
       effect_list:
       - colorloop
-      brightness: 179
-      color_temp: 375
+      brightness: 25
+      color_temp: 420
       friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63
@@ -28,35 +28,19 @@
       max_mireds: 500
       effect_list:
       - colorloop
-      brightness: 170
+      brightness: 100
       hs_color:
       - 120
       - 100
       rgb_color:
       - 0
-      - 255
       - 0
+      - 255
       xy_color:
       - 0.172
       - 0.747
       friendly_name: Terrace Plant Spots
       supported_features: 63
-      state: 'on'
-    light.parlor_big_shelve_light:
-      min_mireds: 155
-      max_mireds: 495
-      brightness: 150
-      color_temp: 370
-      friendly_name: Parlor Big Shelve Light
-      supported_features: 63
-      state: 'on'
-    light.parlor_shelve_light:
-      min_mireds: 140
-      max_mireds: 650
-      brightness: 150
-      color_temp: 370
-      friendly_name: Shelve
-      supported_features: 43
       state: 'on'
   icon: mdi:weather-night
 - id: '1601908389461'
@@ -266,7 +250,7 @@
       max_mireds: 650
       effect_list:
       - colorloop
-      brightness: 254
+      brightness: 55
       hs_color:
       - 135.294
       - 100
@@ -290,7 +274,7 @@
       max_mireds: 650
       effect_list:
       - colorloop
-      brightness: 254
+      brightness: 55
       hs_color:
       - 242.683
       - 96.471
@@ -314,7 +298,7 @@
       max_mireds: 650
       effect_list:
       - colorloop
-      brightness: 254
+      brightness: 55
       hs_color:
       - 270
       - 69.02
@@ -338,8 +322,8 @@
       max_mireds: 650
       effect_list:
       - colorloop
-      brightness: 204
-      color_temp: 397
+      brightness: 25
+      color_temp: 430
       friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
       supported_features: 63

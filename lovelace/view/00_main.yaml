@@ -14,24 +14,16 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            # entity: script.office_on_off
-            entity: switch.desktop_and_laptop_group
+            entity: light.office_lights
             icon: mdi:office-building
             template: icon_only_more_info
-            tap_action:
+            double_tap_action:
               action: call-service
               service: switch.toggle
               service_data:
                 entity_id: switch.desktop_and_laptop_group
               confirmation:
                 text: Do you really want to turn on/off office?
-            double_tap_action:
-              action: call-service
-              service: light.toggle
-              service_data:
-                entity_id: light.office_lights
-            hold_action:
-              entity: light.office_lights
             state:
               - operator: template
                 value: >-
@@ -43,7 +35,7 @@ cards:
               - operator: template
                 value: >-
                   [[[
-                    return (states['light.office_lights'].state === 'on' &&
+                    return (states['light.office_lights'].state === 'on' ||
                         states['switch.desktop_and_laptop_group'].state === 'on');
                   ]]]
                 color: var(--paper-item-icon-active-color)
@@ -208,7 +200,6 @@ cards:
                   - device_tracker.tapo_c200
                 state:
                   - operator: template
-                    # equivalent to: {{ states['device_tracker.tapo_c200'] == 'home' }}
                     value: >-
                       [[[
                         return states['device_tracker.tapo_c200'].state === 'home';
