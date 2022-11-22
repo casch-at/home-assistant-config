@@ -1,0 +1,10 @@
+substitutions:
+  name: bedroom-shutter-relay
+  ap_ssid: Bedroom Shutter Relay FH
+  ip: 192.168.1.44
+  channel_1: Bedroom Shutter Up
+  channel_2: Bedroom Shutter Down
+  max_power: "2000.0"
+  max_temp: "70.0"
+
+<<: !include .shelly-2.5-as-relay-template.yaml
