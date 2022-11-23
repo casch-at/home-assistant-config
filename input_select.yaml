@@ -19,12 +19,6 @@ office_desk_scenes:
     - scene.office_desk_purple
     - scene.office_desk_work_light
     - scene.office_desk_green
-office_ceiling_scenes:
-  name: Office Ceiling Scenes
-  icon: mdi:ceiling-light
-  options:
-    - scene.office_ceiling_cold
-    - scene.office_ceiling_warm
 terrace_plant_scenes:
   name: Terrace Plant Scenes
   icon: mdi:flower

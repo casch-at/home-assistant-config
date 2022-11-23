@@ -31,9 +31,6 @@
                 state: 'off'
           sequence:
           - service: light.turn_on
-            data:
-              brightness: "{{ states('sensor.daytime_light_brightness') }}"
-              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
             target:
               entity_id: light.office_ceiling_lights
         default:
@@ -45,18 +42,11 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "double" }}'
       sequence:
-      - choose:
-        - conditions:
-            - condition: state
-              entity_id: switch.wake_on_lan_tower
-              state: 'off'
-          sequence:
-          - service: switch.turn_on
-            target:
-              entity_id:
-                - switch.wake_on_lan_tower
-                - switch.desk_switch
-        default: []
+      - service: switch.turn_on
+        target:
+          entity_id:
+            - switch.wake_on_lan_tower
+            - switch.desk_switch
 
     - conditions:
       - condition: template
@@ -69,41 +59,24 @@
             - condition: state
               entity_id: light.office_ceiling_lights
               state: 'off'
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: light.office_4_light
-                state: 'on'
-              - condition: state
-                entity_id: light.office_5_light
-                state: 'on'
+            - condition: state
+              entity_id: light.office_back_light
+              state: 'on'
           sequence:
           - service: light.turn_on
-            data:
-              brightness: "{{ states('sensor.daytime_light_brightness') }}"
-              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
             target:
               entity_id:
-              - light.office_1_light
-              - light.office_2_light
-              - light.office_3_light
+              - light.office_front_light
           - service: light.turn_off
             target:
               entity_id:
-              - light.office_4_light
-              - light.office_5_light
+              - light.office_back_light
         default:
         - service: light.turn_on
-          data:
-            brightness: "{{ states('sensor.daytime_light_brightness') }}"
-            color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
           target:
             entity_id:
-            - light.office_4_light
-            - light.office_5_light
+            - light.office_back_light
         - service: light.turn_off
           target:
             entity_id:
-            - light.office_1_light
-            - light.office_2_light
-            - light.office_3_light
+            - light.office_front_light

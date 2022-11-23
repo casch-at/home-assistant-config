@@ -104,9 +104,6 @@
         value_template: '{{ trigger.event.data.command == "2_single" }}'
       sequence:
       - service: light.toggle
-        data:
-          brightness: "{{ states('sensor.daytime_light_brightness') }}"
-          color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
         target:
           entity_id: light.office_ceiling_lights
 

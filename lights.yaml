@@ -26,9 +26,23 @@
     - light.bathroom_mirror_light
 
 - platform: group
+  name: Office Lights
+  entities:
+    - light.office_desk_light
+    - light.office_back_light
+    - light.office_front_light
+
+- platform: group
+  name: Office Ceiling Lights
+  entities:
+    - light.office_back_light
+    - light.office_front_light
+
+- platform: group
   name: All Lights
   entities:
     - light.all_zigbee_lights
+    - light.office_ceiling_lights
     - light.bathroom_mirror_light
     - light.nightstand_lights
     - light.upstairs_lamp_light

@@ -2,8 +2,8 @@ substitutions:
   name: kitchen-floor-light-switch
   ap_ssid: Kitchen Floor Light Switch FH
   ip: 192.168.1.38
-  channel_1: Kitchen Light Switch
-  channel_2: Floor Light Switch
+  channel_1: Kitchen Light
+  channel_2: Floor Light
   max_power: "2000.0"
   max_temp: "70.0"
 
