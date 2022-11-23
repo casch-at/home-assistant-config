@@ -14,6 +14,8 @@ cards:
             - grid-template-areas: >-
                 "n wn tn"
                 "n1 w1 t1"
+                "n3 w3 t3"
+                "n4 w4 t4"
                 "n2 w2 t2"
                 "n6 w6 t6"
                 "n5 w5 t5"
@@ -25,6 +27,14 @@ cards:
               - padding-left: 10px
               - font-weight: bold
             n2:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n4:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n4:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
@@ -57,6 +67,8 @@ cards:
           wn: 'W'
           tn: 'kWh'
           n1: 'Mirror'
+          n3: 'O. Back'
+          n4: 'O. Front'
           n2: 'Desk'
           n6: 'Server...'
           n5: 'Total'
@@ -69,6 +81,16 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.desk_switch_energy_power
+              template: embedded_card
+          w3:
+            card:
+              type: custom:button-card
+              entity: sensor.office_back_light_energy_power
+              template: embedded_card
+          w4:
+            card:
+              type: custom:button-card
+              entity: sensor.office_front_light_energy_power
               template: embedded_card
           w5:
             card:
@@ -93,6 +115,16 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.desk_switch_energy_total
+              template: embedded_card
+          t3:
+            card:
+              type: custom:button-card
+              entity: sensor.office_back_light_energy_total
+              template: embedded_card
+          t4:
+            card:
+              type: custom:button-card
+              entity: sensor.office_front_light_energy_total
               template: embedded_card
           t5:
             card:
