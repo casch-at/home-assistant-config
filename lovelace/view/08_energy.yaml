@@ -30,7 +30,7 @@ cards:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
-            n4:
+            n3:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
