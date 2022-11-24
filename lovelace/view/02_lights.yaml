@@ -5,7 +5,7 @@ icon: mdi:lightbulb-group
 badges: []
 cards:
   - type: grid
-    columns: 8
+    columns: 7
     square: false
     cards:
        - type: grid
@@ -255,10 +255,3 @@ cards:
              template: icon_only_more_info
              name: 'C'
              show_name: true
-
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: switch.upstairs_lamp_switch
-             template: icon_only_more_info
