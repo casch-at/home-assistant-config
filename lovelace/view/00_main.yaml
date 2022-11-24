@@ -214,21 +214,6 @@ cards:
             icon: mdi:air-humidifier
             hold_action:
               entity: light.aroma_diffuser_light
-          - type: custom:button-card
-            entity: remote.parlor_ir_remote
-            template: remote_parlor
-            icon: mdi:robot-vacuum-variant
-            tap_action:
-              service_data:
-                device: kevin
-                command: clean
-            double_tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.parlor_ir_remote
-                device: kevin
-                command: home
         #   - type: custom:button-card
         #     entity: scene.chill
         #     template: icon_only_more_info
