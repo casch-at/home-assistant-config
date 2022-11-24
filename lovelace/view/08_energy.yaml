@@ -171,13 +171,13 @@ cards:
           - entity: sensor.lower_kitchen_motion_sensor_battery_level
             name: Lower kitchen motion sensor
             tap_action: more-info
-          - entity: sensor.front_floor_motion_sensor_battery_level
-            name: Front floor motion sensor
+          - entity: sensor.floor_motion_sensor_battery_level
+            name: Floor motion sensor
             tap_action: more-info
           - entity: sensor.bathroom_switch_battery_level
             name: Bathroom switch
             tap_action: more-info
-          - entity: sensor.front_floor_switch_battery_level
+          - entity: sensor.floor_switch_battery_level
             name: Front floor switch
             tap_action: more-info
           - entity: sensor.office_multi_sensor_battery_level

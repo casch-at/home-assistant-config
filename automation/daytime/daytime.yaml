@@ -16,7 +16,7 @@
 
   # Sets DAYTIMES daytime
   - platform: numeric_state
-    entity_id: sensor.front_floor_motion_sensor_light_level
+    entity_id: sensor.floor_motion_sensor_light_level
     above: 130
 
   # Sets EVENING daytime
@@ -47,7 +47,7 @@
 
     - conditions:
       - condition: template
-        value_template: "{{ trigger.entity_id == 'sensor.front_floor_motion_sensor_light_level' }}"
+        value_template: "{{ trigger.entity_id == 'sensor.floor_motion_sensor_light_level' }}"
       sequence:
       - service: input_select.select_option
         data:

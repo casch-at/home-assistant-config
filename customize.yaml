@@ -52,8 +52,8 @@ light.office_lights:
   icon: mdi:lightbulb-group
 light.office_ceiling_lights:
   icon: mdi:ceiling-light
-light.kitchen_castle_light:
-  icon: mdi:file-cabinet
+light.kitchen_cabinet_light:
+  icon: mdi:led-strip-variant
 switch.desk_and_laptop_group:
   icon: mdi:laptop
 switch.switches_group:

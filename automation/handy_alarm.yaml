@@ -14,7 +14,7 @@
   - choose:
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.front_floor_motion_sensor_light_level
+        entity_id: sensor.floor_motion_sensor_light_level
         below: 100
       - condition: state
         entity_id: light.kitchen_cabinet_light

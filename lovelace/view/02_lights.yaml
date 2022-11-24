@@ -202,21 +202,21 @@ cards:
          columns: 1
          cards:
            - type: custom:button-card
-             entity: light.front_floor_lights
+             entity: light.floor_lights
              template: icon_only_more_info
              icon: mdi:door
            - type: custom:button-card
-             entity: light.front_floor_front_light
+             entity: light.floor_front_light
              template: icon_only_more_info
              name: 'F'
              show_name: true
            - type: custom:button-card
-             entity: light.front_floor_middle_light
+             entity: light.floor_middle_light
              template: icon_only_more_info
              name: 'M'
              show_name: true
            - type: custom:button-card
-             entity: light.front_floor_back_light
+             entity: light.floor_back_light
              template: icon_only_more_info
              name: 'B'
              show_name: true

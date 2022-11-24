@@ -10,7 +10,7 @@
     for: 10
 
   - platform: numeric_state
-    entity_id: sensor.front_floor_motion_sensor_light_level
+    entity_id: sensor.floor_motion_sensor_light_level
     below: 100
     for: 10
 
@@ -30,7 +30,7 @@
     below: 100
 
   - condition: numeric_state
-    entity_id: sensor.front_floor_motion_sensor_light_level
+    entity_id: sensor.floor_motion_sensor_light_level
     below: 100
 
   - condition: not

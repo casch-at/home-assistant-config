@@ -1,11 +1,8 @@
 presence:
   name: Presence
   icon: mdi:home-search
-lower_kitch_light_active:
-  name: Lower Kitchen Light Active
-  icon: mdi:coffee
-front_floor_light_active:
-  name: Front Floor Light Active
+floor_light_active:
+  name: Floor Light Active
   icon: mdi:door
 state_night_running:
   name: State Night Running

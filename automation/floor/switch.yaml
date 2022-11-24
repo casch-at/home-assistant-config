@@ -175,7 +175,7 @@
         target:
           entity_id: input_select.terrace_plant_scenes
 
-    # Toggle front floor lights
+    # Toggle floor lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_single" }}'
@@ -183,7 +183,7 @@
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.front_floor'
+            entity_id: 'light.floor'
         target:
           entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - event: zha_event
@@ -191,7 +191,7 @@
           device_id: c2cff687003dd88942aa8597fe9f8734
           command: "1_single"
 
-    # Toggle lower kitchen lights
+    # Toggle floor back light lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_double" }}'
@@ -199,27 +199,12 @@
       - service: script.turn_on
         data:
           variables:
-            entity_id: 'light.front_floor'
+            entity_id: 'light.floor'
         target:
           entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - service: light.toggle
         target:
-          entity_id: light.front_floor_back_light
-
-    # Toggle upstairs lamp
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "5_hold" }}'
-      sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: 'switch.upstairs_lamp_switch'
-        target:
-          entity_id: script.kitchen_cabinet_light_based_on_entity_state
-      - service: switch.toggle
-        target:
-          entity_id: switch.upstairs_lamp_switch
+          entity_id: light.floor_back_light
 
     # Toggle aroma diffuser
     - conditions:

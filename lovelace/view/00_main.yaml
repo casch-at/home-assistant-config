@@ -17,53 +17,19 @@ cards:
             entity: light.office_lights
             icon: mdi:office-building
             template: icon_only_more_info
-            double_tap_action:
-              action: call-service
-              service: switch.toggle
-              service_data:
-                entity_id: switch.desktop_and_laptop_group
-              confirmation:
-                text: Do you really want to turn on/off office?
-            state:
-              - operator: template
-                value: >-
-                  [[[
-                    return (states['light.office_lights'].state === 'unavailable' &&
-                        states['switch.desktop_and_laptop_group'].state === 'unavailable');
-                  ]]]
-                color: var(--state-icon-unavailable-color)
-              - operator: template
-                value: >-
-                  [[[
-                    return (states['light.office_lights'].state === 'on' ||
-                        states['switch.desktop_and_laptop_group'].state === 'on');
-                  ]]]
-                color: var(--paper-item-icon-active-color)
           - type: custom:button-card
-            entity: switch.wake_on_lan_server
+            entity: switch.desk_switch
             template: icon_only_more_info
-            tab_action:
-              action: more-info
-            double_tap_action:
-              action: toggle
-              confirmation:
-                text: Do you really want to suspend/wake the server?
-          # - type: custom:button-card
-          #   template: icon_only_more_info
-          #   entity: switch.marantz_amp_power
-          #   icon: mdi:account-music
+            icon: mdi:monitor
           - type: custom:button-card
-            entity: switch.wake_on_lan_tower
+            entity: light.kitchen_cabinet_light
             template: icon_only_more_info
-            tab_action:
-              action: more-info
-            double_tap_action:
-              action: toggle
-              confirmation:
-                text: Do you really want to suspend/wake tower?
           - type: custom:button-card
+            entity: switch.aroma_diffuser
             template: icon_only_more_info
-            entity: light.terrace_plant_lights
+            icon: mdi:air-humidifier
+            hold_action:
+              entity: light.aroma_diffuser_light
           - type: custom:button-card
             icon: mdi:blinds
             template: icon_only
@@ -119,12 +85,12 @@ cards:
                 entity: light.bathroom_lights
                 template: icon_only_more_info
               - type: custom:button-card
-                entity: light.lower_kitchen_lights
-                template: icon_only_more_info
-              - type: custom:button-card
-                entity: light.front_floor_lights
+                entity: light.floor_lights
                 template: icon_only_more_info
                 icon: mdi:door
+              - type: custom:button-card
+                template: icon_only_more_info
+                entity: light.terrace_plant_lights
           - type: grid
             columns: 1
             cards:
@@ -139,8 +105,8 @@ cards:
                   - value: 'Night'
                     color: var(--paper-item-icon-active-color)
                 tap_action:
-                  action: navigate
-                  navigation_path: /lovelace/status
+                  action: more-info
+                  entity: input_select.daytime
                 hold_action:
                   action: more-info
                   entity: input_select.daytime
@@ -187,9 +153,6 @@ cards:
                   confirmation:
                     text: Do you really want to turn off all lights?
               - type: custom:button-card
-                entity: light.kitchen_cabinet_light
-                template: icon_only_more_info
-              - type: custom:button-card
                 icon: mdi:cctv
                 template: icon_only
                 entity: camera.tapo_c200_mainstream
@@ -205,38 +168,24 @@ cards:
                         return states['device_tracker.tapo_c200'].state === 'home';
                       ]]]
                     color: var(--paper-item-icon-active-color)
+              - type: custom:button-card
+                entity: person.christian_schwarzgruber
+                template: icon_only
+                icon: mdi:information
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/status
+                state:
+                  - operator: template
+                    value: >-
+                      [[[
+                        return states['person.christian_schwarzgruber'].state === 'home';
+                      ]]]
+                    color: var(--paper-item-icon-active-color)
+
       - type: grid
         columns: 7
         cards:
-          - type: custom:button-card
-            entity: switch.aroma_diffuser
-            template: icon_only_more_info
-            icon: mdi:air-humidifier
-            hold_action:
-              entity: light.aroma_diffuser_light
-        #   - type: custom:button-card
-        #     entity: scene.chill
-        #     template: icon_only_more_info
-        #     icon: mdi:palette
-        #     styles:
-        #       icon:
-        #         - color: "#0BC129"
-        #     tap_action:
-        #       action: call-service
-        #       service: scene.turn_on
-        #       service_data:
-        #         entity_id: scene.chill
-        #   - type: custom:button-card
-        #     entity: scene.love
-        #     template: icon_only_more_info
-        #     styles:
-        #       icon:
-        #         - color: "#C10B0B"
-        #     tap_action:
-        #       action: call-service
-        #       service: scene.turn_on
-        #       service_data:
-        #         entity_id: scene.love
           - type: custom:button-card
             entity: scene.night
             template: icon_only_more_info
@@ -248,6 +197,17 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.night
+          - type: custom:button-card
+            entity: light.terrace_plant_lights
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#A54CFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.terrace_plant_spots_purple
           - type: custom:button-card
             entity: light.office_desk_light
             template: icon_only_more_info
@@ -281,6 +241,24 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.kitchen_cabinet_night
+          - type: custom:button-card
+            entity: switch.wake_on_lan_server
+            template: icon_only_more_info
+            tab_action:
+              action: more-info
+            double_tap_action:
+              action: toggle
+              confirmation:
+                text: Do you really want to suspend/wake the server?
+          - type: custom:button-card
+            entity: switch.wake_on_lan_tower
+            template: icon_only_more_info
+            tab_action:
+              action: more-info
+            double_tap_action:
+              action: toggle
+              confirmation:
+                text: Do you really want to suspend/wake tower?
 
       - type: grid
         columns: 1

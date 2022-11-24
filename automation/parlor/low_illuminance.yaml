@@ -25,7 +25,7 @@
     below: 100
 
   - condition: numeric_state
-    entity_id: sensor.front_floor_motion_sensor_light_level
+    entity_id: sensor.office_light_sensor_light_level
     below: 100
 
   - condition: not
@@ -33,7 +33,7 @@
     - condition: state
       entity_id: input_select.daytime
       state: Night
-  action:
+  action: []
   # Turn on parlor shelve light
   # - choose:
   #   - conditions:
