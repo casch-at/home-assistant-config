@@ -22,8 +22,10 @@ light.terrace_plant_lights:
   icon: mdi:flower
 light.terrace_plant_spot_1_light:
   friendly_name: Plant Spot 1
+  icon: mdi:flower
 light.terrace_plant_spot_2_light:
   friendly_name: Plant Spot 2
+  icon: mdi:flower
 light.parlor_shelve_light:
   friendly_name: Shelve
 light.parlor_big_shelve_light:

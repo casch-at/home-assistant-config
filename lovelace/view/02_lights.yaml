@@ -66,106 +66,6 @@ cards:
          columns: 1
          cards:
            - type: custom:button-card
-             entity: light.parlor_lights
-             template: icon_only_more_info
-             icon: mdi:sofa
-           - type: custom:button-card
-             entity: light.parlor_shelve_light
-             template: icon_only_more_info
-             icon: mdi:library-shelves
-             name: 'S'
-             show_name: true
-           - type: custom:button-card
-             entity: light.parlor_big_shelve_light
-             template: icon_only_more_info
-             icon: mdi:bookshelf
-             name: 'W'
-             show_name: true
-           - type: custom:button-card
-             entity: light.terrace_plant_spot_1_light
-             template: icon_only_more_info
-             icon: mdi:flower
-             name: 'C'
-             show_name: true
-           - type: custom:button-card
-             entity: light.terrace_plant_spot_2_light
-             template: icon_only_more_info
-             icon: mdi:flower
-             name: 'T'
-             show_name: true
-           - type: custom:button-card
-             entity: light.terrace_plant_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#A54CFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.terrace_plant_spots_purple
-           - type: custom:button-card
-             entity: light.terrace_plant_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#B6FFC8"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.terrace_plant_spots_green
-           - type: custom:button-card
-             entity: light.parlor_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#E2FF91"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.parlor_tv
-
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.bathroom_lights
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.bathroom_mirror_light
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.bathroom_back_left_light
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.bathroom_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFA69E"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.bathroom_warm
-           - type: custom:button-card
-             entity: light.bathroom_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFFFFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.bathroom_cold
-
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
              entity: light.kitchen_cabinet_light
              template: icon_only_more_info
            - type: custom:button-card
@@ -223,6 +123,80 @@ cards:
                service: scene.turn_on
                service_data:
                  entity_id: scene.kitchen_cabinet_purple
+
+       - type: grid
+         columns: 1
+         cards:
+           - type: custom:button-card
+             entity: light.terrace_plant_lights
+             template: icon_only_more_info
+           - type: custom:button-card
+             entity: light.terrace_plant_spot_1_light
+             template: icon_only_more_info
+             name: 'L'
+             show_name: true
+           - type: custom:button-card
+             entity: light.terrace_plant_spot_2_light
+             template: icon_only_more_info
+             name: 'R'
+             show_name: true
+           - type: custom:button-card
+             entity: light.terrace_plant_lights
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#A54CFF"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.terrace_plant_spots_purple
+           - type: custom:button-card
+             entity: light.terrace_plant_lights
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#B6FFC8"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.terrace_plant_spots_green
+
+       - type: grid
+         columns: 1
+         cards:
+           - type: custom:button-card
+             entity: light.bathroom_lights
+             template: icon_only_more_info
+           - type: custom:button-card
+             entity: light.bathroom_mirror_light
+             template: icon_only_more_info
+           - type: custom:button-card
+             entity: light.bathroom_back_left_light
+             template: icon_only_more_info
+           - type: custom:button-card
+             entity: light.bathroom_lights
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#FFA69E"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.bathroom_warm
+           - type: custom:button-card
+             entity: light.bathroom_lights
+             template: icon_only_more_info
+             styles:
+               icon:
+                 - color: "#FFFFFF"
+             tap_action:
+               action: call-service
+               service: scene.turn_on
+               service_data:
+                 entity_id: scene.bathroom_cold
 
        - type: grid
          columns: 1
