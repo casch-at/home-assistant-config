@@ -209,16 +209,6 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: light.upstairs_lamp_light
-            template: icon_only_more_info
-            state:
-              - operator: template
-                value: >-
-                  [[[
-                    return states['switch.upstairs_lamp_switch'].state === 'unavailable';
-                  ]]]
-                color: var(--state-icon-unavailable-color)
-          - type: custom:button-card
             entity: switch.aroma_diffuser
             template: icon_only_more_info
             icon: mdi:air-humidifier
