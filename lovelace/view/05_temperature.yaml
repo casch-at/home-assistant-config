@@ -24,8 +24,10 @@ cards:
                 "n4 t4 h4 p4 l4"
                 "n1 t1 h1 p1 l1"
                 "n3 t3 h3 p3 l3"
+                "n9 t9 h9 p9 l9"
+                "n10 t10 h10 p10 l10"
             - grid-template-columns: min-content 1fr 1fr 1fr 1fr
-            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
           custom_fields:
             n1:
               - justify-self: start
@@ -59,6 +61,14 @@ cards:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
+            n9:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n10:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
             tn:
               - font-weight: bold
             hn:
@@ -80,6 +90,8 @@ cards:
           n6: 'Bedroom'
           n7: 'Parlor'
           n8: 'Bathroom'
+          n9: 'Mirror Switch'
+          n10: 'Office Switch'
           l1:
             card:
                 type: custom:button-card
@@ -204,4 +216,14 @@ cards:
             card:
                 type: custom:button-card
                 entity: sensor.bathroom_multi_sensor_pressure
+                template: embedded_card
+          t9:
+            card:
+                type: custom:button-card
+                entity: sensor.bathroom_mirror_light_switch_temperature
+                template: embedded_card
+          t10:
+            card:
+                type: custom:button-card
+                entity: sensor.office_light_switch_temperature
                 template: embedded_card
