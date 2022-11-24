@@ -168,8 +168,8 @@ cards:
           - entity: sensor.bedroom_motion_sensor_battery_level
             name: Bedroom motion sensor
             tap_action: more-info
-          - entity: sensor.lower_kitchen_motion_sensor_battery_level
-            name: Lower kitchen motion sensor
+          - entity: sensor.floor_helper_motion_sensor_battery_level
+            name: Floor helper motion sensor
             tap_action: more-info
           - entity: sensor.floor_motion_sensor_battery_level
             name: Floor motion sensor
@@ -200,15 +200,6 @@ cards:
             tap_action: more-info
           - entity: sensor.office_window_sensor_battery_level
             name: Office window sensor
-            tap_action: more-info
-          - entity: sensor.parlor_window_sensor_battery_level
-            name: Parlor window sensor
-            tap_action: more-info
-          - entity: sensor.lower_kitchen_window_sensor_battery_level
-            name: Lower kitchen window sensor
-            tap_action: more-info
-          - entity: sensor.upstairs_window_sensor_battery_level
-            name: Upstairs window sensor
             tap_action: more-info
           - entity: sensor.balcony_door_sensor_battery_level
             name: Balcony door sensor

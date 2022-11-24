@@ -154,39 +154,6 @@
       supported_features: 63
       state: 'on'
   icon: mdi:desk
-- id: '1609433939121'
-  name: Parlor TV
-  entities:
-    light.terrace_plant_lights:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
-      brightness: 170
-      hs_color:
-      - 75.818
-      - 43.137
-      rgb_color:
-      - 226
-      - 255
-      - 145
-      xy_color:
-      - 0.361
-      - 0.459
-      friendly_name: Terrace Plant Spots
-      icon: mdi:flower
-      supported_features: 63
-      state: 'on'
-    light.parlor_shelve_light:
-      min_mireds: 140
-      max_mireds: 650
-      brightness: 100
-      color_temp: 370
-      friendly_name: Shelve
-      icon: mdi:library-shelves
-      supported_features: 43
-      state: 'on'
-  icon: mdi:sofa
 - id: '1610138242037'
   name: Bathroom Warm
   entities:
@@ -460,3 +427,40 @@
       supported_features: 63
       state: 'on'
   icon: mdi:desk
+- id: '1669333649580'
+  name: Office Desk Night Light
+  entities:
+    light.office_desk_light:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 128
+      color_temp_kelvin: 2331
+      color_temp: 429
+      hs_color:
+      - 29.359
+      - 79.015
+      rgb_color:
+      - 255
+      - 152
+      - 53
+      xy_color:
+      - 0.565
+      - 0.389
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Desk Light
+      supported_features: 44
+      icon: mdi:desk
+      state: 'on'
+  icon: mdi:desk
+  metadata:
+    light.office_desk_light:
+      entity_only: true
