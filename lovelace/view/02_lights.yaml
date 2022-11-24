@@ -5,7 +5,7 @@ icon: mdi:lightbulb-group
 badges: []
 cards:
   - type: grid
-    columns: 7
+    columns: 6
     square: false
     cards:
        - type: grid
@@ -217,23 +217,6 @@ cards:
              show_name: true
            - type: custom:button-card
              entity: light.front_floor_back_light
-             template: icon_only_more_info
-             name: 'B'
-             show_name: true
-
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.lower_kitchen_lights
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.lower_kitchen_front_light
-             template: icon_only_more_info
-             name: 'F'
-             show_name: true
-           - type: custom:button-card
-             entity: light.lower_kitchen_back_light
              template: icon_only_more_info
              name: 'B'
              show_name: true
