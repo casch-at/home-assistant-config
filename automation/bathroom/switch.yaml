@@ -41,9 +41,6 @@
             target:
               entity_id: input_boolean.bathroom_light_active
           - service: light.turn_on
-            data:
-              brightness: "{{ states('sensor.daytime_light_brightness') }}"
-              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
             target:
               entity_id: light.bathroom_mirror_light
         default:
@@ -80,9 +77,6 @@
             target:
               entity_id: input_boolean.bathroom_light_active
           - service: light.turn_on
-            data:
-              brightness: "{{ states('sensor.daytime_light_brightness') }}"
-              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
             target:
               entity_id: light.bathroom_mirror_light
         default:
@@ -120,57 +114,6 @@
           target:
             entity_id: light.bathroom_ceiling_lights
 
-    # Turn left <-> right lights on
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "2_double" }}'
-      sequence:
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.bathroom_light_active
-      - choose:
-        - conditions:
-          - condition: or
-            conditions:
-            - condition: state
-              entity_id: light.bathroom_ceiling_lights
-              state: 'off'
-            - condition: and
-              conditions:
-              - condition: state
-                entity_id: light.bathroom_back_left_light
-                state: 'on'
-              - condition: state
-                entity_id: light.bathroom_front_left_light
-                state: 'on'
-          sequence:
-          - service: light.turn_on
-            data:
-              brightness: "{{ states('sensor.daytime_light_brightness') }}"
-              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
-            target:
-              entity_id:
-              - light.bathroom_back_right_light
-              - light.bathroom_front_right_light
-          - service: light.turn_off
-            target:
-              entity_id:
-              - light.bathroom_front_left_light
-              - light.bathroom_back_left_light
-        default:
-        - service: light.turn_on
-          data:
-            brightness: "{{ states('sensor.daytime_light_brightness') }}"
-            color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
-          target:
-            entity_id:
-            - light.bathroom_front_left_light
-            - light.bathroom_back_left_light
-        - service: light.turn_off
-          target:
-            entity_id:
-            - light.bathroom_front_right_light
-            - light.bathroom_back_right_light
 
     # All lights
     - conditions:

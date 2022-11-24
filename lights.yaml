@@ -19,10 +19,7 @@
 - platform: group
   name: Bathroom Lights
   entities:
-    - light.bathroom_front_left_light
-    - light.bathroom_front_right_light
     - light.bathroom_back_left_light
-    - light.bathroom_back_right_light
     - light.bathroom_mirror_light
 
 - platform: group
