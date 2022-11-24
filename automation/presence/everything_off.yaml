@@ -23,7 +23,7 @@
         - switch.tv_switch
         - switch.tv_usb
 
-  - wait_template: |-
+  - wait_template: >-
       {{
         is_state('device_tracker.pc01_lan_router', 'not_home') and
         is_state('device_tracker.pc01_wlan_router', 'not_home') and
