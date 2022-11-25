@@ -17,6 +17,14 @@ cards:
             entity: light.office_lights
             icon: mdi:office-building
             template: icon_only_more_info
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.3d_printer_switch
+              confirmation:
+                text: |
+                  Toggle 3D-Printer Switch?
           - type: custom:button-card
             entity: switch.desk_switch
             template: icon_only_more_info
