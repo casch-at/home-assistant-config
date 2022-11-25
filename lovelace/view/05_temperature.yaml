@@ -23,11 +23,16 @@ cards:
                 "n7 t7 h7 p7 l7"
                 "n4 t4 h4 p4 l4"
                 "n3 t3 h3 p3 l3"
+                "n1 t1 h1 p1 l1"
                 "n9 t9 h9 p9 l9"
                 "n10 t10 h10 p10 l10"
             - grid-template-columns: min-content 1fr 1fr 1fr 1fr
             - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
           custom_fields:
+            n1:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
             n2:
               - justify-self: start
               - padding-left: 10px
@@ -79,6 +84,7 @@ cards:
           ln: 'lx'
           n2: 'Office'
           n3: 'Floor'
+          n1: 'Floor Helper'
           n4: 'Upstairs'
           n5: 'Outdoor'
           n6: 'Bedroom'
@@ -105,6 +111,16 @@ cards:
             card:
                 type: custom:button-card
                 entity: sensor.office_light_sensor_light_level
+                template: embedded_card
+          t1:
+            card:
+                type: custom:button-card
+                entity: sensor.floor_helper_motion_sensor_temperature_fixed
+                template: embedded_card
+          l1:
+            card:
+                type: custom:button-card
+                entity: sensor.floor_helper_motion_sensor_light_level
                 template: embedded_card
           t3:
             card:

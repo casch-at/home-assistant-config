@@ -1,5 +1,5 @@
 - id: floor_motion
-  alias: Front floor motion
+  alias: Floor motion
   description: ''
   mode: restart
   trigger:
@@ -15,7 +15,7 @@
       below: 55
     - condition: numeric_state
       entity_id: automation.floor_motion
-      above: '0'
+      above: 0
       attribute: current
 
   - condition: state
