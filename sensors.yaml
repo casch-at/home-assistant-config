@@ -83,7 +83,7 @@
         {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
           254
         {% elif states('input_select.daytime') == 'Evening' -%}
-          120
+          135
         {% elif states('input_select.daytime') == 'Night' -%}
           80
         {% endif %}
