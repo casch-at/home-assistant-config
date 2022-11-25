@@ -1,8 +1,8 @@
 person.christian_schwarzgruber: {}
 switch.printer_switch:
   icon: mdi:printer
-switch.tv_switch:
-  icon: mdi:television
+switch.3d_printer_switch:
+  icon: mdi:printer-3d
 switch.desk_switch:
   icon: mdi:desk
 switch.laptop_switch:
