@@ -10,7 +10,7 @@ sequence:
                 entity_id: light.office_lights
                 state: "off"
               - condition: state
-                entity_id: switch.desktop_and_laptop_group
+                entity_id: switch.desk_and_laptop_group
                 state: "off"
         sequence:
           - service: light.turn_on
@@ -20,7 +20,7 @@ sequence:
           - service: switch.turn_on
             data: {}
             target:
-              entity_id: switch.desktop_and_laptop_group
+              entity_id: switch.desk_and_laptop_group
     default:
       - service: light.turn_off
         data:
@@ -30,4 +30,4 @@ sequence:
       - service: switch.turn_off
         data: {}
         target:
-          entity_id: switch.desktop_and_laptop_group
+          entity_id: switch.desk_and_laptop_group

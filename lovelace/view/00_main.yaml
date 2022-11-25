@@ -169,19 +169,12 @@ cards:
                       ]]]
                     color: var(--paper-item-icon-active-color)
               - type: custom:button-card
-                entity: person.christian_schwarzgruber
+                entity: binary_sensor.update_available_sensor
                 template: icon_only
                 icon: mdi:information
                 tap_action:
                   action: navigate
-                  navigation_path: /lovelace/status
-                state:
-                  - operator: template
-                    value: >-
-                      [[[
-                        return states['person.christian_schwarzgruber'].state === 'home';
-                      ]]]
-                    color: var(--paper-item-icon-active-color)
+                  navigation_path: /config/dashboard
 
       - type: grid
         columns: 7

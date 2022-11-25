@@ -62,8 +62,8 @@
   #   service: shell_command.turn_off_tower
 
 - platform: group
-  unique_id: desk_and_laptop_group
-  name: Desktop and Laptop Group
+  unique_id: deskt_and_laptop_group
+  name: Desk and Laptop Group
   # icon: mdi:laptop
   entities:
     - switch.desk_switch
@@ -78,7 +78,7 @@
     - switch.laptop_switch
     - switch.printer_switch
 #    - switch.tower
-    - switch.tv_switch
+    - switch.3d_printer_switch
 #    - switch.tv_usb
 
 - platform: group

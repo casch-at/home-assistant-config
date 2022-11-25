@@ -123,9 +123,9 @@
               trigger.event.data.args.flip_degrees == 180
           }}
       sequence:
-      - service: homeassistant.turn_on
+      - service: switch.turn_on
         target:
-          entity_id: group.desk_and_laptop_group
+          entity_id: switch.desk_and_laptop_group
       - condition: numeric_state
         entity_id: sensor.office_light_sensor_light_level
         below: 100

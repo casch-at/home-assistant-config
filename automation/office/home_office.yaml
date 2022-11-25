@@ -17,9 +17,9 @@
       - thu
       - fri
   - condition: state
-    entity_id: group.desk_and_laptop_group
+    entity_id: switch.desk_and_laptop_group
     state: 'off'
   action:
-  - service: homeassistant.turn_on
+  - service: switch.turn_on
     target:
-      entity_id: group.desk_and_laptop_group
+      entity_id: switch.desk_and_laptop_group

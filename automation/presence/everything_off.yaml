@@ -20,8 +20,8 @@
     target:
       entity_id:
         - switch.printer_switch
-        - switch.tv_switch
-        - switch.tv_usb
+        - switch.3d_printer_switch
+        - switch.3d_printer_usb
 
   - wait_template: >-
       {{
@@ -42,7 +42,7 @@
             is_state('device_tracker.lap_work_router', 'not_home')
           }}
       sequence:
-      - service: homeassistant.turn_off
+      - service: switch.turn_off
         target:
-          entity_id: group.desk_and_laptop_group
+          entity_id: switch.desk_and_laptop_group
     default: []

@@ -39,6 +39,15 @@
           or
             states('binary_sensor.bedroom_window_sensor') == 'on'
         }}
+    update_available_sensor:
+      friendly_name: Update Available Sensor
+      unique_id: binary_sensor0005
+      value_template: >-
+        {{
+            states('binary_sensor.home_assistant_versions_update_available') == 'on'
+          or
+            states('sensor.hacs') | int >= 1
+        }}
 
 - platform: workday
   country: AT
