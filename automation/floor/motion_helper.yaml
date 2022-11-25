@@ -1,5 +1,5 @@
 - id: floor_helper_motion
-  alias: Floor Helper Motion
+  alias: Floor helper motion
   description: ''
   mode: restart
   trigger:

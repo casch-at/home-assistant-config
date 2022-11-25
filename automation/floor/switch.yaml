@@ -180,28 +180,31 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_single" }}'
       sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: 'light.floor'
-        target:
-          entity_id: script.kitchen_cabinet_light_based_on_entity_state
-      - event: zha_event
-        event_data:
-          device_id: c2cff687003dd88942aa8597fe9f8734
-          command: "1_single"
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.floor_light_active
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.floor_light_active
+          - service: light.turn_on
+            data:
+              brightness: "{{ states('sensor.daytime_light_brightness') }}"
+              color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+            target:
+              entity_id: light.floor_lights
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.floor_lights
 
     # Toggle floor back light lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_double" }}'
       sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: 'light.floor'
-        target:
-          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - service: light.toggle
         target:
           entity_id: light.floor_back_light

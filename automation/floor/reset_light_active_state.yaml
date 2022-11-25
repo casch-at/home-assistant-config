@@ -1,5 +1,5 @@
 - id: floor_light_active_state
-  alias: Front floor light reset active state
+  alias: Floor light reset active state
   description: ''
   mode: single
   trigger:
