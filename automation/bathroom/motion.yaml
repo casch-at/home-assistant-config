@@ -43,7 +43,12 @@
       default:
         - service: light.turn_on
           data:
-            brightness: "{{ states('sensor.daytime_light_brightness') }}"
+            brightness: >-
+              {% if (states('sensor.daytime_light_brightness') | int + 30) >= 254 -%}
+                {{ states('sensor.daytime_light_brightness') }}
+              {% else -%}
+                 {{ states('sensor.daytime_light_brightness') | int + 30 }}
+              {% endif %}
             color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
           target:
             entity_id: light.bathroom_ceiling_lights
