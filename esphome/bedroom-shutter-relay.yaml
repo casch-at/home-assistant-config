@@ -5,6 +5,6 @@ substitutions:
   channel_1: Bedroom Shutter Up
   channel_2: Bedroom Shutter Down
   max_power: "2000.0"
-  max_temp: "70.0"
+  max_temp: "85.0"
 
 <<: !include .shelly-2.5-as-relay-template.yaml

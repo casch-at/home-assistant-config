@@ -5,6 +5,6 @@ substitutions:
   channel_1: Bathroom Mirror Light
   channel_2: Bathroom Mirror Light Unused
   max_power: "2000.0"
-  max_temp: "70.0"
+  max_temp: "85.0"
 
 <<: !include .shelly-2.5-as-light-template.yaml
