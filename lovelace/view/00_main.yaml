@@ -14,17 +14,13 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: light.office_lights
-            icon: mdi:office-building
+            entity: light.office_desk_light
             template: icon_only_more_info
             double_tap_action:
               action: call-service
-              service: switch.toggle
+              service: light.toggle
               service_data:
-                entity_id: switch.3d_printer_switch
-              confirmation:
-                text: |
-                  Toggle 3D-Printer Switch?
+                entity_id: light.office_ceiling_lights
           - type: custom:button-card
             entity: switch.desk_switch
             template: icon_only_more_info
@@ -214,17 +210,6 @@ cards:
             template: icon_only_more_info
             styles:
               icon:
-                - color: "#FFC8C8"
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.office_desk_night_light
-          - type: custom:button-card
-            entity: light.office_desk_light
-            template: icon_only_more_info
-            styles:
-              icon:
                 - color: "#FFFFFF"
             tap_action:
               action: call-service
@@ -242,6 +227,14 @@ cards:
               service: scene.turn_on
               service_data:
                 entity_id: scene.kitchen_cabinet_night
+          - type: custom:button-card
+            entity: switch.3d_printer_switch
+            template: icon_only_more_info
+            tap_action:
+              action: toggle
+              confirmation:
+                text: |
+                  Toggle 3D-Printer Switch?
           - type: custom:button-card
             entity: switch.wake_on_lan_server
             template: icon_only_more_info
