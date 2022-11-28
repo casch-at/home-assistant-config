@@ -1,0 +1,13 @@
+- id: terrace_light_based_on_input_select_scenes
+  alias: Terrace light based on input select scenes
+  description: ""
+  mode: single
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.terrace_plant_scenes
+  condition: []
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: "{{ states('input_select.terrace_plant_scenes') }}"

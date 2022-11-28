@@ -1,0 +1,13 @@
+- id: night_lights_based_on_input_select_scenes
+  alias: Night lights based on input select scenes
+  description: ""
+  mode: single
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.night_lights_scenes
+  condition: []
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: "{{ states('input_select.night_lights_scenes') }}"

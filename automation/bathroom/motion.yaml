@@ -25,7 +25,6 @@
     - service: input_number.increment
       target:
         entity_id: input_number.bathroom_motion_timeout_multiplier
-      data: {}
     - choose:
         - conditions:
             - condition: or

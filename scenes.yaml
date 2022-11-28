@@ -1,309 +1,136 @@
 - id: '1601832420345'
   name: Night
   entities:
-    light.office_desk_light:
-      min_mireds: 155
-      max_mireds: 495
-      effect_list:
-      - colorloop
+    light.night_lights:
       brightness: 25
       color_temp: 420
-      friendly_name: Office
-      icon: mdi:led-strip-variant
-      supported_features: 63
-      state: 'on'
-    light.kitchen_cabinet_light:
-      min_mireds: 155
-      max_mireds: 495
-      effect_list:
-      - colorloop
-      brightness: 25
-      color_temp: 420
-      friendly_name: Kitchen Cabinet
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:weather-night
+  metadata:
+    light.night_lights:
+      entity_only: true
 - id: '1601908389461'
   name: Chill
   entities:
     light.led_stripes:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
       brightness: 254
-      hs_color:
-      - 120
-      - 100
-      rgb_color:
-      - 0
-      - 255
-      - 0
-      xy_color:
-      - 0.172
-      - 0.747
-      friendly_name: LED Stripes
-      icon: mdi:led-strip-variant
-      supported_features: 63
+      color_temp: 420
       state: 'on'
     light.terrace_plant_lights:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
       brightness: 254
-      hs_color:
-      - 132
-      - 100
-      rgb_color:
-      - 0
-      - 255
-      - 50
-      xy_color:
-      - 0.171
-      - 0.718
-      friendly_name: Terrace Plant Spots
-      supported_features: 63
+      color_temp: 420
       state: 'on'
 - id: '1602060945201'
   name: Kitchen Cabinet White
   entities:
     light.kitchen_cabinet_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 254
       color_temp: 155
-      friendly_name: Kitchen Cabinet
       icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1602355780411'
   name: Night Toilet Light
   entities:
     light.kitchen_cabinet_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 12
       color_temp: 495
-      friendly_name: Kitchen Cabinet
-      icon: mdi:file-cabinet
-      supported_features: 63
       state: 'on'
   icon: hass:toilet
 - id: '1602522741384'
   name: "Love \U0001F60D"
   entities:
     light.terrace_plant_lights:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
       brightness: 254
-      hs_color:
-      - 343.294
-      - 100
       rgb_color:
       - 255
       - 0
       - 71
-      xy_color:
-      - 0.659
-      - 0.28
-      friendly_name: Terrace Plant Spots
-      supported_features: 63
       state: 'on'
     light.led_stripes:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
       brightness: 254
-      hs_color:
-      - 0
-      - 100
       rgb_color:
       - 255
       - 0
       - 0
-      xy_color:
-      - 0.701
-      - 0.299
-      friendly_name: LED Stripes
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:head-heart
 - id: '1607445104403'
-  name: Office Desk Work Light
+  name: Office Desk White
   entities:
     light.office_desk_light:
-      min_mireds: 155
-      max_mireds: 495
-      effect_list:
-      - colorloop
       brightness: 254
       color_temp: 155
-      friendly_name: Office
-      icon: mdi:desk
-      supported_features: 63
       state: 'on'
   icon: mdi:desk
 - id: '1610138242037'
   name: Bathroom Warm
   entities:
     light.bathroom_lights:
-      min_mireds: 153
-      max_mireds: 370
-      supported_color_modes:
-      - color_temp
-      color_mode: color_temp
       brightness: 64
       color_temp: 351
       entity_id:
       - light.bathroom_back_left_light
       - light.bathroom_mirror_light
-      friendly_name: Bathroom Lights
-      icon: mdi:shower
-      supported_features: 40
       state: 'on'
   icon: mdi:shower
 - id: '1610138327508'
   name: Bathroom Cold
   entities:
     light.bathroom_lights:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - colorloop
       brightness: 254
       color_temp: 200
-      friendly_name: Bathroom
-      supported_features: 47
       state: 'on'
   icon: mdi:shower
 - id: '1612985607737'
   name: Kitchen Cabinet Green
   entities:
     light.kitchen_cabinet_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 55
-      hs_color:
-      - 135.294
-      - 100
       rgb_color:
       - 0
       - 255
       - 64
-      xy_color:
-      - 0.17
-      - 0.701
-      friendly_name: Kitchen Cabinet
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1612985635802'
   name: Kitchen Cabinet Blue
   entities:
     light.kitchen_cabinet_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 55
-      hs_color:
-      - 242.683
-      - 96.471
       rgb_color:
       - 19
       - 8
       - 255
-      xy_color:
-      - 0.138
-      - 0.042
-      friendly_name: Kitchen Cabinet
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1612985673557'
   name: Kitchen Cabinet Purple
   entities:
     light.kitchen_cabinet_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 55
-      hs_color:
-      - 270
-      - 69.02
       rgb_color:
       - 166
       - 78
       - 255
-      xy_color:
-      - 0.263
-      - 0.127
-      friendly_name: Kitchen Cabinet
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1612985714915'
   name: Kitchen Cabinet Night
   entities:
     light.kitchen_cabinet_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 25
       color_temp: 430
-      friendly_name: Kitchen Cabinet
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1614371683931'
   name: Terrace Plant Spots Light Green
   entities:
     light.terrace_plant_lights:
-      min_color_temp_kelvin: 1801
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 555
-      effect_list:
-      - colorloop
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode: xy
       brightness: 166
-      hs_color:
-      - 149.882
-      - 100
-      rgb_color:
-      - 0
-      - 255
-      - 127
       xy_color:
       - 0.163989
       - 0.590982
-      off_with_transition: false
-      off_brightness:
-      friendly_name: Plants
-      supported_features: 44
-      icon: mdi:flower
       state: 'on'
   icon: mdi:flower
   metadata:
@@ -313,32 +140,10 @@
   name: Terrace Plant Spots Light Purple
   entities:
     light.terrace_plant_lights:
-      min_color_temp_kelvin: 1801
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 555
-      effect_list:
-      - colorloop
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode: xy
       brightness: 166
-      hs_color:
-      - 272.49
-      - 99.216
-      rgb_color:
-      - 139
-      - 2
-      - 255
       xy_color:
       - 0.226978
       - 0.081987
-      off_with_transition: false
-      off_brightness:
-      friendly_name: Plants
-      supported_features: 44
-      icon: mdi:flower
       state: 'on'
   icon: mdi:flower
   metadata:
@@ -348,32 +153,10 @@
   name: Terrace Plant Spots Light Blue
   entities:
     light.terrace_plant_lights:
-      min_color_temp_kelvin: 1801
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 555
-      effect_list:
-      - colorloop
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode: xy
       brightness: 166
-      hs_color:
-      - 242.588
-      - 100
-      rgb_color:
-      - 11
-      - 0
-      - 255
       xy_color:
       - 0.135981
       - 0.039994
-      off_with_transition: false
-      off_brightness:
-      friendly_name: Plants
-      supported_features: 44
-      icon: mdi:flower
       state: 'on'
   icon: mdi:flower
   metadata:
@@ -383,84 +166,56 @@
   name: Office Desk Purple
   entities:
     light.office_desk_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 254
-      hs_color:
-      - 270
-      - 69.02
       rgb_color:
       - 166
       - 78
       - 255
-      xy_color:
-      - 0.263
-      - 0.127
-      friendly_name: Office Desk
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:desk
 - id: '1615493508591'
   name: Office Desk Green
   entities:
     light.office_desk_light:
-      min_mireds: 140
-      max_mireds: 650
-      effect_list:
-      - colorloop
       brightness: 254
-      hs_color:
-      - 135.294
-      - 100
       rgb_color:
       - 0
       - 255
       - 64
-      xy_color:
-      - 0.17
-      - 0.701
-      friendly_name: Office Desk
-      icon: mdi:led-strip-variant
-      supported_features: 63
       state: 'on'
   icon: mdi:desk
 - id: '1669333649580'
-  name: Office Desk Night Light
+  name: Office Desk Night
   entities:
     light.office_desk_light:
-      min_color_temp_kelvin: 2020
-      max_color_temp_kelvin: 6451
-      min_mireds: 155
-      max_mireds: 495
-      effect_list:
-      - colorloop
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode: color_temp
       brightness: 128
-      color_temp_kelvin: 2331
       color_temp: 429
-      hs_color:
-      - 29.359
-      - 79.015
-      rgb_color:
-      - 255
-      - 152
-      - 53
-      xy_color:
-      - 0.565
-      - 0.389
-      off_with_transition: false
-      off_brightness:
-      friendly_name: Office Desk Light
-      supported_features: 44
-      icon: mdi:desk
       state: 'on'
   icon: mdi:desk
   metadata:
     light.office_desk_light:
+      entity_only: true
+- id: '1669670753903'
+  name: Night Lights Light Purple
+  entities:
+    light.night_lights:
+      brightness: 201
+      xy_color:
+      - 0.237995
+      - 0.093996
+      state: 'on'
+  icon: mdi:lightbulb-group
+  metadata:
+    light.night_lights:
+      entity_only: true
+- id: '1669670823309'
+  name: Night Lights Light Night
+  entities:
+    light.night_lights:
+      brightness: 194
+      color_temp: 421
+      state: 'on'
+  icon: mdi:lightbulb-group
+  metadata:
+    light.night_lights:
       entity_only: true

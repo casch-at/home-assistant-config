@@ -16,8 +16,9 @@ office_desk_scenes:
   name: Office Desk Scenes
   icon: mdi:desk
   options:
+    - scene.office_desk_white
+    - scene.office_desk_night
     - scene.office_desk_purple
-    - scene.office_desk_work_light
     - scene.office_desk_green
 terrace_plant_scenes:
   name: Terrace Plant Scenes
@@ -26,12 +27,17 @@ terrace_plant_scenes:
     - scene.terrace_plant_spots_light_green
     - scene.terrace_plant_spots_light_purple
     - scene.terrace_plant_spots_light_blue
-kitchen_cabinat_scenes:
-  name: Kitchen Cabinat Scenes
+kitchen_cabinet_scenes:
+  name: Kitchen Cabinet Scenes
   icon: mdi:desk
   options:
-    # - scene.kitchen_cabinet_green
-    # - scene.kitchen_cabinet_blue
-    - scene.kitchen_cabinet_purple
-    - scene.kitchen_cabinet_night
     - scene.kitchen_cabinet_white
+    - scene.kitchen_cabinet_night
+    - scene.kitchen_cabinet_purple
+    - scene.kitchen_cabinet_green
+night_lights_scenes:
+  name: Night Lights Scenes
+  icon: mdi:desk
+  options:
+    - scene.night_lights_light_night
+    - scene.night_lights_light_purple

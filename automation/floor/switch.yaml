@@ -168,9 +168,6 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
       sequence:
-      - service: scene.turn_on
-        target:
-          entity_id: '{{ states("input_select.terrace_plant_scenes") }}'
       - service: input_select.select_next
         target:
           entity_id: input_select.terrace_plant_scenes
