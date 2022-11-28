@@ -184,16 +184,16 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: scene.night
+            entity: light.night_lights
+            icon: mdi:weather-night
             template: icon_only_more_info
-            styles:
-              icon:
-                - color: "#FFE59E"
             tap_action:
               action: call-service
               service: scene.turn_on
               service_data:
                 entity_id: scene.night
+            double_tap_action:
+              action: toggle
           - type: custom:button-card
             entity: light.terrace_plant_lights
             template: icon_only_more_info
