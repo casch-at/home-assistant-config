@@ -53,6 +53,6 @@
   action:
   - service: scene.turn_on
     target:
-      entity_id: scene.office_desk_work_light
+      entity_id: scene.office_desk_white
     data:
       transition: 60

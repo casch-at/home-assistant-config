@@ -131,7 +131,7 @@
         below: 100
       - service: scene.turn_on
         target:
-          entity_id: scene.office_desk_work_light
+          entity_id: scene.office_desk_white
 
     # GESTURE_PUSH
     # - conditions:

@@ -25,29 +25,28 @@
     - service: input_number.increment
       target:
         entity_id: input_number.bathroom_motion_timeout_multiplier
-    - choose:
-        - conditions:
-            - condition: or
-              conditions:
-                - condition: state
-                  entity_id: input_select.daytime
-                  state: Daytimes
-                - condition: state
-                  entity_id: input_select.daytime
-                  state: Morning
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness: >-
-                  {% if (states('sensor.daytime_light_brightness') | int + 30) >= 254 -%}
-                    {{ states('sensor.daytime_light_brightness') }}
-                  {% else -%}
-                     {{ states('sensor.daytime_light_brightness') | int + 30 }}
-                  {% endif %}
-                color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
-              target:
-                entity_id: light.bathroom_lights
-      default:
+    - if:
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: input_select.daytime
+              state: Daytimes
+            - condition: state
+              entity_id: input_select.daytime
+              state: Morning
+      then:
+        - service: light.turn_on
+          data:
+            brightness: >-
+              {% if (states('sensor.daytime_light_brightness') | int + 30) >= 254 -%}
+                {{ states('sensor.daytime_light_brightness') }}
+              {% else -%}
+                 {{ states('sensor.daytime_light_brightness') | int + 30 }}
+              {% endif %}
+            color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+          target:
+            entity_id: light.bathroom_lights
+      else:
         - service: light.turn_on
           data:
             brightness: >-
@@ -59,6 +58,7 @@
             color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
           target:
             entity_id: light.bathroom_ceiling_lights
+
     - wait_for_trigger:
         platform: state
         entity_id: binary_sensor.bathroom_motion_sensor
@@ -76,7 +76,6 @@
     - service: light.turn_off
       target:
         entity_id: light.bathroom_lights
-      data: {}
     - service: input_number.set_value
       target:
         entity_id: input_number.bathroom_motion_timeout_multiplier

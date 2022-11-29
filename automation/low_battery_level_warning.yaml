@@ -158,12 +158,10 @@
     data:
       message: '{{ trigger.to_state.name }} battery level bellow {{ trigger.to_state.state | int + 1}} %'
       title: '{{ trigger.to_state.name }} Critical'
-  - choose:
-    - conditions:
+  - if:
       - condition: template
         value_template: "{{ trigger.entity_id == 'sensor.tablet_battery_level' }}"
-      sequence:
+    then:
       - service: switch.turn_on
         target:
           entity_id: switch.tv_usb
-    default: []

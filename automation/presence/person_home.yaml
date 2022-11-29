@@ -10,26 +10,22 @@
     to: home
   condition: []
   action:
-  - choose:
-    - conditions:
+  - if:
       - condition: state
         entity_id: input_boolean.presence
         state: 'off'
-      sequence:
+    then:
       - service: input_boolean.turn_on
         target:
           entity_id: input_boolean.presence
-    default: []
 
   # Home office
-  - choose:
-    - conditions:
+  - if:
       - condition: template
         value_template: "{{ trigger.entity_id == 'person.christian_schwarzgruber' }}"
-      sequence:
+    then:
       - service: automation.trigger
         data:
           skip_condition: no
         target:
           entity_id: automation.home_office
-    default: []

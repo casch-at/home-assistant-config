@@ -31,13 +31,11 @@
       state: Night
   action:
   # Turn on kitchen_cabinet light
-  - choose:
-    - conditions:
+  - if:
       - condition: state
         entity_id: light.kitchen_cabinet_light
         state: 'off'
-      sequence:
+    then:
       - service: scene.turn_on
         target:
           entity_id: scene.kitchen_cabinet_night
-    default: []

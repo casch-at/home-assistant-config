@@ -11,40 +11,36 @@
   condition: []
   action:
   # Turn on kitchen_cabinet light
-  - choose:
-    - conditions:
+  - if:
       - condition: numeric_state
         entity_id: sensor.floor_motion_sensor_light_level
         below: 100
       - condition: state
         entity_id: light.kitchen_cabinet_light
         state: 'off'
-      sequence:
+    then:
       - service: scene.turn_on
         data:
           transition: 15
         target:
           entity_id: scene.kitchen_cabinet_white
-    default: []
 
   # Open cover in bedroom
-  - choose:
-    # Check if it is safe to open the cover, otherwise stop here
-    - conditions:
+  - if:
+        # Check if it is safe to open the cover, otherwise stop here
       - condition: state
         entity_id: binary_sensor.cover_operation_to_cold
         state: 'off'
       - condition: state
         entity_id: binary_sensor.bedroom_window_sensor
         state: 'off'
-      sequence:
+    then:
       # - service: cover.stop_cover
       #   target:
       #     entity_id: cover.bedroom_roller_shutter_level
       - service: cover.open_cover
         target:
           entity_id: cover.bedroom_roller_shutter_level
-    default: []
 
   # Turn parlor remote on
   # - choose:
@@ -59,15 +55,12 @@
   #   default: []
 
   # Home office
-  - choose:
-    - conditions:
+  - if:
       - condition: template
         value_template: "{{ trigger.entity_id == 'binary_sensor.christian_schwarzgruber_alarm' }}"
-      sequence:
+    then:
       - service: automation.trigger
         data:
           skip_condition: false
         target:
           entity_id: automation.home_office
-
-    default: []
