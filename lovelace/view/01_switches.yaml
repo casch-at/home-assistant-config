@@ -46,11 +46,11 @@ cards:
         - type: custom:button-card
           entity: switch.3d_printer_switch
           template: icon_only_more_info
-            tap_action:
-              action: toggle
-              confirmation:
-                text: |
-                  Toggle 3D-Printer Switch?
+          tap_action:
+            action: toggle
+            confirmation:
+              text: |
+                Toggle 3D-Printer Switch?
         - type: custom:button-card
           entity: switch.3d_printer_usb
           template: icon_only_more_info
