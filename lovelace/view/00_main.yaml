@@ -178,6 +178,9 @@ cards:
                 icon: mdi:information
                 tap_action:
                   action: navigate
+                  navigation_path: /lovelace/status
+                double_tap_action:
+                  action: navigate
                   navigation_path: /config/dashboard
 
       - type: grid
