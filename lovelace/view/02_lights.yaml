@@ -5,236 +5,244 @@ icon: mdi:lightbulb-group
 badges: []
 cards:
   - type: grid
-    columns: 6
-    square: false
+    columns: 1
     cards:
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.office_desk_light
-             template: icon_only_more_info
-             icon: mdi:desk
-           - type: custom:button-card
-             entity: light.office_desk_light
-             template: icon_only_more_info
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.office_desk_night
-             styles:
-               icon:
-                 - color: "#F9F4EB"
-           - type: custom:button-card
-             entity: light.office_desk_light
-             template: icon_only_more_info
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.office_desk_purple
-             styles:
-               icon:
-                 - color: "#A64EFF"
-           - type: custom:button-card
-             entity: light.office_desk_light
-             template: icon_only_more_info
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.office_desk_green
-             styles:
-               icon:
-                 - color: "#00FF40"
-           - type: custom:button-card
-             entity: light.office_ceiling_lights
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.office_back_light
-             template: icon_only_more_info
-             name: 'B'
-             show_name: true
-           - type: custom:button-card
-             entity: light.office_front_light
-             template: icon_only_more_info
-             name: 'F'
-             show_name: true
+      - type: grid
+        columns: 6
+        square: false
+        cards:
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.office_desk_light
+                template: icon_only_more_info
+                icon: mdi:desk
+              - type: custom:button-card
+                entity: light.office_desk_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.office_desk_night
+                styles:
+                  icon:
+                    - color: "#F9F4EB"
+              - type: custom:button-card
+                entity: light.office_desk_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.office_desk_purple
+                styles:
+                  icon:
+                    - color: "#A64EFF"
+              - type: custom:button-card
+                entity: light.office_desk_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.office_desk_green
+                styles:
+                  icon:
+                    - color: "#00FF40"
+              - type: custom:button-card
+                entity: light.office_ceiling_lights
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.office_back_light
+                template: icon_only_more_info
+                name: 'B'
+                show_name: true
+              - type: custom:button-card
+                entity: light.office_front_light
+                template: icon_only_more_info
+                name: 'F'
+                show_name: true
 
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.kitchen_cabinet_light
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.kitchen_cabinet_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFFFFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.kitchen_cabinet_white
-           - type: custom:button-card
-             entity: light.kitchen_cabinet_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFC8C8"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.kitchen_cabinet_night
-           - type: custom:button-card
-             entity: light.kitchen_cabinet_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#00FF41"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.kitchen_cabinet_green
-           - type: custom:button-card
-             entity: light.kitchen_cabinet_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#0A00FF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.kitchen_cabinet_blue
-           - type: custom:button-card
-             entity: light.kitchen_cabinet_light
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#A54CFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.kitchen_cabinet_purple
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.kitchen_cabinet_light
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.kitchen_cabinet_light
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#FFFFFF"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.kitchen_cabinet_white
+              - type: custom:button-card
+                entity: light.kitchen_cabinet_light
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#FFC8C8"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.kitchen_cabinet_night
+              - type: custom:button-card
+                entity: light.kitchen_cabinet_light
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#00FF41"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.kitchen_cabinet_green
+              - type: custom:button-card
+                entity: light.kitchen_cabinet_light
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#0A00FF"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.kitchen_cabinet_blue
+              - type: custom:button-card
+                entity: light.kitchen_cabinet_light
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#A54CFF"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.kitchen_cabinet_purple
 
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.terrace_plant_lights
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.terrace_plant_spot_1_light
-             template: icon_only_more_info
-             name: 'L'
-             show_name: true
-           - type: custom:button-card
-             entity: light.terrace_plant_spot_2_light
-             template: icon_only_more_info
-             name: 'R'
-             show_name: true
-           - type: custom:button-card
-             entity: light.terrace_plant_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#A54CFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.terrace_plant_spots_light_purple
-           - type: custom:button-card
-             entity: light.terrace_plant_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#B6FFC8"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.terrace_plant_spots_light_green
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.terrace_plant_spot_1_light
+                template: icon_only_more_info
+                name: 'L'
+                show_name: true
+              - type: custom:button-card
+                entity: light.terrace_plant_spot_2_light
+                template: icon_only_more_info
+                name: 'R'
+                show_name: true
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#A54CFF"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.terrace_plant_spots_light_purple
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#B6FFC8"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.terrace_plant_spots_light_green
 
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.bathroom_lights
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.bathroom_mirror_light
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.bathroom_back_left_light
-             template: icon_only_more_info
-           - type: custom:button-card
-             entity: light.bathroom_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFA69E"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.bathroom_warm
-           - type: custom:button-card
-             entity: light.bathroom_lights
-             template: icon_only_more_info
-             styles:
-               icon:
-                 - color: "#FFFFFF"
-             tap_action:
-               action: call-service
-               service: scene.turn_on
-               service_data:
-                 entity_id: scene.bathroom_cold
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.bathroom_lights
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.bathroom_mirror_light
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.bathroom_back_left_light
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.bathroom_lights
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#FFA69E"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bathroom_warm
+              - type: custom:button-card
+                entity: light.bathroom_lights
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#FFFFFF"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bathroom_cold
 
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.floor_lights
-             template: icon_only_more_info
-             icon: mdi:door
-           - type: custom:button-card
-             entity: light.floor_front_light
-             template: icon_only_more_info
-             name: 'F'
-             show_name: true
-           - type: custom:button-card
-             entity: light.floor_middle_light
-             template: icon_only_more_info
-             name: 'M'
-             show_name: true
-           - type: custom:button-card
-             entity: light.floor_back_light
-             template: icon_only_more_info
-             name: 'B'
-             show_name: true
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.floor_lights
+                template: icon_only_more_info
+                icon: mdi:door
+              - type: custom:button-card
+                entity: light.floor_front_light
+                template: icon_only_more_info
+                name: 'F'
+                show_name: true
+              - type: custom:button-card
+                entity: light.floor_middle_light
+                template: icon_only_more_info
+                name: 'M'
+                show_name: true
+              - type: custom:button-card
+                entity: light.floor_back_light
+                template: icon_only_more_info
+                name: 'B'
+                show_name: true
 
-       - type: grid
-         columns: 1
-         cards:
-           - type: custom:button-card
-             entity: light.nightstand_lights
-             template: icon_only_more_info
-             icon: mdi:bed
-           - type: custom:button-card
-             entity: light.nightstand_sonia_light
-             template: icon_only_more_info
-             name: 'S'
-             show_name: true
-           - type: custom:button-card
-             entity: light.nightstand_christian_light
-             template: icon_only_more_info
-             name: 'C'
-             show_name: true
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.nightstand_lights
+                template: icon_only_more_info
+                icon: mdi:bed
+              - type: custom:button-card
+                entity: light.nightstand_sonia_light
+                template: icon_only_more_info
+                name: 'S'
+                show_name: true
+              - type: custom:button-card
+                entity: light.nightstand_christian_light
+                template: icon_only_more_info
+                name: 'C'
+                show_name: true
+
+      - type: custom:slider-entity-row
+        entity: light.office_desk_light
+      - type: custom:slider-entity-row
+        entity: light.kitchen_cabinet_light
