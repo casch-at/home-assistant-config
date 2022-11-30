@@ -6,6 +6,7 @@ badges: []
 cards:
   - type: grid
     columns: 1
+    square: false
     cards:
       - type: grid
         columns: 6
