@@ -69,26 +69,26 @@
     below: 15
     for:
       minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.parlor_window_sensor_battery_level
-    below: 15
-    for:
-      minutes: 5
+  # - platform: numeric_state
+  #   entity_id: sensor.parlor_window_sensor_battery_level
+  #   below: 15
+  #   for:
+  #     minutes: 5
   - platform: numeric_state
     entity_id: sensor.office_window_sensor_battery_level
     below: 15
     for:
       minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.lower_kitchen_window_sensor_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.upstairs_window_sensor_battery_level
-    below: 15
-    for:
-      minutes: 5
+  # - platform: numeric_state
+  #   entity_id: sensor.lower_kitchen_window_sensor_battery_level
+  #   below: 15
+  #   for:
+  #     minutes: 5
+  # - platform: numeric_state
+  #   entity_id: sensor.upstairs_window_sensor_battery_level
+  #   below: 15
+  #   for:
+  #     minutes: 5
   - platform: numeric_state
     entity_id: sensor.floor_switch_battery_level
     below: 15
@@ -104,21 +104,21 @@
     below: 15
     for:
       minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.office_smoke_sensor_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.upstairs_smoke_sensor_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.lower_kitchen_smoke_sensor_battery_level
-    below: 15
-    for:
-      minutes: 5
+  # - platform: numeric_state
+  #   entity_id: sensor.office_smoke_sensor_battery_level
+  #   below: 15
+  #   for:
+  #     minutes: 5
+  # - platform: numeric_state
+  #   entity_id: sensor.upstairs_smoke_sensor_battery_level
+  #   below: 15
+  #   for:
+  #     minutes: 5
+  # - platform: numeric_state
+  #   entity_id: sensor.lower_kitchen_smoke_sensor_battery_level
+  #   below: 15
+  #   for:
+  #     minutes: 5
   - platform: numeric_state
     entity_id: sensor.bedroom_christian_switch_battery_level
     below: 15
