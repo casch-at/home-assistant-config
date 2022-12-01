@@ -226,15 +226,6 @@ cards:
           - entity: sensor.office_magic_cube_battery_level
             name: Office magic cube
             tap_action: more-info
-          - entity: sensor.office_smoke_sensor_battery_level
-            name: Office smoke sensor
-            tap_action: more-info
-          - entity: sensor.upstairs_smoke_sensor_battery_level
-            name: Upstairs smoke sensor
-            tap_action: more-info
-          - entity: sensor.lower_kitchen_smoke_sensor_battery_level
-            name: Lower kitchen smoke sensor
-            tap_action: more-info
           - entity: sensor.bedroom_sonia_switch_battery_level
             name: Bedroom sonia switch
             tap_action: more-info
