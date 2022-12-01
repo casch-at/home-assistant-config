@@ -120,45 +120,27 @@ cards:
                 color: var( --ha-card-background, var(--card-background-color, white) )
 
       - type: entities
-        title: UPS
+        title: APCUPS
         entities:
-          - binary_sensor.ups_online_status
-          - sensor.ups_battery
-          - sensor.ups_load
-          - sensor.ups_time_left
-          - sensor.ups_transfer_count
-          - sensor.ups_transfer_from_battery
-          - sensor.ups_time_on_battery
-          - sensor.ups_total_time_on_battery
-
-          - type: divider
-          - sensor.ups_alarm_delay
-          - sensor.ups_battery_shutdown
-          - sensor.ups_shutdown_time
-          - sensor.ups_battery_timeout
-          - sensor.ups_sensitivity
-          - sensor.ups_transfer_high
-          - sensor.ups_transfer_low
-
-          - type: divider
-          - sensor.ups_input_voltage
-          - sensor.ups_nominal_input_voltage
-          - sensor.ups_battery_voltage
-          - sensor.ups_battery_nominal_voltage
-
-          - type: divider
-          - sensor.ups_name
-          - sensor.ups_model
-          - sensor.ups_firmware_version
-          - sensor.ups_battery_replaced
-
-          - type: divider
-          - sensor.ups_hostname
-          - sensor.ups_daemon_info
-          - sensor.ups_cable_type
-          - sensor.ups_driver
-          - sensor.ups_mode
-          - sensor.ups_last_self_test
-          - sensor.ups_startup_time
-          - sensor.ups_status_flag
-          #- sensor.ups_status
+          - sensor.apcups_battery_charge
+          - sensor.apcups_battery_runtime
+          - sensor.apcups_load
+          - sensor.apcups_battery_voltage
+          - sensor.apcups_ups_shutdown_delay
+          - sensor.apcups_low_battery_runtime
+          - sensor.apcups_low_battery_setpoint
+          - sensor.apcups_self_test_result
+          - sensor.apcups_load_reboot_timer
+          - sensor.apcups_load_shutdown_timer
+          - sensor.apcups_input_power_sensitivity
+          - sensor.apcups_input_voltage
+          - sensor.apcups_high_voltage_transfer
+          - sensor.apcups_low_voltage_transfer
+          - sensor.apcups_nominal_battery_voltage
+          - sensor.apcups_nominal_input_voltage
+          - sensor.apcups_nominal_real_power
+          - sensor.apcups_status
+          - sensor.apcups_status_data
+          - sensor.apcups_battery_chemistry
+          - sensor.apcups_battery_manuf_date
+          - sensor.apcups_beeper_status
