@@ -1,0 +1,98 @@
+- sensor:
+    - name: Floor Helper Motion Sensor Temperature Fixed
+      unique_id: mysensor0001
+      state: >-
+        {{
+          (states('sensor.floor_helper_motion_sensor_temperature') | float(0.0) + 1.8) | round(2)
+        }}
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: '°C'
+    - name: Floor Motion Sensor Temperature Fixed
+      unique_id: mysensor0002
+      state: >-
+        {{
+          (states('sensor.floor_motion_sensor_temperature') | float(0.0) + 1.8) | round(2)
+        }}
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: '°C'
+    - name: Outdoor Temperature
+      unique_id: mysensor0003
+      state: >-
+        {{
+          state_attr('weather.home', 'temperature') | float(0.0)
+        }}
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: '°C'
+    - name: Outdoor Humidity
+      unique_id: mysensor0004
+      state: >-
+        {{
+          state_attr('weather.home', 'humidity') | float(0.0)
+        }}
+      device_class: humidity
+      state_class: measurement
+      unit_of_measurement: '%'
+    - name: Outdoor Pressure
+      unique_id: mysensor0005
+      state: >-
+        {{
+          state_attr('weather.home', 'pressure') | int
+        }}
+      device_class: pressure
+      state_class: measurement
+      unit_of_measurement: 'hPa'
+    - name: Home Energy Power
+      unique_id: mysensor0006
+      state: >-
+        {{
+          states('sensor.bathroom_mirror_light_energy_power') | int(0) +
+          states('sensor.office_back_light_energy_power') | int(0) +
+          states('sensor.office_front_light_energy_power') | int(0) +
+          states('sensor.nightstand_switch_energy_power') | int(0) +
+          states('sensor.3d_printer_switch_energy_power') | int(0) +
+          states('sensor.desk_switch_energy_power') | int(0) +
+          states('sensor.laptop_switch_energy_power') | int(0) +
+          states('sensor.generic1_switch_energy_power') | int(0)
+        }}
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: 'W'
+    - name: Home Energy Power Total
+      unique_id: mysensor0007
+      state: >-
+        {{
+          states('sensor.bathroom_mirror_light_energy_total') | int(0) +
+          states('sensor.office_back_light_energy_total') | int(0) +
+          states('sensor.office_front_light_energy_total') | int(0) +
+          states('sensor.nightstand_switch_energy_total') | float(0.0) +
+          states('sensor.3d_printer_switch_energy_total') | float(0.0) +
+          states('sensor.desk_switch_energy_total') | float(0.0) +
+          states('sensor.laptop_switch_energy_total') | float(0.0) +
+          states('sensor.generic1_switch_energy_total') | float(0.0)
+        }}
+      device_class: energy
+      state_class: total
+      unit_of_measurement: 'kWh'
+    - name: Daytime Light Brightness
+      unique_id: mysensor0008
+      state: >-
+        {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+          254
+        {% elif states('input_select.daytime') == 'Evening' -%}
+          135
+        {% elif states('input_select.daytime') == 'Night' -%}
+          80
+        {% endif %}
+    - name:  Daytime Light Color Temp
+      unique_id: mysensor0009
+      state: >-
+        {% if states('input_select.daytime') == 'Morning' or states('input_select.daytime') == 'Daytimes' -%}
+          180
+        {% elif states('input_select.daytime') == 'Evening' -%}
+          350
+        {% elif states('input_select.daytime') == 'Night' -%}
+          480
+        {% endif %}
