@@ -96,3 +96,48 @@
         {% elif states('input_select.daytime') == 'Night' -%}
           480
         {% endif %}
+- binary_sensor:
+    - name: Cover Operation To Cold
+      unique_id: binary_sensor0001
+      device_class: cold
+      state: >-
+        {{
+          states('weather.home') == 'snowy' or
+          states('sensor.outdoor_temperature') | float(0.0) <= 1.0
+        }}
+    - name: Christian Schwarzgruber Alaram
+      unique_id: binary_sensor0003
+      state: >-
+        {{
+          not
+            is_state('sensor.phone_christian_next_alarm', 'unavailable')
+          and
+            (as_timestamp(states('sensor.phone_christian_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
+              == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+          and
+            states('person.christian_schwarzgruber') == 'home'
+        }}
+    - name: Door Window Sensors
+      unique_id: binary_sensor0004
+      state: >-
+        {{
+            states('binary_sensor.balcony_door_sensor') == 'on'
+          or
+            states('binary_sensor.parlor_window_sensor') == 'on'
+          or
+            states('binary_sensor.office_window_sensor') == 'on'
+          or
+            states('binary_sensor.lower_kitchen_window_sensor') == 'on'
+          or
+            states('binary_sensor.upstairs_window_sensor') == 'on'
+          or
+            states('binary_sensor.bedroom_window_sensor') == 'on'
+        }}
+    - name: Update Available Sensor
+      unique_id: binary_sensor0005
+      state: >-
+        {{
+            states('binary_sensor.home_assistant_versions_update_available') == 'on'
+          or
+            states('sensor.hacs') | int(0) >= 1
+        }}
