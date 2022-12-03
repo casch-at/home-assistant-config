@@ -3,14 +3,17 @@ default_config:
 
 # https://www.home-assistant.io/integrations/http
 http:
-  login_attempts_threshold: 5
+  server_host: !secret server_host
+  server_port: !secret server_port
   cors_allowed_origins:
     - https://ha.casch.at
     - https://homeassistant.casch.at
   use_x_forwarded_for: true
   trusted_proxies:
-    - 172.0.0.1
-    - 192.168.1.29
+    - !secret server_ip
+    - 172.30.33.0/24
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
 
 # https://www.home-assistant.io/integrations/logger/
 # logger:
