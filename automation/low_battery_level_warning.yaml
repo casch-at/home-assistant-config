@@ -35,11 +35,6 @@
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.tablet_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
     entity_id: sensor.upstairs_multi_sensor_battery_level
     below: 15
     for:
@@ -158,10 +153,3 @@
     data:
       message: '{{ trigger.to_state.name }} battery level bellow {{ trigger.to_state.state | int + 1}} %'
       title: '{{ trigger.to_state.name }} Critical'
-  - if:
-      - condition: template
-        value_template: "{{ trigger.entity_id == 'sensor.tablet_battery_level' }}"
-    then:
-      - service: switch.turn_on
-        target:
-          entity_id: switch.tv_usb
