@@ -16,14 +16,9 @@ include:
     - sensor.*_pressure
     - sensor.*_energy_*
     - sensor.asuswrt_*
-    - sensor.ups_battery
-    - sensor.ups_transfer_count
-    - sensor.ups_load
-    - sensor.ups_time_left
-    - sensor.ups_transfer_from_battery
-    - sensor.ups_time_on_battery
-    - sensor.ups_total_time_on_battery
-    - sensor.ups_input_voltage
+    - sensor.apcups_battery_charge
+    - sensor.apcups_battery_runtime
+    - sensor.apcups_load
   domains:
     - person
     - input_number
