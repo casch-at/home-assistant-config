@@ -53,3 +53,7 @@
               entity_id:
                 - switch.3d_printer_switch
                 - switch.3d_printer_usb
+
+  - service: switch.turn_on
+    target:
+      entity_id: switch.marantz_amp_power
