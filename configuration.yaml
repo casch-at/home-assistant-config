@@ -70,7 +70,6 @@ script: !include scripts.yaml
 sensor: !include sensors.yaml
 switch: !include switch.yaml
 template: !include templates.yaml
-# climate: !include climate.yaml
 
 calendar:
   - platform: caldav
