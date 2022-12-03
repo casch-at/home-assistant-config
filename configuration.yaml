@@ -60,7 +60,6 @@ shell_command:
 
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
-cover: !include covers.yaml
 input_boolean: !include input_boolean.yaml
 input_number: !include input_number.yaml
 input_select: !include input_select.yaml
