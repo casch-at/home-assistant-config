@@ -81,12 +81,12 @@
     - switch.3d_printer_switch
 #    - switch.tv_usb
 
-- platform: group
-  unique_id: bedroom_group
-  name: Bedroom Group
-  # icon: mdi:bed
-  entities:
-    - switch.nightstand_switch
+# - platform: group
+#   unique_id: bedroom_group
+#   name: Bedroom Group
+#   # icon: mdi:bed
+#   entities:
+#     - switch.nightstand_switch
 
 - platform: group
   unique_id: devices_group

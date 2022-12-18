@@ -7,10 +7,6 @@ switch.desk_switch:
   icon: mdi:desk
 switch.laptop_switch:
   icon: mdi:laptop
-light.upstairs_lamp_light:
-  icon: mdi:floor-lamp
-light.nightstand_lights:
-  icon: mdi:lamp
 light.nightstand_sonia_light:
   icon: mdi:lamp
 light.nightstand_christian_light:

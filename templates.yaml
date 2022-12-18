@@ -51,7 +51,7 @@
           states('sensor.bathroom_mirror_light_energy_power') | int(0) +
           states('sensor.office_back_light_energy_power') | int(0) +
           states('sensor.office_front_light_energy_power') | int(0) +
-          states('sensor.nightstand_switch_energy_power') | int(0) +
+          states('sensor.bathroom_radiator_switch_energy_power') | int(0) +
           states('sensor.3d_printer_switch_energy_power') | int(0) +
           states('sensor.desk_switch_energy_power') | int(0) +
           states('sensor.laptop_switch_energy_power') | int(0) +
@@ -67,7 +67,7 @@
           states('sensor.bathroom_mirror_light_energy_total') | int(0) +
           states('sensor.office_back_light_energy_total') | int(0) +
           states('sensor.office_front_light_energy_total') | int(0) +
-          states('sensor.nightstand_switch_energy_total') | float(0.0) +
+          states('sensor.bathroom_radiator__switch_energy_total') | float(0.0) +
           states('sensor.3d_printer_switch_energy_total') | float(0.0) +
           states('sensor.desk_switch_energy_total') | float(0.0) +
           states('sensor.laptop_switch_energy_total') | float(0.0) +

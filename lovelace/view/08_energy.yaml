@@ -13,6 +13,7 @@ cards:
           grid:
             - grid-template-areas: >-
                 "n wn tn"
+                "n0 w0 t0"
                 "n1 w1 t1"
                 "n3 w3 t3"
                 "n4 w4 t4"
@@ -21,8 +22,12 @@ cards:
                 "n6 w6 t6"
                 "n5 w5 t5"
             - grid-template-columns: min-content 1fr 1fr
-            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr
+            - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr
           custom_fields:
+            n0:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
             n1:
               - justify-self: start
               - padding-left: 10px
@@ -71,6 +76,7 @@ cards:
         custom_fields:
           wn: 'W'
           tn: 'kWh'
+          n0: 'Radiator'
           n1: 'Mirror'
           n3: 'O. Back'
           n4: 'O. Front'
@@ -78,6 +84,11 @@ cards:
           n2: 'Desk'
           n6: 'Server...'
           n5: 'Total'
+          w0:
+            card:
+              type: custom:button-card
+              entity: sensor.bathroom_radiator_switch_energy_power
+              template: embedded_card
           w1:
             card:
               type: custom:button-card
@@ -116,6 +127,11 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.generic1_switch_energy_power
+              template: embedded_card
+          t0:
+            card:
+              type: custom:button-card
+              entity: sensor.bathroom_radiator_switch_energy_total
               template: embedded_card
           t1:
             card:

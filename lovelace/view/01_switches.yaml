@@ -59,8 +59,8 @@ cards:
       columns: 1
       cards:
         - type: custom:button-card
-          entity: switch.upstairs_lamp_switch
+          entity: switch.bathroom_radiator_switch
           template: icon_only_more_info
         - type: custom:button-card
-          entity: switch.upstairs_lamp_usb_switch
+          entity: switch.bathroom_radiator_usb_switch
           template: icon_only_more_info
