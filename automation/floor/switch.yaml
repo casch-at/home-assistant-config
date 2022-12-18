@@ -203,8 +203,23 @@
         value_template: '{{ trigger.event.data.command == "5_double" }}'
       sequence:
       - service: light.toggle
+        data:
+          brightness: "{{ states('sensor.daytime_light_brightness') }}"
+          color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
         target:
           entity_id: light.floor_back_light
+
+    # Toggle aroma diffuser
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "5_hold" }}'
+      sequence:
+      - service: light.toggle
+        data:
+          brightness: "{{ states('sensor.daytime_light_brightness') }}"
+          color_temp: "{{ states('sensor.daytime_light_color_temp') }}"
+        target:
+          entity_id: light.floor_front_light
 
     # Toggle aroma diffuser
     - conditions:
