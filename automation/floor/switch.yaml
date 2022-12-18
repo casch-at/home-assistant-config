@@ -214,6 +214,23 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_hold" }}'
       sequence:
+      - if:
+          - condition: state
+            entity_id: light.floor_front_light
+            state: 'off'
+        then:
+          - service: input_boolean.turn_on
+            target:
+              entity_id:
+                - input_boolean.floor_light_active
+                - input_boolean.floor_helper_light_active
+        else:
+          - service: input_boolean.turn_off
+            target:
+              entity_id:
+                - input_boolean.floor_light_active
+                - input_boolean.floor_helper_light_active
+
       - service: light.toggle
         data:
           brightness: "{{ states('sensor.daytime_light_brightness') }}"
