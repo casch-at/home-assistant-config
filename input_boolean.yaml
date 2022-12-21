@@ -5,7 +5,7 @@ floor_light_active:
   name: Floor Light Active
   icon: mdi:door
 floor_helper_light_active:
-  name: Floor Light Active
+  name: Floor Helper Light Active
   icon: mdi:door
 state_night_running:
   name: State Night Running

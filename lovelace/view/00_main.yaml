@@ -188,17 +188,11 @@ cards:
         cards:
           - type: custom:button-card
             entity: light.night_lights
-            icon: mdi:weather-night
+            icon: mdi:lightbulb-night
             template: icon_only_more_info
             tap_action:
               action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.night
-            double_tap_action:
-              action: toggle
-            hold_action:
-              entity: input_select.night_lights_scenes
+              service: script.night_light
           - type: custom:button-card
             entity: light.terrace_plant_lights
             template: icon_only_more_info

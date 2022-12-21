@@ -250,64 +250,6 @@
   - service: scene.turn_on
     data:
       entity_id: '{{ states(''input_select.night_lights_scenes'') }}'
-- id: reset_light_switches_active_state
-  alias: Reset Light Switches Active State
-  description: Reset light switches active state when lights where turned on/off manually
-    with the switch
-  mode: parallel
-  max: 10
-  trigger:
-  - platform: event
-    event_type: state_change
-    event_data:
-      entity_id: light.floor_lights
-      new_state:
-        state: 'off'
-      old_state:
-        state: 'on'
-  - platform: event
-    event_type: state_change
-    event_data:
-      entity_id: light.bathroom_lights
-      new_state:
-        state: 'off'
-      old_state:
-        state: 'on'
-  condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: input_boolean.bathroom_light_active
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.lower_kitchen_light_active
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.floor_light_active
-      state: 'on'
-  action:
-  - choose:
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.entity_id == "light.bathroom_lights"
-          }}'
-      - condition: state
-        entity_id: input_boolean.bathroom_light_active
-        state: 'on'
-      sequence:
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.bathroom_light_active
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.entity_id == "light.floor_lights" }}'
-      - condition: state
-        entity_id: input_boolean.floor_light_active
-        state: 'on'
-      sequence:
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.floor_light_active
 - id: floor_motion
   alias: Floor motion
   description: ''
@@ -412,20 +354,20 @@
 - id: floor_light_active_state
   alias: Floor light reset active state
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id: light.floor_lights
     from: 'on'
     to: 'off'
-  condition:
-  - condition: state
-    entity_id: input_boolean.floor_light_active
-    state: 'on'
+  condition: []
   action:
   - service: input_boolean.turn_off
-    data:
-      entity_id: input_boolean.floor_light_active
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.floor_light_active
+      - input_boolean.floor_helper_light_active
+  mode: single
 - id: floor_switch
   alias: Floor switch
   description: ''
@@ -832,20 +774,17 @@
 - id: bathroom_switch_light_state
   alias: Bathroom switch light reset active state
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id: light.bathroom_lights
     from: 'on'
     to: 'off'
-  condition:
-  - condition: state
-    entity_id: input_boolean.bathroom_light_active
-    state: 'on'
+  condition: []
   action:
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.bathroom_light_active
+  mode: single
 - id: bathroom_light
   alias: Bathroom light
   description: ''

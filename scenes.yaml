@@ -2,10 +2,36 @@
   name: Night
   entities:
     light.night_lights:
-      brightness: 25
-      color_temp: 420
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 13
+      hs_color:
+      - 28.843
+      - 72.089
+      rgb_color:
+      - 255
+      - 159
+      - 71
+      xy_color:
+      - 0.546
+      - 0.389
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:lightbulb-group
+      friendly_name: Night Lights
+      supported_features: 44
+      color_temp_kelvin: 2512
+      color_temp: 398
       state: 'on'
-  icon: mdi:weather-night
+  icon: mdi:lightbulb-night
   metadata:
     light.night_lights:
       entity_only: true
@@ -188,8 +214,34 @@
   name: Office Desk Night
   entities:
     light.office_desk_light:
-      brightness: 128
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 66
+      color_temp_kelvin: 2331
       color_temp: 429
+      hs_color:
+      - 29.359
+      - 79.015
+      rgb_color:
+      - 255
+      - 152
+      - 53
+      xy_color:
+      - 0.565
+      - 0.389
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Desk Light
+      supported_features: 44
+      icon: mdi:desk
       state: 'on'
   icon: mdi:desk
   metadata:

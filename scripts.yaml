@@ -1,1 +1,161 @@
-!include_dir_named scripts
+kitchen_cabinet_light_based_on_entity_state:
+  alias: Kitchen_Cabinet Light Based On Entity State
+  mode: queued
+  max: 10
+  icon: mdi:file-cabinet
+  sequence:
+  - service: scene.create
+    data:
+      scene_id: kitchen_cabinet_light_based_on_entity_state_kitchen_cabinet_backup
+      snapshot_entities:
+      - light.kitchen_cabinet_light
+  - service: light.turn_on
+    data:
+      rgb_color: "{% if states(entity_id) == 'off' -%}\n  [50, 200, 0]\n{% else -%}\n
+        \ [200, 50, 0]\n{% endif %}"
+      brightness: 150
+      transition: 1
+    target:
+      entity_id: light.kitchen_cabinet_light
+  - delay: 00:00:01
+  - service: scene.turn_on
+    target:
+      entity_id: scene.kitchen_cabinet_light_based_on_entity_state_kitchen_cabinet_backup
+office_on_off:
+  alias: Office On Off
+  mode: single
+  icon: mdi:office-building
+  sequence:
+  - if:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: light.office_lights
+        state: 'off'
+      - condition: state
+        entity_id: switch.desk_and_laptop_group
+        state: 'off'
+    then:
+    - service: light.turn_on
+      target:
+        entity_id: light.office_lights
+    - service: switch.turn_on
+      target:
+        entity_id: switch.desk_and_laptop_group
+    else:
+    - service: light.turn_off
+      data:
+        transition: 10
+      target:
+        entity_id: light.office_lights
+    - service: switch.turn_off
+      target:
+        entity_id: switch.desk_and_laptop_group
+shutters_down_sun:
+  alias: Shutters Down Sun
+  mode: single
+  icon: hass:window-closed
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.cover_operation_to_cold
+    state: 'off'
+  - if:
+    - condition: state
+      entity_id: binary_sensor.office_window_sensor
+      state: 'off'
+    then:
+    - service: cover.close_cover
+      target:
+        area_id: office
+  - if:
+    - condition: state
+      entity_id: binary_sensor.parlor_window_sensor
+      state: 'off'
+    then:
+    - service: cover.close_cover
+      target:
+        area_id: parlor
+  - if:
+    - condition: state
+      entity_id: binary_sensor.lower_kitchen_window_sensor
+      state: 'off'
+    then:
+    - service: cover.close_cover
+      target:
+        entity_id: cover.lower_kitchen_roller_shutter_left_level
+  - if:
+    - condition: state
+      entity_id: binary_sensor.upstairs_window_sensor
+      state: 'off'
+    then:
+    - service: cover.close_cover
+      target:
+        area_id: upstairs
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: cover.stop_cover
+    target:
+      area_id:
+      - office
+      - parlor
+      - upstairs
+      entity_id: cover.lower_kitchen_roller_shutter_left_level
+shutters_up_sun:
+  alias: Shutters Up Sun
+  mode: single
+  icon: hass:window-open
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.cover_operation_to_cold
+    state: 'off'
+  - if:
+    - condition: state
+      entity_id: binary_sensor.office_window_sensor
+      state: 'off'
+    then:
+    - service: cover.open_cover
+      target:
+        area_id: office
+  - if:
+    - condition: state
+      entity_id: binary_sensor.parlor_window_sensor
+      state: 'off'
+    then:
+    - service: cover.open_cover
+      target:
+        area_id: parlor
+  - if:
+    - condition: state
+      entity_id: binary_sensor.lower_kitchen_window_sensor
+      state: 'off'
+    then:
+    - service: cover.open_cover
+      target:
+        entity_id: cover.lower_kitchen_roller_shutter_left_level
+  - if:
+    - condition: state
+      entity_id: binary_sensor.upstairs_window_sensor
+      state: 'off'
+    then:
+    - service: cover.open_cover
+      target:
+        area_id: upstairs
+night_light:
+  alias: Night Light
+  sequence:
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.night
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.floor_light_active
+      - input_boolean.floor_helper_light_active
+    enabled: true
+  mode: single
+  icon: mdi:lightbulb-night
