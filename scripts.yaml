@@ -1,5 +1,5 @@
 kitchen_cabinet_light_based_on_entity_state:
-  alias: Kitchen_Cabinet Light Based On Entity State
+  alias: Kitchen Cabinet Light Based On Entity State
   mode: queued
   max: 10
   icon: mdi:file-cabinet
@@ -21,6 +21,7 @@ kitchen_cabinet_light_based_on_entity_state:
   - service: scene.turn_on
     target:
       entity_id: scene.kitchen_cabinet_light_based_on_entity_state_kitchen_cabinet_backup
+    data: {}
 office_on_off:
   alias: Office On Off
   mode: single

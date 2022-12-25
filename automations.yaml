@@ -204,18 +204,20 @@
 - id: low_illuminance
   alias: Low illuminance light
   description: Turn on lights on low natural illumance light.
-  mode: single
-  max_exceeded: silent
   trigger:
   - platform: numeric_state
     entity_id: sensor.floor_motion_sensor_light_level
     below: 100
     for: 10
   - platform: state
-    entity_id: person.christian_schwarzgruber
+    entity_id:
+    - person.christian_schwarzgruber
     from: not_home
     to: home
-    for: 2
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
   condition:
   - condition: state
     entity_id: input_boolean.presence
@@ -237,6 +239,9 @@
     - service: scene.turn_on
       target:
         entity_id: scene.kitchen_cabinet_night
+      data: {}
+  mode: single
+  max_exceeded: silent
 - id: night_lights_based_on_input_select_scenes
   alias: Night lights based on input select scenes
   description: ''
@@ -672,8 +677,6 @@
 - id: presence_person_home
   alias: Turn presence on when person is at home
   description: ''
-  mode: queued
-  max: 2
   trigger:
   - platform: state
     entity_id: person.christian_schwarzgruber
@@ -689,6 +692,7 @@
     - service: input_boolean.turn_on
       target:
         entity_id: input_boolean.presence
+      data: {}
   - if:
     - condition: template
       value_template: '{{ trigger.entity_id == ''person.christian_schwarzgruber''
@@ -699,6 +703,8 @@
         skip_condition: false
       target:
         entity_id: automation.home_office
+  mode: queued
+  max: 2
 - id: bathroom_motion
   alias: Bathroom motion
   description: ''
@@ -1584,8 +1590,6 @@
 - id: bedroom_motion
   alias: Bedroom motion
   description: ''
-  mode: single
-  max_exceeded: silent
   trigger:
   - platform: state
     entity_id: binary_sensor.bedroom_motion_sensor
@@ -1595,8 +1599,9 @@
   - condition: state
     entity_id: input_select.daytime
     state: Night
+    enabled: false
   - condition: state
-    entity_id: light.kitchen_cabinet_light
+    entity_id: light.bedroom_bed_light
     state: 'off'
   - condition: state
     entity_id: input_boolean.presence
@@ -1607,9 +1612,11 @@
       entity_id: scene.night_toilet_light
   - service: light.turn_off
     data:
-      transition: 180
+      transition: 150
     target:
-      entity_id: light.kitchen_cabinet_light
+      entity_id: light.bedroom_bed_light
+  mode: single
+  max_exceeded: silent
 - id: bedroom_switch
   alias: Bedroom switch
   description: ''

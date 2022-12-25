@@ -79,12 +79,8 @@ cards:
             columns: 2
             cards:
               - type: custom:button-card
-                entity: light.nightstand_lights
+                entity: light.bedroom_bed_light
                 template: icon_only
-                icon: mdi:bed
-                hold_action:
-                  action: more-info
-                  entity_id: light.nightstand_lights
               - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info

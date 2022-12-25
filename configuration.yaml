@@ -2,23 +2,17 @@
 # https://github.com/home-assistant/core/blob/dev/homeassistant/components/default_config/manifest.json#L5
 # Don't want to use all of them, therefore I needed to remove "default_config:" and enable just the other ones
 application_credentials:
-automation:
 bluetooth:
 # cloud:
 counter:
 dhcp:
 # energy:
-frontend:
 hardware:
 history:
 homeassistant_alerts:
-input_boolean:
 input_button:
 input_datetime:
-input_number:
-input_select:
 input_text:
-logbook:
 logger:
 # map:
 # media_source:
@@ -26,9 +20,7 @@ mobile_app:
 my:
 network:
 person:
-scene:
 schedule:
-script:
 ssdp:
 sun:
 system_health:
