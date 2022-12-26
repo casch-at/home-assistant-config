@@ -2,8 +2,8 @@ substitutions:
   name: parlor-shutter-relay
   ap_ssid: Parlor Shutter Relay FH
   ip: 192.168.1.43
-  channel_1: Parlor Shutter Up
-  channel_2: Parlor Shutter Down
+  channel_1: Parlor Shutter Down
+  channel_2: Parlor Shutter Up
   max_power: "2000.0"
   max_temp: "85.0"
 

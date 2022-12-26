@@ -101,6 +101,16 @@ cards:
                 icon: mdi:sleep
                 template: icon_only
                 color: var( --ha-card-background, var(--card-background-color, white) )
+                styles:
+                  icon:
+                    - color: >-
+                        [[[
+                          if (states['input_boolean.presence'].state === 'off') {
+                            return 'red';
+                          } else {
+                            return 'var(--paper-item-icon-inactive-color)';
+                          }
+                        ]]]
                 state:
                   - value: 'Night'
                     color: var(--paper-item-icon-active-color)

@@ -74,7 +74,7 @@
       friendly_name: Bedroom Bed Light
       supported_features: 44
       color_mode: xy
-      brightness: 61
+      brightness: 38
       hs_color:
       - 44.941
       - 100

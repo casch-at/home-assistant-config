@@ -9,20 +9,10 @@ cards:
       - type: custom:button-card
         name: 'Bedroom'
         template: shutter_base
-        styles:
-          name:
-            - margin-top: 3px
-          grid:
-            - grid-template-areas: >-
-                "n _ _ ru rs rd"
-            - grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr
-            - grid-template-rows: min-content min-content
         custom_fields:
           ru:
             card:
-              tap_action:
-                service_data:
-                  entity_id: cover.bedroom_roller_shutter_level
+              entity: switch.bedroom_shutter_up_relay
               color: "#B9F18B"
               lock:
                 enabled: >-
@@ -31,18 +21,10 @@ cards:
                       states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
                 duration: 0
-          rs:
-            card:
-              color: "#B9F18B"
-              tap_action:
-                service_data:
-                  entity_id: cover.bedroom_roller_shutter_level
           rd:
             card:
               color: "#B9F18B"
-              tap_action:
-                service_data:
-                  entity_id: cover.bedroom_roller_shutter_level
+              entity: switch.bedroom_shutter_down_relay
               lock:
                 enabled: >-
                   [[[
@@ -54,20 +36,10 @@ cards:
       - type: custom:button-card
         name: 'Office'
         template: shutter_base
-        styles:
-          name:
-            - margin-top: 3px
-          grid:
-            - grid-template-areas: >-
-                "n _ _ ru rs rd"
-            - grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr
-            - grid-template-rows: min-content min-content
         custom_fields:
           ru:
             card:
-              tap_action:
-                service_data:
-                  entity_id: cover.office_roller_shutter_level
+              entity: switch.parlor_shutter_up_relay
               color: "#B9F18B"
               lock:
                 enabled: >-
@@ -76,18 +48,10 @@ cards:
                       states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
                 duration: 0
-          rs:
-            card:
-              color: "#B9F18B"
-              tap_action:
-                service_data:
-                  entity_id: cover.office_roller_shutter_level
           rd:
             card:
               color: "#B9F18B"
-              tap_action:
-                service_data:
-                  entity_id: cover.office_roller_shutter_level
+              entity: switch.parlor_shutter_down_relay
               lock:
                 enabled: >-
                   [[[

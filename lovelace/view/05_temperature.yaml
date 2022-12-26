@@ -177,6 +177,11 @@ cards:
                 type: custom:button-card
                 entity: sensor.bedroom_multi_sensor_pressure
                 template: embedded_card
+          l6:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_motion_sensor_light_level
+                template: embedded_card
           t7:
             card:
                 type: custom:button-card

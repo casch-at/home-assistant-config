@@ -218,6 +218,11 @@
       hours: 0
       minutes: 0
       seconds: 0
+  - platform: state
+    entity_id:
+    - input_boolean.presence
+    from: 'off'
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.presence
@@ -308,7 +313,6 @@
 - id: floor_helper_motion
   alias: Floor helper motion
   description: ''
-  mode: restart
   trigger:
   - platform: state
     entity_id:
@@ -328,10 +332,17 @@
   - condition: state
     entity_id: input_boolean.floor_helper_light_active
     state: 'off'
+  - condition: numeric_state
+    entity_id: sensor.floor_helper_motion_sensor_light_level
+    below: 10
+  - condition: numeric_state
+    entity_id: sensor.parlor_light_sensor_light_level
+    below: 10
   action:
   - service: input_number.increment
     target:
       entity_id: input_number.floor_helper_motion_timeout_multiplier
+    data: {}
   - service: light.turn_on
     data:
       brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
@@ -351,11 +362,13 @@
   - service: light.turn_off
     target:
       entity_id: light.floor_back_light
+    data: {}
   - service: input_number.set_value
     target:
       entity_id: input_number.floor_helper_motion_timeout_multiplier
     data:
       value: 0
+  mode: restart
 - id: floor_light_active_state
   alias: Floor light reset active state
   description: ''
@@ -376,7 +389,6 @@
 - id: floor_switch
   alias: Floor switch
   description: ''
-  mode: restart
   trigger:
   - platform: event
     event_type: zha_event
@@ -385,9 +397,9 @@
   condition:
   - condition: template
     value_template: "{{\n  trigger.event.data.command in [\n    '1_single',             '1_hold',\n
-      \   '2_single',             '2_hold',\n    '3_single', '3_double',\n    '4_single',
-      '4_double', '4_hold',\n    '5_single', '5_double', '5_hold',\n    '6_single',
-      '6_double', '6_hold'\n  ]\n}}"
+      \   '2_single',             '2_hold',\n    '3_single', '3_double', '3_hold',\n
+      \   '4_single', '4_double', '4_hold',\n    '5_single', '5_double', '5_hold',\n
+      \   '6_single', '6_double', '6_hold'\n  ]\n}}"
   action:
   - choose:
     - conditions:
@@ -403,6 +415,7 @@
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.state_night_running
+            data: {}
           - service: scene.create
             data:
               scene_id: state_night_kitchen_cabinet_backup
@@ -441,6 +454,7 @@
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.state_night_running
+            data: {}
         - conditions:
           - condition: state
             entity_id: input_boolean.state_night_running
@@ -449,9 +463,11 @@
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.state_night_running
+            data: {}
           - service: scene.turn_on
             target:
               entity_id: scene.state_night_kitchen_cabinet_backup
+            data: {}
         default: []
     - conditions:
       - condition: template
@@ -463,9 +479,27 @@
             entity_id: light.nightstand_lights
         target:
           entity_id: script.kitchen_cabinet_light_based_on_entity_state
-      - service: light.toggle
-        target:
-          entity_id: light.nightstand_lights
+        enabled: false
+      - if:
+        - condition: state
+          entity_id: light.bedroom_bed_light
+          state: 'off'
+        then:
+        - service: light.turn_on
+          data:
+            transition: 0
+            brightness_pct: 25
+            rgb_color:
+            - 255
+            - 173
+            - 0
+          target:
+            entity_id: light.bedroom_bed_light
+        else:
+        - service: light.turn_off
+          data: {}
+          target:
+            entity_id: light.bedroom_bed_light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_single" }}'
@@ -473,6 +507,7 @@
       - service: light.toggle
         target:
           entity_id: light.office_ceiling_lights
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_hold" }}'
@@ -480,6 +515,7 @@
       - service: homeassistant.turn_off
         target:
           entity_id: group.office_group
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
@@ -510,6 +546,85 @@
           command: 3_single
     - conditions:
       - condition: template
+        value_template: '{{ trigger.event.data.command == "3_hold" }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.presence
+            state: 'on'
+          - condition: state
+            entity_id: input_boolean.presence_off_running
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.presence_off_running
+            data: {}
+          - repeat:
+              count: '2'
+              sequence:
+              - service: light.turn_on
+                data:
+                  flash: long
+                target:
+                  entity_id: light.floor_lights
+              - delay: 00:00:10
+          - repeat:
+              count: '2'
+              sequence:
+              - service: light.turn_on
+                data:
+                  flash: long
+                target:
+                  entity_id: light.floor_lights
+              - delay: 00:00:05
+          - service: input_boolean.turn_off
+            target:
+              entity_id:
+              - input_boolean.presence
+              - input_boolean.presence_off_running
+            data: {}
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.presence_off_running
+            state: 'on'
+          sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.presence_off_running
+            data: {}
+          - service: persistent_notification.create
+            data:
+              title: Presence 'off' Canceled
+          - repeat:
+              count: '2'
+              sequence:
+              - service: light.toggle
+                data:
+                  flash: long
+                target:
+                  entity_id: light.floor_lights
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.presence
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.presence
+            data: {}
+          - repeat:
+              count: '2'
+              sequence:
+              - service: light.toggle
+                data:
+                  flash: long
+                target:
+                  entity_id: light.kitchen_cabinet_light
+        default: []
+    - conditions:
+      - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
       - service: script.turn_on
@@ -521,6 +636,7 @@
       - service: homeassistant.toggle
         target:
           entity_id: light.terrace_plant_lights
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
@@ -528,6 +644,7 @@
       - service: input_select.select_next
         target:
           entity_id: input_select.terrace_plant_scenes
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_single" }}'
@@ -541,6 +658,7 @@
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.floor_light_active
+            data: {}
           - service: light.turn_on
             data:
               brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
@@ -551,6 +669,7 @@
         - service: light.turn_off
           target:
             entity_id: light.floor_lights
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_double" }}'
@@ -575,12 +694,14 @@
             entity_id:
             - input_boolean.floor_light_active
             - input_boolean.floor_helper_light_active
+          data: {}
         else:
         - service: input_boolean.turn_off
           target:
             entity_id:
             - input_boolean.floor_light_active
             - input_boolean.floor_helper_light_active
+          data: {}
       - service: light.toggle
         data:
           brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
@@ -594,6 +715,7 @@
       - service: switch.toggle
         target:
           entity_id: switch.aroma_diffuser
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "6_single" }}'
@@ -601,6 +723,7 @@
       - service: light.toggle
         target:
           entity_id: light.kitchen_cabinet_light
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "6_double" }}'
@@ -611,7 +734,9 @@
       - service: input_select.select_next
         target:
           entity_id: input_select.kitchen_cabinet_scenes
+        data: {}
     default: []
+  mode: restart
 - id: presence_auto_off
   alias: Automatically turn presence off
   description: ''
@@ -1188,32 +1313,32 @@
 - id: office_low_illuminance
   alias: Office low illuminance light
   description: Turn on lights on low natural illumance light.
-  mode: single
-  max_exceeded: silent
   trigger:
   - platform: numeric_state
     entity_id: sensor.office_light_sensor_light_level
     below: 100
     for: 10
-  - platform: numeric_state
-    entity_id: sensor.floor_motion_sensor_light_level
-    below: 100
-    for: 10
   - platform: state
-    entity_id: person.christian_schwarzgruber
+    entity_id:
+    - person.christian_schwarzgruber
     from: not_home
     to: home
-    for: 2
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
   - platform: state
     entity_id: switch.desk_switch
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - input_boolean.presence
     from: 'off'
     to: 'on'
   condition:
   - condition: numeric_state
     entity_id: sensor.office_light_sensor_light_level
-    below: 100
-  - condition: numeric_state
-    entity_id: sensor.floor_motion_sensor_light_level
     below: 100
   - condition: not
     conditions:
@@ -1229,12 +1354,17 @@
   - condition: state
     entity_id: switch.desk_switch
     state: 'on'
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'on'
   action:
   - service: scene.turn_on
     target:
       entity_id: scene.office_desk_white
     data:
       transition: 60
+  mode: single
+  max_exceeded: silent
 - id: magic_cube
   alias: Office magic cube
   description: ''
@@ -1599,20 +1729,27 @@
   - condition: state
     entity_id: input_select.daytime
     state: Night
-    enabled: false
+    enabled: true
   - condition: state
     entity_id: light.bedroom_bed_light
     state: 'off'
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
+  - condition: numeric_state
+    entity_id: sensor.bedroom_motion_sensor_light_level
+    below: 50
   action:
   - service: scene.turn_on
     data:
       entity_id: scene.night_toilet_light
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
   - service: light.turn_off
-    data:
-      transition: 150
+    data: {}
     target:
       entity_id: light.bedroom_bed_light
   mode: single
