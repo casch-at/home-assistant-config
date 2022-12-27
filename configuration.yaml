@@ -13,6 +13,7 @@ homeassistant_alerts:
 input_button:
 input_boolean:
 input_datetime:
+input_number:
 input_text:
 logger:
 # map:
@@ -95,7 +96,6 @@ shell_command:
 
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
-input_number: !include input_number.yaml
 input_select: !include input_select.yaml
 light: !include lights.yaml
 lovelace: !include lovelace/lovelace.yaml

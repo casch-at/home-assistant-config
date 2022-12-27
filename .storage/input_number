@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_number",
+  "data": {
+    "items": [
+      {
+        "min": 0.0,
+        "max": 100.0,
+        "name": "asdf",
+        "mode": "slider",
+        "step": 1.0,
+        "id": "asdf"
+      },
+      {
+        "id": "window_or_door_open",
+        "name": "Window or Door Open",
+        "icon": "mdi:window-open",
+        "unit_of_measurement": "sec",
+        "mode": "slider",
+        "min": 300,
+        "max": 28800,
+        "step": 60
+      },
+      {
+        "id": "desk_height",
+        "name": "Desk Height",
+        "icon": "mdi:human-male-height",
+        "unit_of_measurement": "cm",
+        "mode": "slider",
+        "min": 68,
+        "max": 110,
+        "step": 1
+      },
+      {
+        "id": "motion_timeout",
+        "name": "Motion Timeout",
+        "icon": "mdi:motion",
+        "min": 15,
+        "max": 30,
+        "step": 1,
+        "mode": "box"
+      },
+      {
+        "id": "bathroom_motion_timeout_multiplier",
+        "name": "Bathroom Motion Timeout Multiplier",
+        "icon": "mdi:shower",
+        "mode": "slider",
+        "min": 0,
+        "max": 12,
+        "step": 2
+      },
+      {
+        "id": "floor_motion_timeout_multiplier",
+        "name": "Floor Motion Timeout Multiplier",
+        "icon": "mdi:door",
+        "mode": "slider",
+        "min": 0,
+        "max": 15,
+        "step": 1
+      },
+      {
+        "id": "floor_helper_motion_timeout_multiplier",
+        "name": "Floor Helper Motion Timeout Multiplier",
+        "icon": "mdi:door",
+        "mode": "slider",
+        "min": 0,
+        "max": 15,
+        "step": 1
+      }
+    ]
+  }
+}
