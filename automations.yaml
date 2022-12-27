@@ -1757,8 +1757,6 @@
 - id: bedroom_switch
   alias: Bedroom switch
   description: ''
-  mode: queued
-  max: 5
   trigger:
   - platform: event
     event_type: zha_event
@@ -1779,19 +1777,31 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
-      - service: light.toggle
-        target:
-          entity_id: light.nightstand_sonia_light
+      - if:
+        - condition: state
+          entity_id: light.bedroom_bed_light
+          state: 'off'
+        then:
+        - service: light.turn_on
+          data:
+            brightness_pct: 25
+            rgb_color:
+            - 251
+            - 177
+            - 0
+        else:
+        - service: light.turn_off
+          data: {}
+          target:
+            entity_id: light.bedroom_bed_light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
       sequence:
-      - condition: state
-        entity_id: binary_sensor.bedroom_window_sensor
-        state: 'off'
-      - service: cover.close_cover
+      - service: switch.toggle
+        data: {}
         target:
-          entity_id: cover.bedroom_roller_shutter_level
+          entity_id: switch.bedroom_shutter_down_relay
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_triple" }}'
@@ -1799,6 +1809,7 @@
       - service: switch.turn_on
         target:
           entity_id: switch.fan_speed_switch
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_hold" }}'
@@ -1814,16 +1825,15 @@
       - service: light.toggle
         target:
           entity_id: light.nightstand_christian_light
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_double" }}'
       sequence:
-      - condition: state
-        entity_id: binary_sensor.bedroom_window_sensor
-        state: 'off'
-      - service: cover.open_cover
+      - service: switch.toggle
+        data: {}
         target:
-          entity_id: cover.bedroom_roller_shutter_level
+          entity_id: switch.bedroom_shutter_up_relay
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_triple" }}'
@@ -1831,6 +1841,7 @@
       - service: switch.turn_on
         target:
           entity_id: switch.fan_mist_switch
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_hold" }}'
@@ -1838,6 +1849,7 @@
       - service: switch.turn_on
         target:
           entity_id: switch.fan_off_switch
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
@@ -1845,32 +1857,31 @@
       - service: light.toggle
         target:
           entity_id: light.nightstand_lights
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "3_double" or trigger.event.data.command
-          == "4_double" }}'
-      sequence:
-      - service: cover.stop_cover
-        target:
-          entity_id: cover.bedroom_roller_shutter_level
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
-      - choose:
-        - conditions:
-          - condition: state
-            entity_id: light.kitchen_cabinet_light
-            state: 'off'
-          sequence:
-          - service: scene.turn_on
-            target:
-              entity_id: scene.night_toilet_light
-        default:
+      - if:
+        - condition: state
+          entity_id: light.bedroom_bed_light
+          state: 'off'
+        then:
+        - service: light.turn_on
+          data:
+            rgb_color:
+            - 255
+            - 177
+            - 0
+            brightness_pct: 25
+        else:
         - service: light.turn_off
+          data: {}
           target:
-            entity_id: light.kitchen_cabinet_light
+            entity_id: light.bedroom_bed_light
     default: []
+  mode: queued
+  max: 5
 - id: parlor_low_illuminance
   alias: Parlor low illuminance light
   description: Turn on lights on low natural illumance light.
