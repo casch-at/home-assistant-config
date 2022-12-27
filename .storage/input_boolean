@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_boolean",
+  "data": {
+    "items": [
+      {
+        "id": "presence",
+        "name": "Presence",
+        "icon": "mdi:home-search"
+      },
+      {
+        "id": "floor_light_active",
+        "name": "Floor Light Active",
+        "icon": "mdi:door"
+      },
+      {
+        "id": "floor_helper_light_active",
+        "name": "Floor Helper Light Active",
+        "icon": "mdi:door"
+      },
+      {
+        "id": "state_night_running",
+        "name": "State Night Running",
+        "icon": "mdi:sleep"
+      },
+      {
+        "id": "presence_off_running",
+        "name": "Presence Off Running",
+        "icon": "mdi:home-search"
+      },
+      {
+        "id": "window_or_door_open",
+        "name": "Window Or Door Open",
+        "icon": "mdi:window-open",
+        "initial": "off"
+      },
+      {
+        "id": "bathroom_light_active",
+        "name": "Bathroom Light Active",
+        "icon": "mdi:shower"
+      },
+      {
+        "id": "marantz_power_state",
+        "name": "Marantz Power State"
+      }
+    ]
+  }
+}
