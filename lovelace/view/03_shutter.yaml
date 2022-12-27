@@ -17,8 +17,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.bedroom_window_sensor'].state == 'on' ||
-                      states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
                 duration: 0
           rd:
@@ -28,8 +27,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.bedroom_window_sensor'].state == 'on' ||
-                      states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
                 duration: 0
 
@@ -44,8 +42,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.office_window_sensor'].state == 'on' ||
-                      states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
                 duration: 0
           rd:
@@ -55,8 +52,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.office_window_sensor'].state == 'on' ||
-                      states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
                   ]]]
                 duration: 0
 
