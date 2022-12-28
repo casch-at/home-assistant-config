@@ -50,11 +50,37 @@
   name: Kitchen Cabinet White
   entities:
     light.kitchen_cabinet_light:
-      brightness: 254
-      color_temp: 155
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6329
+      min_mireds: 158
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
       icon: mdi:led-strip-variant
+      friendly_name: Kitchen Cabinet Light
+      supported_features: 44
+      color_mode: color_temp
+      brightness: 204
+      hs_color:
+      - 44.098
+      - 2.43
+      rgb_color:
+      - 255
+      - 253
+      - 248
+      xy_color:
+      - 0.328
+      - 0.334
+      color_temp_kelvin: 6451
+      color_temp: 155
       state: 'on'
   icon: mdi:file-cabinet
+  metadata: {}
 - id: '1602355780411'
   name: Night Toilet Light
   entities:
@@ -112,10 +138,37 @@
   name: Office Desk White
   entities:
     light.office_desk_light:
-      brightness: 254
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 204
+      hs_color:
+      - 44.098
+      - 2.43
+      rgb_color:
+      - 255
+      - 253
+      - 248
+      xy_color:
+      - 0.328
+      - 0.334
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Desk Light
+      supported_features: 44
+      icon: mdi:desk
+      color_temp_kelvin: 6451
       color_temp: 155
       state: 'on'
   icon: mdi:desk
+  metadata: {}
 - id: '1610138242037'
   name: Bathroom Warm
   entities:

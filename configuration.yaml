@@ -16,7 +16,6 @@ input_datetime:
 input_number:
 input_select:
 input_text:
-logger:
 # map:
 # media_source:
 mobile_app:
@@ -50,8 +49,8 @@ http:
 
 
 # https://www.home-assistant.io/integrations/logger/
-# logger:
-#  default: info # defaults to warning
+logger:
+  default: info # defaults to warning
 #  logs:
 #     pydeconz: debug
 #     homeassistant.core: debug

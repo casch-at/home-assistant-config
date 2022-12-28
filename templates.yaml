@@ -102,8 +102,9 @@
       device_class: cold
       state: >-
         {{
-          states('weather.home') == 'snowy' or
-          states('sensor.outdoor_temperature') | float(0.0) <= 1.0
+            states('weather.home') == 'snowy'
+          or
+            states('sensor.outdoor_temperature') | float(0.0) <= -10.0
         }}
     - name: Christian Schwarzgruber Alaram
       unique_id: binary_sensor0003

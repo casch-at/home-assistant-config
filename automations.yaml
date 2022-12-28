@@ -1143,7 +1143,6 @@
 - id: night_mode
   alias: Night mode
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id: input_select.daytime
@@ -1156,22 +1155,20 @@
   action:
   - if:
     - condition: template
-      value_template: "{{\n  states('binary_sensor.cover_operation_to_cold') == 'off'
-        and\n  states('binary_sensor.bedroom_window_sensor') == 'off'\n}}"
+      value_template: "{{\n  states('binary_sensor.cover_operation_to_cold') == 'off'"
     then:
-    - service: cover.stop_cover
-      data:
-        entity_id: cover.bedroom_roller_shutter_level
-    - service: cover.close_cover
-      data:
-        entity_id: cover.bedroom_roller_shutter_level
+    - service: switch.turn_on
+      data: {}
+      target:
+        entity_id: switch.bedroom_shutter_down_relay
   - service: scene.turn_on
     data:
       entity_id: scene.night_toilet_light
   - service: automation.trigger
     target:
       entity_id: automation.turn_everything_off_on_presence_state_off
-  - wait_template: '{{ states("light.kitchen_cabinet_light") == ''off'' }}'
+    data: {}
+  - wait_template: '{{ states("light.bedroom_bed_light") == ''off'' }}'
     timeout: 00:00:02
     continue_on_timeout: true
   - service: scene.turn_on
@@ -1181,7 +1178,10 @@
     data:
       transition: 100
     target:
-      entity_id: light.kitchen_cabinet_light
+      entity_id:
+      - light.bedroom_bed_light
+      - light.floor_back_light
+  mode: single
 - id: kitchen_cabinet_light_based_on_input_select_scenes
   alias: Kitchen cabinet light based on input select scenes
   description: ''
@@ -1786,9 +1786,12 @@
           data:
             brightness_pct: 25
             rgb_color:
-            - 251
-            - 177
-            - 0
+            - 252
+            - 161
+            - 50
+            transition: 0
+          target:
+            entity_id: light.bedroom_bed_light
         else:
         - service: light.turn_off
           data: {}
@@ -1874,6 +1877,9 @@
             - 177
             - 0
             brightness_pct: 25
+            transition: 0
+          target:
+            entity_id: light.bedroom_bed_light
         else:
         - service: light.turn_off
           data: {}
@@ -1885,34 +1891,42 @@
 - id: parlor_low_illuminance
   alias: Parlor low illuminance light
   description: Turn on lights on low natural illumance light.
-  mode: single
-  max_exceeded: silent
   trigger:
   - platform: numeric_state
-    entity_id: sensor.parlor_light_sensor_light_level
-    below: 100
-    for: 10
+    entity_id: sensor.office_light_sensor_light_level
+    below: 70
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
   - platform: state
     entity_id: person.christian_schwarzgruber
     from: not_home
     to: home
-    for: 2
+  - platform: state
+    entity_id:
+    - input_boolean.presence
+    from: 'off'
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.presence
     state: 'on'
   - condition: numeric_state
-    entity_id: sensor.parlor_light_sensor_light_level
-    below: 100
-  - condition: numeric_state
     entity_id: sensor.office_light_sensor_light_level
-    below: 100
+    below: 70
   - condition: not
     conditions:
     - condition: state
       entity_id: input_select.daytime
       state: Night
-  action: []
+  action:
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.kitchen_cabinet_white
+  mode: single
+  max_exceeded: silent
 - id: door_window_open_detection
   alias: Door and window open detection
   description: Send notification when it is cold outside and door/window is too long
