@@ -765,7 +765,7 @@
     target:
       entity_id:
       - light.all_lights
-      - group.devices_group
+      - switch.devices_group
   - service: switch.turn_off
     target:
       entity_id:
@@ -1153,7 +1153,7 @@
   action:
   - if:
     - condition: template
-      value_template: "{{\n  states('binary_sensor.cover_operation_to_cold') == 'off'"
+      value_template: "{{\n  states('binary_sensor.cover_operation_to_cold') == 'off' }}"
     then:
     - service: switch.turn_on
       data: {}
