@@ -73,13 +73,11 @@
     - condition: state
       entity_id: binary_sensor.cover_operation_to_cold
       state: 'off'
-    - condition: state
-      entity_id: binary_sensor.bedroom_window_sensor
-      state: 'off'
     then:
-    - service: cover.open_cover
+    - service: switch.turn_on
+      data: {}
       target:
-        entity_id: cover.bedroom_roller_shutter_level
+        entity_id: switch.parlor_shutter_up_relay
   - if:
     - condition: template
       value_template: '{{ trigger.entity_id == ''binary_sensor.christian_schwarzgruber_alarm''
