@@ -80,7 +80,7 @@ cards:
             cards:
               - type: custom:button-card
                 entity: light.bedroom_bed_light
-                template: icon_only
+                template: icon_only_more_info
               - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info

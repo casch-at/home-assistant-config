@@ -1,11 +1,14 @@
 - id: enough_illuminance
   alias: Enough illuminance light
   description: Turn off lights on enough natural illuminance light.
-  mode: single
   trigger:
   - platform: numeric_state
     entity_id: sensor.office_light_sensor_light_level
-    above: 130
+    above: 99
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
   condition:
   - condition: state
     entity_id: light.all_lights
@@ -14,6 +17,8 @@
   - service: light.turn_off
     target:
       entity_id: light.all_lights
+    data: {}
+  mode: single
 - id: fire_alarm
   alias: Fire Alarm
   description: ''
@@ -233,16 +238,29 @@
     - condition: state
       entity_id: input_select.daytime
       state: Night
+  - condition: state
+    entity_id: light.kitchen_cabinet_light
+    state: 'off'
   action:
   - if:
-    - condition: state
-      entity_id: light.kitchen_cabinet_light
-      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+      - condition: state
+        entity_id: input_select.daytime
+        state: Evening
     then:
     - service: scene.turn_on
+      data: {}
       target:
         entity_id: scene.kitchen_cabinet_night
+    else:
+    - service: scene.turn_on
       data: {}
+      target:
+        entity_id: scene.kitchen_cabinet_white
   mode: single
   max_exceeded: silent
 - id: night_lights_based_on_input_select_scenes
@@ -1153,7 +1171,8 @@
   action:
   - if:
     - condition: template
-      value_template: "{{\n  states('binary_sensor.cover_operation_to_cold') == 'off' }}"
+      value_template: "{{\n  states('binary_sensor.cover_operation_to_cold') == 'off'
+        }}"
     then:
     - service: switch.turn_on
       data: {}
@@ -1334,6 +1353,12 @@
     - input_boolean.presence
     from: 'off'
     to: 'on'
+  - platform: state
+    entity_id:
+    - device_tracker.lap_work_router
+    - device_tracker.pc01_lan_router
+    - device_tracker.pc01_wlan_router
+    to: home
   condition:
   - condition: numeric_state
     entity_id: sensor.office_light_sensor_light_level
@@ -1356,11 +1381,25 @@
     entity_id: input_boolean.presence
     state: 'on'
   action:
-  - service: scene.turn_on
-    target:
-      entity_id: scene.office_desk_white
-    data:
-      transition: 60
+  - if:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+      - condition: state
+        entity_id: input_select.daytime
+        state: Evening
+    then:
+    - service: scene.turn_on
+      data: {}
+      target:
+        entity_id: scene.office_desk_night
+    else:
+    - service: scene.turn_on
+      data: {}
+      target:
+        entity_id: scene.office_desk_white
   mode: single
   max_exceeded: silent
 - id: magic_cube

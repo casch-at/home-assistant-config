@@ -242,8 +242,8 @@ cards:
           - entity: sensor.office_magic_cube_battery_level
             name: Office magic cube
             tap_action: more-info
-          - entity: sensor.bedroom_sonia_switch_battery_level
-            name: Bedroom sonia switch
+          - entity: sensor.bedroom_partner_switch_battery_level
+            name: Bedroom partner switch
             tap_action: more-info
           - entity: sensor.bedroom_christian_switch_battery_level
             name: Bedroom christian switch
