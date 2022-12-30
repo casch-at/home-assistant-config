@@ -13,6 +13,8 @@ cards:
           grid:
             - grid-template-areas: >-
                 "n wn tn"
+                "n8 w8 t8"
+                "n9 w9 t9"
                 "n0 w0 t0"
                 "n1 w1 t1"
                 "n3 w3 t3"
@@ -24,6 +26,14 @@ cards:
             - grid-template-columns: min-content 1fr 1fr
             - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr
           custom_fields:
+            n8:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n9:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
             n0:
               - justify-self: start
               - padding-left: 10px
@@ -76,6 +86,9 @@ cards:
         custom_fields:
           wn: 'W'
           tn: 'kWh'
+          n8: 'P. Shut.'
+          n9: 'B. Shut.'
+          n0: 'Radiator'
           n0: 'Radiator'
           n1: 'Mirror'
           n3: 'O. Back'
@@ -84,6 +97,16 @@ cards:
           n2: 'Desk'
           n6: 'Server...'
           n5: 'Total'
+          w8:
+            card:
+              type: custom:button-card
+              entity: sensor.parlor_shutter_energy_power
+              template: embedded_card
+          w9:
+            card:
+              type: custom:button-card
+              entity: sensor.bedroom_shutter_energy_power
+              template: embedded_card
           w0:
             card:
               type: custom:button-card
@@ -127,6 +150,16 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.generic1_switch_energy_power
+              template: embedded_card
+          t8:
+            card:
+              type: custom:button-card
+              entity: sensor.parlor_shutter_energy_total
+              template: embedded_card
+          t9:
+            card:
+              type: custom:button-card
+              entity: sensor.bedroom_shutter_energy_total
               template: embedded_card
           t0:
             card:

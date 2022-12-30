@@ -48,6 +48,8 @@
       unique_id: mysensor0006
       state: >-
         {{
+          states('sensor.bedroom_shutter_energy_power') | int(0) +
+          states('sensor.parlor_shutter_energy_power') | int(0) +
           states('sensor.bathroom_mirror_light_energy_power') | int(0) +
           states('sensor.office_back_light_energy_power') | int(0) +
           states('sensor.office_front_light_energy_power') | int(0) +
@@ -64,6 +66,8 @@
       unique_id: mysensor0007
       state: >-
         {{
+          states('sensor.bedroom_shutter_energy_total') | int(0) +
+          states('sensor.parlor_shutter_energy_total') | int(0) +
           states('sensor.bathroom_mirror_light_energy_total') | int(0) +
           states('sensor.office_back_light_energy_total') | int(0) +
           states('sensor.office_front_light_energy_total') | int(0) +
@@ -96,6 +100,47 @@
         {% elif states('input_select.daytime') == 'Night' -%}
           480
         {% endif %}
+    - name: Parlor Shutter Energy Power
+      unique_id: mysensor0010
+      state: >-
+        {{
+          states('sensor.parlor_shutter_up_energy_power') | int(0) +
+          states('sensor.parlor_shutter_down_energy_power') | int(0)
+        }}
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: 'W'
+    - name: Parlor Shutter Energy Total
+      unique_id: mysensor0011
+      state: >-
+        {{
+          states('sensor.parlor_shutter_up_energy_power') | int(0) +
+          states('sensor.parlor_shutter_down_energy_power') | int(0)
+        }}
+      device_class: energy
+      state_class: total
+      unit_of_measurement: 'kWh'
+    - name: Bedroom Shutter Energy Power
+      unique_id: mysensor0012
+      state: >-
+        {{
+          states('sensor.bedroom_shutter_up_energy_power') | int(0) +
+          states('sensor.bedroom_shutter_down_energy_power') | int(0)
+        }}
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: 'W'
+    - name: Bedroom Shutter Energy Total
+      unique_id: mysensor0013
+      state: >-
+        {{
+          states('sensor.bedroom_shutter_up_energy_power') | int(0) +
+          states('sensor.bedroom_shutter_down_energy_power') | int(0)
+        }}
+      device_class: energy
+      state_class: total
+      unit_of_measurement: 'kWh'
+
 - binary_sensor:
     - name: Cover Operation To Cold
       unique_id: binary_sensor0001
