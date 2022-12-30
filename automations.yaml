@@ -2143,3 +2143,18 @@
     data:
       entity_id: '{{ states(''input_select.bedroom_bed_scenes'') }}'
   mode: single
+- id: '1672442241658'
+  alias: Wind speed to high for shutters
+  description: Move shutters up if wind speed is to high.
+  trigger:
+  - platform: numeric_state
+    entity_id: weather.home
+    above: 50
+    attribute: wind_speed
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.shutters_up_group
+  mode: single
