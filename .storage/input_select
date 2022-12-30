@@ -64,6 +64,16 @@
           "scene.night_lights_light_night",
           "scene.night_lights_light_purple"
         ]
+      },
+      {
+        "id": "bedroom_bed_scenes",
+        "name": "Bedroom Bed Scenes",
+        "icon": "mdi:bed-double",
+        "options": [
+          "scene.bedroom_bed_night",
+          "scene.bedroom_bed_blue",
+          "scene.bedroom_bed_purple"
+        ]
       }
     ]
   }
