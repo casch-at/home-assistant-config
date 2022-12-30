@@ -388,56 +388,6 @@ cards:
               action: toggle
               confirmation:
                 text: Do you really want to suspend/wake tower?
-          - type: custom:button-card
-            entity_id: script.shutters_down_sun
-            icon: hass:window-closed
-            template: icon_only
-            color: green
-            tap_action:
-              action: call-service
-              service: script.shutters_down_sun
-              confirmation:
-                text: Do you really want to close the shutters?
-            triggers_update:
-              - binary_sensor.cover_operation_to_cold
-            state:
-              - operator: template
-                value: >-
-                  [[[
-                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
-                  ]]]
-                color: red
-            lock:
-              enabled: >-
-                [[[
-                  return states['binary_sensor.cover_operation_to_cold'].state === 'on';
-                ]]]
-              duration: 0
-          - type: custom:button-card
-            entity_id: script.shutters_up_sun
-            icon: hass:window-open
-            template: icon_only
-            color: green
-            tap_action:
-              action: call-service
-              service: script.shutters_up_sun
-              confirmation:
-                text: Do you really want to open the shutters?
-            triggers_update:
-              - binary_sensor.cover_operation_to_cold
-            state:
-              - operator: template
-                value: >-
-                  [[[
-                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
-                  ]]]
-                color: red
-            lock:
-              enabled: >-
-                [[[
-                  return states['binary_sensor.cover_operation_to_cold'].state === 'on';
-                ]]]
-              duration: 0
 
       - type: grid
         columns: 6
