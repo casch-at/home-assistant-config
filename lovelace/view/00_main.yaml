@@ -148,7 +148,7 @@ cards:
                     option: Night
                   confirmation:
                     text: |
-                      Do you really want to set the day state to "Night"?
+                      Do you really want to set daytime to state "Night"?
 
                       This turns all lights and switches off!
           - type: grid
