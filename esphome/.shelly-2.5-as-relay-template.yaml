@@ -137,15 +137,15 @@ switch:
     on_turn_on:
       then:
         - switch.turn_off: shelly_relay_1
-    lambda: !lambda |-
-      if (id(shelly_relay_2).state) {
-        id(shelly_relay_2).turn_off();
-      }
-      if (id(shelly_relay_1).state) {
-        id(shelly_relay_1).turn_off
-      } else {
-        id(shelly_relay_1).turn_on
-      }
+    # lambda: !lambda |-
+    #   if (id(shelly_relay_2).state) {
+    #     id(shelly_relay_2).turn_off();
+    #   }
+    #   if (id(shelly_relay_1).state) {
+    #     id(shelly_relay_1).turn_off
+    #   } else {
+    #     id(shelly_relay_1).turn_on
+    #   }
 
 binary_sensor:
   - platform: gpio
