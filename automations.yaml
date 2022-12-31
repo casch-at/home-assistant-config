@@ -563,30 +563,18 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
       sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: switch.bathroom_mirror_light_switch
-        target:
-          entity_id: script.kitchen_cabinet_light_based_on_entity_state
-      - event: zha_event
-        event_data:
-          device_id: 5066dc0a0d6a11eba736919d4fa21431
-          command: 2_single
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "3_double" }}'
-      sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: light.bathroom_lights
-        target:
-          entity_id: script.kitchen_cabinet_light_based_on_entity_state
       - event: zha_event
         event_data:
           device_id: 5066dc0a0d6a11eba736919d4fa21431
           command: 3_single
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "3_double" }}'
+      sequence:
+      - event: zha_event
+        event_data:
+          device_id: 5066dc0a0d6a11eba736919d4fa21431
+          command: 4_double
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_hold" }}'
@@ -960,10 +948,8 @@
       entity_id: input_boolean.bathroom_light_active
   mode: single
 - id: bathroom_light
-  alias: Bathroom light
+  alias: Bathroom switch
   description: ''
-  mode: queued
-  max: 5
   trigger:
   - platform: event
     event_type: zha_event
@@ -972,7 +958,7 @@
   condition:
   - condition: template
     value_template: "{{\n  trigger.event.data.command in [\n    '1_single', '1_double',\n
-      \   '2_single', '2_double',\n    '3_single', '3_double',\n    '4_single',\n
+      \   '2_single', '2_double',\n    '3_single', '3_double',\n    '4_single', '4_double',\n
       \ ]\n}}"
   action:
   - choose:
@@ -994,13 +980,16 @@
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.bathroom_light_active
+            data: {}
           - service: light.turn_on
             target:
               entity_id: light.bathroom_mirror_light
+            data: {}
         default:
         - service: light.turn_off
           target:
             entity_id: light.bathroom_mirror_light
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
@@ -1027,13 +1016,16 @@
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.bathroom_light_active
+            data: {}
           - service: light.turn_on
             target:
               entity_id: light.bathroom_mirror_light
+            data: {}
         default:
         - service: light.turn_off
           target:
             entity_id: light.bathroom_mirror_light
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_single" }}'
@@ -1052,6 +1044,7 @@
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.bathroom_light_active
+            data: {}
           - service: light.turn_on
             data:
               brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
@@ -1062,6 +1055,7 @@
         - service: light.turn_off
           target:
             entity_id: light.bathroom_ceiling_lights
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
@@ -1080,6 +1074,7 @@
           - service: input_boolean.turn_on
             target:
               entity_id: input_boolean.bathroom_light_active
+            data: {}
           - service: light.turn_on
             data:
               brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
@@ -1094,6 +1089,7 @@
             entity_id:
             - light.bathroom_ceiling_lights
             - light.bathroom_mirror_light
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_double" }}'
@@ -1112,7 +1108,17 @@
       - service: input_select.select_next
         target:
           entity_id: input_select.bathroom_scenes
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "4_double" }}'
+      sequence:
+      - service: switch.toggle
+        target:
+          entity_id: switch.bathroom_radiator_switch
     default: []
+  mode: queued
+  max: 5
 - id: terrace_light_based_on_input_select_scenes
   alias: Terrace light based on input select scenes
   description: ''
@@ -1396,9 +1402,6 @@
       entity_id: input_select.daytime
       state: Night
   - condition: state
-    entity_id: person.christian_schwarzgruber
-    state: home
-  - condition: state
     entity_id: light.office_desk_light
     state: 'off'
   - condition: state
@@ -1414,9 +1417,6 @@
       - condition: state
         entity_id: input_select.daytime
         state: Night
-      - condition: state
-        entity_id: input_select.daytime
-        state: Evening
     then:
     - service: scene.turn_on
       data: {}
@@ -1963,11 +1963,26 @@
     - condition: state
       entity_id: input_select.daytime
       state: Night
+  - condition: state
+    entity_id: light.kitchen_cabinet_light
+    state: 'off'
   action:
-  - service: scene.turn_on
-    data: {}
-    target:
-      entity_id: scene.kitchen_cabinet_white
+  - if:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.daytime
+        state: Night
+    then:
+    - service: scene.turn_on
+      data: {}
+      target:
+        entity_id: scene.kitchen_cabinet_night
+    else:
+    - service: scene.turn_on
+      data: {}
+      target:
+        entity_id: scene.kitchen_cabinet_white
   mode: single
   max_exceeded: silent
 - id: door_window_open_detection
