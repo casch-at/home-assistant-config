@@ -48,18 +48,18 @@ cards:
               action: navigate
               navigation_path: /lovelace/blinds
             triggers_update:
-              - binary_sensor.cover_operation_to_cold
+              - binary_sensor.shutter_operation_to_cold_or_windy
             state:
               - operator: template
                 value: >-
                   [[[
-                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 color: red
             lock:
               enabled: >-
                 [[[
-                  return states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                  return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                 ]]]
               duration: 0
           - type: custom:button-card

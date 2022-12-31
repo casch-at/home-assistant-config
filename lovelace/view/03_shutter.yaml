@@ -17,7 +17,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
           rd:
@@ -27,7 +27,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
 
@@ -42,7 +42,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
           rd:
@@ -52,7 +52,7 @@ cards:
               lock:
                 enabled: >-
                   [[[
-                    return states['binary_sensor.cover_operation_to_cold'].state === 'on';
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
 

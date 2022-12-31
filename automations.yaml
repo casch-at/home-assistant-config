@@ -74,7 +74,7 @@
         entity_id: scene.kitchen_cabinet_white
   - if:
     - condition: state
-      entity_id: binary_sensor.cover_operation_to_cold
+      entity_id: binary_sensor.shutter_operation_to_cold_or_windy
       state: 'off'
     then:
     - service: switch.turn_on
@@ -1198,8 +1198,8 @@
   action:
   - if:
     - condition: template
-      value_template: "{{\n  states('binary_sensor.cover_operation_to_cold') == 'off'
-        }}"
+      value_template: "{{\n  states('binary_sensor.shutter_operation_to_cold_or_windy')
+        == 'off' }}"
     then:
     - service: switch.turn_on
       data: {}
@@ -1459,7 +1459,7 @@
         value_template: "{{\n    trigger.event.data.command == \"flip\"\n  and\n    trigger.event.data.args.flip_degrees
           == 90\n}}"
       - condition: state
-        entity_id: binary_sensor.cover_operation_to_cold
+        entity_id: binary_sensor.shutter_operation_to_cold_or_windy
         state: 'off'
       - condition: state
         entity_id: binary_sensor.office_window_sensor

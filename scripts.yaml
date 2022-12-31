@@ -58,7 +58,7 @@ shutters_down_sun:
   icon: hass:window-closed
   sequence:
   - condition: state
-    entity_id: binary_sensor.cover_operation_to_cold
+    entity_id: binary_sensor.shutter_operation_to_cold_or_windy
     state: 'off'
   - if:
     - condition: state
@@ -110,7 +110,7 @@ shutters_up_sun:
   icon: hass:window-open
   sequence:
   - condition: state
-    entity_id: binary_sensor.cover_operation_to_cold
+    entity_id: binary_sensor.shutter_operation_to_cold_or_windy
     state: 'off'
   - if:
     - condition: state

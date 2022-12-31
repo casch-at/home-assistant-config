@@ -142,13 +142,11 @@
       unit_of_measurement: 'kWh'
 
 - binary_sensor:
-    - name: Cover Operation To Cold
+    - name: Shutter Operation To Cold Or Windy
       unique_id: binary_sensor0001
-      device_class: cold
+      device_class: safety
       state: >-
         {{
-            states('weather.home') == 'snowy'
-          or
             states('sensor.outdoor_temperature') | float(0.0) <= -10.0
           or
             state_attr('weather.home', 'wind_speed') | float(0.0) > 50.0
@@ -167,6 +165,7 @@
         }}
     - name: Door Window Sensors
       unique_id: binary_sensor0004
+      device_class: door
       state: >-
         {{
             states('binary_sensor.balcony_door_sensor') == 'on'
@@ -183,6 +182,7 @@
         }}
     - name: Update Available Sensor
       unique_id: binary_sensor0005
+      device_class: update
       state: >-
         {{
             states('binary_sensor.home_assistant_versions_update_available') == 'on'
