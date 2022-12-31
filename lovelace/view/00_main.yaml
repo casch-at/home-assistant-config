@@ -398,9 +398,9 @@ cards:
             name: "Office"
             template: name_card_round
           - type: custom:button-card
-            entity: binary_sensor.bedroom_window_sensor
+            entity: binary_sensor.entrance_door_sensor
             show_icon: true
-            name: "Bedroom"
+            name: "Entrance"
             template: name_card_round
           - type: custom:button-card
             entity: binary_sensor.balcony_door_sensor

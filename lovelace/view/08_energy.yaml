@@ -260,8 +260,8 @@ cards:
           - entity: sensor.bathroom_multi_sensor_battery_level
             name: Bathroom multi sensor
             tap_action: more-info
-          - entity: sensor.bedroom_window_sensor_battery_level
-            name: Bedroom window sensor
+          - entity: sensor.entrance_door_sensor_battery_level
+            name: Entrance door sensor
             tap_action: more-info
           - entity: sensor.office_window_sensor_battery_level
             name: Office window sensor

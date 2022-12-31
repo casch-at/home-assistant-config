@@ -179,7 +179,7 @@
           or
             states('binary_sensor.upstairs_window_sensor') == 'on'
           or
-            states('binary_sensor.bedroom_window_sensor') == 'on'
+            states('binary_sensor.entrance_door_sensor') == 'on'
         }}
     - name: Update Available Sensor
       unique_id: binary_sensor0005
