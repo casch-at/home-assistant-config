@@ -43,6 +43,11 @@
       {
         "id": "marantz_power_state",
         "name": "Marantz Power State"
+      },
+      {
+        "name": "Terrace Plant Lights Active",
+        "icon": "mdi:flower",
+        "id": "terrace_plant_lights_active"
       }
     ]
   }

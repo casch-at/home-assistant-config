@@ -658,16 +658,28 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: light.terrace_plant_lights
-        target:
-          entity_id: script.kitchen_cabinet_light_based_on_entity_state
-      - service: homeassistant.toggle
-        target:
+      - if:
+        - condition: state
           entity_id: light.terrace_plant_lights
-        data: {}
+          state: 'off'
+        then:
+        - service: light.turn_on
+          data: {}
+          target:
+            entity_id: light.terrace_plant_lights
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.terrace_plant_lights_active
+        else:
+        - service: light.turn_off
+          data: {}
+          target:
+            entity_id: light.terrace_plant_lights
+        - service: input_boolean.turn_off
+          data: {}
+          target:
+            entity_id: input_boolean.terrace_plant_lights_active
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
@@ -676,6 +688,10 @@
         target:
           entity_id: input_select.terrace_plant_scenes
         data: {}
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.terrace_plant_lights_active
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_single" }}'
@@ -2187,4 +2203,77 @@
     data: {}
     target:
       entity_id: switch.shutters_up_group
+  mode: single
+- id: '1672596725113'
+  alias: Terrace light
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.balcony_door_sensor
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  condition:
+  - condition: state
+    entity_id: input_boolean.terrace_plant_lights_active
+    state: 'off'
+  action:
+  - if:
+    - condition: state
+      entity_id: light.terrace_plant_lights
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.daytime
+          state: Morning
+        - condition: state
+          entity_id: input_select.daytime
+          state: Daytimes
+    then:
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id: light.terrace_plant_lights
+    else:
+    - if:
+      - condition: state
+        entity_id: light.terrace_plant_lights
+        state: 'on'
+      then:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.terrace_plant_lights
+  mode: single
+- id: '1672609154429'
+  alias: Break-in alarm
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.balcony_door_sensor
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.entrance_door_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'off'
+  action:
+  - device_id: 977d03248b84aba3934e48976ccaee3c
+    domain: mobile_app
+    type: notify
+    message: Someone broke in
+    title: 'Warning break-in⚠️  '
   mode: single
