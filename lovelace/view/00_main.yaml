@@ -159,7 +159,7 @@ cards:
                 template: icon_only
                 tap_action:
                   action: navigate
-                  navigation_path: /lovelace/switches
+                  navigation_path: /lovelace/switch
                 double_tap_action:
                   action: call-service
                   service: homeassistant.turn_off
@@ -172,7 +172,7 @@ cards:
                 template: icon_only
                 tap_action:
                   action: navigate
-                  navigation_path: /lovelace/lights
+                  navigation_path: /lovelace/light
                 hold_action:
                   action: more-info
                 double_tap_action:
@@ -188,7 +188,7 @@ cards:
                 entity: camera.tapo_c200_mainstream
                 hold_action:
                   action: navigate
-                  navigation_path: /lovelace/cameras
+                  navigation_path: /lovelace/surveillance
                 triggers_update:
                   - device_tracker.tapo_c200
                 state:
