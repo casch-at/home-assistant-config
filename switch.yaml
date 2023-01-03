@@ -64,7 +64,6 @@
 - platform: group
   unique_id: deskt_and_laptop_group
   name: Desk and Laptop Group
-  # icon: mdi:laptop
   entities:
     - switch.desk_switch
     - switch.laptop_switch
@@ -72,14 +71,11 @@
 - platform: group
   unique_id: switches_group
   name: Switches Group
-  # icon: mdi:dip-switch
   entities:
     - switch.desk_switch
     - switch.laptop_switch
     - switch.printer_switch
-#    - switch.tower
     - switch.3d_printer_switch
-#    - switch.tv_usb
 
 # - platform: group
 #   unique_id: bedroom_group
