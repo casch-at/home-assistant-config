@@ -230,8 +230,11 @@ cards:
               state: "on"
               icon: mdi:flash
               color: yellow
-          - entity: sensor.bedroom_motion_sensor_battery_level
-            name: Bedroom motion sensor
+          - entity: sensor.bedroom_bed_left_motion_sensor_battery_level
+            name: Bedroom bed left motion sensor
+            tap_action: more-info
+          - entity: sensor.bedroom_bed_right_motion_sensor_battery_level
+            name: Bedroom bed right motion sensor
             tap_action: more-info
           - entity: sensor.floor_helper_motion_sensor_battery_level
             name: Floor helper motion sensor

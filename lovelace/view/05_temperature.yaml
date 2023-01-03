@@ -180,8 +180,11 @@ cards:
           l6:
             card:
                 type: custom:button-card
-                entity: sensor.bedroom_motion_sensor_light_level
+                entity: sensor.bedroom_bed_left_motion_sensor_light_level
                 template: embedded_card
+                double_tap_action:
+                  action: more-info
+                  entity: sensor.bedroom_bed_right_motion_sensor_light_level
           t7:
             card:
                 type: custom:button-card
