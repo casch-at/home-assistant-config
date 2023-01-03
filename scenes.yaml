@@ -272,24 +272,68 @@
   name: Office Desk Purple
   entities:
     light.office_desk_light:
-      brightness: 254
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 204
+      hs_color:
+      - 255.422
+      - 97.647
       rgb_color:
-      - 166
-      - 78
+      - 70
+      - 6
       - 255
+      xy_color:
+      - 0.157
+      - 0.05
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Desk Light
+      supported_features: 44
+      icon: mdi:desk
       state: 'on'
   icon: mdi:desk
+  metadata: {}
 - id: '1615493508591'
   name: Office Desk Green
   entities:
     light.office_desk_light:
-      brightness: 254
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 204
+      hs_color:
+      - 135.059
+      - 100
       rgb_color:
       - 0
       - 255
       - 64
+      xy_color:
+      - 0.17
+      - 0.703
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Desk Light
+      supported_features: 44
+      icon: mdi:desk
       state: 'on'
   icon: mdi:desk
+  metadata: {}
 - id: '1669333649580'
   name: Office Desk Night
   entities:
@@ -364,6 +408,11 @@
       supported_color_modes:
       - color_temp
       - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:bed
+      friendly_name: Bedroom Bed Light
+      supported_features: 44
       color_mode: xy
       brightness: 28
       hs_color:
@@ -376,11 +425,6 @@
       xy_color:
       - 0.136
       - 0.04
-      off_with_transition: false
-      off_brightness:
-      icon: mdi:bed
-      friendly_name: Bedroom Bed Light
-      supported_features: 44
       state: 'on'
   icon: mdi:bed-double
   metadata: {}
@@ -484,4 +528,144 @@
       color_temp: 155
       state: 'on'
   icon: mdi:bed-double
+  metadata: {}
+- id: '1672774585531'
+  name: Terrace Plant Spots Light White
+  entities:
+    light.terrace_plant_lights:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 217
+      hs_color:
+      - 41.14
+      - 2.841
+      rgb_color:
+      - 255
+      - 252
+      - 247
+      xy_color:
+      - 0.329
+      - 0.334
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Plants
+      supported_features: 44
+      icon: mdi:flower
+      color_temp_kelvin: 6410
+      color_temp: 156
+      state: 'on'
+  icon: mdi:flower
+  metadata:
+    light.terrace_plant_lights:
+      entity_only: true
+- id: '1672774661218'
+  name: Terrace Plant Spots Light Night
+  entities:
+    light.terrace_plant_lights:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 219
+      hs_color:
+      - 30.227
+      - 100
+      rgb_color:
+      - 255
+      - 128
+      - 0
+      xy_color:
+      - 0.611
+      - 0.375
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Plants
+      supported_features: 44
+      icon: mdi:flower
+      color_temp_kelvin: 1838
+      color_temp: 544
+      state: 'on'
+  icon: mdi:flower
+  metadata:
+    light.terrace_plant_lights:
+      entity_only: true
+- id: '1672775296563'
+  name: Bedroom Bed Green
+  entities:
+    light.bedroom_bed_light:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:bed
+      friendly_name: Bedroom Bed Light
+      supported_features: 44
+      color_mode: xy
+      brightness: 59
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      state: 'on'
+  icon: mdi:bed-double
+  metadata: {}
+- id: '1672775341411'
+  name: Office Desk Blue
+  entities:
+    light.office_desk_light:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 204
+      hs_color:
+      - 242.588
+      - 100
+      rgb_color:
+      - 11
+      - 0
+      - 255
+      xy_color:
+      - 0.136
+      - 0.04
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Desk Light
+      supported_features: 44
+      icon: mdi:desk
+      state: 'on'
+  icon: mdi:desk
   metadata: {}

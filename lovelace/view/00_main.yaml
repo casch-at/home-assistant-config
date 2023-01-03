@@ -403,7 +403,7 @@ cards:
             name: "Entrance"
             template: name_card_round
           - type: custom:button-card
-            entity: binary_sensor.balcony_door_sensor
+            entity: binary_sensor.terrace_door_sensor
             show_icon: true
-            name: "Balcony"
+            name: "Terrace"
             template: name_card_round

@@ -168,7 +168,7 @@
       device_class: door
       state: >-
         {{
-            states('binary_sensor.balcony_door_sensor') == 'on'
+            states('binary_sensor.terrace_door_sensor') == 'on'
           or
             states('binary_sensor.parlor_window_sensor') == 'on'
           or

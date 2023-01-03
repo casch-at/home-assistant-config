@@ -266,8 +266,8 @@ cards:
           - entity: sensor.office_window_sensor_battery_level
             name: Office window sensor
             tap_action: more-info
-          - entity: sensor.balcony_door_sensor_battery_level
-            name: Balcony door sensor
+          - entity: sensor.terrace_door_sensor_battery_level
+            name: Terrace door sensor
             tap_action: more-info
           - entity: sensor.office_switch_battery_level
             name: Office switch

@@ -22,14 +22,14 @@ cards:
               - type: custom:button-card
                 entity: light.office_desk_light
                 template: icon_only_more_info
-                styles:
-                  icon:
-                    - color: "#FFFFFF"
                 tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.office_desk_white
+                styles:
+                  icon:
+                    - color: "#FFFFFF"
               - type: custom:button-card
                 entity: light.office_desk_light
                 template: icon_only_more_info
@@ -48,10 +48,10 @@ cards:
                   action: call-service
                   service: scene.turn_on
                   service_data:
-                    entity_id: scene.office_desk_purple
+                    entity_id: scene.office_desk_green
                 styles:
                   icon:
-                    - color: "#A64EFF"
+                    - color: "#00FF40"
               - type: custom:button-card
                 entity: light.office_desk_light
                 template: icon_only_more_info
@@ -59,10 +59,21 @@ cards:
                   action: call-service
                   service: scene.turn_on
                   service_data:
-                    entity_id: scene.office_desk_green
+                    entity_id: scene.office_desk_blue
                 styles:
                   icon:
-                    - color: "#00FF40"
+                    - color: "#0A00FF"
+              - type: custom:button-card
+                entity: light.office_desk_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.office_desk_purple
+                styles:
+                  icon:
+                    - color: "#A64EFF"
               - type: custom:button-card
                 entity: light.office_ceiling_lights
                 template: icon_only_more_info
@@ -75,6 +86,151 @@ cards:
                 entity: light.office_front_light
                 template: icon_only_more_info
                 name: 'F'
+                show_name: true
+
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.terrace_plant_spots_light_white
+                styles:
+                  icon:
+                    - color: "#FFFFFF"
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.terrace_plant_spots_light_night
+                styles:
+                  icon:
+                    - color: "#FFC8C8"
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#00FF41"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.terrace_plant_spots_light_green
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.terrace_plant_spots_light_blue
+                styles:
+                  icon:
+                    - color: "#0A00FF"
+              - type: custom:button-card
+                entity: light.terrace_plant_lights
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.terrace_plant_spots_light_purple
+                styles:
+                  icon:
+                    - color: "#A54CFF"
+              - type: custom:button-card
+                entity: light.terrace_plant_spot_1_light
+                template: icon_only_more_info
+                name: 'L'
+                show_name: true
+              - type: custom:button-card
+                entity: light.terrace_plant_spot_2_light
+                template: icon_only_more_info
+                name: 'R'
+                show_name: true
+
+          - type: grid
+            columns: 1
+            cards:
+              - type: custom:button-card
+                entity: light.bedroom_bed_light
+                template: icon_only_more_info
+                icon: mdi:bed
+              - type: custom:button-card
+                entity: light.bedroom_bed_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_bed_white
+                styles:
+                  icon:
+                    - color: "#FFFFFF"
+              - type: custom:button-card
+                entity: light.bedroom_bed_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_bed_night
+                styles:
+                  icon:
+                    - color: "#FFC8C8"
+              - type: custom:button-card
+                entity: light.bedroom_bed_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_bed_green
+                styles:
+                  icon:
+                    - color: "#00FF40"
+              - type: custom:button-card
+                entity: light.bedroom_bed_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_bed_blue
+                styles:
+                  icon:
+                    - color: "#0A00FF"
+              - type: custom:button-card
+                entity: light.bedroom_bed_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_bed_purple
+                styles:
+                  icon:
+                    - color: "#A64EFF"
+              - type: custom:button-card
+                entity: light.nightstand_sonia_light
+                template: icon_only_more_info
+                name: 'S'
+                show_name: true
+              - type: custom:button-card
+                entity: light.nightstand_christian_light
+                template: icon_only_more_info
+                name: 'C'
                 show_name: true
 
           - type: grid
@@ -143,45 +299,6 @@ cards:
             columns: 1
             cards:
               - type: custom:button-card
-                entity: light.terrace_plant_lights
-                template: icon_only_more_info
-              - type: custom:button-card
-                entity: light.terrace_plant_spot_1_light
-                template: icon_only_more_info
-                name: 'L'
-                show_name: true
-              - type: custom:button-card
-                entity: light.terrace_plant_spot_2_light
-                template: icon_only_more_info
-                name: 'R'
-                show_name: true
-              - type: custom:button-card
-                entity: light.terrace_plant_lights
-                template: icon_only_more_info
-                styles:
-                  icon:
-                    - color: "#A54CFF"
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.terrace_plant_spots_light_purple
-              - type: custom:button-card
-                entity: light.terrace_plant_lights
-                template: icon_only_more_info
-                styles:
-                  icon:
-                    - color: "#B6FFC8"
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.terrace_plant_spots_light_green
-
-          - type: grid
-            columns: 1
-            cards:
-              - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info
               - type: custom:button-card
@@ -236,24 +353,6 @@ cards:
                 name: 'B'
                 show_name: true
 
-          - type: grid
-            columns: 1
-            cards:
-              - type: custom:button-card
-                entity: light.bedroom_bed_light
-                template: icon_only_more_info
-                icon: mdi:bed
-              - type: custom:button-card
-                entity: light.nightstand_sonia_light
-                template: icon_only_more_info
-                name: 'S'
-                show_name: true
-              - type: custom:button-card
-                entity: light.nightstand_christian_light
-                template: icon_only_more_info
-                name: 'C'
-                show_name: true
-
       - type: custom:slider-entity-row
         entity: light.office_desk_light
       - type: custom:slider-entity-row
@@ -262,3 +361,7 @@ cards:
         entity: light.bedroom_bed_light
       - type: custom:slider-entity-row
         entity: light.terrace_plant_lights
+      - type: custom:slider-entity-row
+        entity: light.floor_lights
+      - type: custom:slider-entity-row
+        entity: light.bathroom_back_left_light
