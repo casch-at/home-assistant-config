@@ -397,13 +397,25 @@ cards:
             show_icon: true
             name: "Office"
             template: name_card_round
+            state:
+              - operator: '=='
+                value: 'on'
+                icon: mdi:window-open
           - type: custom:button-card
             entity: binary_sensor.entrance_door_sensor
             show_icon: true
             name: "Entrance"
             template: name_card_round
+            state:
+              - operator: '=='
+                value: 'on'
+                icon: mdi:door-open
           - type: custom:button-card
             entity: binary_sensor.terrace_door_sensor
             show_icon: true
             name: "Terrace"
             template: name_card_round
+            state:
+              - operator: '=='
+                value: 'on'
+                icon: mdi:door-open
