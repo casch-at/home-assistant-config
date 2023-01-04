@@ -160,3 +160,33 @@ night_light:
     enabled: true
   mode: single
   icon: mdi:lightbulb-night
+scene_on:
+  alias: Scene On
+  fields:
+    scene:
+      name: Scene Entity
+      description: Scene to turn on (Without the "scene." prefix)
+      required: true
+      selector:
+        entity:
+          domain: scene
+    light:
+      name: Light Entity
+      required: true
+      selector:
+        entity:
+          domain: light
+          multiple: true
+  mode: queued
+  max: 10
+  icon: mdi:light-flood-down
+  sequence:
+  - service: light.turn_off
+    target:
+      entity_id: "{{ \n  light | \n  default(scene | \n    regex_replace(find='^scene',
+        replace='light') | \n    regex_replace(find='[a-z]+$', replace='light')\n
+        \ ) \n}}"
+    data: {}
+  - service: scene.turn_on
+    target:
+      entity_id: '{{ scene }}'
