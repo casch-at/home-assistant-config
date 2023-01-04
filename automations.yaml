@@ -370,39 +370,77 @@
   - condition: numeric_state
     entity_id: sensor.parlor_light_sensor_light_level
     below: 10
-  - condition: numeric_state
-    entity_id: sensor.bedroom_motion_sensor_light_level
-    below: 10
   action:
-  - service: input_number.increment
-    target:
-      entity_id: input_number.floor_helper_motion_timeout_multiplier
-    data: {}
-  - service: light.turn_on
-    data:
-      brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
-      color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
-    target:
-      entity_id: light.floor_back_light
-  - wait_for_trigger:
-      platform: state
-      entity_id: binary_sensor.floor_helper_motion_sensor
-      from: 'on'
-      to: 'off'
-      for: "{{\n  (states('input_number.motion_timeout') | int)\n    *\n  (states('input_number.floor_helper_motion_timeout_multiplier')
-        | int)\n}}"
-  - condition: state
-    entity_id: input_boolean.floor_helper_light_active
-    state: 'off'
-  - service: light.turn_off
-    target:
-      entity_id: light.floor_back_light
-    data: {}
-  - service: input_number.set_value
-    target:
-      entity_id: input_number.floor_helper_motion_timeout_multiplier
-    data:
-      value: 0
+  - if:
+    - condition: state
+      entity_id: input_select.daytime
+      state: Night
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    then:
+    - service: light.turn_on
+      data:
+        brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
+        color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
+      target:
+        entity_id:
+        - light.floor_middle_light
+        - light.kitchen_cabinet_light
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.floor_helper_motion_sensor
+        from: 'on'
+        to: 'off'
+        for:
+          hours: 0
+          minutes: 2
+          seconds: 0
+    - condition: state
+      entity_id: input_boolean.floor_helper_light_active
+      state: 'off'
+    - service: light.turn_off
+      target:
+        entity_id:
+        - light.floor_middle_light
+        - light.kitchen_cabinet_light
+      data: {}
+    else:
+    - if:
+      - condition: numeric_state
+        entity_id: sensor.bedroom_bed_left_motion_sensor_light_level
+        below: 10
+      then:
+      - service: input_number.increment
+        target:
+          entity_id: input_number.floor_helper_motion_timeout_multiplier
+        data: {}
+      - service: light.turn_on
+        data:
+          brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
+          color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
+        target:
+          entity_id: light.floor_back_light
+      - wait_for_trigger:
+          platform: state
+          entity_id: binary_sensor.floor_helper_motion_sensor
+          from: 'on'
+          to: 'off'
+          for: "{{\n  (states('input_number.motion_timeout') | int)\n    *\n  (states('input_number.floor_helper_motion_timeout_multiplier')
+            | int)\n}}"
+      - condition: state
+        entity_id: input_boolean.floor_helper_light_active
+        state: 'off'
+      - service: light.turn_off
+        target:
+          entity_id: light.floor_back_light
+        data: {}
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.floor_helper_motion_timeout_multiplier
+        data:
+          value: 0
   mode: restart
 - id: floor_light_active_state
   alias: Floor light reset active state
