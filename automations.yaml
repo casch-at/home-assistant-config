@@ -282,16 +282,16 @@
 - id: night_lights_based_on_input_select_scenes
   alias: Night lights based on input select scenes
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id:
     - input_select.night_lights_scenes
   condition: []
   action:
-  - service: scene.turn_on
+  - service: script.scene_on
     data:
-      entity_id: '{{ states(''input_select.night_lights_scenes'') }}'
+      scene: '{{ states(''input_select.night_lights_scenes'') }}'
+  mode: single
 - id: floor_motion
   alias: Floor motion
   description: ''
@@ -1175,16 +1175,16 @@
 - id: terrace_light_based_on_input_select_scenes
   alias: Terrace light based on input select scenes
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id:
     - input_select.terrace_plant_scenes
   condition: []
   action:
-  - service: scene.turn_on
+  - service: script.scene_on
     data:
-      entity_id: '{{ states(''input_select.terrace_plant_scenes'') }}'
+      scene: '{{ states(''input_select.terrace_plant_scenes'') }}'
+  mode: single
 - id: daytime
   alias: Set daytime
   description: Set daytime "Morning" (also on alarm) and "Evening" based on sun elevation
@@ -1288,16 +1288,16 @@
 - id: kitchen_cabinet_light_based_on_input_select_scenes
   alias: Kitchen cabinet light based on input select scenes
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id:
     - input_select.kitchen_cabinet_scenes
   condition: []
   action:
-  - service: scene.turn_on
+  - service: script.scene_on
     data:
-      entity_id: '{{ states(''input_select.kitchen_cabinet_scenes'') }}'
+      scene: '{{ states(''input_select.kitchen_cabinet_scenes'') }}'
+  mode: single
 - id: charge_tablet
   alias: Charge tablet
   description: ''
@@ -1683,16 +1683,16 @@
 - id: office_desk_light_based_on_input_select_scenes
   alias: Office desk light based on input select scenes
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id:
     - input_select.office_desk_scenes
   condition: []
   action:
-  - service: scene.turn_on
+  - service: script.scene_on
     data:
-      entity_id: '{{ states(''input_select.office_desk_scenes'') }}'
+      scene: '{{ states(''input_select.office_desk_scenes'') }}'
+  mode: single
 - id: power_off_server
   alias: Power Off Server
   description: Power Off Server shortly after night mode
@@ -1881,7 +1881,8 @@
   - condition: template
     value_template: "{{\n  trigger.event.data.command in [\n    '1_single', '1_double',
       '1_triple', '1_hold',\n    '2_single', '2_double', '2_triple', '2_hold',\n    '3_single',
-      '3_double',\n    '4_single', '4_double',\n  ]\n}}"
+      '3_double',             '3_hold',\n    '4_single', '4_double', '4_triple', '4_hold',\n
+      \ ]\n}}"
   action:
   - choose:
     - conditions:
@@ -1893,10 +1894,9 @@
           entity_id: light.bedroom_bed_light
           state: 'off'
         then:
-        - service: scene.turn_on
-          data: {}
-          target:
-            entity_id: scene.bedroom_bed_white
+        - service: script.scene_on
+          data:
+            scene: scene.bedroom_bed_white
         else:
         - service: light.turn_off
           data: {}
@@ -1975,6 +1975,23 @@
           cycle: true
         target:
           entity_id: input_select.bedroom_bed_scenes
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "4_double" }}'
+      sequence:
+      - service: input_select.select_next
+        data:
+          cycle: true
+        target:
+          entity_id: input_select.terrace_plant_scenes
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "4_triple" }}'
+      sequence:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.terrace_plant_lights
     default: []
   mode: queued
   max: 5
@@ -2216,9 +2233,9 @@
     - input_select.bedroom_bed_scenes
   condition: []
   action:
-  - service: scene.turn_on
+  - service: script.scene_on
     data:
-      entity_id: '{{ states(''input_select.bedroom_bed_scenes'') }}'
+      scene: '{{ states(''input_select.bedroom_bed_scenes'') }}'
   mode: single
 - id: '1672442241658'
   alias: Wind speed to high for shutters

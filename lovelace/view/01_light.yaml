@@ -24,9 +24,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.office_desk_white
+                    scene: scene.office_desk_white
                 styles:
                   icon:
                     - color: "#FFFFFF"
@@ -35,9 +35,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.office_desk_night
+                    scene: scene.office_desk_night
                 styles:
                   icon:
                     - color: "#FFC8C8"
@@ -46,9 +46,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.office_desk_green
+                    scene: scene.office_desk_green
                 styles:
                   icon:
                     - color: "#00FF40"
@@ -57,9 +57,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.office_desk_blue
+                    scene: scene.office_desk_blue
                 styles:
                   icon:
                     - color: "#0A00FF"
@@ -68,9 +68,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.office_desk_purple
+                    scene: scene.office_desk_purple
                 styles:
                   icon:
                     - color: "#A64EFF"
@@ -99,9 +99,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.terrace_plant_spots_light_white
+                    scene: scene.terrace_plant_spots_light_white
+                    light: light.terrace_plant_lights
                 styles:
                   icon:
                     - color: "#FFFFFF"
@@ -110,9 +111,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.terrace_plant_spots_light_night
+                    scene: scene.terrace_plant_spots_light_night
+                    light: light.terrace_plant_lights
                 styles:
                   icon:
                     - color: "#FFC8C8"
@@ -124,17 +126,19 @@ cards:
                     - color: "#00FF41"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.terrace_plant_spots_light_green
+                    scene: scene.terrace_plant_spots_light_green
+                    light: light.terrace_plant_lights
               - type: custom:button-card
                 entity: light.terrace_plant_lights
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.terrace_plant_spots_light_blue
+                    scene: scene.terrace_plant_spots_light_blue
+                    light: light.terrace_plant_lights
                 styles:
                   icon:
                     - color: "#0A00FF"
@@ -143,9 +147,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.terrace_plant_spots_light_purple
+                    scene: scene.terrace_plant_spots_light_purple
+                    light: light.terrace_plant_lights
                 styles:
                   icon:
                     - color: "#A54CFF"
@@ -172,9 +177,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.bedroom_bed_white
+                    scene: scene.bedroom_bed_white
                 styles:
                   icon:
                     - color: "#FFFFFF"
@@ -183,9 +188,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.bedroom_bed_night
+                    scene: scene.bedroom_bed_night
                 styles:
                   icon:
                     - color: "#FFC8C8"
@@ -194,9 +199,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.bedroom_bed_green
+                    scene: scene.bedroom_bed_green
                 styles:
                   icon:
                     - color: "#00FF40"
@@ -205,9 +210,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.bedroom_bed_blue
+                    scene: scene.bedroom_bed_blue
                 styles:
                   icon:
                     - color: "#0A00FF"
@@ -216,9 +221,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.bedroom_bed_purple
+                    scene: scene.bedroom_bed_purple
                 styles:
                   icon:
                     - color: "#A64EFF"
@@ -247,9 +252,9 @@ cards:
                     - color: "#FFFFFF"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.kitchen_cabinet_white
+                    scene: scene.kitchen_cabinet_white
               - type: custom:button-card
                 entity: light.kitchen_cabinet_light
                 template: icon_only_more_info
@@ -258,9 +263,9 @@ cards:
                     - color: "#FFC8C8"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.kitchen_cabinet_night
+                    scene: scene.kitchen_cabinet_night
               - type: custom:button-card
                 entity: light.kitchen_cabinet_light
                 template: icon_only_more_info
@@ -269,9 +274,9 @@ cards:
                     - color: "#00FF41"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.kitchen_cabinet_green
+                    scene: scene.kitchen_cabinet_green
               - type: custom:button-card
                 entity: light.kitchen_cabinet_light
                 template: icon_only_more_info
@@ -280,9 +285,9 @@ cards:
                     - color: "#0A00FF"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.kitchen_cabinet_blue
+                    scene: scene.kitchen_cabinet_blue
               - type: custom:button-card
                 entity: light.kitchen_cabinet_light
                 template: icon_only_more_info
@@ -291,9 +296,9 @@ cards:
                     - color: "#A54CFF"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.kitchen_cabinet_purple
+                    scene: scene.kitchen_cabinet_purple
 
           - type: grid
             columns: 1
@@ -315,9 +320,10 @@ cards:
                     - color: "#FFA69E"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.bathroom_warm
+                    scene: scene.bathroom_warm
+                    light: light.bathroom_lights
               - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info
@@ -326,9 +332,10 @@ cards:
                     - color: "#FFFFFF"
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.scene_on
                   service_data:
-                    entity_id: scene.bathroom_cold
+                    scene: scene.bathroom_cold
+                    light: light.bathroom_lights
 
           - type: grid
             columns: 1
