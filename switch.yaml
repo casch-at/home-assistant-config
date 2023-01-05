@@ -66,14 +66,14 @@
   name: Desk and Laptop Group
   entities:
     - switch.desk_switch
-    - switch.laptop_switch
+    - switch.kitchen_cabinet_switch
 
 - platform: group
   unique_id: switches_group
   name: Switches Group
   entities:
     - switch.desk_switch
-    - switch.laptop_switch
+    - switch.kitchen_cabinet_switch
     - switch.printer_switch
     - switch.3d_printer_switch
 

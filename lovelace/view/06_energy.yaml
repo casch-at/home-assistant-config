@@ -15,6 +15,7 @@ cards:
                 "n wn tn"
                 "n8 w8 t8"
                 "n9 w9 t9"
+                "n10 w10 t10"
                 "n0 w0 t0"
                 "n1 w1 t1"
                 "n3 w3 t3"
@@ -31,6 +32,10 @@ cards:
               - padding-left: 10px
               - font-weight: bold
             n9:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n10:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
@@ -88,7 +93,7 @@ cards:
           tn: 'kWh'
           n8: 'P. Shut.'
           n9: 'B. Shut.'
-          n0: 'Radiator'
+          n10: 'Kit. C.'
           n0: 'Radiator'
           n1: 'Mirror'
           n3: 'O. Back'
@@ -106,6 +111,11 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.bedroom_shutter_energy_power
+              template: embedded_card
+          w10:
+            card:
+              type: custom:button-card
+              entity: sensor.kitchen_cabinet_switch_energy_power
               template: embedded_card
           w0:
             card:
@@ -160,6 +170,11 @@ cards:
             card:
               type: custom:button-card
               entity: sensor.bedroom_shutter_energy_total
+              template: embedded_card
+          t10:
+            card:
+              type: custom:button-card
+              entity: sensor.kitchen_cabinet_switch_energy_total
               template: embedded_card
           t0:
             card:

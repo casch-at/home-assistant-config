@@ -213,6 +213,9 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
+            entity: switch.kitchen_cabinet_switch
+            template: icon_only_more_info
+          - type: custom:button-card
             entity: light.night_lights
             icon: mdi:lightbulb-night
             template: icon_only_more_info
@@ -269,14 +272,6 @@ cards:
             icon: mdi:air-humidifier
             hold_action:
               entity: light.aroma_diffuser_light
-          - type: custom:button-card
-            entity: switch.3d_printer_switch
-            template: icon_only_more_info
-            tap_action:
-              action: toggle
-              confirmation:
-                text: |
-                  Toggle 3D-Printer Switch?
 
       - type: grid
         columns: 1
@@ -388,6 +383,14 @@ cards:
               action: toggle
               confirmation:
                 text: Do you really want to suspend/wake tower?
+          - type: custom:button-card
+            entity: switch.3d_printer_switch
+            template: icon_only_more_info
+            tap_action:
+              action: toggle
+              confirmation:
+                text: |
+                  Toggle 3D-Printer Switch?
 
       - type: grid
         columns: 6

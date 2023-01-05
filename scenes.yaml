@@ -284,15 +284,15 @@
       color_mode: xy
       brightness: 204
       hs_color:
-      - 255.422
-      - 97.647
+      - 285
+      - 98.824
       rgb_color:
-      - 70
-      - 6
+      - 192
+      - 3
       - 255
       xy_color:
-      - 0.157
-      - 0.05
+      - 0.301
+      - 0.116
       off_with_transition: false
       off_brightness:
       friendly_name: Office Desk Light

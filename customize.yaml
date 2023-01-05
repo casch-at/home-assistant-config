@@ -5,8 +5,8 @@ switch.3d_printer_switch:
   icon: mdi:printer-3d
 switch.desk_switch:
   icon: mdi:desk
-switch.laptop_switch:
-  icon: mdi:laptop
+switch.kitchen_cabinet_switch:
+  icon: mdi:chef-hat
 light.nightstand_sonia_light:
   icon: mdi:lamp
 light.nightstand_christian_light:

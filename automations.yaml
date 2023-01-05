@@ -2325,3 +2325,27 @@
     message: Someone broke in
     title: 'Warning break-in⚠️  '
   mode: single
+- id: '1672960431370'
+  alias: Kitchen cabinet switch
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 8bd66cec91faca44983597e71ea981d9
+  condition:
+  - condition: template
+    value_template: "{{ \n  trigger.event.data.command in [\n    'single', 'double',\n
+      \ ] \n}}"
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "single" }}'
+      sequence:
+      - service: switch.toggle
+        target:
+          entity_id: switch.kitchen_cabinet_switch
+        data: {}
+    default: []
+  mode: single
