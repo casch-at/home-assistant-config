@@ -48,6 +48,7 @@
       unique_id: mysensor0006
       state: >-
         {{
+          states('sensor.bathroom_lamp_switch_energy_power') | int(0) +
           states('sensor.bedroom_shutter_energy_power') | int(0) +
           states('sensor.parlor_shutter_energy_power') | int(0) +
           states('sensor.bathroom_mirror_light_energy_power') | int(0) +
@@ -66,12 +67,13 @@
       unique_id: mysensor0007
       state: >-
         {{
+          states('sensor.bathroom_lamp_switch_energy_total') | int(0) +
           states('sensor.bedroom_shutter_energy_total') | int(0) +
           states('sensor.parlor_shutter_energy_total') | int(0) +
           states('sensor.bathroom_mirror_light_energy_total') | int(0) +
           states('sensor.office_back_light_energy_total') | int(0) +
           states('sensor.office_front_light_energy_total') | int(0) +
-          states('sensor.bathroom_radiator__switch_energy_total') | float(0.0) +
+          states('sensor.bathroom_radiator_switch_energy_total') | float(0.0) +
           states('sensor.3d_printer_switch_energy_total') | float(0.0) +
           states('sensor.desk_switch_energy_total') | float(0.0) +
           states('sensor.kitchen_cabinet_energy_total') | float(0.0) +
