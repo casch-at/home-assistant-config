@@ -50,8 +50,6 @@ light.office_ceiling_lights:
   icon: mdi:ceiling-light
 light.kitchen_cabinet_light:
   icon: mdi:led-strip-variant
-switch.desk_and_laptop_group:
-  icon: mdi:laptop
 switch.switches_group:
   icon: mdi:dip-switch
 switch.bedroom_group:

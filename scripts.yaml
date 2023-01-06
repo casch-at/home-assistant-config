@@ -34,7 +34,7 @@ office_on_off:
         entity_id: light.office_lights
         state: 'off'
       - condition: state
-        entity_id: switch.desk_and_laptop_group
+        entity_id: switch.desk_switch
         state: 'off'
     then:
     - service: light.turn_on
@@ -42,7 +42,7 @@ office_on_off:
         entity_id: light.office_lights
     - service: switch.turn_on
       target:
-        entity_id: switch.desk_and_laptop_group
+        entity_id: switch.desk_switch
     else:
     - service: light.turn_off
       data:
@@ -51,7 +51,7 @@ office_on_off:
         entity_id: light.office_lights
     - service: switch.turn_off
       target:
-        entity_id: switch.desk_and_laptop_group
+        entity_id: switch.desk_switch
 shutters_down_sun:
   alias: Shutters Down Sun
   mode: single
