@@ -1047,10 +1047,10 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
       sequence:
-      - event: zha_event
-        event_data:
-          device_id: c2cff687003dd88942aa8597fe9f8734
-          command: 2_single
+      - service: switch.toggle
+        data: {}
+        target:
+          entity_id: switch.bathroom_lamp_switch
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
@@ -1143,14 +1143,22 @@
             - light.bathroom_ceiling_lights
             - light.bathroom_mirror_light
           data: {}
+        - service: switch.turn_off
+          data: {}
+          target:
+            entity_id: switch.bathroom_lamp_switch
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_double" }}'
       sequence:
-      - event: zha_event
-        event_data:
-          device_id: c2cff687003dd88942aa8597fe9f8734
-          command: 1_single
+      - service: scene.turn_on
+        data: {}
+        target:
+          entity_id: scene.bathroom_bath
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bathroom_light_active
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
@@ -1169,6 +1177,7 @@
       - service: switch.toggle
         target:
           entity_id: switch.bathroom_radiator_switch
+        data: {}
     default: []
   mode: queued
   max: 5
@@ -1310,7 +1319,7 @@
   action:
   - service: switch.turn_on
     target:
-      entity_id: switch.3d_printer_usb
+      entity_id: switch.3d_printer_switch_usb
 - id: desk_height
   alias: Desk height
   description: ''
@@ -1979,19 +1988,18 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
       sequence:
-      - service: input_select.select_next
-        data:
-          cycle: true
-        target:
-          entity_id: input_select.terrace_plant_scenes
+      - event: zha_event
+        event_data:
+          device_id: 0157c2c1971568f115955e032e5de269
+          command: 4_double
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_triple" }}'
       sequence:
-      - service: light.turn_off
-        data: {}
-        target:
-          entity_id: light.terrace_plant_lights
+      - event: zha_event
+        event_data:
+          device_id: 0157c2c1971568f115955e032e5de269
+          command: 4_single
     default: []
   mode: queued
   max: 5

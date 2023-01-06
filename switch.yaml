@@ -69,13 +69,9 @@
     - switch.kitchen_cabinet_switch
     - switch.printer_switch
     - switch.3d_printer_switch
-
-# - platform: group
-#   unique_id: bedroom_group
-#   name: Bedroom Group
-#   # icon: mdi:bed
-#   entities:
-#     - switch.nightstand_switch
+    - switch.bathroom_lamp_switch
+    - switch.bathroom_lamp_switch_usb
+    - switch.bathroom_radiator_switch_usb
 
 - platform: group
   unique_id: devices_group

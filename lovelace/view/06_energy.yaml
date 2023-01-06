@@ -159,7 +159,7 @@ cards:
           w6:
             card:
               type: custom:button-card
-              entity: sensor.generic1_switch_energy_power
+              entity: sensor.server_switch_energy_power
               template: embedded_card
           t8:
             card:
@@ -218,7 +218,7 @@ cards:
           t6:
             card:
               type: custom:button-card
-              entity: sensor.generic1_switch_energy_total
+              entity: sensor.server_switch_energy_total
               template: embedded_card
 
       - type: custom:battery-state-card

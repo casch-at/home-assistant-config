@@ -669,3 +669,35 @@
       state: 'on'
   icon: mdi:desk
   metadata: {}
+- id: '1673029781123'
+  name: Bathroom Bath
+  entities:
+    switch.bathroom_lamp_switch:
+      icon: mdi:bathtub
+      friendly_name: Bathroom Lamp Switch
+      state: 'on'
+    switch.bathroom_lamp_switch_usb:
+      icon: mdi:usb-port
+      friendly_name: Bathroom Lamp Switch USB
+      state: 'off'
+    light.bathroom_mirror_light:
+      supported_color_modes:
+      - onoff
+      friendly_name: Bathroom Mirror Light
+      supported_features: 8
+      icon: mdi:mirror
+      state: 'off'
+    light.bathroom_back_left_light:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 165
+      friendly_name: Bathroom Back Left Light
+      supported_features: 40
+      state: 'off'
+  icon: mdi:hot-tub
+  metadata: {}

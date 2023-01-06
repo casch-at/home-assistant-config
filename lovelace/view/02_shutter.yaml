@@ -55,6 +55,11 @@ cards:
                     return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
+              double_tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.parlor_shutter_down
 
       - type: entities
         entities:

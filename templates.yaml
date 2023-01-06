@@ -57,7 +57,7 @@
           states('sensor.3d_printer_switch_energy_power') | int(0) +
           states('sensor.desk_switch_energy_power') | int(0) +
           states('sensor.kitchen_cabinet_switch_energy_power') | int(0) +
-          states('sensor.generic1_switch_energy_power') | int(0)
+          states('sensor.server_switch_energy_power') | int(0)
         }}
       device_class: power
       state_class: measurement
@@ -75,7 +75,7 @@
           states('sensor.3d_printer_switch_energy_total') | float(0.0) +
           states('sensor.desk_switch_energy_total') | float(0.0) +
           states('sensor.kitchen_cabinet_energy_total') | float(0.0) +
-          states('sensor.generic1_switch_energy_total') | float(0.0)
+          states('sensor.server_switch_energy_total') | float(0.0)
         }}
       device_class: energy
       state_class: total

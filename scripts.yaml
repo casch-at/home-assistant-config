@@ -190,3 +190,40 @@ scene_on:
   - service: scene.turn_on
     target:
       entity_id: '{{ scene }}'
+shutter_down:
+  alias: Parlor Shutter Down
+  sequence:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.parlor_shutter_down_relay
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - wait_for_trigger:
+    - platform: numeric_state
+      entity_id: sensor.parlor_shutter_down_energy_power
+      below: 5
+    timeout:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+    continue_on_timeout: false
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.parlor_shutter_up_relay
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 100
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.parlor_shutter_up_relay
+  mode: single
+  icon: mdi:window-shutter

@@ -56,6 +56,7 @@ cards:
                     return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 color: red
+                icon: mdi:window-shutter-alert
             lock:
               enabled: >-
                 [[[
