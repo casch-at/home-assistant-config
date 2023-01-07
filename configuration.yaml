@@ -58,8 +58,8 @@ logger:
 
 # https://www.home-assistant.io/integrations/recorder
 recorder:
-  purge_keep_days: 2
-  commit_interval: 10
+  purge_keep_days: 14
+  commit_interval: 5
 
 # https://www.home-assistant.io/integrations/logbook/
 logbook:
