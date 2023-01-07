@@ -208,7 +208,7 @@ shutter_down:
       below: 5
     timeout:
       hours: 0
-      minutes: 0
+      minutes: 1
       seconds: 30
       milliseconds: 0
     continue_on_timeout: false
