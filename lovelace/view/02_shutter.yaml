@@ -95,8 +95,3 @@ cards:
                     return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
-      - type: entities
-        entities:
-          - type: custom:slider-entity-row
-            entity: input_number.window_or_door_open
-            name: W./D. Open Timeout
