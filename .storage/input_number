@@ -59,6 +59,26 @@
         "min": 0,
         "max": 15,
         "step": 1
+      },
+      {
+        "id": "parlor_shutter_horizontal_open_delay",
+        "min": 15.0,
+        "max": 90.0,
+        "unit_of_measurement": "sec",
+        "icon": "mdi:blinds-horizontal",
+        "name": "Parlor Shutter Horizontal Open Delay",
+        "step": 1.0,
+        "mode": "slider"
+      },
+      {
+        "id": "bedroom_shutter_horizontal_open_timeout",
+        "min": 15.0,
+        "max": 120.0,
+        "name": "Bedroom Shutter Horizontal Open Delay",
+        "icon": "mdi:blinds-horizontal",
+        "unit_of_measurement": "sec",
+        "step": 1.0,
+        "mode": "slider"
       }
     ]
   }

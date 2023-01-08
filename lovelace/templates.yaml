@@ -78,11 +78,12 @@ shutter_card_base:
   #     # - color: rgba(var(--rgb-primary-text-color), 1.2)
 
 shutter_card_up:
-  icon: mdi:arrow-up
+  template: shutter_card_base
+
+shutter_card_horizontal_open:
   template: shutter_card_base
 
 shutter_card_down:
-  icon: mdi:arrow-down
   template: shutter_card_base
 
 shutter_base:
@@ -99,6 +100,10 @@ shutter_base:
       card:
         type: custom:button-card
         template: shutter_card_up
+    rs:
+      card:
+        type: custom:button-card
+        template: shutter_card_horizontal_open
     rd:
       card:
         type: custom:button-card

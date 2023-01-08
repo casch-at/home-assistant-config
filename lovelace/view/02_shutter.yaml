@@ -6,6 +6,11 @@ badges: []
 cards:
   - type: vertical-stack
     cards:
+      - type: entities
+        entities:
+          - type: custom:slider-entity-row
+            entity: input_number.bedroom_shutter_horizontal_open_delay
+            name: Horizontal Open Delay
       - type: custom:button-card
         name: 'Bedroom'
         template: shutter_base
@@ -14,6 +19,21 @@ cards:
             card:
               entity: switch.bedroom_shutter_up_relay
               color: "#B9F18B"
+              lock:
+                enabled: >-
+                  [[[
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                  ]]]
+                duration: 0
+          rs:
+            card:
+              entity: script.shutter_horizontal_open
+              color: "#B9F18B"
+              tap_action:
+                action: call-service
+                service: script.shutter_horizontal_open
+                service_data:
+                  area: bedroom
               lock:
                 enabled: >-
                   [[[
@@ -31,6 +51,11 @@ cards:
                   ]]]
                 duration: 0
 
+      - type: entities
+        entities:
+          - type: custom:slider-entity-row
+            entity: input_number.parlor_shutter_horizontal_open_delay
+            name: Horizontal Open Delay
       - type: custom:button-card
         name: 'Office'
         template: shutter_base
@@ -39,6 +64,21 @@ cards:
             card:
               entity: switch.parlor_shutter_up_relay
               color: "#B9F18B"
+              lock:
+                enabled: >-
+                  [[[
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                  ]]]
+                duration: 0
+          rs:
+            card:
+              entity: script.shutter_horizontal_open
+              color: "#B9F18B"
+              tap_action:
+                action: call-service
+                service: script.shutter_horizontal_open
+                service_data:
+                  area: parlor
               lock:
                 enabled: >-
                   [[[
@@ -55,12 +95,6 @@ cards:
                     return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
-              double_tap_action:
-                action: call-service
-                service: script.turn_on
-                service_data:
-                  entity_id: script.parlor_shutter_down
-
       - type: entities
         entities:
           - type: custom:slider-entity-row
