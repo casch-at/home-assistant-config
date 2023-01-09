@@ -53,6 +53,11 @@
         "icon": "mdi:bed-double",
         "name": "Bedroom Bed Light Active",
         "id": "bedroom_bed_light_active"
+      },
+      {
+        "name": "Alarm Enabled",
+        "icon": "mdi:shield-home",
+        "id": "alarm_enabled"
       }
     ]
   }

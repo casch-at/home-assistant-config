@@ -57,7 +57,10 @@
     entity_id: binary_sensor.christian_schwarzgruber_alarm
     from: 'off'
     to: 'on'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: person.christian_schwarzgruber
+    state: home
   action:
   - if:
     - condition: numeric_state
@@ -104,6 +107,10 @@
         skip_condition: false
       target:
         entity_id: automation.home_office
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.alarm_enabled
   mode: queued
   max: 2
 - id: low_battery_level_warning
@@ -808,8 +815,10 @@
   alias: Automatically turn presence off
   description: ''
   trigger:
-  - platform: template
-    value_template: "{{\n  is_state('person.christian_schwarzgruber', 'not_home')\n}}"
+  - platform: state
+    entity_id:
+    - person.christian_schwarzgruber
+    to: not_home
   condition: []
   action:
   - service: notify.mobile_app_phone_christian
@@ -819,6 +828,10 @@
     target:
       entity_id: input_boolean.presence
     data: {}
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.alarm_enabled
 - id: presence_everything_off
   alias: Turn everything off on presence state off
   description: ''
@@ -1283,6 +1296,10 @@
       entity_id:
       - light.bedroom_bed_light
       - light.floor_back_light
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.alarm_enabled
   mode: single
 - id: kitchen_cabinet_light_based_on_input_select_scenes
   alias: Kitchen cabinet light based on input select scenes
@@ -2329,6 +2346,9 @@
   - condition: state
     entity_id: input_boolean.presence
     state: 'off'
+  - condition: state
+    entity_id: input_boolean.alarm_enabled
+    state: 'on'
   action:
   - device_id: 977d03248b84aba3934e48976ccaee3c
     domain: mobile_app
@@ -2382,4 +2402,35 @@
     data: {}
     target:
       entity_id: input_boolean.bedroom_bed_light_active
+  mode: single
+- id: '1673297888051'
+  alias: Dis-arm alarm
+  description: Enable/Disable Alarm
+  trigger:
+  - platform: tag
+    tag_id: 821c6997-29e4-4074-b6ef-4c936933a20e
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: input_boolean.alarm_enabled
+      state: 'off'
+    then:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.alarm_enabled
+    - device_id: 977d03248b84aba3934e48976ccaee3c
+      domain: mobile_app
+      type: notify
+      message: Alarm Enabled
+    else:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.alarm_enabled
+    - device_id: 977d03248b84aba3934e48976ccaee3c
+      domain: mobile_app
+      type: notify
+      message: Alarm Disabled
   mode: single
