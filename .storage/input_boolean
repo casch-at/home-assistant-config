@@ -48,6 +48,11 @@
         "name": "Terrace Plant Lights Active",
         "icon": "mdi:flower",
         "id": "terrace_plant_lights_active"
+      },
+      {
+        "icon": "mdi:bed-double",
+        "name": "Bedroom Bed Light Active",
+        "id": "bedroom_bed_light_active"
       }
     ]
   }

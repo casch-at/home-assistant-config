@@ -6,11 +6,6 @@ badges: []
 cards:
   - type: vertical-stack
     cards:
-      - type: entities
-        entities:
-          - type: custom:slider-entity-row
-            entity: input_number.bedroom_shutter_horizontal_open_delay
-            name: Horizontal Open Delay
       - type: custom:button-card
         name: 'Bedroom'
         template: shutter_base
@@ -34,6 +29,9 @@ cards:
                 service: script.shutter_horizontal_open
                 service_data:
                   area: bedroom
+              hold_action:
+                action: more-info
+                entity: input_number.bedroom_shutter_horizontal_open_delay
               lock:
                 enabled: >-
                   [[[
@@ -51,11 +49,6 @@ cards:
                   ]]]
                 duration: 0
 
-      - type: entities
-        entities:
-          - type: custom:slider-entity-row
-            entity: input_number.parlor_shutter_horizontal_open_delay
-            name: Horizontal Open Delay
       - type: custom:button-card
         name: 'Office'
         template: shutter_base
@@ -79,6 +72,9 @@ cards:
                 service: script.shutter_horizontal_open
                 service_data:
                   area: parlor
+              hold_action:
+                action: more-info
+                entity: input_number.parlor_shutter_horizontal_open_delay
               lock:
                 enabled: >-
                   [[[

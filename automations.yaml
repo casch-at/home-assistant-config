@@ -447,9 +447,14 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: light.floor_lights
+    entity_id:
+    - light.floor_lights
     from: 'on'
     to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
   condition: []
   action:
   - service: input_boolean.turn_off
@@ -546,33 +551,10 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
-      - service: script.turn_on
-        data:
-          variables:
-            entity_id: light.nightstand_lights
-        target:
-          entity_id: script.kitchen_cabinet_light_based_on_entity_state
-        enabled: false
-      - if:
-        - condition: state
-          entity_id: light.bedroom_bed_light
-          state: 'off'
-        then:
-        - service: light.turn_on
-          data:
-            transition: 0
-            brightness_pct: 25
-            rgb_color:
-            - 255
-            - 173
-            - 0
-          target:
-            entity_id: light.bedroom_bed_light
-        else:
-        - service: light.turn_off
-          data: {}
-          target:
-            entity_id: light.bedroom_bed_light
+      - event: zha_event
+        event_data:
+          device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
+          command: 1_single
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
@@ -991,9 +973,14 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: light.bathroom_lights
+    entity_id:
+    - light.bathroom_lights
     from: 'on'
     to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
   condition: []
   action:
   - service: input_boolean.turn_off
@@ -1281,8 +1268,11 @@
       entity_id: automation.turn_everything_off_on_presence_state_off
     data: {}
   - wait_template: '{{ states("light.bedroom_bed_light") == ''off'' }}'
-    timeout: 00:00:02
+    timeout: 00:00:05
     continue_on_timeout: true
+  - condition: state
+    entity_id: input_boolean.bedroom_bed_light_active
+    state: 'off'
   - service: scene.turn_on
     data:
       entity_id: scene.night_toilet_light
@@ -1868,6 +1858,9 @@
       minutes: 2
       seconds: 0
       milliseconds: 0
+  - condition: state
+    entity_id: input_boolean.bedroom_bed_light_active
+    state: 'off'
   - service: light.turn_off
     data: {}
     target:
@@ -1899,10 +1892,20 @@
         value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
       - if:
-        - condition: state
-          entity_id: light.bedroom_bed_light
-          state: 'off'
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: light.bedroom_bed_light
+            state: 'off'
+          - condition: numeric_state
+            entity_id: automation.bedroom_motion
+            attribute: current
+            above: 0
         then:
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.bedroom_bed_light_active
         - service: script.scene_on
           data:
             scene: scene.bedroom_bed_white
@@ -2356,4 +2359,27 @@
           entity_id: switch.kitchen_cabinet_switch
         data: {}
     default: []
+  mode: single
+- id: '1673219830233'
+  alias: Bedroom bed light reset active state
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.bedroom_bed_light
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  condition:
+  - condition: state
+    entity_id: input_boolean.bedroom_bed_light_active
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.bedroom_bed_light_active
   mode: single
