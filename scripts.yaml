@@ -166,6 +166,12 @@ night_light:
       - input_boolean.floor_light_active
       - input_boolean.floor_helper_light_active
     enabled: true
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+      - light.floor_middle_light
+      - light.floor_back_light
   mode: single
   icon: mdi:lightbulb-night
 scene_on:
