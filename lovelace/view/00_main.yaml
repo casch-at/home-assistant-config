@@ -119,15 +119,19 @@ cards:
                 color_type: card
                 entity: input_select.daytime
                 show_state: true
-                icon: mdi:sleep
+                icon: mdi:shield-home
                 template: icon_only
                 color: var( --ha-card-background, var(--card-background-color, white) )
                 styles:
                   icon:
                     - color: >-
                         [[[
-                          if (states['input_boolean.presence'].state === 'off') {
+                          if (states['input_boolean.presence'].state === 'off' && states['input_boolean.alarm_enabled'].state === 'on') {
                             return 'red';
+                          } else if (states['input_boolean.presence'].state === 'off' && states['input_boolean.alarm_enabled'].state === 'off') {
+                            return 'orange';
+                          } else if (states['input_boolean.presence'].state === 'on' && states['input_boolean.alarm_enabled'].state === 'on') {
+                            return 'green';
                           } else {
                             return 'var(--paper-item-icon-inactive-color)';
                           }
@@ -135,9 +139,10 @@ cards:
                 state:
                   - value: 'Night'
                     color: var(--paper-item-icon-active-color)
+                    icon: mdi:sleep
                 tap_action:
                   action: more-info
-                  entity: input_select.daytime
+                  entity: input_boolean.alarm_enabled
                 hold_action:
                   action: more-info
                   entity: input_select.daytime
@@ -223,6 +228,9 @@ cards:
             entity: light.night_lights
             icon: mdi:lightbulb-night
             template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFC8C8"
             tap_action:
               action: call-service
               service: script.night_light

@@ -150,7 +150,15 @@ night_light:
   - service: scene.turn_on
     data: {}
     target:
-      entity_id: scene.night
+      entity_id:
+      - scene.floor_front_night
+      - scene.office_desk_night
+      - scene.kitchen_cabinet_night
+  - service: script.scene_on
+    data:
+      scene: scene.bedroom_bed_night
+      light:
+      - light.bedroom_bed_light
   - service: input_boolean.turn_on
     data: {}
     target:

@@ -701,3 +701,34 @@
       state: 'off'
   icon: mdi:hot-tub
   metadata: {}
+- id: '1673389166501'
+  name: Floor Front Night
+  entities:
+    light.floor_front_light:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 5000
+      min_mireds: 200
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 51
+      color_temp_kelvin: 2398
+      color_temp: 417
+      hs_color:
+      - 29.157
+      - 76.348
+      rgb_color:
+      - 255
+      - 154
+      - 60
+      xy_color:
+      - 0.559
+      - 0.389
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Floor Front Light
+      supported_features: 40
+      state: 'on'
+  icon: mdi:lightbulb-spot
+  metadata: {}
