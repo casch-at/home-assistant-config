@@ -104,14 +104,14 @@ cards:
                 icon: mdi:door
               - type: custom:button-card
                 template: icon_only_more_info
-                entity: light.terrace_plant_lights
+                entity: light.terrace_plants_spots_light
                 double_tap_action:
                   action: call-service
                   service: input_select.select_next
                   service_data:
-                    entity_id: input_select.terrace_plant_scenes
+                    entity_id: input_select.terrace_plants_spots_scenes
                 hold_action:
-                  entity: input_select.terrace_plant_scenes
+                  entity: input_select.terrace_plants_spots_scenes
           - type: grid
             columns: 1
             cards:
@@ -219,21 +219,21 @@ cards:
         columns: 7
         cards:
           - type: custom:button-card
-            entity: switch.kitchen_cabinet_switch
+            entity: light.panel_mirror_switch
             template: icon_only_more_info
           - type: custom:button-card
-            entity: switch.bathroom_lamp_switch
+            entity: light.kitchen_cabinet_switch
             template: icon_only_more_info
           - type: custom:button-card
-            entity: light.night_lights
-            icon: mdi:lightbulb-night
+            entity: light.bathroom_lamp_light
             template: icon_only_more_info
-            styles:
-              icon:
-                - color: "#FFC8C8"
-            tap_action:
+            double_tap_action:
               action: call-service
-              service: script.night_light
+              service: input_select.select_next
+              service_data:
+                entity_id: input_select.bathroom_lamp_scenes
+            hold_action:
+              entity: input_select.bathroom_lamp_scenes
           - type: custom:button-card
             entity: light.office_desk_light
             template: icon_only_more_info
@@ -365,13 +365,6 @@ cards:
               navigation_path: /config/logs
             lock: disabled
           - type: custom:button-card
-            template: icon_only
-            icon: mdi:home-assistant
-            tap_action:
-              action: navigate
-              navigation_path: /hassio/system
-            lock: disabled
-          - type: custom:button-card
             entity: switch.wake_on_lan_server
             template: icon_only_more_info
             tab_action:
@@ -403,6 +396,16 @@ cards:
               confirmation:
                 text: |
                   Toggle 3D-Printer Switch?
+          - type: custom:button-card
+            entity: light.night_lights
+            icon: mdi:lightbulb-night
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#FFC8C8"
+            tap_action:
+              action: call-service
+              service: script.night_light
 
       - type: grid
         columns: 6

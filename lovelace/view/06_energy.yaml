@@ -99,7 +99,7 @@ cards:
           n8: 'P. Shut.'
           n9: 'B. Shut.'
           n10: 'Kit. C.'
-          n11: 'Bath. L.'
+          n11: 'Panel. M.'
           n0: 'Radiator'
           n1: 'Mirror'
           n3: 'O. Back'
@@ -126,7 +126,7 @@ cards:
           w11:
             card:
               type: custom:button-card
-              entity: sensor.bathroom_lamp_switch_energy_power
+              entity: sensor.panel_mirror_switch_energy_power
               template: embedded_card
           w0:
             card:
@@ -190,7 +190,7 @@ cards:
           t11:
             card:
               type: custom:button-card
-              entity: sensor.bathroom_lamp_switch_energy_total
+              entity: sensor.panel_mirror_switch_energy_total
               template: embedded_card
           t0:
             card:

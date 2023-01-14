@@ -36,13 +36,15 @@
         ]
       },
       {
-        "id": "terrace_plant_scenes",
-        "name": "Terrace Plant Scenes",
+        "id": "terrace_plants_spots_light_scenes",
+        "name": "Terrace Plants Spots Scenes",
         "icon": "mdi:flower",
         "options": [
-          "scene.terrace_plant_spots_light_green",
-          "scene.terrace_plant_spots_light_purple",
-          "scene.terrace_plant_spots_light_blue"
+          "scene.terrace_plants_spots_green",
+          "scene.terrace_plants_spots_purple",
+          "scene.terrace_plants_spots_blue",
+          "scene.terrace_plants_spots_white",
+          "scene.terrace_plants_spots_night"
         ]
       },
       {
@@ -74,6 +76,17 @@
           "scene.bedroom_bed_blue",
           "scene.bedroom_bed_purple"
         ]
+      },
+      {
+        "name": "Bathroom Lamp Scenes",
+        "icon": "mdi:hot-tub",
+        "options": [
+          "scene.bathroom_lamp_red",
+          "scene.bathroom_lamp_blue",
+          "scene.bathroom_lamp_green",
+          "scene.bathroom_lamp_purple"
+        ],
+        "id": "bathroom_lamp_scenes"
       }
     ]
   }

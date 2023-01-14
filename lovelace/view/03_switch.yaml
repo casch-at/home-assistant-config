@@ -69,8 +69,8 @@ cards:
       columns: 1
       cards:
         - type: custom:button-card
-          entity: switch.bathroom_lamp_switch
+          entity: switch.panel_mirror_switch
           template: icon_only_more_info
         - type: custom:button-card
-          entity: switch.bathroom_lamp_switch_usb
+          entity: switch.panel_mirror_switch_usb
           template: icon_only_more_info

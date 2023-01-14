@@ -11,41 +11,42 @@
       supported_color_modes:
       - color_temp
       - xy
-      color_mode: color_temp
-      brightness: 13
-      hs_color:
-      - 28.843
-      - 72.089
-      rgb_color:
-      - 255
-      - 159
-      - 71
-      xy_color:
-      - 0.546
-      - 0.389
       off_with_transition: false
       off_brightness:
       icon: mdi:lightbulb-group
       friendly_name: Night Lights
       supported_features: 44
-      color_temp_kelvin: 2512
-      color_temp: 398
+      color_mode: color_temp
+      brightness: 108
+      color_temp_kelvin: 3623
+      color_temp: 276
+      hs_color:
+      - 27.059
+      - 42.165
+      rgb_color:
+      - 255
+      - 195
+      - 147
+      xy_color:
+      - 0.446
+      - 0.371
       state: 'on'
+    light.office_ceiling_lights:
+      supported_color_modes:
+      - onoff
+      entity_id:
+      - light.office_back_light
+      - light.office_front_light
+      icon: mdi:ceiling-light
+      friendly_name: Office Ceiling Lights
+      supported_features: 8
+      state: 'off'
   icon: mdi:lightbulb-night
   metadata:
     light.night_lights:
       entity_only: true
-- id: '1601908389461'
-  name: Chill
-  entities:
-    light.led_stripes:
-      brightness: 254
-      color_temp: 420
-      state: 'on'
-    light.terrace_plant_lights:
-      brightness: 254
-      color_temp: 420
-      state: 'on'
+    light.office_ceiling_lights:
+      entity_only: true
 - id: '1602060945201'
   name: Kitchen Cabinet White
   entities:
@@ -119,21 +120,118 @@
 - id: '1602522741384'
   name: "Love \U0001F60D"
   entities:
-    light.terrace_plant_lights:
-      brightness: 254
+    light.bedroom_bed_light:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:bed
+      friendly_name: Bedroom Bed Light
+      supported_features: 44
+      color_mode: xy
+      brightness: 102
+      hs_color:
+      - 0
+      - 100
       rgb_color:
       - 255
       - 0
-      - 71
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
       state: 'on'
-    light.led_stripes:
-      brightness: 254
+    light.kitchen_cabinet_light:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6329
+      min_mireds: 158
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:led-strip-variant
+      friendly_name: Kitchen Cabinet Light
+      supported_features: 44
+      color_mode: xy
+      brightness: 204
+      hs_color:
+      - 0
+      - 100
       rgb_color:
       - 255
       - 0
       - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      state: 'on'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      color_mode: xy
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      state: 'on'
+    light.office_desk_light:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Desk Light
+      supported_features: 44
+      icon: mdi:desk
+      color_mode: xy
+      brightness: 204
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
       state: 'on'
   icon: mdi:head-heart
+  metadata: {}
 - id: '1607445104403'
   name: Office Desk White
   entities:
@@ -230,9 +328,9 @@
       state: 'on'
   icon: mdi:file-cabinet
 - id: '1614371683931'
-  name: Terrace Plant Spots Light Green
+  name: Terrace Plants Spots Green
   entities:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       brightness: 166
       xy_color:
       - 0.163989
@@ -240,12 +338,12 @@
       state: 'on'
   icon: mdi:flower
   metadata:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       entity_only: true
 - id: '1615504295983'
-  name: Terrace Plant Spots Light Purple
+  name: Terrace Plants Spots Purple
   entities:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       brightness: 166
       xy_color:
       - 0.226978
@@ -253,12 +351,12 @@
       state: 'on'
   icon: mdi:flower
   metadata:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       entity_only: true
 - id: '1668357806255'
-  name: Terrace Plant Spots Light Blue
+  name: Terrace Plants Spots Blue
   entities:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       brightness: 166
       xy_color:
       - 0.135981
@@ -266,7 +364,7 @@
       state: 'on'
   icon: mdi:flower
   metadata:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       entity_only: true
 - id: '1615493477115'
   name: Office Desk Purple
@@ -530,9 +628,9 @@
   icon: mdi:bed-double
   metadata: {}
 - id: '1672774585531'
-  name: Terrace Plant Spots Light White
+  name: Terrace Plants Spots White
   entities:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       min_color_temp_kelvin: 1801
       max_color_temp_kelvin: 6535
       min_mireds: 153
@@ -564,12 +662,12 @@
       state: 'on'
   icon: mdi:flower
   metadata:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       entity_only: true
 - id: '1672774661218'
-  name: Terrace Plant Spots Light Night
+  name: Terrace Plants Spots Night
   entities:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       min_color_temp_kelvin: 1801
       max_color_temp_kelvin: 6535
       min_mireds: 153
@@ -601,7 +699,7 @@
       state: 'on'
   icon: mdi:flower
   metadata:
-    light.terrace_plant_lights:
+    light.terrace_plants_spots_light:
       entity_only: true
 - id: '1672775296563'
   name: Bedroom Bed Green
@@ -670,16 +768,8 @@
   icon: mdi:desk
   metadata: {}
 - id: '1673029781123'
-  name: Bathroom Bath
+  name: Bathroom Lamp Red
   entities:
-    switch.bathroom_lamp_switch:
-      icon: mdi:bathtub
-      friendly_name: Bathroom Lamp Switch
-      state: 'on'
-    switch.bathroom_lamp_switch_usb:
-      icon: mdi:usb-port
-      friendly_name: Bathroom Lamp Switch USB
-      state: 'off'
     light.bathroom_mirror_light:
       supported_color_modes:
       - onoff
@@ -695,10 +785,36 @@
       supported_color_modes:
       - color_temp
       off_with_transition: false
-      off_brightness: 165
+      off_brightness: 254
       friendly_name: Bathroom Back Left Light
       supported_features: 40
       state: 'off'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      state: 'on'
   icon: mdi:hot-tub
   metadata: {}
 - id: '1673389166501'
@@ -731,4 +847,258 @@
       supported_features: 40
       state: 'on'
   icon: mdi:lightbulb-spot
+  metadata: {}
+- id: '1673605189875'
+  name: Bathroom Lamp Green
+  entities:
+    light.bathroom_mirror_light:
+      supported_color_modes:
+      - onoff
+      friendly_name: Bathroom Mirror Light
+      supported_features: 8
+      icon: mdi:mirror
+      state: 'off'
+    light.bathroom_back_left_light:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 254
+      friendly_name: Bathroom Back Left Light
+      supported_features: 40
+      state: 'off'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 254
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      state: 'on'
+  icon: mdi:hot-tub
+  metadata: {}
+- id: '1673605222815'
+  name: Bathroom Lamp Blue
+  entities:
+    light.bathroom_mirror_light:
+      supported_color_modes:
+      - onoff
+      friendly_name: Bathroom Mirror Light
+      supported_features: 8
+      icon: mdi:mirror
+      state: 'off'
+    light.bathroom_back_left_light:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 254
+      friendly_name: Bathroom Back Left Light
+      supported_features: 40
+      state: 'off'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 254
+      hs_color:
+      - 242.588
+      - 100
+      rgb_color:
+      - 11
+      - 0
+      - 255
+      xy_color:
+      - 0.136
+      - 0.04
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      state: 'on'
+  icon: mdi:hot-tub
+  metadata: {}
+- id: '1673605233765'
+  name: Bathroom Lamp Purple
+  entities:
+    light.bathroom_mirror_light:
+      supported_color_modes:
+      - onoff
+      friendly_name: Bathroom Mirror Light
+      supported_features: 8
+      icon: mdi:mirror
+      state: 'off'
+    light.bathroom_back_left_light:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 254
+      friendly_name: Bathroom Back Left Light
+      supported_features: 40
+      state: 'off'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 254
+      hs_color:
+      - 270.824
+      - 100
+      rgb_color:
+      - 131
+      - 0
+      - 255
+      xy_color:
+      - 0.217
+      - 0.077
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      state: 'on'
+  icon: mdi:hot-tub
+  metadata: {}
+- id: '1673617564665'
+  name: Bathroom Lamp White
+  entities:
+    light.bathroom_mirror_light:
+      supported_color_modes:
+      - onoff
+      friendly_name: Bathroom Mirror Light
+      supported_features: 8
+      icon: mdi:mirror
+      state: 'off'
+    light.bathroom_back_left_light:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 254
+      friendly_name: Bathroom Back Left Light
+      supported_features: 40
+      state: 'off'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 5882
+      color_temp: 170
+      hs_color:
+      - 29.739
+      - 8.419
+      rgb_color:
+      - 255
+      - 244
+      - 233
+      xy_color:
+      - 0.343
+      - 0.339
+      state: 'on'
+  icon: mdi:hot-tub
+  metadata: {}
+- id: '1673617646843'
+  name: Bathroom Lamp Night
+  entities:
+    light.bathroom_mirror_light:
+      supported_color_modes:
+      - onoff
+      friendly_name: Bathroom Mirror Light
+      supported_features: 8
+      icon: mdi:mirror
+      state: 'off'
+    light.bathroom_back_left_light:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 254
+      friendly_name: Bathroom Back Left Light
+      supported_features: 40
+      state: 'off'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 26
+      color_temp_kelvin: 2000
+      color_temp: 500
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 136
+      - 13
+      xy_color:
+      - 0.599
+      - 0.382
+      state: 'on'
+  icon: mdi:hot-tub
   metadata: {}

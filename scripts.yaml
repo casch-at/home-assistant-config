@@ -154,6 +154,11 @@ night_light:
       - scene.floor_front_night
       - scene.office_desk_night
       - scene.kitchen_cabinet_night
+      - scene.bathroom_lamp_night
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.panel_mirror_switch
   - service: script.scene_on
     data:
       scene: scene.bedroom_bed_night
@@ -166,12 +171,37 @@ night_light:
       - input_boolean.floor_light_active
       - input_boolean.floor_helper_light_active
     enabled: true
+  - service: automation.turn_off
+    data: {}
+    target:
+      entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
   - service: light.turn_off
     data: {}
     target:
       entity_id:
       - light.floor_middle_light
       - light.floor_back_light
+      - light.office_ceiling_lights
+      - light.kitchen_cabinet_switch
+  - wait_for_trigger:
+    - platform: state
+      entity_id:
+      - light.office_ceiling_lights
+      to: 'off'
+      from: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+    timeout:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
+  - service: automation.turn_on
+    data: {}
+    target:
+      entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
   mode: single
   icon: mdi:lightbulb-night
 scene_on:

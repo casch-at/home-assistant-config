@@ -45,9 +45,9 @@
         "name": "Marantz Power State"
       },
       {
-        "name": "Terrace Plant Lights Active",
-        "icon": "mdi:flower",
-        "id": "terrace_plant_lights_active"
+        "id": "terrace_plants_spots_light_active",
+        "name": "Terrace Light Active",
+        "icon": "mdi:flower"
       },
       {
         "icon": "mdi:bed-double",

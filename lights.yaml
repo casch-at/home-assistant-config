@@ -21,6 +21,13 @@
   entities:
     - light.bathroom_back_left_light
     - light.bathroom_mirror_light
+    - light.bathroom_lamp_light
+
+- platform: group
+  name: Bathroom Mirror Ceiling Lights
+  entities:
+    - light.bathroom_back_left_light
+    - light.bathroom_mirror_light
 
 - platform: group
   name: Office Lights
