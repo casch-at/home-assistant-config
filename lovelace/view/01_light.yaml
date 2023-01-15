@@ -167,13 +167,19 @@ cards:
                 entity: light.bedroom_bed_light
                 template: icon_only_more_info
                 icon: mdi:bed
+                tap_action:
+                  action: call-service
+                  service: script.bedroom_bed_light_helper
+                  service_data:
+                    action: toggle
               - type: custom:button-card
                 entity: light.bedroom_bed_light
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: script.scene_on
+                  service: script.bedroom_bed_light_helper
                   service_data:
+                    action: scene
                     scene: scene.bedroom_bed_white
                 styles:
                   icon:
@@ -183,8 +189,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: script.scene_on
+                  service: script.bedroom_bed_light_helper
                   service_data:
+                    action: scene
                     scene: scene.bedroom_bed_night
                 styles:
                   icon:
@@ -194,8 +201,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: script.scene_on
+                  service: script.bedroom_bed_light_helper
                   service_data:
+                    action: scene
                     scene: scene.bedroom_bed_green
                 styles:
                   icon:
@@ -205,8 +213,9 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: script.scene_on
+                  service: script.bedroom_bed_light_helper
                   service_data:
+                    action: scene
                     scene: scene.bedroom_bed_blue
                 styles:
                   icon:
@@ -216,14 +225,15 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: script.scene_on
+                  service: script.bedroom_bed_light_helper
                   service_data:
+                    action: scene
                     scene: scene.bedroom_bed_purple
                 styles:
                   icon:
                     - color: "#A64EFF"
               - type: custom:button-card
-                entity: light.nightstand_sonia_light
+                entity: light.nightstand_partner_light
                 template: icon_only_more_info
                 name: 'S'
                 show_name: true
@@ -239,14 +249,22 @@ cards:
               - type: custom:button-card
                 entity: light.bathroom_lamp_light
                 template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: script.bathroom_light_helper
+                  service_data:
+                    action: call-service
+                    service: light.toggle
+                    light: light.bathroom_lamp_light
               - type: custom:button-card
                 entity: light.bathroom_lamp_light
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.bathroom_light_helper
                   service_data:
-                    entity_id: scene.bathroom_lamp_white
+                    action: scene
+                    scene: scene.bathroom_lamp_white
                 styles:
                   icon:
                     - color: "#FFFFFF"
@@ -255,9 +273,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.bathroom_light_helper
                   service_data:
-                    entity_id: scene.bathroom_lamp_night
+                    action: scene
+                    scene: scene.bathroom_lamp_night
                 styles:
                   icon:
                     - color: "#FFC8C8"
@@ -266,9 +285,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.bathroom_light_helper
                   service_data:
-                    entity_id: scene.bathroom_lamp_red
+                    action: scene
+                    scene: scene.bathroom_lamp_red
                 styles:
                   icon:
                     - color: "#FF0000"
@@ -277,9 +297,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.bathroom_light_helper
                   service_data:
-                    entity_id: scene.bathroom_lamp_green
+                    action: scene
+                    scene: scene.bathroom_lamp_green
                 styles:
                   icon:
                     - color: "#00FF40"
@@ -288,9 +309,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.bathroom_light_helper
                   service_data:
-                    entity_id: scene.bathroom_lamp_blue
+                    action: scene
+                    scene: scene.bathroom_lamp_blue
                 styles:
                   icon:
                     - color: "#0A00FF"
@@ -299,9 +321,10 @@ cards:
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
-                  service: scene.turn_on
+                  service: script.bathroom_light_helper
                   service_data:
-                    entity_id: scene.bathroom_lamp_purple
+                    action: scene
+                    scene: scene.bathroom_lamp_purple
                 styles:
                   icon:
                     - color: "#A64EFF"
@@ -400,12 +423,43 @@ cards:
               - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: script.bathroom_light_helper
+                  service_data:
+                    action: call-service
+                    service: light.toggle
+                    light: light.bathroom_lights
               - type: custom:button-card
                 entity: light.bathroom_mirror_light
                 template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: script.bathroom_light_helper
+                  service_data:
+                    action: call-service
+                    service: light.toggle
+                    light: light.bathroom_mirror_light
               - type: custom:button-card
-                entity: light.bathroom_back_left_light
+                entity: light.bathroom_ceiling_lights
                 template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: script.bathroom_light_helper
+                  service_data:
+                    action: call-service
+                    service: light.toggle
+                    light: light.bathroom_ceiling_lights
+              - type: custom:button-card
+                entity: light.bathroom_lamp_light
+                template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: script.bathroom_light_helper
+                  service_data:
+                    action: call-service
+                    service: light.toggle
+                    light: light.bathroom_lamp_light
 
       - type: custom:slider-entity-row
         entity: light.office_desk_light

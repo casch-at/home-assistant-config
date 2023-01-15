@@ -88,16 +88,26 @@ cards:
               - type: custom:button-card
                 entity: light.bedroom_bed_light
                 template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: script.bedroom_bed_light_helper
+                  service_data:
+                    action: toggle
                 double_tap_action:
                   action: call-service
-                  service: input_select.select_next
+                  service: script.bedroom_bed_light_helper
                   service_data:
-                    entity_id: input_select.bedroom_bed_scenes
-                hold_action:
-                  entity: input_select.bedroom_bed_scenes
+                    action: scene
               - type: custom:button-card
                 entity: light.bathroom_lights
                 template: icon_only_more_info
+                tap_action:
+                  action: call-service
+                  service: script.bathroom_light_helper
+                  service_data:
+                    action: call-service
+                    service: light.toggle
+                    light: light.bathroom_lights
               - type: custom:button-card
                 entity: light.floor_lights
                 template: icon_only_more_info
@@ -110,8 +120,6 @@ cards:
                   service: input_select.select_next
                   service_data:
                     entity_id: input_select.terrace_plants_spots_scenes
-                hold_action:
-                  entity: input_select.terrace_plants_spots_scenes
           - type: grid
             columns: 1
             cards:
@@ -227,13 +235,18 @@ cards:
           - type: custom:button-card
             entity: light.bathroom_lamp_light
             template: icon_only_more_info
+            tap_action:
+              action: call-service
+              service: script.bathroom_light_helper
+              service_data:
+                action: call-service
+                service: light.toggle
+                light: light.bathroom_lamp_light
             double_tap_action:
               action: call-service
-              service: input_select.select_next
+              service: script.bathroom_light_helper
               service_data:
-                entity_id: input_select.bathroom_lamp_scenes
-            hold_action:
-              entity: input_select.bathroom_lamp_scenes
+                action: scene
           - type: custom:button-card
             entity: light.office_desk_light
             template: icon_only_more_info

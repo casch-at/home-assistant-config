@@ -1,27 +1,15 @@
-- platform: switch
-  name: Nightstand Sonia Light
-  entity_id: switch.nightstand_sonia_switch
-
-- platform: switch
-  name: Nightstand Christian Light
-  entity_id: switch.nightstand_christian_switch
-
-- platform: switch
-  name: Upstairs Lamp Light
-  entity_id: switch.upstairs_lamp_switch
-
 - platform: group
   name: Nightstand Lights
   entities:
-    - light.nightstand_sonia_light
     - light.nightstand_christian_light
+    - light.nightstand_partner_light
 
 - platform: group
   name: Bathroom Lights
   entities:
     - light.bathroom_back_left_light
-    - light.bathroom_mirror_light
     - light.bathroom_lamp_light
+    - light.bathroom_mirror_light
 
 - platform: group
   name: Bathroom Mirror Ceiling Lights
@@ -32,8 +20,8 @@
 - platform: group
   name: Office Lights
   entities:
-    - light.office_desk_light
     - light.office_back_light
+    - light.office_desk_light
     - light.office_front_light
 
 - platform: group
@@ -46,7 +34,7 @@
   name: All Lights
   entities:
     - light.all_zigbee_lights
-    - light.office_ceiling_lights
-    - light.bathroom_mirror_light
+    - light.bathroom_lights
     - light.nightstand_lights
+    - light.office_ceiling_lights
     - light.upstairs_lamp_light

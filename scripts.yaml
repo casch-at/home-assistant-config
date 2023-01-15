@@ -209,7 +209,7 @@ scene_on:
   fields:
     scene:
       name: Scene Entity
-      description: Scene to turn on (Without the "scene." prefix)
+      description: Scene to turn on
       required: true
       selector:
         entity:
@@ -275,3 +275,185 @@ shutter_horizontal_open:
       entity_id: switch.{{ area }}_shutter_up_relay
   mode: single
   icon: mdi:blinds-horizontal
+bedroom_bed_light_helper:
+  alias: Bedroom Bed Light Helper
+  fields:
+    action:
+      name: Action Type
+      description: ''
+      required: true
+      selector:
+        select:
+          options:
+          - label: Toggle
+            value: toggle
+          - label: Scene
+            value: scene
+    scene:
+      name: Scene Entity
+      description: Scene to turn on
+      example: "service: script.bedroom_bed_light_helper\ndata:\n  action: scene\n
+        \ scene: scene.bedroom_bed_green\n"
+      required: false
+      selector:
+        entity:
+          domain: scene
+  sequence:
+  - if:
+    - condition: or
+      conditions:
+      - condition: and
+        conditions:
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: light.bedroom_bed_light
+            state: 'off'
+          - condition: numeric_state
+            entity_id: automation.bedroom_motion
+            attribute: current
+            above: 0
+        - condition: state
+          entity_id: input_boolean.bedroom_bed_light_active
+          state: 'off'
+      - condition: template
+        value_template: '{{ action == ''scene'' }}'
+    then:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.bedroom_bed_light_active
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ action == ''toggle'' }}'
+        sequence:
+        - service: script.scene_on
+          data:
+            scene: scene.bedroom_bed_white
+      - conditions:
+        - condition: template
+          value_template: "{% if not scene|default('') and action == 'scene' -%} \n
+            \ true \n{%- else -%} \n  false \n{%- endif -%} \n"
+        sequence:
+        - service: input_select.select_next
+          data:
+            cycle: true
+          target:
+            entity_id: input_select.bedroom_bed_scenes
+        - service: script.scene_on
+          data:
+            scene: '{{ states(''input_select.bedroom_bed_scenes'') }}'
+      - conditions:
+        - condition: template
+          value_template: "{% if scene|default('') and action == 'scene' -%} \n  true
+            \n{%- else -%} \n  false \n{%- endif -%} \n"
+        sequence:
+        - service: script.scene_on
+          data:
+            scene: '{{ scene }}'
+      default:
+      - stop: Wrong usage or wrong/missing condition
+        error: true
+    else:
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.bedroom_bed_light
+  mode: queued
+  icon: mdi:bed-double
+  max: 5
+bathroom_light_helper:
+  alias: Bathroom Light Helper
+  sequence:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.bathroom_light_active
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: "{% if light|default([]) and action == 'call-service' and
+          service|default('') -%} \n  true \n{%- else -%} \n  false \n{%- endif -%}
+          \n"
+      sequence:
+      - service: '{{ service }}'
+        data: "{% if service == 'light.turn_off' -%}\n  {}\n{%- else -%}\n  {\n    'brightness':
+          {{ states('sensor.daytime_light_brightness') }},\n    'color_temp': {{ states('sensor.daytime_light_color_temp')
+          }}\n  }\n{%- endif -%}"
+        target:
+          entity_id: '{{ light }}'
+    - conditions:
+      - condition: template
+        value_template: "{% if not scene|default('') and action == 'scene' -%} \n  true
+          \n{%- else -%} \n  false \n{%- endif -%} \n"
+      sequence:
+      - service: input_select.select_next
+        data:
+          cycle: true
+        target:
+          entity_id: input_select.bathroom_lamp_scenes
+      - service: scene.turn_on
+        data: {}
+        target:
+          entity_id: '{{ states(''input_select.bathroom_lamp_scenes'') }}'
+    - conditions:
+      - condition: template
+        value_template: "{% if scene|default('') and action == 'scene' -%} \n  true
+          \n{%- else -%} \n  false \n{%- endif -%} \n"
+      sequence:
+      - service: script.scene_on
+        data:
+          scene: '{{ scene }}'
+    default:
+    - stop: Wrong usage or wrong/missing condition
+      error: true
+  fields:
+    action:
+      name: Action Type
+      description: call-service/scene
+      required: true
+      selector:
+        select:
+          options:
+          - label: Call-Service
+            value: call-service
+          - label: Scene
+            value: scene
+    service:
+      name: The service to call, if 'action' is 'call-service'.
+      description: Turn on/off/toggle lights
+      example: "service: script.bathroom_light_helper\ndata:\n  action: call-service\n
+        \ service: light.turn_on\n  light:\n    - light.bathroom_lights\n"
+      required: false
+      selector:
+        select:
+          options:
+          - label: Light Turn On
+            value: light.turn_on
+          - label: Light Turn Off
+            value: light.turn_off
+          - label: Light Toggle
+            value: light.toggle
+    scene:
+      name: Scene Entity
+      description: Scene to turn on. If empty, cycle if 'action' is 'scene'.
+      example: "service: script.bathroom_light_helper\ndata:\n  action: scene\n  scene:
+        scene.bathroom_lamp_green\n"
+      required: false
+      selector:
+        entity:
+          domain: scene
+    light:
+      name: Light Entity To Toggle
+      description: List of light entities. Ignored if 'action' is 'scene'
+      example: "service: script.bathroom_light_helper\ndata:\n  action: toggle\n  light:\n
+        \   - light.bathroom_lights\n"
+      required: false
+      selector:
+        entity:
+          domain: light
+          multiple: true
+  mode: queued
+  icon: mdi:bathtub
+  max: 5

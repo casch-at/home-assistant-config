@@ -1,5 +1,5 @@
 - id: enough_illuminance
-  alias: Enough illuminance light
+  alias: Enough Illuminance Light
   description: Turn off lights on enough natural illuminance light.
   trigger:
   - platform: numeric_state
@@ -50,7 +50,7 @@
       title: '{{ trigger.to_state.name }} Critical'
       message: Smoke detected
 - id: handy_alaram
-  alias: Handy alarm
+  alias: Handy Alarm
   description: ''
   trigger:
   - platform: state
@@ -114,7 +114,7 @@
   mode: queued
   max: 2
 - id: low_battery_level_warning
-  alias: Low battery level warning
+  alias: Low Battery Level Warning
   description: ''
   mode: queued
   max: 50
@@ -225,7 +225,7 @@
         | int + 1}} %'
       title: '{{ trigger.to_state.name }} Critical'
 - id: low_illuminance
-  alias: Low illuminance light
+  alias: Low Illuminance Light
   description: Turn on lights on low natural illumance light.
   trigger:
   - platform: numeric_state
@@ -286,23 +286,9 @@
         entity_id: scene.kitchen_cabinet_white
   mode: single
   max_exceeded: silent
-- id: night_lights_based_on_input_select_scenes
-  alias: Night lights based on input select scenes
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_select.night_lights_scenes
-  condition: []
-  action:
-  - service: script.scene_on
-    data:
-      scene: '{{ states(''input_select.night_lights_scenes'') }}'
-  mode: single
 - id: floor_motion
-  alias: Floor motion
+  alias: Floor Motion
   description: ''
-  mode: restart
   trigger:
   - platform: state
     entity_id: binary_sensor.floor_motion_sensor
@@ -313,7 +299,7 @@
     conditions:
     - condition: numeric_state
       entity_id: sensor.floor_motion_sensor_light_level
-      below: 55
+      below: 45
     - condition: numeric_state
       entity_id: automation.floor_motion
       above: 0
@@ -325,6 +311,7 @@
   - service: input_number.increment
     target:
       entity_id: input_number.floor_motion_timeout_multiplier
+    data: {}
   - service: light.turn_on
     data:
       brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
@@ -344,13 +331,15 @@
   - service: light.turn_off
     target:
       entity_id: light.floor_lights
+    data: {}
   - service: input_number.set_value
     target:
       entity_id: input_number.floor_motion_timeout_multiplier
     data:
       value: 0
+  mode: restart
 - id: floor_helper_motion
-  alias: Floor helper motion
+  alias: Floor Helper Motion
   description: ''
   trigger:
   - platform: state
@@ -450,7 +439,7 @@
           value: 0
   mode: restart
 - id: floor_light_active_state
-  alias: Floor light reset active state
+  alias: Floor Light Reset Active State
   description: ''
   trigger:
   - platform: state
@@ -472,7 +461,7 @@
       - input_boolean.floor_helper_light_active
   mode: single
 - id: floor_switch
-  alias: Floor switch
+  alias: Floor Switch
   description: ''
   trigger:
   - platform: event
@@ -561,15 +550,15 @@
       - event: zha_event
         event_data:
           device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
-          command: 1_single
+          command: 3_single
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
       sequence:
-      - service: input_select.select_next
-        target:
-          entity_id: input_select.bedroom_bed_scenes
-        data: {}
+      - event: zha_event
+        event_data:
+          device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
+          command: 4_single
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_single" }}'
@@ -690,14 +679,14 @@
           entity_id: light.terrace_plants_spots_light
           state: 'off'
         then:
-        - service: light.turn_on
-          data: {}
-          target:
-            entity_id: light.terrace_plants_spots_light
         - service: input_boolean.turn_on
           data: {}
           target:
             entity_id: input_boolean.terrace_light_active
+        - service: light.turn_on
+          data: {}
+          target:
+            entity_id: light.terrace_plants_spots_light
         else:
         - service: light.turn_off
           data: {}
@@ -711,14 +700,14 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
       sequence:
-      - service: input_select.select_next
-        target:
-          entity_id: input_select.terrace_plants_spots_scenes
-        data: {}
       - service: input_boolean.turn_on
         data: {}
         target:
           entity_id: input_boolean.terrace_light_active
+      - service: input_select.select_next
+        target:
+          entity_id: input_select.terrace_plants_spots_scenes
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_single" }}'
@@ -787,7 +776,7 @@
     default: []
   mode: restart
 - id: presence_auto_off
-  alias: Automatically turn presence off
+  alias: Automatically Turn Presence Off
   description: ''
   trigger:
   - platform: state
@@ -808,7 +797,7 @@
     target:
       entity_id: input_boolean.alarm_enabled
 - id: presence_everything_off
-  alias: Turn everything off on presence state off
+  alias: Turn Everything Off On Presence State Off
   description: ''
   trigger:
   - platform: state
@@ -867,7 +856,7 @@
       entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
   mode: single
 - id: presence_person_home
-  alias: Turn presence on when person is at home
+  alias: Turn Presence On When Person Is At Home
   description: ''
   trigger:
   - platform: state
@@ -895,10 +884,14 @@
         skip_condition: false
       target:
         entity_id: automation.home_office
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.switches_always_on_group
   mode: queued
   max: 2
 - id: bathroom_motion
-  alias: Bathroom motion
+  alias: Bathroom Motion
   description: ''
   trigger:
   - platform: state
@@ -910,7 +903,7 @@
     conditions:
     - condition: numeric_state
       entity_id: sensor.bathroom_motion_sensor_light_level
-      below: 60
+      below: 38
     - condition: template
       value_template: '{% set now = now() | as_timestamp %} {% set last = state_attr(''automation.bathroom_motion'',
         ''last_triggered'') | as_timestamp %} {{ ((now - last) / 60 | int) < 6 }}'
@@ -971,8 +964,8 @@
     data:
       value: 0
   mode: restart
-- id: bathroom_switch_light_state
-  alias: Bathroom switch light reset active state
+- id: bathroom_switch_light_reset_active_state
+  alias: Bathroom Switch Light Reset Active State
   description: ''
   trigger:
   - platform: state
@@ -990,8 +983,8 @@
     data:
       entity_id: input_boolean.bathroom_light_active
   mode: single
-- id: bathroom_light
-  alias: Bathroom switch
+- id: bathroom_switch
+  alias: Bathroom Switch
   description: ''
   trigger:
   - platform: event
@@ -1009,119 +1002,56 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
-      - choose:
-        - conditions:
-          - condition: or
-            conditions:
-            - condition: state
-              entity_id: light.bathroom_mirror_light
-              state: 'off'
-            - condition: state
-              entity_id: input_boolean.bathroom_light_active
-              state: 'off'
-          sequence:
-          - service: input_boolean.turn_on
-            target:
-              entity_id: input_boolean.bathroom_light_active
-            data: {}
-          - service: light.turn_on
-            target:
-              entity_id: light.bathroom_mirror_light
-            data: {}
-        default:
-        - service: light.turn_off
-          target:
-            entity_id: light.bathroom_mirror_light
-          data: {}
+      - service: script.bathroom_light_helper
+        data:
+          action: call-service
+          service: light.toggle
+          light: light.bathroom_mirror_light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
       sequence:
-      - service: input_boolean.turn_on
-        data: {}
-        target:
-          entity_id: input_boolean.bathroom_light_active
-      - service: light.turn_on
+      - service: script.bathroom_light_helper
         data:
-          brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
-          color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
-        target:
-          entity_id: light.bathroom_lights
+          action: call-service
+          service: light.turn_on
+          light: light.bathroom_lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_single" }}'
       sequence:
-      - choose:
-        - conditions:
-          - condition: or
-            conditions:
-            - condition: state
-              entity_id: light.bathroom_ceiling_lights
-              state: 'off'
-            - condition: state
-              entity_id: input_boolean.bathroom_light_active
-              state: 'off'
-          sequence:
-          - service: input_boolean.turn_on
-            target:
-              entity_id: input_boolean.bathroom_light_active
-            data: {}
-          - service: light.turn_on
-            data:
-              brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
-              color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
-            target:
-              entity_id: light.bathroom_ceiling_lights
-        default:
-        - service: light.turn_off
-          target:
-            entity_id: light.bathroom_ceiling_lights
-          data: {}
+      - service: script.bathroom_light_helper
+        data:
+          action: call-service
+          service: light.toggle
+          light: light.bathroom_ceiling_lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_double" }}'
       sequence:
-      - service: light.turn_off
-        target:
-          entity_id: light.bathroom_lights
-        data: {}
+      - service: script.bathroom_light_helper
+        data:
+          action: call-service
+          service: light.turn_off
+          light: light.bathroom_lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
       sequence:
-      - choose:
-        - conditions:
-          - condition: state
-            entity_id: light.bathroom_lamp_light
-            state: 'off'
-          sequence:
-          - service: input_boolean.turn_on
-            target:
-              entity_id: input_boolean.bathroom_light_active
-            data: {}
-          - service: light.turn_on
-            data:
-              brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
-              color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
-            target:
-              entity_id:
-              - light.bathroom_lamp_light
-        default:
-        - service: light.turn_off
-          target:
-            entity_id:
-            - light.bathroom_lamp_light
-          data: {}
+      - service: script.bathroom_light_helper
+        data:
+          action: call-service
+          service: light.toggle
+          light: light.bathroom_lamp_light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_double" }}'
       sequence:
-      - service: light.turn_on
+      - service: script.bathroom_light_helper
         data:
-          brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
-          color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
-        target:
-          entity_id: light.bathroom_lamp_light
+          action: call-service
+          service: light.turn_on
+          light: light.bathroom_lamp_light
       - service: light.turn_off
         target:
           entity_id:
@@ -1131,10 +1061,9 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
-      - service: input_select.select_next
-        data: {}
-        target:
-          entity_id: input_select.bathroom_lamp_scenes
+      - service: script.bathroom_light_helper
+        data:
+          action: scene
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
@@ -1146,21 +1075,8 @@
     default: []
   mode: queued
   max: 5
-- id: terrace_light_based_on_input_select_scenes
-  alias: Terrace light based on input select scenes
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_select.terrace_plants_spots_scenes
-  condition: []
-  action:
-  - service: script.scene_on
-    data:
-      scene: '{{ states(''input_select.terrace_plants_spots_scenes'') }}'
-  mode: single
 - id: daytime
-  alias: Set daytime
+  alias: Set Daytime
   description: Set daytime "Morning" (also on alarm) and "Evening" based on sun elevation
     and "Daytimes" based on lightlevel.
   mode: single
@@ -1217,7 +1133,7 @@
           entity_id: input_select.daytime
     default: []
 - id: night_mode
-  alias: Night mode
+  alias: Night Mode
   description: ''
   trigger:
   - platform: state
@@ -1267,20 +1183,24 @@
       entity_id: input_boolean.alarm_enabled
   mode: single
 - id: kitchen_cabinet_light_based_on_input_select_scenes
-  alias: Kitchen cabinet light based on input select scenes
+  alias: Light Based On Input Select Scenes
   description: ''
   trigger:
   - platform: state
     entity_id:
+    - input_select.night_lights_scenes
+    - input_select.office_desk_scenes
     - input_select.kitchen_cabinet_scenes
+    - input_select.terrace_plants_spots_scenes
   condition: []
   action:
-  - service: script.scene_on
-    data:
-      scene: '{{ states(''input_select.kitchen_cabinet_scenes'') }}'
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: '{{ states(trigger.entity_id) }}'
   mode: single
 - id: charge_tablet
-  alias: Charge tablet
+  alias: Charge Tablet
   description: ''
   mode: single
   trigger:
@@ -1291,9 +1211,9 @@
   action:
   - service: switch.turn_on
     target:
-      entity_id: switch.3d_printer_switch_usb
+      entity_id: switch.switches_always_on_group
 - id: desk_height
-  alias: Desk height
+  alias: Desk Height
   description: ''
   mode: restart
   trigger:
@@ -1358,7 +1278,7 @@
     target:
       entity_id: switch.desk_switch
 - id: home_office
-  alias: Home office
+  alias: Home Office
   description: ''
   mode: single
   trigger: []
@@ -1383,7 +1303,7 @@
     target:
       entity_id: switch.desk_switch
 - id: office_low_illuminance
-  alias: Office low illuminance light
+  alias: Office Low Illuminance Light
   description: Turn on lights on low natural illumance light.
   trigger:
   - platform: numeric_state
@@ -1452,7 +1372,7 @@
   mode: single
   max_exceeded: silent
 - id: magic_cube
-  alias: Office magic cube
+  alias: Office Magic Cube
   description: ''
   mode: restart
   trigger:
@@ -1633,7 +1553,7 @@
     target:
       entity_id: input_boolean.marantz_power_state
 - id: mirror_desk_height
-  alias: Mirror sensor desk height with input number desk height
+  alias: Mirror Sensor Desk Height With Input Number Desk Height
   description: Insure input_number.desk_height gets updated when desk height changes
     without using the input_number.desk_height entity
   mode: single
@@ -1661,19 +1581,6 @@
   - service: automation.turn_on
     target:
       entity_id: automation.desk_height
-- id: office_desk_light_based_on_input_select_scenes
-  alias: Office desk light based on input select scenes
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_select.office_desk_scenes
-  condition: []
-  action:
-  - service: script.scene_on
-    data:
-      scene: '{{ states(''input_select.office_desk_scenes'') }}'
-  mode: single
 - id: power_off_server
   alias: Power Off Server
   description: Power Off Server shortly after night mode
@@ -1695,7 +1602,7 @@
     target:
       entity_id: switch.wake_on_lan_server
 - id: office_switch
-  alias: Office switch
+  alias: Office Switch
   description: ''
   mode: queued
   max: 5
@@ -1771,7 +1678,7 @@
             entity_id:
             - light.office_front_light
 - id: ups_battery_charge_critical
-  alias: UPS battery charge critical
+  alias: Ups Battery Charge Critical
   description: ''
   mode: single
   trigger:
@@ -1804,7 +1711,7 @@
     target:
       entity_id: switch.wake_on_lan_server
 - id: bedroom_motion
-  alias: Bedroom motion
+  alias: Bedroom Motion
   description: ''
   trigger:
   - platform: state
@@ -1850,7 +1757,7 @@
   mode: single
   max_exceeded: silent
 - id: bedroom_switch
-  alias: Bedroom switch
+  alias: Bedroom Switch
   description: ''
   trigger:
   - platform: event
@@ -1864,8 +1771,8 @@
   condition:
   - condition: template
     value_template: "{{\n  trigger.event.data.command in [\n    '1_single', '1_double',
-      '1_triple', '1_hold',\n    '2_single', '2_double', '2_triple', '2_hold',\n    '3_single',
-      '3_double',             '3_hold',\n    '4_single', '4_double', '4_triple', '4_hold',\n
+      '1_hold',\n    '2_single', '2_double', '2_hold',\n    '3_single', '3_double',
+      \            '3_hold',\n    '4_single', '4_double', '4_triple', '4_hold',\n
       \ ]\n}}"
   action:
   - choose:
@@ -1873,32 +1780,10 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
-      - if:
-        - condition: or
-          conditions:
-          - condition: state
-            entity_id: light.bedroom_bed_light
-            state: 'off'
-          - condition: numeric_state
-            entity_id: automation.bedroom_motion
-            attribute: current
-            above: 0
-        - condition: state
-          entity_id: input_boolean.bedroom_bed_light_active
-          state: 'off'
-        then:
-        - service: input_boolean.turn_on
-          data: {}
-          target:
-            entity_id: input_boolean.bedroom_bed_light_active
-        - service: script.scene_on
-          data:
-            scene: scene.bedroom_bed_white
-        else:
-        - service: light.turn_off
-          data: {}
-          target:
-            entity_id: light.bedroom_bed_light
+      - service: light.toggle
+        target:
+          entity_id: light.nightstand_christian_switch
+        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
@@ -1907,14 +1792,6 @@
         data: {}
         target:
           entity_id: switch.bedroom_shutter_down_relay
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "1_triple" }}'
-      sequence:
-      - service: switch.turn_on
-        target:
-          entity_id: switch.fan_speed_switch
-        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_hold" }}'
@@ -1929,7 +1806,7 @@
       sequence:
       - service: light.toggle
         target:
-          entity_id: light.nightstand_christian_light
+          entity_id: light.nightstand_partner_switch
         data: {}
     - conditions:
       - condition: template
@@ -1939,14 +1816,6 @@
         data: {}
         target:
           entity_id: switch.bedroom_shutter_up_relay
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "2_triple" }}'
-      sequence:
-      - service: switch.turn_on
-        target:
-          entity_id: switch.fan_mist_switch
-        data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_hold" }}'
@@ -1959,19 +1828,16 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
       sequence:
-      - service: light.toggle
-        target:
-          entity_id: light.nightstand_lights
-        data: {}
+      - service: script.bedroom_bed_light_helper
+        data:
+          action: toggle
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
-      - service: input_select.select_next
+      - service: script.bedroom_bed_light_helper
         data:
-          cycle: true
-        target:
-          entity_id: input_select.bedroom_bed_scenes
+          action: scene
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
@@ -1992,7 +1858,7 @@
   mode: queued
   max: 5
 - id: parlor_low_illuminance
-  alias: Parlor low illuminance light
+  alias: Parlor Low Illuminance Light
   description: Turn on lights on low natural illumance light.
   trigger:
   - platform: numeric_state
@@ -2046,7 +1912,7 @@
   mode: single
   max_exceeded: silent
 - id: door_window_open_detection
-  alias: Door and window open detection
+  alias: Door And Window Open Detection
   description: Send notification when it is cold outside and door/window is too long
     open
   trigger:
@@ -2109,7 +1975,7 @@
   mode: parallel
   max: 10
 - id: reset_window_or_door_open_input_boolean
-  alias: Reset window or door open input boolean
+  alias: Reset Window Or Door Open Input Boolean
   description: ''
   mode: single
   trigger:
@@ -2126,7 +1992,7 @@
     data:
       entity_id: input_boolean.window_or_door_open
 - id: set_window_or_door_open_time
-  alias: Set window or door open time
+  alias: Set Window Or Door Open Time
   description: Automatically sets window or door open time based on outdoor temperature
   mode: single
   trigger:
@@ -2220,21 +2086,8 @@
         target:
           entity_id: input_number.window_or_door_open
     default: []
-- id: '1672437340763'
-  alias: Bedroom bed light based on input select scenes
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_select.bedroom_bed_scenes
-  condition: []
-  action:
-  - service: script.scene_on
-    data:
-      scene: '{{ states(''input_select.bedroom_bed_scenes'') }}'
-  mode: single
 - id: '1672442241658'
-  alias: Wind speed to high for shutters
+  alias: Wind Speed To High For Shutters
   description: Move shutters up if wind speed is to high.
   trigger:
   - platform: numeric_state
@@ -2249,7 +2102,7 @@
       entity_id: switch.shutters_up_group
   mode: single
 - id: '1672596725113'
-  alias: Terrace light
+  alias: Terrace Light
   description: ''
   trigger:
   - platform: state
@@ -2297,7 +2150,7 @@
           entity_id: light.terrace_plants_spots_light
   mode: single
 - id: '1672609154429'
-  alias: Break-in alarm
+  alias: Break-In Alarm
   description: ''
   trigger:
   - platform: state
@@ -2325,7 +2178,7 @@
     title: 'Warning break-in⚠️  '
   mode: single
 - id: '1672960431370'
-  alias: Kitchen cabinet switch
+  alias: Kitchen Cabinet Switch
   description: ''
   trigger:
   - platform: event
@@ -2357,7 +2210,7 @@
     default: []
   mode: single
 - id: '1673219830233'
-  alias: Bedroom bed light reset active state
+  alias: Bedroom Bed Light Reset Active State
   description: ''
   trigger:
   - platform: state
@@ -2380,7 +2233,7 @@
       entity_id: input_boolean.bedroom_bed_light_active
   mode: single
 - id: '1673297888051'
-  alias: Dis-arm alarm
+  alias: Dis-Arm Alarm
   description: Enable/Disable Alarm
   trigger:
   - platform: tag
@@ -2411,7 +2264,7 @@
       message: Alarm Disabled
   mode: single
 - id: '1673538263929'
-  alias: Office ceiling lights backup office parlor state
+  alias: Office Ceiling Lights Backup Office Parlor State
   description: 'Backup/Restore state of office/parlor when office ceiling lights are
     turned on/off, respectively. '
   trigger:
@@ -2450,21 +2303,4 @@
       data: {}
       target:
         entity_id: scene.office_ceiling_lights_backup_office_parlor_state
-  mode: single
-- id: '1673605546660'
-  alias: Bathroom lamp light based on input select scenes
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_select.bathroom_lamp_scenes
-  condition: []
-  action:
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id: input_boolean.bathroom_light_active
-  - service: script.scene_on
-    data:
-      scene: '{{ states(''input_select.bathroom_lamp_scenes'') }}'
   mode: single

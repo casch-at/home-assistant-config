@@ -70,8 +70,14 @@
     - switch.printer_switch
     - switch.3d_printer_switch
     - switch.panel_mirror_switch
-    - switch.panel_mirror_switch_usb
     - switch.bathroom_radiator_switch_usb
+
+- platform: group
+  unique_id: switches_always_on_group
+  name: Switch Always On Group
+  entities:
+    - switch.3d_printer_switch_usb
+    - switch.panel_mirror_switch_usb
 
 - platform: group
   unique_id: devices_group

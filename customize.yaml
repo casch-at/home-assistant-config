@@ -7,10 +7,6 @@ switch.desk_switch:
   icon: mdi:desk
 switch.kitchen_cabinet_switch:
   icon: mdi:chef-hat
-light.nightstand_sonia_light:
-  icon: mdi:lamp
-light.nightstand_christian_light:
-  icon: mdi:lamp
 light.parlor_lights:
   icon: mdi:sofa
 light.terrace_plants_spots_light:
