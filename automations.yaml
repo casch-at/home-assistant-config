@@ -125,7 +125,12 @@
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.bedroom_motion_sensor_battery_level
+    entity_id: sensor.bedroom_bed_left_motion_sensor_battery_level
+    below: 15
+    for:
+      minutes: 5
+  - platform: numeric_state
+    entity_id: sensor.bedroom_bed_right_motion_sensor_battery_level
     below: 15
     for:
       minutes: 5
@@ -195,7 +200,7 @@
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.bedroom_sonia_switch_battery_level
+    entity_id: sensor.bedroom_partner_switch_battery_level
     below: 15
     for:
       minutes: 5
