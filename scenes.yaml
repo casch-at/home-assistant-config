@@ -275,7 +275,7 @@
       color_temp: 351
       entity_id:
       - light.bathroom_back_left_light
-      - light.bathroom_mirror_light
+      - light.bathroom_mirror_light_switch
       state: 'on'
   icon: mdi:shower
 - id: '1610138327508'
@@ -770,7 +770,7 @@
 - id: '1673029781123'
   name: Bathroom Lamp Red
   entities:
-    light.bathroom_mirror_light:
+    light.bathroom_mirror_light_switch:
       supported_color_modes:
       - onoff
       friendly_name: Bathroom Mirror Light
@@ -851,7 +851,7 @@
 - id: '1673605189875'
   name: Bathroom Lamp Green
   entities:
-    light.bathroom_mirror_light:
+    light.bathroom_mirror_light_switch:
       supported_color_modes:
       - onoff
       friendly_name: Bathroom Mirror Light
@@ -901,7 +901,7 @@
 - id: '1673605222815'
   name: Bathroom Lamp Blue
   entities:
-    light.bathroom_mirror_light:
+    light.bathroom_mirror_light_switch:
       supported_color_modes:
       - onoff
       friendly_name: Bathroom Mirror Light
@@ -951,7 +951,7 @@
 - id: '1673605233765'
   name: Bathroom Lamp Purple
   entities:
-    light.bathroom_mirror_light:
+    light.bathroom_mirror_light_switch:
       supported_color_modes:
       - onoff
       friendly_name: Bathroom Mirror Light
@@ -1001,7 +1001,7 @@
 - id: '1673617564665'
   name: Bathroom Lamp White
   entities:
-    light.bathroom_mirror_light:
+    light.bathroom_mirror_light_switch:
       supported_color_modes:
       - onoff
       friendly_name: Bathroom Mirror Light
@@ -1053,7 +1053,7 @@
 - id: '1673617646843'
   name: Bathroom Lamp Night
   entities:
-    light.bathroom_mirror_light:
+    light.bathroom_mirror_light_switch:
       supported_color_modes:
       - onoff
       friendly_name: Bathroom Mirror Light

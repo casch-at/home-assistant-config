@@ -136,7 +136,7 @@ cards:
           w1:
             card:
               type: custom:button-card
-              entity: sensor.bathroom_mirror_light_energy_power
+              entity: sensor.bathroom_mirror_light_switch_energy_power
               template: embedded_card
           w2:
             card:
@@ -200,7 +200,7 @@ cards:
           t1:
             card:
               type: custom:button-card
-              entity: sensor.bathroom_mirror_light_energy_total
+              entity: sensor.bathroom_mirror_light_switch_energy_total
               template: embedded_card
           t2:
             card:

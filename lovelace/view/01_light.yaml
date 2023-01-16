@@ -431,7 +431,7 @@ cards:
                     service: light.toggle
                     light: light.bathroom_lights
               - type: custom:button-card
-                entity: light.bathroom_mirror_light
+                entity: light.bathroom_mirror_light_switch
                 template: icon_only_more_info
                 tap_action:
                   action: call-service
@@ -439,7 +439,7 @@ cards:
                   service_data:
                     action: call-service
                     service: light.toggle
-                    light: light.bathroom_mirror_light
+                    light: light.bathroom_mirror_light_switch
               - type: custom:button-card
                 entity: light.bathroom_ceiling_lights
                 template: icon_only_more_info

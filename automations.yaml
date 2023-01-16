@@ -472,8 +472,8 @@
   - condition: template
     value_template: "{{\n  trigger.event.data.command in [\n    '1_single', '1_double',
       '1_hold',\n    '2_single',             '2_hold',\n    '3_single', '3_double',
-      '3_hold',\n    '4_single', '4_double', '4_hold',\n    '5_single', '5_double',
-      '5_hold',\n    '6_single', '6_double', '6_hold'\n  ]\n}}"
+      '3_triple', '3_hold',\n    '4_single', '4_double', '4_hold',\n    '5_single',
+      '5_double', '5_triple', '5_hold',\n    '6_single', '6_double', '6_hold'\n  ]\n}}"
   action:
   - choose:
     - conditions:
@@ -593,6 +593,14 @@
           command: 4_double
     - conditions:
       - condition: template
+        value_template: '{{ trigger.event.data.command == "3_triple" }}'
+      sequence:
+      - event: zha_event
+        event_data:
+          device_id: 5066dc0a0d6a11eba736919d4fa21431
+          command: 4_single
+    - conditions:
+      - condition: template
         value_template: '{{ trigger.event.data.command == "3_hold" }}'
       sequence:
       - choose:
@@ -643,7 +651,7 @@
             data: {}
           - service: persistent_notification.create
             data:
-              title: Presence 'off' Canceled
+              message: Presence 'off' Canceled
           - repeat:
               count: '2'
               sequence:
@@ -743,6 +751,14 @@
           color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
         target:
           entity_id: light.floor_back_light
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "5_triple" }}'
+      sequence:
+        - service: light.toggle
+          data: {}
+          target:
+            entity_id: light.panel_mirror_switch
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_hold" }}'
@@ -1006,7 +1022,7 @@
         data:
           action: call-service
           service: light.toggle
-          light: light.bathroom_mirror_light
+          light: light.bathroom_mirror_light_switch
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'

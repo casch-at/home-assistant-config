@@ -2,8 +2,8 @@ substitutions:
   name: bathroom-mirror-light-switch
   ap_ssid: Bathroom Mirror Light Switch FH
   ip: 192.168.1.36
-  channel_1: Bathroom Mirror Light
-  channel_2: Bathroom Mirror Light Unused
+  channel_1: Bathroom Mirror Light Switch
+  channel_2: Bathroom Mirror Light Switch Unused
   max_power: "2000.0"
   max_temp: "85.0"
 

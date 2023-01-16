@@ -9,13 +9,13 @@
   entities:
     - light.bathroom_back_left_light
     - light.bathroom_lamp_light
-    - light.bathroom_mirror_light
+    - light.bathroom_mirror_light_switch
 
 - platform: group
   name: Bathroom Mirror Ceiling Lights
   entities:
     - light.bathroom_back_left_light
-    - light.bathroom_mirror_light
+    - light.bathroom_mirror_light_switch
 
 - platform: group
   name: Office Lights
@@ -38,3 +38,4 @@
     - light.nightstand_lights
     - light.office_ceiling_lights
     - light.upstairs_lamp_light
+    - light.panel_mirror_switch

@@ -19,8 +19,6 @@ light.office_desk_light:
   icon: mdi:desk
 light.bathroom_lights:
   icon: mdi:shower
-light.bathroom_mirror_light:
-  icon: mdi:mirror
 light.bathroom_ceiling_lights:
   icon: mdi:ceiling-light
 light.lower_kitchen_lights:
