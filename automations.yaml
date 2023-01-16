@@ -483,7 +483,61 @@
   - choose:
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "1_hold" }}'
+        value_template: '{{ trigger.event.data.command == "1_single" }}'
+      sequence:
+      - if:
+        - condition: state
+          entity_id: light.terrace_plants_spots_light
+          state: 'off'
+        then:
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.terrace_light_active
+        - service: light.turn_on
+          data: {}
+          target:
+            entity_id: light.terrace_plants_spots_light
+        else:
+        - service: light.turn_off
+          data: {}
+          target:
+            entity_id: light.terrace_plants_spots_light
+        - service: input_boolean.turn_off
+          data: {}
+          target:
+            entity_id: input_boolean.terrace_light_active
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "1_double" }}'
+      sequence:
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.terrace_light_active
+      - service: input_select.select_next
+        target:
+          entity_id: input_select.terrace_plants_spots_scenes
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_single" }}'
+      sequence:
+      - event: zha_event
+        event_data:
+          device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
+          command: 3_single
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_double" }}'
+      sequence:
+      - event: zha_event
+        event_data:
+          device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
+          command: 4_single
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_hold" }}'
       sequence:
       - choose:
         - conditions:
@@ -550,23 +604,7 @@
         default: []
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "1_single" }}'
-      sequence:
-      - event: zha_event
-        event_data:
-          device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
-          command: 3_single
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "1_double" }}'
-      sequence:
-      - event: zha_event
-        event_data:
-          device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
-          command: 4_single
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "2_single" }}'
+        value_template: '{{ trigger.event.data.command == "3_single" }}'
       sequence:
       - service: light.toggle
         target:
@@ -574,7 +612,7 @@
         data: {}
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "2_hold" }}'
+        value_template: '{{ trigger.event.data.command == "3_hold" }}'
       sequence:
       - service: homeassistant.turn_off
         target:
@@ -582,7 +620,7 @@
         data: {}
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "3_single" }}'
+        value_template: '{{ trigger.event.data.command == "4_single" }}'
       sequence:
       - event: zha_event
         event_data:
@@ -590,15 +628,7 @@
           command: 3_single
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "3_double" }}'
-      sequence:
-      - event: zha_event
-        event_data:
-          device_id: 5066dc0a0d6a11eba736919d4fa21431
-          command: 4_double
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "3_triple" }}'
+        value_template: '{{ trigger.event.data.command == "4_double" }}'
       sequence:
       - event: zha_event
         event_data:
@@ -606,7 +636,88 @@
           command: 4_single
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "3_hold" }}'
+        value_template: '{{ trigger.event.data.command == "4_triple" }}'
+      sequence:
+      - event: zha_event
+        event_data:
+          device_id: 5066dc0a0d6a11eba736919d4fa21431
+          command: 4_double
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "4_hold" }}'
+      sequence:
+      - service: script.night_light
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "5_hold" }}'
+      sequence:
+      - service: switch.toggle
+        target:
+          entity_id: switch.aroma_diffuser
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "5_single" }}'
+      sequence:
+      - service: light.toggle
+        target:
+          entity_id: light.kitchen_cabinet_light
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "5_double" }}'
+      sequence:
+      - service: input_select.select_next
+        target:
+          entity_id: input_select.kitchen_cabinet_scenes
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "6_single" }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.floor_light_active
+            state: 'off'
+          sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.floor_light_active
+            data: {}
+          - service: light.turn_on
+            data:
+              brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
+              color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
+            target:
+              entity_id: light.floor_lights
+        default:
+        - service: light.turn_off
+          target:
+            entity_id: light.floor_lights
+          data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "6_double" }}'
+      sequence:
+      - service: light.toggle
+        data:
+          brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
+          color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
+        target:
+          entity_id: light.floor_back_light
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "6_triple" }}'
+      sequence:
+        - service: light.toggle
+          data: {}
+          target:
+            entity_id: light.panel_mirror_switch
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "6_hold" }}'
       sequence:
       - choose:
         - conditions:
@@ -683,117 +794,6 @@
                 target:
                   entity_id: light.kitchen_cabinet_light
         default: []
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "4_single" }}'
-      sequence:
-      - if:
-        - condition: state
-          entity_id: light.terrace_plants_spots_light
-          state: 'off'
-        then:
-        - service: input_boolean.turn_on
-          data: {}
-          target:
-            entity_id: input_boolean.terrace_light_active
-        - service: light.turn_on
-          data: {}
-          target:
-            entity_id: light.terrace_plants_spots_light
-        else:
-        - service: light.turn_off
-          data: {}
-          target:
-            entity_id: light.terrace_plants_spots_light
-        - service: input_boolean.turn_off
-          data: {}
-          target:
-            entity_id: input_boolean.terrace_light_active
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "4_double" }}'
-      sequence:
-      - service: input_boolean.turn_on
-        data: {}
-        target:
-          entity_id: input_boolean.terrace_light_active
-      - service: input_select.select_next
-        target:
-          entity_id: input_select.terrace_plants_spots_scenes
-        data: {}
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "5_single" }}'
-      sequence:
-      - choose:
-        - conditions:
-          - condition: state
-            entity_id: input_boolean.floor_light_active
-            state: 'off'
-          sequence:
-          - service: input_boolean.turn_on
-            target:
-              entity_id: input_boolean.floor_light_active
-            data: {}
-          - service: light.turn_on
-            data:
-              brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
-              color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
-            target:
-              entity_id: light.floor_lights
-        default:
-        - service: light.turn_off
-          target:
-            entity_id: light.floor_lights
-          data: {}
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "5_double" }}'
-      sequence:
-      - service: light.toggle
-        data:
-          brightness: '{{ states(''sensor.daytime_light_brightness'') }}'
-          color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
-        target:
-          entity_id: light.floor_back_light
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "5_triple" }}'
-      sequence:
-        - service: light.toggle
-          data: {}
-          target:
-            entity_id: light.panel_mirror_switch
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "5_hold" }}'
-      sequence:
-      - service: script.night_light
-        data: {}
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "6_hold" }}'
-      sequence:
-      - service: switch.toggle
-        target:
-          entity_id: switch.aroma_diffuser
-        data: {}
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "6_single" }}'
-      sequence:
-      - service: light.toggle
-        target:
-          entity_id: light.kitchen_cabinet_light
-        data: {}
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "6_double" }}'
-      sequence:
-      - service: input_select.select_next
-        target:
-          entity_id: input_select.kitchen_cabinet_scenes
-        data: {}
     default: []
   mode: restart
 - id: presence_auto_off
@@ -1820,7 +1820,7 @@
       - event: zha_event
         event_data:
           device_id: 0157c2c1971568f115955e032e5de269
-          command: 1_hold
+          command: 2_hold
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_single" }}'
@@ -1866,7 +1866,7 @@
       - event: zha_event
         event_data:
           device_id: 0157c2c1971568f115955e032e5de269
-          command: 4_double
+          command: 1_double
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_triple" }}'
@@ -1874,7 +1874,7 @@
       - event: zha_event
         event_data:
           device_id: 0157c2c1971568f115955e032e5de269
-          command: 4_single
+          command: 1_single
     default: []
   mode: queued
   max: 5
@@ -2227,7 +2227,7 @@
       - event: zha_event
         event_data:
           device_id: 0157c2c1971568f115955e032e5de269
-          command: 6_double
+          command: 5_double
     default: []
   mode: single
 - id: '1673219830233'
