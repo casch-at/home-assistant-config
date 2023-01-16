@@ -475,10 +475,10 @@
       device_id: 0157c2c1971568f115955e032e5de269
   condition:
   - condition: template
-    value_template: "{{\n  trigger.event.data.command in [\n    '1_single', '1_double',
-      '1_hold',\n    '2_single',             '2_hold',\n    '3_single', '3_double',
-      '3_triple', '3_hold',\n    '4_single', '4_double', '4_hold',\n    '5_single',
-      '5_double', '5_triple', '5_hold',\n    '6_single', '6_double', '6_hold'\n  ]\n}}"
+    value_template: "{{\n  trigger.event.data.command in [\n    '2_single', '2_double', '2_triple',
+      '2_hold',\n    '3_single',             '3_hold',\n    '4_single', '4_double',
+      '4_triple', '4_hold',\n    '1_single', '1_double', '1_hold',\n    '6_single',
+      '6_double', '6_triple', '6_hold',\n    '5_single', '5_double', '5_hold'\n  ]\n}}"
   action:
   - choose:
     - conditions:
@@ -535,6 +535,14 @@
         event_data:
           device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
           command: 4_single
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "2_triple" }}'
+      sequence:
+      - event: zha_event
+        event_data:
+          device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
+          command: 3_double
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_hold" }}'
@@ -1852,6 +1860,13 @@
       - service: script.bedroom_bed_light_helper
         data:
           action: toggle
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "3_double" }}'
+      sequence:
+      - service: script.bedroom_bed_light_helper
+        data:
+          action: turn_on
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'

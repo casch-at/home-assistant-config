@@ -289,6 +289,8 @@ bedroom_bed_light_helper:
             value: toggle
           - label: Scene
             value: scene
+          - label: Turn On
+            value: turn_on
     scene:
       name: Scene Entity
       description: Scene to turn on
@@ -317,7 +319,7 @@ bedroom_bed_light_helper:
           entity_id: input_boolean.bedroom_bed_light_active
           state: 'off'
       - condition: template
-        value_template: '{{ action == ''scene'' }}'
+        value_template: '{{ action == ''scene'' or action == ''turn_on'' }}'
     then:
     - service: input_boolean.turn_on
       data: {}
@@ -326,7 +328,7 @@ bedroom_bed_light_helper:
     - choose:
       - conditions:
         - condition: template
-          value_template: '{{ action == ''toggle'' }}'
+          value_template: '{{ action == ''toggle'' or action == ''turn_on'' }}'
         sequence:
         - service: script.scene_on
           data:
