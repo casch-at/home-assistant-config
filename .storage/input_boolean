@@ -21,7 +21,7 @@
       },
       {
         "id": "state_night_running",
-        "name": "State Night Running",
+        "name": "Daytimes Night Running",
         "icon": "mdi:sleep"
       },
       {

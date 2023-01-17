@@ -147,34 +147,36 @@ shutters_up_sun:
 night_light:
   alias: Night Light
   sequence:
-  - service: scene.turn_on
-    data: {}
-    target:
-      entity_id:
-      - scene.floor_front_night
-      - scene.office_desk_night
-      - scene.kitchen_cabinet_night
-      - scene.bathroom_lamp_night
-  - service: light.turn_on
-    data: {}
-    target:
-      entity_id: light.panel_mirror_switch
-  - service: script.scene_on
-    data:
-      scene: scene.bedroom_bed_night
-      light:
-      - light.bedroom_bed_light
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id:
-      - input_boolean.floor_light_active
-      - input_boolean.floor_helper_light_active
-    enabled: true
-  - service: automation.turn_off
-    data: {}
-    target:
-      entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
+  - parallel:
+    - service: scene.turn_on
+      data: {}
+      target:
+        entity_id:
+        - scene.floor_front_night
+        - scene.office_desk_night
+        - scene.kitchen_cabinet_night
+        - scene.bathroom_lamp_night
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id: light.panel_mirror_switch
+    - service: script.scene_on
+      data:
+        scene: scene.bedroom_bed_night
+        light:
+        - light.bedroom_bed_light
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id:
+        - input_boolean.floor_light_active
+        - input_boolean.floor_helper_light_active
+        - input_boolean.bathroom_light_active
+      enabled: true
+    - service: automation.turn_off
+      data: {}
+      target:
+        entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
   - service: light.turn_off
     data: {}
     target:
@@ -387,8 +389,8 @@ bathroom_light_helper:
           entity_id: '{{ light }}'
     - conditions:
       - condition: template
-        value_template: "{% if not scene|default('') and action == 'scene' -%} \n  true
-          \n{%- else -%} \n  false \n{%- endif -%} \n"
+        value_template: "{% if not scene|default('') and action == 'scene' -%} \n
+          \ true \n{%- else -%} \n  false \n{%- endif -%} \n"
       sequence:
       - service: input_select.select_next
         data:
@@ -459,3 +461,74 @@ bathroom_light_helper:
   mode: queued
   icon: mdi:bathtub
   max: 5
+daytime_night:
+  alias: Daytime Night
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.daytimes_night_running
+      state: 'off'
+    then:
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.daytimes_night_running
+      data: {}
+    - service: scene.create
+      data:
+        scene_id: daytimes_night_running_{{ light | replace('light.', '') }}_backup
+        snapshot_entities:
+        - '{{ light }}'
+    - repeat:
+        count: '4'
+        sequence:
+        - service: light.turn_on
+          data:
+            rgb_color:
+            - 200
+            - 50
+            - 0
+            brightness: 150
+            transition: 1
+          target:
+            entity_id: '{{ light }}'
+        - delay: 00:00:02
+        - service: light.turn_on
+          data:
+            rgb_color:
+            - 200
+            - 50
+            - 0
+            brightness: 20
+            transition: 1
+          target:
+            entity_id: '{{ light }}'
+        - delay: 00:00:02
+    - service: input_select.select_option
+      data:
+        option: Night
+      target:
+        entity_id: input_select.daytime
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.daytimes_night_running
+      data: {}
+    else:
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.daytimes_night_running
+      data: {}
+    - service: scene.turn_on
+      target:
+        entity_id: scene.daytimes_night_running_{{ light | replace('light.', '') }}_backup
+      data: {}
+  mode: restart
+  icon: mdi:sleep
+  fields:
+    light:
+      name: Light Entity
+      description: The light entity to use as an indicator.
+      example: "service: script.daytimes_night\ndata:\n  light:\n    - light.bedroom_bed_light\n"
+      required: true
+      selector:
+        entity:
+          domain: light
