@@ -477,16 +477,16 @@ daytime_night:
   sequence:
   - if:
     - condition: state
-      entity_id: input_boolean.daytimes_night_running
+      entity_id: input_boolean.daytime_night_running
       state: 'off'
     then:
     - service: input_boolean.turn_on
       target:
-        entity_id: input_boolean.daytimes_night_running
+        entity_id: input_boolean.daytime_night_running
       data: {}
     - service: scene.create
       data:
-        scene_id: daytimes_night_running_{{ light | replace('light.', '') }}_backup
+        scene_id: daytime_night_running_{{ light | replace('light.', '') }}_backup
         snapshot_entities:
         - '{{ light }}'
     - repeat:
@@ -521,16 +521,16 @@ daytime_night:
         entity_id: input_select.daytime
     - service: input_boolean.turn_off
       target:
-        entity_id: input_boolean.daytimes_night_running
+        entity_id: input_boolean.daytime_night_running
       data: {}
     else:
     - service: input_boolean.turn_off
       target:
-        entity_id: input_boolean.daytimes_night_running
+        entity_id: input_boolean.daytime_night_running
       data: {}
     - service: scene.turn_on
       target:
-        entity_id: scene.daytimes_night_running_{{ light | replace('light.', '') }}_backup
+        entity_id: scene.daytime_night_running_{{ light | replace('light.', '') }}_backup
       data: {}
   mode: restart
   icon: mdi:sleep

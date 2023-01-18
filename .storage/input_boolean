@@ -20,8 +20,8 @@
         "icon": "mdi:door"
       },
       {
-        "id": "state_night_running",
-        "name": "Daytimes Night Running",
+        "id": "daytime_night_running",
+        "name": "Daytime Night Running",
         "icon": "mdi:sleep"
       },
       {
