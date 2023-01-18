@@ -160,11 +160,14 @@ night_light:
       data: {}
       target:
         entity_id: light.panel_mirror_switch
-    - service: script.scene_on
+    - service: script.turn_on
+      target:
+        entity_id: script.scene_on
       data:
-        scene: scene.bedroom_bed_night
-        light:
-        - light.bedroom_bed_light
+        variables:
+          scene: scene.bedroom_bed_night
+          light:
+            - light.bedroom_bed_light
     - service: input_boolean.turn_on
       data: {}
       target:
@@ -244,8 +247,7 @@ shutter_horizontal_open:
       description: Close shutter but open them horizontally at the end (parlor/bedroom)
       required: true
       selector:
-        entity:
-          domain: switch
+        area:
   sequence:
   - service: switch.turn_on
     data: {}
@@ -332,9 +334,12 @@ bedroom_bed_light_helper:
         - condition: template
           value_template: '{{ action == ''toggle'' or action == ''turn_on'' }}'
         sequence:
-        - service: script.scene_on
+        - service: script.turn_on
+          target:
+            entity_id: script.scene_on
           data:
-            scene: scene.bedroom_bed_white
+            variables:
+              scene: scene.bedroom_bed_white
       - conditions:
         - condition: template
           value_template: "{% if not scene|default('') and action == 'scene' -%} \n
@@ -345,17 +350,23 @@ bedroom_bed_light_helper:
             cycle: true
           target:
             entity_id: input_select.bedroom_bed_scenes
-        - service: script.scene_on
+        - service: script.turn_on
+          target:
+            entity_id: script.scene_on
           data:
-            scene: '{{ states(''input_select.bedroom_bed_scenes'') }}'
+            variables:
+              scene: '{{ states(''input_select.bedroom_bed_scenes'') }}'
       - conditions:
         - condition: template
           value_template: "{% if scene|default('') and action == 'scene' -%} \n  true
             \n{%- else -%} \n  false \n{%- endif -%} \n"
         sequence:
-        - service: script.scene_on
+        - service: script.turn_on
+          target:
+            entity_id: script.scene_on
           data:
-            scene: '{{ scene }}'
+            variables:
+              scene: '{{ scene }}'
       default:
       - stop: Wrong usage or wrong/missing condition
         error: true
@@ -406,9 +417,9 @@ bathroom_light_helper:
         value_template: "{% if scene|default('') and action == 'scene' -%} \n  true
           \n{%- else -%} \n  false \n{%- endif -%} \n"
       sequence:
-      - service: script.scene_on
-        data:
-          scene: '{{ scene }}'
+      - service: scene.turn_on
+        target:
+          entity_id: "{{ scene }}"
     default:
     - stop: Wrong usage or wrong/missing condition
       error: true

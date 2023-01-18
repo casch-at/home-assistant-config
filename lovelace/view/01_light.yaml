@@ -416,6 +416,19 @@ cards:
                 template: icon_only_more_info
                 name: 'B'
                 show_name: true
+              - type: custom:button-card
+                entity: light.floor_front_light
+                template: icon_only_more_info
+                name: 'F'
+                show_name: true
+                styles:
+                  icon:
+                    - color: "#FFC8C8"
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.floor_front_night
 
           - type: grid
             columns: 1

@@ -108,6 +108,11 @@ cards:
                     action: call-service
                     service: light.toggle
                     light: light.bathroom_lights
+                double_tap_action:
+                  action: call-service
+                  service: script.bathroom_light_helper
+                  service_data:
+                    action: scene
               - type: custom:button-card
                 entity: light.floor_lights
                 template: icon_only_more_info

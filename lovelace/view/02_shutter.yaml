@@ -26,9 +26,18 @@ cards:
               color: "#B9F18B"
               tap_action:
                 action: call-service
-                service: script.shutter_horizontal_open
+                service: script.turn_on
                 service_data:
-                  area: bedroom
+                  target:
+                    entity_id: script.shutter_horizontal_open
+                  variables:
+                    area: bedroom
+              double_tap_action:
+                action: call-service
+                service: script.turn_off
+                service_data:
+                  target:
+                    entity_id: script.shutter_horizontal_open
               hold_action:
                 action: more-info
                 entity: input_number.bedroom_shutter_horizontal_open_delay
@@ -69,9 +78,16 @@ cards:
               color: "#B9F18B"
               tap_action:
                 action: call-service
-                service: script.shutter_horizontal_open
+                service: script.turn_on
                 service_data:
-                  area: parlor
+                  entity_id: script.shutter_horizontal_open
+                  variables:
+                    area: parlor
+              double_tap_action:
+                action: call-service
+                service: script.turn_off
+                service_data:
+                  entity_id: script.shutter_horizontal_open
               hold_action:
                 action: more-info
                 entity: input_number.parlor_shutter_horizontal_open_delay
