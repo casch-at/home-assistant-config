@@ -221,7 +221,7 @@ scene_on:
           domain: scene
     light:
       name: Light Entity
-      required: true
+      required: false
       selector:
         entity:
           domain: light

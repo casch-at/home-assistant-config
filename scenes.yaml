@@ -1102,3 +1102,38 @@
       state: 'on'
   icon: mdi:hot-tub
   metadata: {}
+- id: '1674117983872'
+  name: Bedroom Bed Good Morning
+  entities:
+    light.bedroom_bed_light:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:bed
+      friendly_name: Bedroom Bed Light
+      supported_features: 44
+      color_mode: color_temp
+      brightness: 254
+      color_temp_kelvin: 6451
+      color_temp: 155
+      hs_color:
+      - 44.098
+      - 2.43
+      rgb_color:
+      - 255
+      - 253
+      - 248
+      xy_color:
+      - 0.328
+      - 0.334
+      state: 'on'
+  icon: mdi:bed-double
+  metadata: {}

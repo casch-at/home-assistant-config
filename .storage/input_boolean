@@ -58,6 +58,11 @@
         "name": "Alarm Enabled",
         "icon": "mdi:shield-home",
         "id": "alarm_enabled"
+      },
+      {
+        "name": "Handy Alarm Automation Did Run",
+        "icon": "mdi:alarm",
+        "id": "handy_alarm_automation_did_run"
       }
     ]
   }

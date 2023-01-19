@@ -62,55 +62,69 @@
     entity_id: person.christian_schwarzgruber
     state: home
   action:
-  - if:
-    - condition: numeric_state
-      entity_id: sensor.floor_motion_sensor_light_level
-      below: 100
-    - condition: state
-      entity_id: light.kitchen_cabinet_light
-      state: 'off'
-    then:
-    - service: scene.turn_on
-      data:
-        transition: 15
-      target:
-        entity_id: scene.kitchen_cabinet_white
-  - if:
-    - condition: state
-      entity_id: binary_sensor.shutter_operation_to_cold_or_windy
-      state: 'off'
-    then:
-    - service: switch.turn_on
+  - parallel:
+    - if:
+      - condition: numeric_state
+        entity_id: sensor.floor_motion_sensor_light_level
+        below: 100
+      - condition: state
+        entity_id: light.kitchen_cabinet_light
+        state: 'off'
+      then:
+      - service: scene.turn_on
+        data:
+          transition: 15
+        target:
+          entity_id: scene.kitchen_cabinet_white
+    - if:
+      - condition: numeric_state
+        entity_id: sensor.bedroom_bed_left_motion_sensor_light_level
+        below: 100
+      - condition: state
+        entity_id: light.bedroom_bed_light
+        state: 'off'
+      then:
+      - service: script.scene_on
+        data:
+          scene: scene.bedroom_bed_good_morning
+    - if:
+      - condition: state
+        entity_id: binary_sensor.shutter_operation_to_cold_or_windy
+        state: 'off'
+      then:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.parlor_shutter_up_relay
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.bedroom_shutter_up_relay
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 250
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.bedroom_shutter_up_relay
+      - if:
+        then: []
+    - if:
+      - condition: template
+        value_template: '{{ trigger.entity_id == ''binary_sensor.christian_schwarzgruber_alarm''
+          }}'
+      then:
+      - service: automation.trigger
+        data:
+          skip_condition: false
+        target:
+          entity_id: automation.home_office
+    - service: input_boolean.turn_off
       data: {}
       target:
-        entity_id: switch.parlor_shutter_up_relay
-    - service: switch.turn_on
-      data: {}
-      target:
-        entity_id: switch.bedroom_shutter_up_relay
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 15
-        milliseconds: 0
-    - service: switch.turn_off
-      data: {}
-      target:
-        entity_id: switch.bedroom_shutter_up_relay
-  - if:
-    - condition: template
-      value_template: '{{ trigger.entity_id == ''binary_sensor.christian_schwarzgruber_alarm''
-        }}'
-    then:
-    - service: automation.trigger
-      data:
-        skip_condition: false
-      target:
-        entity_id: automation.home_office
-  - service: input_boolean.turn_off
-    data: {}
-    target:
-      entity_id: input_boolean.alarm_enabled
+        entity_id: input_boolean.alarm_enabled
   mode: queued
   max: 2
 - id: low_battery_level_warning
@@ -2277,4 +2291,29 @@
       data: {}
       target:
         entity_id: scene.office_ceiling_lights_backup_office_parlor_state
+  mode: single
+- id: '1674166064713'
+  alias: Handy Alarm Reset Did Run
+  description: Reset state of input_boolean.handy_alarm_automation_dir_run (off)
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.handy_alarm_automation_did_run
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition: []
+  action:
+  - parallel:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.handy_alarm_automation_did_run
+    - service: switch.turn_on
+      data: {}
+      target:
+        entity_id: switch.bedroom_shutter_up_relay
   mode: single
