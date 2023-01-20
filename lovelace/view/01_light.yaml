@@ -390,6 +390,9 @@ cards:
                   service: scene.turn_on
                   service_data:
                     entity_id: scene.kitchen_cabinet_purple
+              - type: custom:button-card
+                entity: light.kitchen_cabinet_switch
+                template: icon_only_more_info
 
           - type: grid
             columns: 1
