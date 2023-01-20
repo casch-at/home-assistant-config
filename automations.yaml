@@ -104,13 +104,11 @@
           hours: 0
           minutes: 0
           seconds: 0
-          milliseconds: 250
+          milliseconds: 400
       - service: switch.turn_off
         data: {}
         target:
           entity_id: switch.bedroom_shutter_up_relay
-      - if:
-        then: []
     - if:
       - condition: template
         value_template: '{{ trigger.entity_id == ''binary_sensor.christian_schwarzgruber_alarm''
@@ -2316,4 +2314,8 @@
       data: {}
       target:
         entity_id: switch.bedroom_shutter_up_relay
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.bedroom_bed_light
   mode: single
