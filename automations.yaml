@@ -65,6 +65,17 @@
   - parallel:
     - if:
       - condition: numeric_state
+        entity_id: sensor.bedroom_bed_left_motion_sensor_light_level
+        below: 100
+      - condition: state
+        entity_id: light.bedroom_bed_light
+        state: 'off'
+      then:
+      - service: script.scene_on
+        data:
+          scene: scene.bedroom_bed_good_morning
+    - if:
+      - condition: numeric_state
         entity_id: sensor.floor_motion_sensor_light_level
         below: 100
       - condition: state
@@ -77,19 +88,11 @@
         target:
           entity_id: scene.kitchen_cabinet_white
     - if:
-      - condition: numeric_state
-        entity_id: sensor.bedroom_bed_left_motion_sensor_light_level
-        below: 100
-      - condition: state
-        entity_id: light.bedroom_bed_light
-        state: 'off'
-      then:
-      - service: script.scene_on
-        data:
-          scene: scene.bedroom_bed_good_morning
-    - if:
       - condition: state
         entity_id: binary_sensor.shutter_operation_to_cold_or_windy
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.handy_alarm_automation_did_run
         state: 'off'
       then:
       - service: switch.turn_on
@@ -123,6 +126,10 @@
       data: {}
       target:
         entity_id: input_boolean.alarm_enabled
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.handy_alarm_automation_did_run
   mode: queued
   max: 2
 - id: low_battery_level_warning
