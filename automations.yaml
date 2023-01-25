@@ -2369,3 +2369,53 @@
     target:
       entity_id: input_boolean.terrace_light_active
   mode: single
+- id: '1674667706930'
+  alias: Floor Motion Pre-Presence
+  description: Turn on kitchen cabinet light if presence is off but floor motion was
+    detected (just came home). If after X minutes presence has not been turned on,
+    call automation "turn everything off on presence state off".
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.floor_motion_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.presence
+    state: 'off'
+  - condition: numeric_state
+    entity_id: sensor.office_light_sensor_light_level
+    below: 60
+  - condition: state
+    entity_id: light.kitchen_cabinet_light
+    state: 'off'
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.kitchen_cabinet_light
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.kitchen_cabinet_white
+  - wait_for_trigger:
+    - platform: state
+      entity_id:
+      - input_boolean.presence
+      to: 'on'
+    timeout:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - if:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'off'
+    then:
+    - service: automation.trigger
+      data: {}
+      target:
+        entity_id: automation.turn_everything_off_on_presence_state_off
+  mode: queued
+  max: 5
