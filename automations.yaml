@@ -2419,3 +2419,29 @@
         entity_id: automation.turn_everything_off_on_presence_state_off
   mode: queued
   max: 5
+- id: '1674754045141'
+  alias: Terrace Light Set Active State
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.terrace_plants_spots_light
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.terrace_light_active
+    state: 'off'
+  - condition: state
+    entity_id: binary_sensor.terrace_door_sensor
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.terrace_light_active
+  mode: single
