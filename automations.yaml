@@ -107,7 +107,7 @@
           hours: 0
           minutes: 0
           seconds: 0
-          milliseconds: 450
+          milliseconds: 750
       - service: switch.turn_off
         data: {}
         target:
