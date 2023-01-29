@@ -26,6 +26,8 @@ cards:
                 "n1 t1 h1 p1 l1"
                 "n9 t9 h9 p9 l9"
                 "n10 t10 h10 p10 l10"
+                "n11 t11 h11 p11 l11"
+                "n12 t12 h12 p12 l12"
             - grid-template-columns: min-content 1fr 1fr 1fr 1fr
             - grid-template-rows: min-content 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
           custom_fields:
@@ -69,6 +71,14 @@ cards:
               - justify-self: start
               - padding-left: 10px
               - font-weight: bold
+            n11:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
+            n12:
+              - justify-self: start
+              - padding-left: 10px
+              - font-weight: bold
             tn:
               - font-weight: bold
             hn:
@@ -92,6 +102,8 @@ cards:
           n8: 'Bathroom'
           n9: 'Mirror Switch'
           n10: 'Office Switch'
+          n11: 'Parlor Relay'
+          n12: 'Bedroom Relay'
           t2:
             card:
                 type: custom:button-card
@@ -234,4 +246,14 @@ cards:
             card:
                 type: custom:button-card
                 entity: sensor.office_light_switch_temperature
+                template: embedded_card
+          t11:
+            card:
+                type: custom:button-card
+                entity: sensor.parlor_shutter_relay_temperature
+                template: embedded_card
+          t12:
+            card:
+                type: custom:button-card
+                entity: sensor.bedroom_shutter_relay_temperature
                 template: embedded_card
