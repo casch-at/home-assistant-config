@@ -14,7 +14,7 @@ wifi:
     subnet: 255.255.255.0
 
   # https://esphome.io/components/wifi.html#power-save-mode
-  power_save_mode: light
+  #power_save_mode: None
 
   # https://esphome.io/components/esphome.html#changing-esphome-node-name (Changing the name of the device)
   # use_address: desk_control.local
