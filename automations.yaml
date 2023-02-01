@@ -107,7 +107,7 @@
           hours: 0
           minutes: 0
           seconds: 0
-          milliseconds: 550
+          milliseconds: 600
       - service: switch.turn_off
         data: {}
         target:
@@ -1570,9 +1570,8 @@
     target:
       entity_id: automation.desk_height
 - id: power_off_server
-  alias: Power Off Server
+  alias: Server Off
   description: Power Off Server shortly after night mode
-  mode: single
   trigger:
   - platform: state
     entity_id: input_select.daytime
@@ -1589,6 +1588,8 @@
   - service: switch.turn_off
     target:
       entity_id: switch.wake_on_lan_server
+    data: {}
+  mode: single
 - id: office_switch
   alias: Office Switch
   description: ''
@@ -1677,9 +1678,8 @@
   action:
   - service: hassio.host_shutdown
 - id: wake_server
-  alias: Wake Server
+  alias: Server Wake
   description: Wake Server Using WOL When state changes to Morning, Daytimes, or Evening
-  mode: single
   trigger:
   - platform: state
     entity_id: input_select.daytime
@@ -1698,6 +1698,8 @@
   - service: switch.turn_on
     target:
       entity_id: switch.wake_on_lan_server
+    data: {}
+  mode: single
 - id: bedroom_motion
   alias: Bedroom Motion
   description: ''
@@ -1760,8 +1762,7 @@
   - condition: template
     value_template: "{{\n  trigger.event.data.command in [\n    '1_single', '1_double',
       '1_hold',\n    '2_single', '2_double', '2_hold',\n    '3_single', '3_double',
-      \            '3_hold',\n    '4_single', '4_double', '4_triple', '4_hold',\n
-      \ ]\n}}"
+      \            \n    '4_single', '4_double', '4_triple',\n  ]\n}}"
   action:
   - choose:
     - conditions:
@@ -2445,3 +2446,62 @@
     target:
       entity_id: input_boolean.terrace_light_active
   mode: single
+- id: '1675204440684'
+  alias: Bedroom Switch Bed Light Increase Decrease
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: c2f9ff81b7a2837879fa8a92a7aa2d8e
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 2ae648159981b31b3bf901fb4ac2a579
+  condition:
+  - condition: template
+    value_template: "{{\n  trigger.event.data.command in [\n    '3_hold', '3_release',\n
+      \   '4_hold', '4_release',\n  ]\n}}"
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "3_hold" }}'
+      sequence:
+      - repeat:
+          count: '20'
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness: "{% if (state_attr('light.bedroom_bed_light', 'brightness')
+                | int) <= 243 -%}\n  {{ (state_attr('light.bedroom_bed_light', 'brightness')
+                | int) + 12 }}\n{% endif -%}"
+            target:
+              entity_id: light.bedroom_bed_light
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 0
+              milliseconds: 225
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "4_hold" }}'
+      sequence:
+      - repeat:
+          count: '20'
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness: "{% if (state_attr('light.bedroom_bed_light', 'brightness')
+                | int) >= 17 -%}\n  {{ (state_attr('light.bedroom_bed_light', 'brightness')
+                | int) - 12 }}\n{% endif -%}"
+            target:
+              entity_id: light.bedroom_bed_light
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 0
+              milliseconds: 225
+    default:
+    - stop: Restarted to break out from loop
+  mode: restart
