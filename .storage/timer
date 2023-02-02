@@ -9,7 +9,7 @@
         "name": "Bathroom Radiator Timer",
         "icon": "mdi:heating-coil",
         "restore": true,
-        "duration": "0:15:00"
+        "duration": "0:20:00"
       }
     ]
   }

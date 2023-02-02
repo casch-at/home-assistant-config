@@ -38,9 +38,9 @@
         "name": "Bathroom Motion Timeout Multiplier",
         "icon": "mdi:shower",
         "mode": "slider",
-        "min": 0,
-        "max": 12,
-        "step": 2
+        "min": 0.0,
+        "max": 12.0,
+        "step": 2.0
       },
       {
         "id": "floor_motion_timeout_multiplier",

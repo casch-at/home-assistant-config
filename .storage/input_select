@@ -78,6 +78,7 @@
         ]
       },
       {
+        "id": "bathroom_lamp_scenes",
         "name": "Bathroom Lamp Scenes",
         "icon": "mdi:hot-tub",
         "options": [
@@ -85,8 +86,7 @@
           "scene.bathroom_lamp_blue",
           "scene.bathroom_lamp_green",
           "scene.bathroom_lamp_purple"
-        ],
-        "id": "bathroom_lamp_scenes"
+        ]
       }
     ]
   }

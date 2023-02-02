@@ -96,7 +96,7 @@ shell_command:
 
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
-light: !include lights.yaml
+# light: !include lights.yaml
 lovelace: !include lovelace/lovelace.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml

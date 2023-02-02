@@ -1,38 +1,4 @@
 person.christian_schwarzgruber: {}
-switch.printer_switch:
-  icon: mdi:printer
-switch.3d_printer_switch:
-  icon: mdi:printer-3d
-switch.desk_switch:
-  icon: mdi:desk
-switch.kitchen_cabinet_switch:
-  icon: mdi:chef-hat
-light.parlor_lights:
-  icon: mdi:sofa
-light.terrace_plants_spots_light:
-  icon: mdi:flower
-light.terrace_plant_spot_1_light:
-  icon: mdi:flower
-light.terrace_plant_spot_2_light:
-  icon: mdi:flower
-light.office_desk_light:
-  icon: mdi:desk
-light.bathroom_lights:
-  icon: mdi:shower
-light.bathroom_ceiling_lights:
-  icon: mdi:ceiling-light
-light.lower_kitchen_lights:
-  icon: mdi:coffee
-light.all_zigbee_lights:
-  icon: mdi:lightbulb-group
-light.all_lights:
-  icon: mdi:lightbulb-group
-light.office_lights:
-  icon: mdi:lightbulb-group
-light.office_ceiling_lights:
-  icon: mdi:ceiling-light
-light.kitchen_cabinet_light:
-  icon: mdi:led-strip-variant
 switch.switches_group:
   icon: mdi:dip-switch
 switch.bedroom_group:
