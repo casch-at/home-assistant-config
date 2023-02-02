@@ -2505,3 +2505,73 @@
     default:
     - stop: Restarted to break out from loop
   mode: restart
+- id: '1675366880293'
+  alias: Bathroom Radiator Timer
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.started
+    event_data:
+      entity_id: timer.bathroom_radiator_timer
+    enabled: true
+    id: s
+  - platform: event
+    event_type: timer.restarted
+    event_data:
+      entity_id: timer.bathroom_radiator_timer
+    enabled: true
+    id: r
+  - platform: event
+    event_type: timer.paused
+    event_data:
+      entity_id: timer.bathroom_radiator_timer
+    enabled: true
+    id: p
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.bathroom_radiator_timer
+    enabled: true
+    id: f
+  - platform: event
+    event_type: timer.cancelled
+    event_data:
+      entity_id: timer.bathroom_radiator_timer
+    enabled: true
+    id: c
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.bathroom_radiator_switch
+    enabled: false
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: s
+        - condition: trigger
+          id: r
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.bathroom_radiator_switch
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: trigger
+          id: p
+        - condition: trigger
+          id: f
+        - condition: trigger
+          id: c
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.bathroom_radiator_switch
+    enabled: true
+  mode: single

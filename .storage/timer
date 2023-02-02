@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "timer",
+  "data": {
+    "items": [
+      {
+        "id": "bathroom_radiator_timer",
+        "name": "Bathroom Radiator Timer",
+        "icon": "mdi:heating-coil",
+        "restore": true,
+        "duration": "0:15:00"
+      }
+    ]
+  }
+}

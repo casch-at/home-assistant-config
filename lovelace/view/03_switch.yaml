@@ -61,6 +61,9 @@ cards:
         - type: custom:button-card
           entity: switch.bathroom_radiator_switch
           template: icon_only_more_info
+          double_tap_action:
+            action: more-info
+            entity: timer.bathroom_radiator_timer
         - type: custom:button-card
           entity: switch.bathroom_radiator_switch_usb
           template: icon_only_more_info
