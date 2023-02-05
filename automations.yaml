@@ -537,7 +537,8 @@
       - service: input_select.select_next
         target:
           entity_id: input_select.terrace_plants_spots_scenes
-        data: {}
+        data:
+          cycle: true
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_single" }}'
@@ -592,7 +593,7 @@
       - event: zha_event
         event_data:
           device_id: 5066dc0a0d6a11eba736919d4fa21431
-          command: 3_single
+          command: 1_double
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_double" }}'
@@ -638,7 +639,8 @@
       - service: input_select.select_next
         target:
           entity_id: input_select.kitchen_cabinet_scenes
-        data: {}
+        data:
+          cycle: true
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "6_single" }}'
@@ -1002,7 +1004,9 @@
       - service: script.bathroom_light_helper
         data:
           action: call-service
-          service: light.turn_on
+          service: "{% if states('light.bathroom_ceiling_lights') == 'off' or\n        states('light.bathroom_lamp_light')
+            == 'off' or\n        states('light.bathroom_mirror_light') == 'off' -%}
+            \n  light.turn_on\n{%- else -%}\n  light.turn_off\n{%- endif -%}"
           light: light.bathroom_lights
     - conditions:
       - condition: template
@@ -1013,15 +1017,6 @@
           action: call-service
           service: light.toggle
           light: light.bathroom_ceiling_lights
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "2_double" }}'
-      sequence:
-      - service: script.bathroom_light_helper
-        data:
-          action: call-service
-          service: light.turn_off
-          light: light.bathroom_lights
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_single" }}'
