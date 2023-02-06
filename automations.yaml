@@ -877,7 +877,7 @@
   - service: switch.turn_on
     data: {}
     target:
-      entity_id: switch.switches_always_on_group
+      entity_id: switch.switch_always_on_group
   mode: queued
   max: 2
 - id: bathroom_motion
@@ -1194,7 +1194,7 @@
   action:
   - service: switch.turn_on
     target:
-      entity_id: switch.switches_always_on_group
+      entity_id: switch.switch_always_on_group
 - id: desk_height
   alias: Desk Height
   description: ''
