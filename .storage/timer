@@ -10,6 +10,13 @@
         "icon": "mdi:heating-coil",
         "restore": true,
         "duration": "0:20:00"
+      },
+      {
+        "name": "Handy Alarm Timer",
+        "icon": "mdi:alarm",
+        "duration": "0:30:00",
+        "restore": true,
+        "id": "handy_alarm_timer"
       }
     ]
   }

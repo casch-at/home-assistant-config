@@ -92,8 +92,9 @@
         entity_id: binary_sensor.shutter_operation_to_cold_or_windy
         state: 'off'
       - condition: state
-        entity_id: input_boolean.handy_alarm_automation_did_run
-        state: 'off'
+        entity_id: timer.handy_alarm_timer
+        state:
+        - idle
       then:
       - service: switch.turn_on
         data: {}
@@ -112,6 +113,11 @@
         data: {}
         target:
           entity_id: switch.bedroom_shutter_up_relay
+      - service: timer.start
+        data:
+          duration: 0
+        target:
+          entity_id: timer.handy_alarm_timer
     - if:
       - condition: template
         value_template: '{{ trigger.entity_id == ''binary_sensor.christian_schwarzgruber_alarm''
@@ -126,10 +132,6 @@
       data: {}
       target:
         entity_id: input_boolean.alarm_enabled
-    - service: input_boolean.turn_on
-      data: {}
-      target:
-        entity_id: input_boolean.handy_alarm_automation_did_run
   mode: queued
   max: 2
 - id: low_battery_level_warning
@@ -2294,25 +2296,21 @@
         entity_id: scene.office_ceiling_lights_backup_office_parlor_state
   mode: single
 - id: '1674166064713'
-  alias: Handy Alarm Reset Did Run
-  description: Reset state of input_boolean.handy_alarm_automation_dir_run (off)
+  alias: Handy Alarm Finalize After Timer Changes To Idle State
+  description: ''
   trigger:
   - platform: state
     entity_id:
-    - input_boolean.handy_alarm_automation_did_run
-    from: 'off'
-    to: 'on'
+    - timer.handy_alarm_timer
+    from: active
+    to: idle
     for:
       hours: 0
-      minutes: 30
+      minutes: 0
       seconds: 0
   condition: []
   action:
   - parallel:
-    - service: input_boolean.turn_off
-      data: {}
-      target:
-        entity_id: input_boolean.handy_alarm_automation_did_run
     - service: switch.turn_on
       data: {}
       target:
