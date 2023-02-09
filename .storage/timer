@@ -17,6 +17,13 @@
         "duration": "0:30:00",
         "restore": true,
         "id": "handy_alarm_timer"
+      },
+      {
+        "name": "Bedroom Motion Timer",
+        "icon": "mdi:motion-sensor",
+        "duration": "0:02:00",
+        "restore": true,
+        "id": "bedroom_motion_timer"
       }
     ]
   }
