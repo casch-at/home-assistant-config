@@ -28,16 +28,14 @@ cards:
                 action: call-service
                 service: script.turn_on
                 service_data:
-                  target:
-                    entity_id: script.shutter_horizontal_open
+                  entity_id: script.shutter_horizontal_open
                   variables:
                     area: bedroom
               double_tap_action:
                 action: call-service
                 service: script.turn_off
                 service_data:
-                  target:
-                    entity_id: script.shutter_horizontal_open
+                  entity_id: script.shutter_horizontal_open
               hold_action:
                 action: more-info
                 entity: input_number.bedroom_shutter_horizontal_open_delay
