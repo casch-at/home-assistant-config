@@ -44,44 +44,6 @@
       device_class: pressure
       state_class: measurement
       unit_of_measurement: 'hPa'
-    - name: Home Energy Power
-      unique_id: mysensor0006
-      state: >-
-        {{
-          states('sensor.panel_mirror_switch_energy_power') | int(0) +
-          states('sensor.bedroom_shutter_energy_power') | int(0) +
-          states('sensor.parlor_shutter_energy_power') | int(0) +
-          states('sensor.bathroom_mirror_light_switch_energy_power') | int(0) +
-          states('sensor.office_back_light_energy_power') | int(0) +
-          states('sensor.office_front_light_energy_power') | int(0) +
-          states('sensor.bathroom_radiator_switch_energy_power') | int(0) +
-          states('sensor.3d_printer_switch_energy_power') | int(0) +
-          states('sensor.desk_switch_energy_power') | int(0) +
-          states('sensor.kitchen_cabinet_switch_energy_power') | int(0) +
-          states('sensor.server_switch_energy_power') | int(0)
-        }}
-      device_class: power
-      state_class: measurement
-      unit_of_measurement: 'W'
-    - name: Home Energy Power Total
-      unique_id: mysensor0007
-      state: >-
-        {{
-          states('sensor.panel_mirror_switch_energy_total') | int(0) +
-          states('sensor.bedroom_shutter_energy_total') | int(0) +
-          states('sensor.parlor_shutter_energy_total') | int(0) +
-          states('sensor.bathroom_mirror_light_switch_energy_total') | int(0) +
-          states('sensor.office_back_light_energy_total') | int(0) +
-          states('sensor.office_front_light_energy_total') | int(0) +
-          states('sensor.bathroom_radiator_switch_energy_total') | float(0.0) +
-          states('sensor.3d_printer_switch_energy_total') | float(0.0) +
-          states('sensor.desk_switch_energy_total') | float(0.0) +
-          states('sensor.kitchen_cabinet_energy_total') | float(0.0) +
-          states('sensor.server_switch_energy_total') | float(0.0)
-        }}
-      device_class: energy
-      state_class: total
-      unit_of_measurement: 'kWh'
     - name: Daytime Light Brightness
       unique_id: mysensor0008
       state: >-
@@ -102,46 +64,7 @@
         {% elif states('input_select.daytime') == 'Night' -%}
           480
         {% endif %}
-    - name: Parlor Shutter Energy Power
-      unique_id: mysensor0010
-      state: >-
-        {{
-          states('sensor.parlor_shutter_up_energy_power') | int(0) +
-          states('sensor.parlor_shutter_down_energy_power') | int(0)
-        }}
-      device_class: power
-      state_class: measurement
-      unit_of_measurement: 'W'
-    - name: Parlor Shutter Energy Total
-      unique_id: mysensor0011
-      state: >-
-        {{
-          states('sensor.parlor_shutter_up_energy_power') | int(0) +
-          states('sensor.parlor_shutter_down_energy_power') | int(0)
-        }}
-      device_class: energy
-      state_class: total
-      unit_of_measurement: 'kWh'
-    - name: Bedroom Shutter Energy Power
-      unique_id: mysensor0012
-      state: >-
-        {{
-          states('sensor.bedroom_shutter_up_energy_power') | int(0) +
-          states('sensor.bedroom_shutter_down_energy_power') | int(0)
-        }}
-      device_class: power
-      state_class: measurement
-      unit_of_measurement: 'W'
-    - name: Bedroom Shutter Energy Total
-      unique_id: mysensor0013
-      state: >-
-        {{
-          states('sensor.bedroom_shutter_up_energy_power') | int(0) +
-          states('sensor.bedroom_shutter_down_energy_power') | int(0)
-        }}
-      device_class: energy
-      state_class: total
-      unit_of_measurement: 'kWh'
+
 
 - binary_sensor:
     - name: Shutter Operation To Cold Or Windy
@@ -164,23 +87,6 @@
               == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
           and
             states('person.christian_schwarzgruber') == 'home'
-        }}
-    - name: Door Window Sensors
-      unique_id: binary_sensor0004
-      device_class: door
-      state: >-
-        {{
-            states('binary_sensor.terrace_door_sensor') == 'on'
-          or
-            states('binary_sensor.parlor_window_sensor') == 'on'
-          or
-            states('binary_sensor.office_window_sensor') == 'on'
-          or
-            states('binary_sensor.lower_kitchen_window_sensor') == 'on'
-          or
-            states('binary_sensor.upstairs_window_sensor') == 'on'
-          or
-            states('binary_sensor.entrance_door_sensor') == 'on'
         }}
     - name: Update Available Sensor
       unique_id: binary_sensor0005
