@@ -164,12 +164,24 @@ cards:
                   service: input_select.select_option
                   service_data:
                     entity_id: input_select.daytime
-                    option: Night
+                    option: >-
+                      [[[
+                        if (states['input_select.daytime'].state === 'Night') {
+                          return 'Daytimes';
+                        } else {
+                          return 'Night';
+                        }
+                      ]]]
                   confirmation:
-                    text: |
-                      Do you really want to set daytime to state "Night"?
+                    text: >-
+                      [[[
+                        if (states['input_select.daytime'].state === 'Night') {
+                          return 'Do you really want to set daytime to state "Daytimes"?';
+                        } else {
+                          return 'Do you really want to set daytime to state "Night?\n\nThis turns all lights and switches off!';
+                        }
+                      ]]]
 
-                      This turns all lights and switches off!
           - type: grid
             columns: 2
             cards:
