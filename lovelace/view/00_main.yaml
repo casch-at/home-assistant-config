@@ -412,12 +412,12 @@ cards:
               action: toggle
               confirmation:
                 text: Do you really want to suspend/wake tower?
-          - type: custom:button-card
-            entity: switch.aroma_diffuser
-            template: icon_only_more_info
-            icon: mdi:air-humidifier
-            hold_action:
-              entity: light.aroma_diffuser_light
+          # - type: custom:button-card
+          #   entity: switch.aroma_diffuser
+          #   template: icon_only_more_info
+          #   icon: mdi:air-humidifier
+          #   hold_action:
+          #     entity: light.aroma_diffuser_light
           - type: custom:button-card
             entity: switch.3d_printer_switch
             template: icon_only_more_info
@@ -426,6 +426,18 @@ cards:
               confirmation:
                 text: |
                   Toggle 3D-Printer Switch?
+          - type: custom:button-card
+            entity: light.night_lights
+            icon: mdi:lightbulb-night
+            template: icon_only_more_info
+            styles:
+              icon:
+                - color: "#A54CFF"
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.purple
           - type: custom:button-card
             entity: light.night_lights
             icon: mdi:lightbulb-night

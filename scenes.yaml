@@ -1137,3 +1137,197 @@
       state: 'on'
   icon: mdi:bed-double
   metadata: {}
+- id: '1677326944028'
+  name: Purple
+  entities:
+    light.night_lights:
+      min_color_temp_kelvin: 2020
+      max_color_temp_kelvin: 6451
+      min_mireds: 155
+      max_mireds: 495
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:lightbulb-group
+      friendly_name: Night Lights
+      supported_features: 44
+      color_mode: xy
+      brightness: 64
+      hs_color:
+      - 308.571
+      - 32.941
+      rgb_color:
+      - 255
+      - 171
+      - 243
+      xy_color:
+      - 0.365128
+      - 0.250143
+      state: 'on'
+    light.terrace_plants_spots_light:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:flower
+      friendly_name: Terrace Plants Spots Light
+      supported_features: 44
+      color_mode: xy
+      brightness: 125
+      hs_color:
+      - 270.824
+      - 100
+      rgb_color:
+      - 131
+      - 0
+      - 255
+      xy_color:
+      - 0.216999
+      - 0.076982
+      state: 'on'
+    light.bathroom_lamp_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
+      color_mode: xy
+      brightness: 254
+      hs_color:
+      - 270.824
+      - 100
+      rgb_color:
+      - 131
+      - 0
+      - 255
+      xy_color:
+      - 0.217
+      - 0.077
+      state: 'on'
+    light.floor_back_light:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 5000
+      min_mireds: 200
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 254
+      friendly_name: Floor Back Light
+      supported_features: 40
+      state: 'off'
+    light.floor_middle_light:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 5000
+      min_mireds: 200
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness: 254
+      friendly_name: Floor Middle Light
+      supported_features: 40
+      state: 'off'
+    light.floor_front_light:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 5000
+      min_mireds: 200
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Floor Front Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 64
+      color_temp_kelvin: 3623
+      color_temp: 276
+      hs_color:
+      - 27.059
+      - 42.165
+      rgb_color:
+      - 255
+      - 195
+      - 147
+      xy_color:
+      - 0.446
+      - 0.371
+      state: 'on'
+    light.panel_mirror_switch:
+      supported_color_modes:
+      - onoff
+      icon: mdi:mirror-rectangle
+      friendly_name: Panel Mirror Switch
+      supported_features: 0
+      color_mode: onoff
+      state: 'on'
+    light.bathroom_ceiling_lights:
+      min_color_temp_kelvin: 2702
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:lightbulb-group
+      friendly_name: Bathroom Ceiling Lights
+      supported_features: 40
+      state: 'off'
+    light.office_ceiling_lights:
+      supported_color_modes:
+      - onoff
+      entity_id:
+      - light.office_back_light
+      - light.office_front_light
+      icon: mdi:ceiling-light-multiple
+      friendly_name: Office Ceiling Lights
+      supported_features: 8
+      state: 'off'
+    light.bathroom_mirror_light_switch:
+      supported_color_modes:
+      - onoff
+      icon: mdi:mirror
+      friendly_name: Bathroom Mirror Light Switch
+      supported_features: 8
+      state: 'off'
+  metadata:
+    light.night_lights:
+      entity_only: true
+    light.terrace_plants_spots_light:
+      entity_only: true
+    light.bathroom_lamp_light:
+      entity_only: true
+    light.floor_back_light:
+      entity_only: true
+    light.floor_middle_light:
+      entity_only: true
+    light.floor_front_light:
+      entity_only: true
+    light.panel_mirror_switch:
+      entity_only: true
+    light.bathroom_ceiling_lights:
+      entity_only: true
+    light.office_ceiling_lights:
+      entity_only: true
+    light.bathroom_mirror_light_switch:
+      entity_only: true
