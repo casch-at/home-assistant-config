@@ -146,18 +146,42 @@ shutters_up_sun:
         area_id: upstairs
 night_light:
   alias: Night Light
+  fields:
+    scene_color:
+      name: Scene Color
+      description: ''
+      required: true
+      selector:
+        select:
+          options:
+          - label: Purple
+            value: purple
+          - label: Night
+            value: night
+          - label: Green
+            value: green
+          - label: Blue
+            value: blue
+          - label: Red
+            value: red
+          - label: White
+            value: white
   sequence:
   - parallel:
+    - service: automation.turn_off
+      data:
+        stop_actions: true
+      target:
+        entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
     - service: scene.turn_on
-      data: {}
       target:
         entity_id:
-        - scene.floor_front_night
-        - scene.office_desk_night
-        - scene.kitchen_cabinet_night
-        - scene.bathroom_lamp_night
+        - scene.floor_front_{{ scene_color }}
+        - scene.office_desk_{{ scene_color }}
+        - scene.kitchen_cabinet_{{ scene_color }}
+        - scene.bathroom_lamp_{{ scene_color }}
+        - scene.terrace_plants_spots_{{ scene_color }}
     - service: light.turn_on
-      data: {}
       target:
         entity_id: light.panel_mirror_switch
     - service: script.turn_on
@@ -165,23 +189,17 @@ night_light:
         entity_id: script.scene_on
       data:
         variables:
-          scene: scene.bedroom_bed_night
+          scene: scene.bedroom_bed_{{ scene_color }}
           light:
-            - light.bedroom_bed_light
+          - light.bedroom_bed_light
     - service: input_boolean.turn_on
-      data: {}
       target:
         entity_id:
         - input_boolean.floor_light_active
         - input_boolean.floor_helper_light_active
         - input_boolean.bathroom_light_active
       enabled: true
-    - service: automation.turn_off
-      data: {}
-      target:
-        entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
   - service: light.turn_off
-    data: {}
     target:
       entity_id:
       - light.floor_middle_light
@@ -419,7 +437,7 @@ bathroom_light_helper:
       sequence:
       - service: scene.turn_on
         target:
-          entity_id: "{{ scene }}"
+          entity_id: '{{ scene }}'
     default:
     - stop: Wrong usage or wrong/missing condition
       error: true

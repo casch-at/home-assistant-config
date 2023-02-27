@@ -435,9 +435,11 @@ cards:
                 - color: "#A54CFF"
             tap_action:
               action: call-service
-              service: scene.turn_on
+              service: script.turn_on
               service_data:
-                entity_id: scene.purple
+                entity_id: script.night_light
+                variables:
+                  scene_color: purple
           - type: custom:button-card
             entity: light.night_lights
             icon: mdi:lightbulb-night
@@ -447,7 +449,11 @@ cards:
                 - color: "#FFC8C8"
             tap_action:
               action: call-service
-              service: script.night_light
+              service: script.turn_on
+              service_data:
+                entity_id: script.night_light
+                variables:
+                  scene_color: night
 
       - type: grid
         columns: 6
