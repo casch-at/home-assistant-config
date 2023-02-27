@@ -105,3 +105,28 @@ cards:
                     return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
+
+      - type: custom:button-card
+        name: 'Home'
+        template: shutter_base
+        custom_fields:
+          ru:
+            card:
+              entity: switch.shutters_up_group
+              color: "#B9F18B"
+              lock:
+                enabled: >-
+                  [[[
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                  ]]]
+                duration: 0
+          rd:
+            card:
+              color: "#B9F18B"
+              entity: switch.shutters_down_group
+              lock:
+                enabled: >-
+                  [[[
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                  ]]]
+                duration: 0

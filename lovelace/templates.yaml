@@ -100,15 +100,20 @@ shutter_base:
       card:
         type: custom:button-card
         template: shutter_card_up
+        hold_action:
+          action: more-info
     rs:
       card:
         type: custom:button-card
         template: shutter_card_horizontal_open
+        hold_action:
+          action: more-info
     rd:
       card:
         type: custom:button-card
         template: shutter_card_down
-
+        hold_action:
+          action: more-info
 remote_parlor:
   aspect_ratio: 1/1
   show_name: false
