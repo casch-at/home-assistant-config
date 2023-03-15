@@ -176,7 +176,7 @@ night_light:
     - service: scene.turn_on
       target:
         entity_id:
-        - scene.floor_front_{{ scene_color }}
+        - scene.floor_front_night
         - scene.office_desk_{{ scene_color }}
         - scene.kitchen_cabinet_{{ scene_color }}
         - scene.bathroom_lamp_{{ scene_color }}
@@ -184,6 +184,7 @@ night_light:
     - service: light.turn_on
       target:
         entity_id: light.panel_mirror_switch
+      data: {}
     - service: script.turn_on
       target:
         entity_id: script.scene_on
@@ -199,6 +200,7 @@ night_light:
         - input_boolean.floor_helper_light_active
         - input_boolean.bathroom_light_active
       enabled: true
+      data: {}
   - service: light.turn_off
     target:
       entity_id:
@@ -206,6 +208,7 @@ night_light:
       - light.floor_back_light
       - light.office_ceiling_lights
       - light.kitchen_cabinet_switch
+    data: {}
   - wait_for_trigger:
     - platform: state
       entity_id:
