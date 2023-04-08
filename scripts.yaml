@@ -216,6 +216,8 @@ night_light:
       - light.floor_back_light
       - light.office_ceiling_lights
       - light.kitchen_cabinet_switch
+      - light.bedroom_nightstand_christian_light
+      - light.bedroom_nightstand_partner_light
     data: {}
   - wait_for_trigger:
     - platform: state

@@ -1788,9 +1788,12 @@
         value_template: '{{ trigger.event.data.command == "1_single" }}'
       sequence:
       - service: light.toggle
+        data:
+          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 100
+            }}'
+          color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
         target:
-          entity_id: light.nightstand_christian_switch
-        data: {}
+          entity_id: light.bedroom_nightstand_christian_light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "1_double" }}'
@@ -1811,9 +1814,12 @@
         value_template: '{{ trigger.event.data.command == "2_single" }}'
       sequence:
       - service: light.toggle
+        data:
+          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 100
+            }}'
+          color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
         target:
-          entity_id: light.nightstand_partner_switch
-        data: {}
+          entity_id: light.bedroom_nightstand_partner_light
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "2_double" }}'
@@ -2342,7 +2348,9 @@
     - service: light.turn_off
       data: {}
       target:
-        entity_id: light.bedroom_bed_light
+        entity_id:
+        - light.bedroom_bed_light
+        - light.bedroom_nightstand_christian_light
   mode: single
 - id: '1674475181816'
   alias: Parlor Enough Illuminance Light

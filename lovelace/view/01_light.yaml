@@ -233,12 +233,12 @@ cards:
                   icon:
                     - color: "#A64EFF"
               - type: custom:button-card
-                entity: light.nightstand_partner_light
+                entity: light.bedroom_nightstand_partner_light
                 template: icon_only_more_info
-                name: 'S'
+                name: 'P'
                 show_name: true
               - type: custom:button-card
-                entity: light.nightstand_christian_light
+                entity: light.bedroom_nightstand_christian_light
                 template: icon_only_more_info
                 name: 'C'
                 show_name: true
@@ -483,6 +483,10 @@ cards:
         entity: light.kitchen_cabinet_light
       - type: custom:slider-entity-row
         entity: light.bedroom_bed_light
+      - type: custom:slider-entity-row
+        entity: light.bedroom_nightstand_christian_light
+      - type: custom:slider-entity-row
+        entity: light.bedroom_nightstand_partner_light
       - type: custom:slider-entity-row
         entity: light.terrace_plants_spots_light
       - type: custom:slider-entity-row

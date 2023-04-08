@@ -86,13 +86,8 @@ cards:
             columns: 2
             cards:
               - type: custom:button-card
-                entity: light.bedroom_bed_light
+                entity: light.bedroom_lights
                 template: icon_only_more_info
-                tap_action:
-                  action: call-service
-                  service: script.bedroom_bed_light_helper
-                  service_data:
-                    action: toggle
                 double_tap_action:
                   action: call-service
                   service: script.bedroom_bed_light_helper
