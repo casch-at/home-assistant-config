@@ -177,6 +177,7 @@ night_light:
       target:
         entity_id:
         - scene.floor_front_night
+        - scene.bedroom_nightstand_night
         - scene.office_desk_{{ scene_color }}
         - scene.kitchen_cabinet_{{ scene_color }}
         - scene.bathroom_lamp_{{ scene_color }}
@@ -216,8 +217,6 @@ night_light:
       - light.floor_back_light
       - light.office_ceiling_lights
       - light.kitchen_cabinet_switch
-      - light.bedroom_nightstand_christian_light
-      - light.bedroom_nightstand_partner_light
     data: {}
   - wait_for_trigger:
     - platform: state

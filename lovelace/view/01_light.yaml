@@ -233,6 +233,9 @@ cards:
                   icon:
                     - color: "#A64EFF"
               - type: custom:button-card
+                entity: light.bedroom_nightstand_lights
+                template: icon_only_more_info
+              - type: custom:button-card
                 entity: light.bedroom_nightstand_partner_light
                 template: icon_only_more_info
                 name: 'P'
