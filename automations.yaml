@@ -1789,7 +1789,7 @@
       sequence:
       - service: light.toggle
         data:
-          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 100
+          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 70
             }}'
           color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
         target:
@@ -1815,7 +1815,7 @@
       sequence:
       - service: light.toggle
         data:
-          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 100
+          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 70
             }}'
           color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
         target:
