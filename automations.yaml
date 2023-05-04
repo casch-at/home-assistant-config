@@ -1789,8 +1789,7 @@
       sequence:
       - service: light.toggle
         data:
-          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 70
-            }}'
+          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 70 }}'
           color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
         target:
           entity_id: light.bedroom_nightstand_christian_light
@@ -1815,8 +1814,7 @@
       sequence:
       - service: light.toggle
         data:
-          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 70
-            }}'
+          brightness: '{{ states(''sensor.daytime_light_brightness'') | int - 70 }}'
           color_temp: '{{ states(''sensor.daytime_light_color_temp'') }}'
         target:
           entity_id: light.bedroom_nightstand_partner_light
@@ -2350,7 +2348,7 @@
       target:
         entity_id:
         - light.bedroom_bed_light
-        - light.bedroom_nightstand_christian_light
+        - light.bedroom_nightstand_lights
   mode: single
 - id: '1674475181816'
   alias: Parlor Enough Illuminance Light

@@ -1151,13 +1151,18 @@
 - id: '1674117983872'
   name: Bedroom Bed Good Morning
   entities:
-    light.bedroom_nightstand_christian_light:
+    light.bedroom_nightstand_lights:
       min_color_temp_kelvin: 2702
       max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 370
       supported_color_modes:
       - color_temp
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:lightbulb-multiple
+      friendly_name: Bedroom Nightstand Lights
+      supported_features: 40
       color_mode: color_temp
       brightness: 254
       color_temp_kelvin: 6535
@@ -1172,44 +1177,10 @@
       xy_color:
       - 0.326
       - 0.333
-      off_with_transition: false
-      off_brightness:
-      icon: mdi:lightbulb-spot
-      friendly_name: Bedroom Nightstand Christian Light
-      supported_features: 40
-      state: 'on'
-    light.bedroom_nightstand_partner_light:
-      min_color_temp_kelvin: 2702
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 370
-      supported_color_modes:
-      - color_temp
-      color_mode: color_temp
-      brightness: 254
-      color_temp_kelvin: 6535
-      color_temp: 153
-      hs_color:
-      - 54.768
-      - 1.6
-      rgb_color:
-      - 255
-      - 254
-      - 250
-      xy_color:
-      - 0.326
-      - 0.333
-      off_with_transition: false
-      off_brightness:
-      friendly_name: Bedroom Nightstand Partner Light
-      supported_features: 40
-      icon: mdi:lightbulb-spot
       state: 'on'
   icon: mdi:bed-double
   metadata:
-    light.bedroom_nightstand_christian_light:
-      entity_only: true
-    light.bedroom_nightstand_partner_light:
+    light.bedroom_nightstand_lights:
       entity_only: true
 - id: '1677326944028'
   name: Home Purple
