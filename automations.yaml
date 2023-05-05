@@ -594,10 +594,10 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "3_hold" }}'
       sequence:
-      - service: homeassistant.turn_off
-        target:
-          entity_id: group.office_group
+      - service: switch.toggle
         data: {}
+        target:
+          entity_id: switch.parlor_shutter_down_relay
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_single" }}'
@@ -626,15 +626,15 @@
       - condition: template
         value_template: '{{ trigger.event.data.command == "4_hold" }}'
       sequence:
-      - service: script.night_light
+      - service: switch.toggle
         data: {}
+        target:
+          entity_id: switch.parlor_shutter_up_relay
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "5_hold" }}'
       sequence:
-      - service: switch.toggle
-        target:
-          entity_id: switch.aroma_diffuser
+      - service: script.night_light
         data: {}
     - conditions:
       - condition: template
