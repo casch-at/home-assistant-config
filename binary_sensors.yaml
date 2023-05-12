@@ -1,2 +1,9 @@
 - platform: workday
   country: AT
+
+- platform: rest
+  resource: https://eingang.c3w.at/status.json
+  method: GET
+  name: Metalab Door Sensor
+  device_class: door
+  value_template: '{{ value_json.status }}'
