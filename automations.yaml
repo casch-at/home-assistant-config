@@ -1166,7 +1166,7 @@
     - service: switch.turn_on
       data: {}
       target:
-        entity_id: switch.bedroom_shutter_down_relay
+        entity_id: switch.shutters_down_group
   - service: scene.turn_on
     data:
       entity_id: scene.night_toilet_light
