@@ -10,6 +10,31 @@ cards:
         name: 'Bedroom'
         template: shutter_base
         custom_fields:
+          rss:
+            card:
+              entity: script.shutter_sunny_down
+              color: "#B9F18B"
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.shutter_sunny_down
+                  variables:
+                    area: bedroom
+              double_tap_action:
+                action: call-service
+                service: script.turn_off
+                service_data:
+                  entity_id: script.shutter_sunny_down
+              hold_action:
+                action: more-info
+                entity: input_number.bedroom_shutter_horizontal_open_delay
+              lock:
+                enabled: >-
+                  [[[
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                  ]]]
+                duration: 0
           ru:
             card:
               entity: switch.bedroom_shutter_up_relay
@@ -60,6 +85,31 @@ cards:
         name: 'Office'
         template: shutter_base
         custom_fields:
+          rss:
+            card:
+              entity: script.shutter_sunny_down
+              color: "#B9F18B"
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.shutter_sunny_down
+                  variables:
+                    area: parlor
+              double_tap_action:
+                action: call-service
+                service: script.turn_off
+                service_data:
+                  entity_id: script.shutter_sunny_down
+              hold_action:
+                action: more-info
+                entity: input_number.parlor_shutter_horizontal_open_delay
+              lock:
+                enabled: >-
+                  [[[
+                    return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                  ]]]
+                duration: 0
           ru:
             card:
               entity: switch.parlor_shutter_up_relay

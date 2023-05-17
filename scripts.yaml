@@ -52,58 +52,6 @@ office_on_off:
     - service: switch.turn_off
       target:
         entity_id: switch.desk_switch
-shutters_down_sun:
-  alias: Shutters Down Sun
-  mode: single
-  icon: hass:window-closed
-  sequence:
-  - condition: state
-    entity_id: binary_sensor.shutter_operation_to_cold_or_windy
-    state: 'off'
-  - if:
-    - condition: state
-      entity_id: binary_sensor.office_window_sensor
-      state: 'off'
-    then:
-    - service: cover.close_cover
-      target:
-        area_id: office
-  - if:
-    - condition: state
-      entity_id: binary_sensor.parlor_window_sensor
-      state: 'off'
-    then:
-    - service: cover.close_cover
-      target:
-        area_id: parlor
-  - if:
-    - condition: state
-      entity_id: binary_sensor.lower_kitchen_window_sensor
-      state: 'off'
-    then:
-    - service: cover.close_cover
-      target:
-        entity_id: cover.lower_kitchen_roller_shutter_left_level
-  - if:
-    - condition: state
-      entity_id: binary_sensor.upstairs_window_sensor
-      state: 'off'
-    then:
-    - service: cover.close_cover
-      target:
-        area_id: upstairs
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
-  - service: cover.stop_cover
-    target:
-      area_id:
-      - office
-      - parlor
-      - upstairs
-      entity_id: cover.lower_kitchen_roller_shutter_left_level
 shutters_up_sun:
   alias: Shutters Up Sun
   mode: single
@@ -573,3 +521,43 @@ daytime_night:
       selector:
         entity:
           domain: light
+shutter_sunny_down:
+  alias: Shutter Sunny Down
+  sequence:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.{{ area }}_shutter_down_relay
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: '{{ (states(''input_number.'' + area + ''_shutter_horizontal_open_delay'')
+        | int(0) / 8) * 5}}'
+      milliseconds: 0
+  - wait_template: '{{ states(''sensor.'' + area + ''_shutter_down_energy_power'')
+      | float(0) < 2.0 }}'
+    continue_on_timeout: false
+    timeout: 00:01:30
+    enabled: false
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.{{ area }}_shutter_up_relay
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 900
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.{{ area }}_shutter_up_relay
+  fields:
+    area:
+      name: Area name
+      description: Close shutter but open them horizontally at the end (parlor/bedroom)
+      required: true
+      selector:
+        area:
+  mode: single
+  icon: mdi:weather-sunny

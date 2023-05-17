@@ -92,10 +92,16 @@ shutter_base:
       - margin-top: 3px
     grid:
       - grid-template-areas: >-
-          "n _ _ ru rs rd"
+          "n _ rss ru rs rd"
       - grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr
       - grid-template-rows: min-content
   custom_fields:
+    rss:
+      card:
+        type: custom:button-card
+        template: shutter_card_horizontal_open
+        hold_action:
+          action: more-info
     ru:
       card:
         type: custom:button-card
