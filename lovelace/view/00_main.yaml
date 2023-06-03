@@ -455,7 +455,7 @@ cards:
               action: call-service
               service: script.turn_on
               service_data:
-                entity_id: script.night_light
+                entity_id: script.home_light
                 variables:
                   scene_color: purple
           - type: custom:button-card
@@ -469,7 +469,7 @@ cards:
               action: call-service
               service: script.turn_on
               service_data:
-                entity_id: script.night_light
+                entity_id: script.home_light
                 variables:
                   scene_color: night
 

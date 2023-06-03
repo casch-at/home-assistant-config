@@ -118,6 +118,30 @@
           duration: 0
         target:
           entity_id: timer.handy_alarm_timer
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: '{{ (states(''input_number.parlor_shutter_horizontal_open_delay'')
+            | int(0) / 32) * 9}}'
+          milliseconds: 0
+      - if:
+        - condition: state
+          entity_id: weather.home
+          state: sunny
+        then:
+        - service: switch.turn_on
+          data: {}
+          target:
+            entity_id: switch.parlor_shutter_down_relay
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: 350
+        - service: switch.turn_off
+          data: {}
+          target:
+            entity_id: switch.parlor_shutter_down_relay
     - if:
       - condition: template
         value_template: '{{ trigger.entity_id == ''binary_sensor.christian_schwarzgruber_alarm''
@@ -1953,9 +1977,15 @@
       }}'
     for: '{{ states(''input_number.window_or_door_open'') | int(0) }}'
   condition:
-  - condition: template
-    value_template: '{{ state_attr(''weather.home'', ''temperature'') | float(0.0)
-      < 20 }}'
+  - condition: numeric_state
+    entity_id: weather.home
+    attribute: temperature
+    below: 20
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.daytime
+      state: Night
   action:
   - service: notify.notify
     data:

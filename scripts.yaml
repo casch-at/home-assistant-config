@@ -93,7 +93,7 @@ shutters_up_sun:
       target:
         area_id: upstairs
 night_light:
-  alias: Night Light
+  alias: Home Light
   fields:
     scene_color:
       name: Scene Color
@@ -158,6 +158,15 @@ night_light:
         target:
           entity_id:
           - scene.terrace_plants_spots_{{ scene_color }}
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.bathroom_lamp_light
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+      target:
+        entity_id: light.bathroom_lamp_light
   - service: light.turn_off
     target:
       entity_id:
@@ -532,7 +541,7 @@ shutter_sunny_down:
       hours: 0
       minutes: 0
       seconds: '{{ (states(''input_number.'' + area + ''_shutter_horizontal_open_delay'')
-        | int(0) / 8) * 5}}'
+        | int(0) / 32) * 23}}'
       milliseconds: 0
   - wait_template: '{{ states(''sensor.'' + area + ''_shutter_down_energy_power'')
       | float(0) < 2.0 }}'
@@ -546,8 +555,8 @@ shutter_sunny_down:
   - delay:
       hours: 0
       minutes: 0
-      seconds: 0
-      milliseconds: 900
+      seconds: 1
+      milliseconds: 50
   - service: switch.turn_off
     data: {}
     target:
