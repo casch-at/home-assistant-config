@@ -257,7 +257,7 @@ cards:
           - type: custom:button-card
             icon: mdi:cctv
             template: icon_only
-            entity: camera.tapo_c200_mainstream
+            entity: camera.tapo_c200_hd_stream
             hold_action:
               action: navigate
               navigation_path: /lovelace/surveillance

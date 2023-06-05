@@ -1,5 +1,5 @@
-title: Surrvailance
-path: surrvailance
+title: Surveillance
+path: surveillance
 panel: true
 icon: mdi:cctv
 badges: []
@@ -11,5 +11,5 @@ cards:
         show_state: false
         show_name: false
         entities: []
-        camera_image:  camera.tapo_c200_mainstream
+        camera_image:  camera.tapo_c200_hd_stream
         camera_view: live
