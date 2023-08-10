@@ -1,6 +1,3 @@
-- platform: workday
-  country: AT
-
 - platform: rest
   resource: https://eingang.c3w.at/status.json
   method: GET
