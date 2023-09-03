@@ -82,7 +82,7 @@ cards:
                 duration: 0
 
       - type: custom:button-card
-        name: 'Office'
+        name: 'Parlor'
         template: shutter_base
         custom_fields:
           rss:
@@ -160,6 +160,19 @@ cards:
         name: 'Home'
         template: shutter_base
         custom_fields:
+          rss:
+            card:
+              entity: automation.keep_shutters_closed
+              icon: mdi:window-shutter-alert
+              state:
+                - value: 'on'
+                  icon: mdi:window-shutter
+              tap_action:
+                action: toggle
+                confirmation:
+                  text: Turn ON/OFF "Keep Shutters Closed" automation?
+              hold_action:
+                action: more-info
           ru:
             card:
               entity: switch.shutters_up_group
@@ -170,6 +183,9 @@ cards:
                     return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
+          rs:
+            card:
+              entity: input_boolean.shutter_relay_off_delay_enabled
           rd:
             card:
               color: "#B9F18B"
@@ -180,3 +196,7 @@ cards:
                     return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
                   ]]]
                 duration: 0
+
+      - type: entities
+        entities:
+          - input_number.shutter_relay_off_delay

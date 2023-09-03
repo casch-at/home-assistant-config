@@ -512,17 +512,3 @@ cards:
               - operator: '=='
                 value: 'on'
                 icon: mdi:door-open
-          - type: custom:button-card
-            entity: automation.keep_shutters_closed
-            icon: mdi:window-shutter-alert
-            show_icon: true
-            name: "KSC"
-            template: name_card_round
-            state:
-              - operator: '=='
-                value: 'on'
-                icon: mdi:window-shutter
-            tap_action:
-              action: toggle
-              confirmation:
-                text: Turn ON/OFF "Keep Shutters Closed" automation?

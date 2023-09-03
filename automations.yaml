@@ -2682,3 +2682,30 @@
       - switch.parlor_shutter_down_relay
       - switch.bedroom_shutter_down_relay
   mode: single
+- id: '1693697342075'
+  alias: Shutter Relay Off After Delay
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.parlor_shutter_down_relay
+    - switch.parlor_shutter_up_relay
+    - switch.bedroom_shutter_up_relay
+    - switch.bedroom_shutter_down_relay
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.shutter_relay_off_delay_enabled
+    state: 'on'
+  action:
+  - delay:
+      milliseconds: '{{ states("input_number.shutter_relay_off_delay") | int }}'
+  - service: switch.turn_off
+    target:
+      entity_id: '{{ trigger.entity_id }}'
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.shutter_relay_off_delay_enabled
+  mode: single

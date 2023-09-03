@@ -58,6 +58,11 @@
         "name": "Alarm Enabled",
         "icon": "mdi:shield-home",
         "id": "alarm_enabled"
+      },
+      {
+        "id": "shutter_relay_off_delay_enabled",
+        "name": "Shutter Relay Off Delay Enabled",
+        "icon": "mdi:window-shutter-auto"
       }
     ]
   }
