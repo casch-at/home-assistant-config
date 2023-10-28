@@ -82,7 +82,7 @@
       },
       {
         "id": "shutter_relay_off_delay",
-        "min": 250.0,
+        "min": 100.0,
         "max": 200000.0,
         "step": 50.0,
         "mode": "box",

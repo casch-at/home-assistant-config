@@ -125,7 +125,6 @@ night_light:
       target:
         entity_id:
         - scene.floor_front_night
-        - scene.bedroom_nightstand_night
         - scene.office_desk_{{ scene_color }}
         - scene.kitchen_cabinet_{{ scene_color }}
         - scene.bathroom_lamp_{{ scene_color }}
@@ -158,15 +157,6 @@ night_light:
         target:
           entity_id:
           - scene.terrace_plants_spots_{{ scene_color }}
-    - service: light.turn_off
-      data: {}
-      target:
-        entity_id: light.bathroom_lamp_light
-    - service: light.turn_on
-      data:
-        brightness_pct: 100
-      target:
-        entity_id: light.bathroom_lamp_light
   - service: light.turn_off
     target:
       entity_id:
@@ -174,6 +164,7 @@ night_light:
       - light.floor_back_light
       - light.office_ceiling_lights
       - light.kitchen_cabinet_switch
+      - light.bedroom_nightstand_lights
     data: {}
   - wait_for_trigger:
     - platform: state

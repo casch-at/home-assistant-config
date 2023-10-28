@@ -1,18 +1,21 @@
 wifi:
-  ssid: !secret ssid
-  password: !secret wlan_password
+  domain: .lan
   fast_connect: true
+  networks:
+    - id: wifi_default
+      ssid: !secret ssid
+      password: !secret wlan_password
+  
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: ${ap_ssid}
     password: !secret ap_password
 
   # Optional manual IP
-  manual_ip:
-    static_ip: ${ip}
-    gateway: 192.168.1.1
-    subnet: 255.255.255.0
-
+#   manual_ip:
+#     static_ip: ${ip}
+#     gateway: 192.168.1.1
+#     subnet: 255.255.255.0
   # https://esphome.io/components/wifi.html#power-save-mode
   #power_save_mode: None
 

@@ -1183,14 +1183,15 @@
     state: 'on'
   action:
   - if:
-    - condition: template
-      value_template: "{{\n  states('binary_sensor.shutter_operation_to_cold_or_windy')
-        == 'off' }}"
+    - condition: state
+      entity_id: binary_sensor.shutter_operation_to_cold_or_windy
+      state: 'off'
     then:
     - service: switch.turn_on
       data: {}
       target:
         entity_id: switch.shutters_down_group
+    enabled: false
   - service: scene.turn_on
     data:
       entity_id: scene.night_toilet_light
@@ -1411,7 +1412,6 @@
 - id: magic_cube
   alias: Office Magic Cube
   description: ''
-  mode: restart
   trigger:
   - platform: event
     event_type: zha_event
@@ -1433,6 +1433,8 @@
       - service: input_select.select_next
         target:
           entity_id: input_select.office_desk_scenes
+        data:
+          cycle: true
     - conditions:
       - condition: template
         value_template: "{{\n    trigger.event.data.command == \"flip\"\n  and\n    trigger.event.data.args.flip_degrees
@@ -1452,6 +1454,7 @@
           - service: cover.close_cover
             target:
               entity_id: cover.office_roller_shutter_left_level
+            data: {}
         - conditions:
           - condition: template
             value_template: "{{\n  trigger.event.data.args.value == 96\nor\n  trigger.event.data.args.value
@@ -1460,6 +1463,7 @@
           - service: cover.stop_cover
             target:
               entity_id: cover.office_roller_shutter_left_level
+            data: {}
         - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.args.activated_face == 2 }}'
@@ -1467,6 +1471,7 @@
           - service: cover.open_cover
             target:
               entity_id: cover.office_roller_shutter_left_level
+            data: {}
         - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.args.value  == 69 }}'
@@ -1474,6 +1479,7 @@
           - service: cover.close_cover
             target:
               entity_id: cover.office_roller_shutter_right_level
+            data: {}
         - conditions:
           - condition: template
             value_template: "{{\n    trigger.event.data.args.value == 80\n  or\n    trigger.event.data.args.value
@@ -1482,6 +1488,7 @@
           - service: cover.stop_cover
             target:
               entity_id: cover.office_roller_shutter_right_level
+            data: {}
         - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.args.value == 66 }}'
@@ -1489,20 +1496,33 @@
           - service: cover.open_cover
             target:
               entity_id: cover.office_roller_shutter_right_level
+            data: {}
     - conditions:
       - condition: template
         value_template: "{{\n    trigger.event.data.command == \"flip\"\n  and\n    trigger.event.data.args.flip_degrees
           == 180\n}}"
       sequence:
-      - service: switch.turn_on
-        target:
+      - if:
+        - condition: state
           entity_id: switch.desk_switch
-      - condition: numeric_state
-        entity_id: sensor.office_light_sensor_light_level
-        below: 100
-      - service: scene.turn_on
-        target:
-          entity_id: scene.office_desk_white
+          state: 'off'
+        then:
+        - service: switch.turn_on
+          data: {}
+          target:
+            entity_id: switch.desk_switch
+      - if:
+        - condition: state
+          entity_id: light.office_desk_light
+          state: 'off'
+        - condition: numeric_state
+          entity_id: sensor.office_light_sensor_light_level
+          below: 100
+        then:
+        - service: scene.turn_on
+          data: {}
+          target:
+            entity_id: scene.office_desk_white
     - conditions:
       - condition: template
         value_template: "{{\n    trigger.event.data.command == \"knock\"\n}}"
@@ -1516,10 +1536,12 @@
           - service: light.turn_off
             target:
               entity_id: light.office_desk_light
+            data: {}
         default:
         - service: light.turn_on
           target:
             entity_id: light.office_desk_light
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "rotate_right" }}'
@@ -1534,16 +1556,19 @@
             target:
               entity_id:
               - switch.desk_control_button_1
+            data: {}
         default:
         - service: switch.turn_off
           target:
             entity_id:
             - switch.desk_control_button_4
+          data: {}
         - delay:
             milliseconds: 250
         - service: switch.turn_on
           target:
             entity_id: switch.desk_control_button_1
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "rotate_left" }}'
@@ -1557,16 +1582,19 @@
           - service: switch.turn_off
             target:
               entity_id: switch.desk_control_button_4
+            data: {}
         default:
         - service: switch.turn_off
           target:
             entity_id:
             - switch.desk_control_button_1
+          data: {}
         - delay:
             milliseconds: 250
         - service: switch.turn_on
           target:
             entity_id: switch.desk_control_button_4
+          data: {}
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.command == "slide" }}'
@@ -1574,7 +1602,9 @@
       - service: switch.turn_on
         target:
           entity_id: switch.marantz_amp_power
+        data: {}
     default: []
+  mode: restart
 - id: marantz
   alias: Marantz
   description: ''

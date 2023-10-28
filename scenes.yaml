@@ -19,7 +19,7 @@
       supported_color_modes:
       - color_temp
       off_with_transition: false
-      off_brightness: 135
+      off_brightness:
       icon: mdi:lightbulb-group
       friendly_name: Night Not Lights
       supported_features: 40
@@ -37,30 +37,30 @@
       color_mode: color_temp
       brightness: 212
       hs_color:
-      - 41.14
-      - 2.841
+      - 33.105
+      - 5.284
       rgb_color:
       - 255
-      - 252
-      - 247
+      - 248
+      - 241
       xy_color:
-      - 0.329
-      - 0.334
+      - 0.335
+      - 0.336
       off_with_transition: false
       off_brightness:
       icon: mdi:lightbulb-group
       friendly_name: Night Lights
       supported_features: 44
-      color_temp_kelvin: 6410
-      color_temp: 156
+      color_temp_kelvin: 6172
+      color_temp: 162
       state: 'on'
     light.panel_mirror_switch:
       supported_color_modes:
       - onoff
+      color_mode: onoff
       icon: mdi:mirror-rectangle
       friendly_name: Panel Mirror Switch
       supported_features: 0
-      color_mode: onoff
       state: 'on'
     light.bedroom_nightstand_lights:
       min_color_temp_kelvin: 2702
@@ -69,26 +69,12 @@
       max_mireds: 370
       supported_color_modes:
       - color_temp
-      color_mode: color_temp
-      brightness: 31
-      color_temp_kelvin: 2702
-      color_temp: 370
-      hs_color:
-      - 28.391
-      - 65.659
-      rgb_color:
-      - 255
-      - 166
-      - 87
-      xy_color:
-      - 0.526
-      - 0.387
       off_with_transition: false
-      off_brightness:
+      off_brightness: 31
       icon: mdi:lightbulb-multiple
       friendly_name: Bedroom Nightstand Lights
       supported_features: 40
-      state: 'on'
+      state: 'off'
   metadata:
     light.office_ceiling_lights:
       entity_only: true
@@ -1198,15 +1184,15 @@
       color_mode: xy
       brightness: 65
       hs_color:
-      - 283.556
-      - 52.941
+      - 286.875
+      - 50.196
       rgb_color:
-      - 218
-      - 120
+      - 227
+      - 127
       - 255
       xy_color:
-      - 0.323946
-      - 0.1816
+      - 0.333507
+      - 0.190958
       off_with_transition: false
       off_brightness:
       icon: mdi:lightbulb-group
@@ -1249,11 +1235,6 @@
       supported_color_modes:
       - color_temp
       - xy
-      off_with_transition: false
-      off_brightness:
-      icon: mdi:hot-tub
-      friendly_name: Bathroom Lamp Light
-      supported_features: 40
       color_mode: xy
       brightness: 2
       hs_color:
@@ -1266,6 +1247,11 @@
       xy_color:
       - 0.301626
       - 0.159773
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:hot-tub
+      friendly_name: Bathroom Lamp Light
+      supported_features: 40
       state: 'on'
     light.floor_back_light:
       min_color_temp_kelvin: 2202
@@ -1298,10 +1284,6 @@
       max_mireds: 454
       supported_color_modes:
       - color_temp
-      off_with_transition: false
-      off_brightness:
-      friendly_name: Floor Front Light
-      supported_features: 40
       color_mode: color_temp
       brightness: 64
       color_temp_kelvin: 2610
@@ -1316,14 +1298,18 @@
       xy_color:
       - 0.536
       - 0.389
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Floor Front Light
+      supported_features: 40
       state: 'on'
     light.panel_mirror_switch:
       supported_color_modes:
       - onoff
+      color_mode: onoff
       icon: mdi:mirror-rectangle
       friendly_name: Panel Mirror Switch
       supported_features: 0
-      color_mode: onoff
       state: 'on'
     light.bathroom_ceiling_lights:
       min_color_temp_kelvin: 2702
@@ -1363,25 +1349,11 @@
       supported_color_modes:
       - color_temp
       off_with_transition: false
-      off_brightness:
+      off_brightness: 31
       icon: mdi:lightbulb-multiple
       friendly_name: Bedroom Nightstand Lights
       supported_features: 40
-      color_mode: color_temp
-      brightness: 31
-      color_temp_kelvin: 2702
-      color_temp: 370
-      hs_color:
-      - 28.391
-      - 65.659
-      rgb_color:
-      - 255
-      - 166
-      - 87
-      xy_color:
-      - 0.526
-      - 0.387
-      state: 'on'
+      state: 'off'
   metadata:
     light.night_lights:
       entity_only: true
