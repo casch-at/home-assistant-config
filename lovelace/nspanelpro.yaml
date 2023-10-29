@@ -1,0 +1,484 @@
+button_card_templates: !include templates.yaml
+
+title:
+views:
+  - path: default_view
+    title: Home
+    icon: mdi:home-assistant
+    panel: false
+    badges: []
+    cards:
+      - type: grid
+        columns: 1
+        square: false
+        cards:
+          - type: grid
+            columns: 7
+            cards:
+              - type: custom:button-card
+                entity: light.office_desk_light
+                template: icon_only_more_info
+                double_tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.office_desk_scenes
+                hold_action:
+                  entity: input_select.office_desk_scenes
+              - type: custom:button-card
+                entity: light.bedroom_lights
+                template: icon_only_more_info
+                double_tap_action:
+                  action: call-service
+                  service: script.bedroom_bed_light_helper
+                  service_data:
+                    action: scene
+              - type: custom:button-card
+                entity: light.bedroom_nightstand_christian_light
+                template: icon_only_more_info
+                name: C
+                show_name: true
+              - type: custom:button-card
+                entity: light.bedroom_nightstand_partner_light
+                template: icon_only_more_info
+                name: P
+                show_name: true
+              - type: custom:button-card
+                entity: light.office_ceiling_lights
+                template: icon_only_more_info
+              - type: custom:button-card
+                entity: light.office_back_light
+                template: icon_only_more_info
+                name: B
+                show_name: true
+              - type: custom:button-card
+                entity: light.office_front_light
+                template: icon_only_more_info
+                name: F
+                show_name: true
+
+          - type: grid
+            cards:
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: light.bathroom_lamp_light
+                    template: icon_only_more_info
+                    tap_action:
+                      action: call-service
+                      service: script.bathroom_light_helper
+                      service_data:
+                        action: call-service
+                        service: light.toggle
+                        light: light.bathroom_lamp_light
+                    double_tap_action:
+                      action: call-service
+                      service: script.bathroom_light_helper
+                      service_data:
+                        action: scene
+                  - type: custom:button-card
+                    entity: light.bathroom_lights
+                    template: icon_only_more_info
+                    tap_action:
+                      action: call-service
+                      service: script.bathroom_light_helper
+                      service_data:
+                        action: call-service
+                        service: light.toggle
+                        light: light.bathroom_lights
+                    double_tap_action:
+                      action: call-service
+                      service: script.bathroom_light_helper
+                      service_data:
+                        action: scene
+                  - type: custom:button-card
+                    entity: light.kitchen_cabinet_switch
+                    template: icon_only_more_info
+                  - type: custom:button-card
+                    template: icon_only_more_info
+                    entity: light.terrace_plants_spots_light
+                    double_tap_action:
+                      action: call-service
+                      service: input_select.select_next
+                      service_data:
+                        entity_id: input_select.terrace_plants_spots_scenes
+
+              - type: grid
+                columns: 1
+                cards:
+                  - type: custom:button-card
+                    color_type: card
+                    entity: input_select.daytime
+                    show_state: true
+                    icon: mdi:shield-home
+                    template: icon_only
+                    color: var( --ha-card-background, var(--card-background-color, white) )
+                    styles:
+                      icon:
+                        - color: >-
+                            [[[
+                              if (states['input_boolean.presence'].state === 'off' && states['input_boolean.alarm_enabled'].state === 'on') {
+                                return 'red';
+                              } else if (states['input_boolean.presence'].state === 'off' && states['input_boolean.alarm_enabled'].state === 'off') {
+                                return 'orange';
+                              } else if (states['input_boolean.presence'].state === 'on' && states['input_boolean.alarm_enabled'].state === 'on') {
+                                return 'green';
+                              } else {
+                                return 'var(--paper-item-icon-inactive-color)';
+                              }
+                            ]]]
+                    state:
+                      - value: 'Night'
+                        color: var(--paper-item-icon-active-color)
+                        icon: mdi:sleep
+                    tap_action:
+                      action: more-info
+                      entity: input_boolean.alarm_enabled
+                    hold_action:
+                      action: more-info
+                      entity: input_select.daytime
+                    double_tap_action:
+                      action: call-service
+                      service: input_select.select_option
+                      service_data:
+                        entity_id: input_select.daytime
+                        option: >-
+                          [[[
+                            if (states['input_select.daytime'].state === 'Night') {
+                              return 'Daytimes';
+                            } else {
+                              return 'Night';
+                            }
+                          ]]]
+                      confirmation:
+                        text: >-
+                          [[[
+                            if (states['input_select.daytime'].state === 'Night') {
+                              return 'Do you really want to set daytime to state "Daytimes"?';
+                            } else {
+                              return 'Do you really want to set daytime to state "Night?\n\nThis turns all lights and switches off!';
+                            }
+                          ]]]
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: light.floor_lights
+                    template: icon_only_more_info
+                    icon: mdi:door
+                  - type: custom:button-card
+                    entity: light.panel_mirror_switch
+                    template: icon_only_more_info
+                  - type: custom:button-card
+                    entity: light.kitchen_cabinet_light
+                    template: icon_only_more_info
+                    double_tap_action:
+                      action: call-service
+                      service: input_select.select_next
+                      service_data:
+                        entity_id: input_select.kitchen_cabinet_scenes
+                    hold_action:
+                      entity: input_select.kitchen_cabinet_scenes
+                  - type: custom:button-card
+                    entity: switch.desk_switch
+                    template: icon_only_more_info
+                    icon: mdi:monitor
+
+          - type: grid
+            columns: 7
+            cards:
+              - type: custom:button-card
+                icon: mdi:blinds
+                template: icon_only
+                color: green
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/blinds
+                triggers_update:
+                  - binary_sensor.shutter_operation_to_cold_or_windy
+                state:
+                  - operator: template
+                    value: >-
+                      [[[
+                        return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                      ]]]
+                    color: red
+                    icon: mdi:window-shutter-alert
+                lock:
+                  enabled: >-
+                    [[[
+                      return states['binary_sensor.shutter_operation_to_cold_or_windy'].state === 'on';
+                    ]]]
+                  duration: 0
+              - type: custom:button-card
+                icon: mdi:home-thermometer
+                template: icon_only
+                color: green
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/temperature
+                lock: disabled
+              - type: custom:button-card
+                icon: mdi:transmission-tower
+                template: icon_only
+                color: green
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/energy
+                lock: disabled
+              - type: custom:button-card
+                entity: switch.switches_group
+                template: icon_only
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/switch
+                double_tap_action:
+                  action: call-service
+                  service: homeassistant.turn_off
+                  service_data:
+                    entity_id: switch.switches_group
+                  confirmation:
+                    text: Do you really want to turn all switches off?
+              - type: custom:button-card
+                entity: light.all_lights
+                template: icon_only
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/light
+                hold_action:
+                  action: more-info
+                double_tap_action:
+                  action: call-service
+                  service: homeassistant.turn_off
+                  service_data:
+                    entity_id: light.all_lights
+                  confirmation:
+                    text: Do you really want to turn off all lights?
+              - type: custom:button-card
+                icon: mdi:cctv
+                template: icon_only
+                entity: camera.tapo_c200_hd_stream
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/surveillance
+                triggers_update:
+                  - device_tracker.tapo_c200
+                state:
+                  - operator: template
+                    value: >-
+                      [[[
+                        return states['device_tracker.tapo_c200'].state === 'home';
+                      ]]]
+                    color: var(--paper-item-icon-active-color)
+              - type: custom:button-card
+                entity: binary_sensor.update_available_sensor
+                template: icon_only
+                icon: mdi:information
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/status
+                double_tap_action:
+                  action: navigate
+                  navigation_path: /config/dashboard
+
+
+              # - type: custom:button-card
+              #   entity: light.office_desk_light
+              #   template: icon_only_more_info
+              #   styles:
+              #     icon:
+              #       - color: "#FFC8C8"
+              #   tap_action:
+              #     action: call-service
+              #     service: scene.turn_on
+              #     service_data:
+              #       entity_id: scene.office_desk_night
+              # - type: custom:button-card
+              #   entity: light.office_desk_light
+              #   template: icon_only_more_info
+              #   styles:
+              #     icon:
+              #       - color: "#FFFFFF"
+              #   tap_action:
+              #     action: call-service
+              #     service: scene.turn_on
+              #     service_data:
+              #       entity_id: scene.office_desk_white
+              # - type: custom:button-card
+              #   entity: light.kitchen_cabinet_light
+              #   template: icon_only_more_info
+              #   styles:
+              #     icon:
+              #       - color: "#FFC8C8"
+              #   tap_action:
+              #     action: call-service
+              #     service: scene.turn_on
+              #     service_data:
+              #       entity_id: scene.kitchen_cabinet_night
+              # - type: custom:button-card
+              #   entity: light.kitchen_cabinet_light
+              #   template: icon_only_more_info
+              #   styles:
+              #     icon:
+              #       - color: "#FFFFFF"
+              #   tap_action:
+              #     action: call-service
+              #     service: scene.turn_on
+              #     service_data:
+              #       entity_id: scene.kitchen_cabinet_white
+
+          - type: grid
+            columns: 1
+            square: false
+            cards:
+              - type: custom:button-card
+                styles:
+                  card:
+                    - padding: 0%
+                  grid:
+                    - position: relative
+                    - grid-template-areas: >-
+                        "b1 b2 b3 b4 h up down"
+                    - grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+                    - grid-templates-rows: min-content 1fr
+                custom_fields:
+                  b1:
+                    card:
+                      type: custom:button-card
+                      template: desk_control
+                      entity: switch.desk_control_button_1
+                      double_tap_action:
+                        service: switch.toggle
+                  b2:
+                    card:
+                      type: custom:button-card
+                      template: desk_control
+                      entity: switch.desk_control_button_2
+                      double_tap_action:
+                        service: switch.toggle
+                  b3:
+                    card:
+                      type: custom:button-card
+                      template: desk_control
+                      entity: switch.desk_control_button_3
+                      double_tap_action:
+                        service: switch.toggle
+                  b4:
+                    card:
+                      type: custom:button-card
+                      template: desk_control
+                      entity: switch.desk_control_button_4
+                      double_tap_action:
+                        service: switch.toggle
+                  h:
+                    card:
+                      type: custom:button-card
+                      template: desk_control
+                      entity: sensor.desk_control_height
+                      show_state: true
+                      show_icon: false
+                      tap_action:
+                        action: more-info
+                        entity: input_number.desk_height
+                      styles:
+                        state:
+                          - color: var(--paper-item-icon-active-color)
+                          - font-size: 20px
+                  up:
+                    card:
+                      type: custom:button-card
+                      template: desk_control
+                      entity: switch.desk_control_button_up
+                  down:
+                    card:
+                      type: custom:button-card
+                      template: desk_control
+                      entity: switch.desk_control_button_down
+
+          - type: grid
+            columns: 7
+            cards:
+              - type: custom:button-card
+                template: icon_only
+                icon: mdi:cogs
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/yaml
+                lock: disabled
+              - type: custom:button-card
+                template: icon_only
+                icon: mdi:math-log
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/logs
+                lock: disabled
+              - type: custom:button-card
+                entity: switch.wake_on_lan_server
+                template: icon_only_more_info
+                tab_action:
+                  action: more-info
+                double_tap_action:
+                  action: toggle
+                  confirmation:
+                    text: Do you really want to suspend/wake the server?
+              - type: custom:button-card
+                entity: switch.wake_on_lan_tower
+                template: icon_only_more_info
+                tab_action:
+                  action: more-info
+                double_tap_action:
+                  action: toggle
+                  confirmation:
+                    text: Do you really want to suspend/wake tower?
+              # - type: custom:button-card
+              #   entity: switch.aroma_diffuser
+              #   template: icon_only_more_info
+              #   icon: mdi:air-humidifier
+              #   hold_action:
+              #     entity: light.aroma_diffuser_light
+              - type: custom:button-card
+                entity: switch.3d_printer_switch
+                template: icon_only_more_info
+                tap_action:
+                  action: toggle
+                  confirmation:
+                    text: |
+                      Toggle 3D-Printer Switch?
+              - type: custom:button-card
+                entity: light.night_lights
+                icon: mdi:lightbulb-night
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#A54CFF"
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.home_light
+                    variables:
+                      scene_color: purple
+              - type: custom:button-card
+                entity: light.night_lights
+                icon: mdi:lightbulb-night
+                template: icon_only_more_info
+                styles:
+                  icon:
+                    - color: "#FFC8C8"
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.home_light
+                    variables:
+                      scene_color: night
+
+  # - !include view/00_main.yaml
+  - !include view/01_light.yaml
+  - !include view/02_shutter.yaml
+  - !include view/03_switch.yaml
+  - !include view/05_temperature.yaml
+  - !include view/06_energy.yaml
+  - !include view/07_status.yaml

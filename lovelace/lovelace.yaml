@@ -44,3 +44,13 @@ resources:
 
   - url: /hacsfiles/hass-swipe-navigation/swipe-navigation.js
     type: module
+
+
+dashboards:
+  lovelace-nspanelpro:
+    mode: yaml
+    filename: lovelace/nspanelpro.yaml
+    title: NS Panel Pro
+    icon: mdi:home-account
+    show_in_sidebar: true
+    require_admin: false
