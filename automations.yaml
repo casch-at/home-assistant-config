@@ -2557,8 +2557,8 @@
           - service: light.turn_on
             data:
               brightness: "{% if (state_attr('light.bedroom_bed_light', 'brightness')
-                | int) <= 243 -%}\n  {{ (state_attr('light.bedroom_bed_light', 'brightness')
-                | int) + 12 }}\n{% endif -%}"
+                | int) >= 17 -%}\n  {{ (state_attr('light.bedroom_bed_light', 'brightness')
+                | int) - 12 }}\n{% endif -%}"
             target:
               entity_id: light.bedroom_bed_light
           - delay:
@@ -2576,8 +2576,8 @@
           - service: light.turn_on
             data:
               brightness: "{% if (state_attr('light.bedroom_bed_light', 'brightness')
-                | int) >= 17 -%}\n  {{ (state_attr('light.bedroom_bed_light', 'brightness')
-                | int) - 12 }}\n{% endif -%}"
+                | int) <= 243 -%}\n  {{ (state_attr('light.bedroom_bed_light', 'brightness')
+                | int) + 12 }}\n{% endif -%}"
             target:
               entity_id: light.bedroom_bed_light
           - delay:
