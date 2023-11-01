@@ -2739,3 +2739,20 @@
     target:
       entity_id: input_boolean.shutter_relay_off_delay_enabled
   mode: single
+- id: '1698815214150'
+  alias: Turn Wallpanel Screensaver off when approaching
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.nspanelpro_proximity_sensor
+    above: 250
+  condition:
+  - condition: state
+    entity_id: input_boolean.wallpanel_screensaver
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.wallpanel_screensaver
+  mode: single

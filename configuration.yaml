@@ -18,8 +18,6 @@ input_select:
 input_text:
 # map:
 media_source:
-  local: /media
-  recording: /mnt/recordings
 mobile_app:
 my:
 network:
@@ -75,6 +73,9 @@ homeassistant:
   customize: !include customize.yaml
   allowlist_external_dirs:
     - /tmp
+  media_dirs:
+    local: /media/casch/local
+    recording: /media/casch/recordings
 
 frontend:
   themes: !include_dir_merge_named themes
