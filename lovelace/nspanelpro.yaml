@@ -1,5 +1,70 @@
 button_card_templates: !include templates.yaml
 
+# https://github.com/j-a-n/lovelace-wallpanel
+wallpanel:
+  # badges:
+    # - entity: person.christian_schwarzgruber
+    # - entity: sun.sun
+  black_screen_after_time: 0
+  card_interaction: true
+  cards:
+    - type: weather-forecast
+      entity: weather.home
+      show_forecast: false
+  control_reactivation_time: 1.0
+  crossfade_time: 3
+  debug: false
+  display_time: 15
+  enabled: true
+  enabled_on_tabs: []
+  fade_in_time: 3
+  fetch_address_data: true
+  fullscreen: true
+  hide_sidebar: true
+  hide_toolbar: true
+  hide_toolbar_action_icons: true
+  idle_time: 10
+  image_animation_ken_burns: true
+  image_animation_ken_burns_delay: 0
+  image_animation_ken_burns_zoom: 1.3
+  image_background: color
+  image_excludes: []
+  image_fit: cover
+  image_info_template: ${address.town|address.city!prefix=!suffix= // }${DateTimeOriginal!options=year:numeric,month:long}
+  image_list_update_interval: 3600
+  image_order: sorted
+  # / == /media which means /afolder == /media/afolder
+  image_url: /
+  info_animation_duration_x: 0 # 30
+  info_animation_duration_y: 0 # 11
+  info_animation_timing_function_x: ease-in-out
+  info_animation_timing_function_y: ease-in-out
+  info_move_fade_duration: 2.0
+  info_move_interval: 0
+  info_move_pattern: random
+  keep_screen_on_time: 86400
+  # https://github.com/cslux/lovelace-wallpanel/tree/sort-table#profiles
+  # profile:
+  # profile_entity:
+  profiles: {}
+  screensaver_entity: input_boolean.wallpanel_screensaver
+  screensaver_stop_navigation_path: /lovelace-nspanelpro/default_view
+  show_image_info: false
+  show_images: true
+  show_progress_bar: false
+  stop_screensaver_on_location_change: true
+  stop_screensaver_on_mouse_move: true
+  style:
+    wallpanel-screensaver-info-box:
+      '--wp-card-width': 450px
+    wallpanel-screensaver-info-box-content:
+      '--ha-card-background': none
+      '--ha-card-box-shadow': none
+      '--ha-card-border-width': 0px
+      text-shadow: -0.5px -0.5px 0 rgb(17, 17, 17), 0.5px -0.5px 0 rgb(17, 17, 17), -0.5px 0.5px 0 rgb(17, 17, 17), 0.5px 0.5px 0 rgb(17, 17, 17)
+      '--primary-text-color': '#ffffff'
+      '--secondary-text-color': '#dddddd'
+
 title:
 views:
   - path: default_view
@@ -474,6 +539,52 @@ views:
                     entity_id: script.home_light
                     variables:
                       scene_color: night
+
+          - type: grid
+            columns: 6
+            cards:
+              - type: custom:button-card
+                entity: binary_sensor.office_window_sensor
+                show_icon: true
+                name: "Office"
+                template: name_card_round
+                state:
+                  - operator: '=='
+                    value: 'on'
+                    icon: mdi:window-open
+              - type: custom:button-card
+                entity: binary_sensor.entrance_door_sensor
+                show_icon: true
+                name: "Entrance"
+                template: name_card_round
+                state:
+                  - operator: '=='
+                    value: 'on'
+                    icon: mdi:door-open
+              - type: custom:button-card
+                entity: binary_sensor.terrace_door_sensor
+                show_icon: true
+                name: "Terrace"
+                template: name_card_round
+                state:
+                  - operator: '=='
+                    value: 'on'
+                    icon: mdi:door-open
+              - type: custom:button-card
+                entity: input_boolean.wallpanel_screensaver
+                show_icon: true
+                name: "S.saver"
+                template: name_card_round
+              - type: custom:button-card
+                entity: binary_sensor.metalab_door_sensor
+                show_icon: true
+                name: "Metalab"
+                template: name_card_round
+                state:
+                  - operator: '=='
+                    value: 'on'
+                    icon: mdi:door-open
+
 
   # - !include view/00_main.yaml
   - !include view/01_light.yaml

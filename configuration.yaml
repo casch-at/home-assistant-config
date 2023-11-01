@@ -17,7 +17,9 @@ input_number:
 input_select:
 input_text:
 # map:
-# media_source:
+media_source:
+  local: /media
+  recording: /mnt/recordings
 mobile_app:
 my:
 network:
