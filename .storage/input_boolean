@@ -32,8 +32,8 @@
       {
         "id": "window_or_door_open",
         "name": "Window Or Door Open",
-        "icon": "mdi:window-open",
-        "initial": "off"
+        "icon": "mdi:door-open",
+        "initial": false
       },
       {
         "id": "bathroom_light_active",

@@ -114,13 +114,27 @@ night_light:
             value: red
           - label: White
             value: white
+      default: white
   sequence:
   - parallel:
     - service: automation.turn_off
       data:
         stop_actions: true
       target:
-        entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
+        entity_id:
+        - automation.office_ceiling_lights_backup_kitchen_cabinet_state
+        - automation.floor_motion
+        - automation.bedroom_motion
+        - automation.bathroom_motion
+        - automation.floor_helper_motion
+    - service: input_boolean.turn_on
+      target:
+        entity_id:
+        - input_boolean.floor_light_active
+        - input_boolean.floor_helper_light_active
+        - input_boolean.bathroom_light_active
+      enabled: true
+      data: {}
     - service: scene.turn_on
       target:
         entity_id:
@@ -140,14 +154,6 @@ night_light:
           scene: scene.bedroom_bed_{{ scene_color }}
           light:
           - light.bedroom_bed_light
-    - service: input_boolean.turn_on
-      target:
-        entity_id:
-        - input_boolean.floor_light_active
-        - input_boolean.floor_helper_light_active
-        - input_boolean.bathroom_light_active
-      enabled: true
-      data: {}
     - if:
       - condition: state
         entity_id: switch.bedroom_shutter_down_relay
@@ -184,7 +190,12 @@ night_light:
   - service: automation.turn_on
     data: {}
     target:
-      entity_id: automation.office_ceiling_lights_backup_kitchen_cabinet_state
+      entity_id:
+      - automation.office_ceiling_lights_backup_kitchen_cabinet_state
+      - automation.floor_motion
+      - automation.bedroom_motion
+      - automation.bathroom_motion
+      - automation.floor_helper_motion
   mode: single
   icon: mdi:lightbulb-night
 scene_on:

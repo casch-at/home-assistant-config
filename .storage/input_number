@@ -7,12 +7,12 @@
       {
         "id": "window_or_door_open",
         "name": "Window or Door Open",
-        "icon": "mdi:window-open",
+        "icon": "mdi:door-open",
         "unit_of_measurement": "sec",
         "mode": "slider",
-        "min": 300,
-        "max": 28800,
-        "step": 60
+        "min": 300.0,
+        "max": 28800.0,
+        "step": 60.0
       },
       {
         "id": "desk_height",

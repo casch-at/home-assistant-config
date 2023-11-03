@@ -1982,7 +1982,7 @@
   mode: single
   max_exceeded: silent
 - id: door_window_open_detection
-  alias: Door And Window Open Detection
+  alias: Window Or Door Open
   description: Send notification when it is cold outside and door/window is too long
     open
   trigger:
@@ -2034,14 +2034,10 @@
       scene_id: door_window_open_detection_kitchen_cabinet_backup
       snapshot_entities:
       - light.kitchen_cabinet_light
-  - service: light.turn_on
-    data:
-      entity_id: light.kitchen_cabinet_light
-      rgb_color:
-      - 235
-      - 40
-      - 0
-      brightness: 256
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.kitchen_cabinet_red
   - wait_template: '{{ is_state(trigger.entity_id, ''off'') }}'
   - service: scene.turn_on
     data:
@@ -2051,9 +2047,8 @@
   mode: parallel
   max: 10
 - id: reset_window_or_door_open_input_boolean
-  alias: Reset Window Or Door Open Input Boolean
+  alias: Window Or Door Open Reset Input Boolean
   description: ''
-  mode: single
   trigger:
   - platform: state
     entity_id: binary_sensor.door_window_sensors
@@ -2067,10 +2062,10 @@
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.window_or_door_open
-- id: set_window_or_door_open_time
-  alias: Set Window Or Door Open Time
-  description: Automatically sets window or door open time based on outdoor temperature
   mode: single
+- id: set_window_or_door_open_time
+  alias: Window Or Door Open Set Time
+  description: Automatically sets window or door open time based on outdoor temperature
   trigger:
   - platform: numeric_state
     entity_id: sensor.outdoor_temperature
@@ -2162,6 +2157,7 @@
         target:
           entity_id: input_number.window_or_door_open
     default: []
+  mode: single
 - id: '1672442241658'
   alias: Wind Speed To High For Shutters
   description: Move shutters up if wind speed is to high.
@@ -2755,4 +2751,38 @@
     data: {}
     target:
       entity_id: input_boolean.wallpanel_screensaver
+  mode: single
+- id: '1698977588606'
+  alias: Wallpanel Profile
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.daytime
+  - platform: state
+    entity_id:
+    - input_boolean.presence
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: input_boolean.presence
+      state: 'off'
+    then:
+    - service: input_text.set_value
+      data:
+        value: disable
+      target:
+        entity_id: input_text.wallpanel_profile
+    else:
+    - if:
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: input_select.daytime
+          state: Night
+      then:
+      - service: input_text.set_value
+        data:
+          value: enable
   mode: single
