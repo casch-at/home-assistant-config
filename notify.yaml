@@ -1,0 +1,6 @@
+# https://companion.home-assistant.io/docs/notifications/notifications-basic/
+- platform: group
+  name: Mobile App All
+  services:
+    - service: mobile_app_tablet_a10
+    - service: mobile_app_phone_christian

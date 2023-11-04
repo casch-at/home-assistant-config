@@ -2062,6 +2062,10 @@
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.window_or_door_open
+  - service: notify.mobile_app_all
+    data:
+      message: clear_notification
+      data: window-or-door-open
   mode: single
 - id: set_window_or_door_open_time
   alias: Window Or Door Open Set Time

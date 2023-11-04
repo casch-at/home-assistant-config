@@ -106,6 +106,7 @@ script: !include scripts.yaml
 sensor: !include sensors.yaml
 switch: !include switch.yaml
 template: !include templates.yaml
+notify: !include notify.yaml
 
 calendar:
   - platform: caldav
