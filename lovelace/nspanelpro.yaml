@@ -14,7 +14,7 @@ wallpanel:
   control_reactivation_time: 1.0
   crossfade_time: 3
   debug: false
-  display_time: 15
+  display_time: 60
   enabled: true
   enabled_on_tabs: []
   fade_in_time: 3
@@ -35,18 +35,19 @@ wallpanel:
   image_order: sorted
   # https://github.com/j-a-n/lovelace-wallpanel#media-source-url
   image_url: /local/Slideshow
-  info_animation_duration_x: 0 # 30
-  info_animation_duration_y: 0 # 11
+  info_animation_duration_x: 0 # 0 = disable
+  info_animation_duration_y: 0 # 0 = disable
   info_animation_timing_function_x: ease-in-out
   info_animation_timing_function_y: ease-in-out
+  info_move_interval: 0 # 0 = disable
   info_move_fade_duration: 2.0
-  info_move_interval: 0
   info_move_pattern: random
   keep_screen_on_time: 86400
   # https://github.com/cslux/lovelace-wallpanel/tree/sort-table#profiles
-  # profile:
-  # profile_entity:
-  profiles: {}
+  profile_entity: input_text.wallpanel_profile
+  profiles:
+    disable:
+      enabled: false
   screensaver_entity: input_boolean.wallpanel_screensaver
   screensaver_stop_navigation_path: /lovelace-nspanelpro/main
   show_image_info: false

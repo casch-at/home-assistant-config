@@ -2017,13 +2017,15 @@
       entity_id: input_select.daytime
       state: Night
   action:
-  - service: notify.notify
+  - service: notify.mobile_app_all
     data:
       title: '{{ trigger.to_state.name | replace('' Sensor'', '''') }} Open'
       message: '{% set minutes = (states(''input_number.window_or_door_open'') | int(0)
         / 60) | int(0) %} The {{ trigger.to_state.name | lower | replace('' sensor'',
         '''') }} is already {{ minutes }} {% if minutes > 1 -%} minutes {% else -%}
         minute {% endif %} open.'
+      data:
+        tag: window-or-door-open
   - wait_template: '{{ is_state(''input_boolean.window_or_door_open'', ''off'') }}'
   - service: input_boolean.turn_on
     entity_id: input_boolean.window_or_door_open
@@ -2065,7 +2067,8 @@
   - service: notify.mobile_app_all
     data:
       message: clear_notification
-      data: window-or-door-open
+      data:
+        tag: window-or-door-open
   mode: single
 - id: set_window_or_door_open_time
   alias: Window Or Door Open Set Time
