@@ -572,3 +572,29 @@ shutter_sunny_down:
         area:
   mode: single
   icon: mdi:weather-sunny
+keep_shutters_closed:
+  alias: Keep Shutters Closed
+  sequence:
+  - if:
+    - condition: state
+      entity_id: automation.keep_shutters_closed
+      state: 'on'
+    then:
+    - service: automation.turn_off
+      data:
+        stop_actions: true
+      target:
+        entity_id: automation.keep_shutters_closed
+    else:
+    - service: switch.turn_on
+      data: {}
+      target:
+        entity_id:
+        - switch.parlor_shutter_down_relay
+        - switch.bedroom_shutter_down_relay
+    - service: automation.turn_on
+      data: {}
+      target:
+        entity_id: automation.keep_shutters_closed
+  mode: single
+  icon: mdi:window-shutter-alert

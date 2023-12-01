@@ -168,7 +168,10 @@ cards:
                 - value: 'on'
                   icon: mdi:window-shutter
               tap_action:
-                action: toggle
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.keep_shutters_closed
                 confirmation:
                   text: Turn ON/OFF "Keep Shutters Closed" automation?
               hold_action:

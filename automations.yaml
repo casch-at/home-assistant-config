@@ -2714,6 +2714,13 @@
     - switch.bedroom_shutter_up_relay
     - switch.parlor_shutter_up_relay
     to: 'on'
+  - platform: state
+    entity_id:
+    - switch.parlor_shutter_down_relay
+    - switch.bedroom_shutter_down_relay
+    from: 'on'
+    to: 'off'
+    enabled: false
   condition: []
   action:
   - service: switch.turn_on
