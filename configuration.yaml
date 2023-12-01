@@ -96,6 +96,8 @@ tts:
 shell_command:
   # Need to specify IP (resolve doesn't work :-?),
   turn_off_server: !secret server_off
+  turn_off_galaxy_led: !secret galaxy_led_off
+  turn_on_galaxy_led: !secret galaxy_led_on
 
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml

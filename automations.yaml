@@ -156,6 +156,8 @@
       data: {}
       target:
         entity_id: input_boolean.alarm_enabled
+    - service: shell_command.turn_on_galaxy_led
+      data: {}
   mode: queued
   max: 2
 - id: low_battery_level_warning
@@ -822,6 +824,9 @@
   - service: notify.mobile_app_phone_christian
     data:
       message: Christian is away
+      data:
+        tag: info
+    enabled: false
   - service: input_boolean.turn_off
     target:
       entity_id: input_boolean.presence
@@ -1192,6 +1197,8 @@
       target:
         entity_id: switch.shutters_down_group
     enabled: false
+  - service: shell_command.turn_off_galaxy_led
+    data: {}
   - service: scene.turn_on
     data:
       entity_id: scene.night_toilet_light
@@ -2253,11 +2260,12 @@
     entity_id: input_boolean.alarm_enabled
     state: 'on'
   action:
-  - device_id: 977d03248b84aba3934e48976ccaee3c
-    domain: mobile_app
-    type: notify
-    message: Someone broke in
-    title: 'Warning break-in⚠️  '
+  - service: notify.mobile_app_phone_christian
+    data:
+      message: Someone broke in
+      title: 'Break-in⚠️ '
+      data:
+        tag: break-in
   mode: single
 - id: '1672960431370'
   alias: Kitchen Cabinet Switch
@@ -2792,4 +2800,23 @@
       - service: input_text.set_value
         data:
           value: enable
+        target:
+          entity_id: input_text.wallpanel_profile
+  mode: single
+- id: '1699432233154'
+  alias: Break-in Alarm Clear
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.presence
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_phone_christian
+    data:
+      message: clear_notification
+      data:
+        tag: break-in
   mode: single
