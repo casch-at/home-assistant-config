@@ -5,7 +5,7 @@ wifi:
     - id: wifi_default
       ssid: !secret ssid
       password: !secret wlan_password
-  
+
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: ${ap_ssid}
@@ -23,6 +23,13 @@ wifi:
   # use_address: desk_control.local
   # use_address: upstairs_ir_remote.local
 
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Vienna
+    servers:
+     - galaxy
+
 preferences:
   flash_write_interval: 60min
 
@@ -34,13 +41,13 @@ logger:
   level: ERROR
   # level: WARN
   # level: INFO
-  # level: DEBUG # Default
+  # level: DEBUG # Defaultd
   # level: VERBOSE
   # level: VERY_VERBOSE
 
 # Enable Home Assistant API
 api:
-  encryption: 
+  encryption:
     key: !secret api_key
 
 ota:
