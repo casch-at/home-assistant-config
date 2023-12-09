@@ -20,8 +20,8 @@ wallpanel:
   fade_in_time: 3
   fetch_address_data: true
   fullscreen: true
-  hide_sidebar: true
-  hide_toolbar: true
+  hide_sidebar: false
+  hide_toolbar: false
   hide_toolbar_action_icons: true
   idle_time: 10
   image_animation_ken_burns: true
