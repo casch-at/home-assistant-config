@@ -1,11 +1,11 @@
-- platform: rest
-  resource: https://eingang.c3w.at/status.json
-  method: GET
-  name: Metalab Door Sensor
-  device_class: door
-  value_template: >-
-    {% if value_json is defined %}
-      {{ value_json.status }}
-    {% else %}
-      {{ states('binary_sensor.metalab_door_sensor') }}
-    {% endif %}
+# - platform: rest
+#   resource: https://eingang.c3w.at/status.json
+#   method: GET
+#   name: Metalab Door Sensor
+#   device_class: door
+#   value_template: >-
+#     {% if value_json is defined %}
+#       {{ value_json.status }}
+#     {% else %}
+#       {{ states('binary_sensor.metalab_door_sensor') }}
+#     {% endif %}

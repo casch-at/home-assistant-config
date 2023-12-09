@@ -503,12 +503,12 @@ cards:
               - operator: '=='
                 value: 'on'
                 icon: mdi:door-open
-          - type: custom:button-card
-            entity: binary_sensor.metalab_door_sensor
-            show_icon: true
-            name: "Metalab"
-            template: name_card_round
-            state:
-              - operator: '=='
-                value: 'on'
-                icon: mdi:door-open
+          # - type: custom:button-card
+          #   entity: binary_sensor.metalab_door_sensor
+          #   show_icon: true
+          #   name: "Metalab"
+          #   template: name_card_round
+          #   state:
+          #     - operator: '=='
+          #       value: 'on'
+          #       icon: mdi:door-open
