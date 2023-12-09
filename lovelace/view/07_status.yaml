@@ -120,27 +120,79 @@ cards:
                 color: var( --ha-card-background, var(--card-background-color, white) )
 
       - type: entities
-        title: APCUPS
+        title: Pi-Hole (dns.casch.lan:8053)
         entities:
-          - sensor.apcups_battery_charge
-          - sensor.apcups_battery_runtime
-          - sensor.apcups_load
-          - sensor.apcups_battery_voltage
-          - sensor.apcups_ups_shutdown_delay
-          - sensor.apcups_low_battery_runtime
-          - sensor.apcups_low_battery_setpoint
-          - sensor.apcups_self_test_result
-          - sensor.apcups_load_reboot_timer
-          - sensor.apcups_load_shutdown_timer
-          - sensor.apcups_input_power_sensitivity
-          - sensor.apcups_input_voltage
-          - sensor.apcups_high_voltage_transfer
-          - sensor.apcups_low_voltage_transfer
-          - sensor.apcups_nominal_battery_voltage
-          - sensor.apcups_nominal_input_voltage
-          - sensor.apcups_nominal_real_power
-          - sensor.apcups_status
-          - sensor.apcups_status_data
-          - sensor.apcups_battery_chemistry
-          - sensor.apcups_battery_manuf_date
-          - sensor.apcups_beeper_status
+          - entity: sensor.dns_casch_lan_ads_blocked_today
+            name: Ads Blocked Today
+          - entity: sensor.dns_casch_lan_ads_percentage_blocked_today
+            name: Ads Percentage Blocked Today
+          - entity: sensor.dns_casch_lan_dns_queries_cached
+            name: Dns Queries Cached
+          - entity: sensor.dns_casch_lan_dns_queries_forwarded
+            name: Dns Queries Forwarded
+          - entity: sensor.dns_casch_lan_dns_queries_today
+            name: Dns Queries Today
+          - entity: sensor.dns_casch_lan_seen_clients
+            name: Seen Clients
+          - entity: sensor.dns_casch_lan_dns_unique_clients
+            name: Dns Unique Clients
+          - entity: sensor.dns_casch_lan_dns_unique_domains
+            name: Dns Unique Domains
+          - entity: sensor.dns_casch_lan_domains_blocked
+            name: Domains Blocked
+          - entity: binary_sensor.dns_casch_lan_status
+            name: Status
+          - entity: update.dns_casch_lan_core_update_available
+            name: Core Update Available
+          - entity: update.dns_casch_lan_web_update_available
+            name: Web Update Available
+          - entity: update.dns_casch_lan_ftl_update_available
+            name: Ftl Update Available
+
+      - type: entities
+        title: APC-UPS (casch.lan)
+        entities:
+          - entity: sensor.apcups_battery_charge
+            name: Battery Charge
+          - entity: sensor.apcups_battery_runtime
+            name: Battery Runtime
+          - entity: sensor.apcups_load
+            name: Load
+          - entity: sensor.apcups_battery_voltage
+            name: Battery Voltage
+          - entity: sensor.apcups_ups_shutdown_delay
+            name: Ups Shutdown Delay
+          - entity: sensor.apcups_low_battery_runtime
+            name: Low Battery Runtime
+          - entity: sensor.apcups_low_battery_setpoint
+            name: Low Battery Setpoint
+          - entity: sensor.apcups_self_test_result
+            name: Self Test Result
+          - entity: sensor.apcups_load_reboot_timer
+            name: Load Reboot Timer
+          - entity: sensor.apcups_load_shutdown_timer
+            name: Load Shutdown Timer
+          - entity: sensor.apcups_input_voltage
+            name: Input Voltage
+          - entity: sensor.apcups_high_voltage_transfer
+            name: High Voltage Transfer
+          - entity: sensor.apcups_low_voltage_transfer
+            name: Low Voltage Transfer
+          - entity: sensor.apcups_nominal_battery_voltage
+            name: Nominal Battery Voltage
+          - entity: sensor.apcups_nominal_input_voltage
+            name: Nominal Input Voltage
+          - entity: sensor.apcups_nominal_real_power
+            name: Nominal Real Power
+          - entity: sensor.apcups_status
+            name: Status
+          - entity: sensor.apcups_status_data
+            name: Status Data
+          - entity: sensor.apcups_battery_chemistry
+            name: Battery Chemistry
+          - entity: sensor.apcups_battery_manuf_date
+            name: Battery Manuf Date
+          - entity: sensor.apcups_beeper_status
+            name: Beeper Status
+          - entity: sensor.apcups_input_power_sensitivity
+            name: Input Power Sensitivity
