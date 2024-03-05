@@ -1551,7 +1551,7 @@
           data: {}
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "rotate_right" }}'
+        value_template: '{{ trigger.event.data.command == "rotate_left" }}'
       sequence:
       - choose:
         - conditions:
@@ -1578,7 +1578,7 @@
           data: {}
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.command == "rotate_left" }}'
+        value_template: '{{ trigger.event.data.command == "rotate_right" }}'
       sequence:
       - choose:
         - conditions:
