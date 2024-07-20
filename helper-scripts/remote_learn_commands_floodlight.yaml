@@ -1,0 +1,22 @@
+service: remote.learn_command
+target:
+  device_id: fce7228036ff35e5b7f26ea43bb4e8fa
+data:
+  command_type: ir
+  alternative: true
+  device: floodlight
+  command:
+    - "off"
+    - "on"
+    - holdtime_5
+    - holdtime_10
+    - holdtime_20
+    - holdtime_30
+    - sensitivity_low
+    - sensitivity_medium
+    - sensitivity_high
+    - daylightlux_night
+    - daylightlux_low
+    - daylightlux_medium
+    - daylightlux_high
+    - daylightlux_off

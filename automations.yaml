@@ -163,72 +163,113 @@
 - id: low_battery_level_warning
   alias: Low Battery Level Warning
   description: ''
-  mode: queued
-  max: 50
   trigger:
   - platform: numeric_state
-    entity_id: sensor.bathroom_switch_battery_level
-    below: 15
+    entity_id:
+    - sensor.bathroom_switch_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.bedroom_bed_left_motion_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.bedroom_bed_left_motion_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.bedroom_bed_right_motion_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.bedroom_bed_right_motion_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.floor_motion_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.floor_motion_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.office_multi_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.office_multi_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.upstairs_multi_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.upstairs_multi_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.parlor_multi_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.parlor_multi_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.bedroom_multi_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.bedroom_multi_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.bathroom_multi_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.bathroom_multi_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.entrance_door_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.entrance_door_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.terrace_door_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.terrace_door_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.office_window_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.office_window_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.floor_switch_battery_level
-    below: 15
+    entity_id:
+    - sensor.floor_switch_battery_level
+    below: 5
+    for:
+      minutes: 5
+  - platform: numeric_state
+    entity_id:
+    - sensor.office_switch_battery_level
+    below: 5
+    for:
+      minutes: 5
+  - platform: numeric_state
+    entity_id:
+    - sensor.office_magic_cube_battery_level
+    below: 5
+    for:
+      minutes: 5
+  - platform: numeric_state
+    entity_id:
+    - sensor.bedroom_christian_switch_battery_level
+    below: 5
+    for:
+      minutes: 5
+  - platform: numeric_state
+    entity_id:
+    - sensor.bedroom_partner_switch_battery_level
+    below: 5
+    for:
+      minutes: 5
+  - platform: numeric_state
+    entity_id:
+    - sensor.office_light_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   - platform: numeric_state
@@ -237,33 +278,9 @@
     for:
       minutes: 5
   - platform: numeric_state
-    entity_id: sensor.office_magic_cube_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.bedroom_christian_switch_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.bedroom_partner_switch_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.office_light_sensor_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.office_switch_battery_level
-    below: 15
-    for:
-      minutes: 5
-  - platform: numeric_state
-    entity_id: sensor.parlor_light_sensor_battery_level
-    below: 15
+    entity_id:
+    - sensor.parlor_light_sensor_battery_level
+    below: 5
     for:
       minutes: 5
   condition:
@@ -276,6 +293,8 @@
       message: '{{ trigger.to_state.name }} battery level bellow {{ trigger.to_state.state
         | int + 1}} %'
       title: '{{ trigger.to_state.name }} Critical'
+  mode: queued
+  max: 50
 - id: low_illuminance
   alias: Low Illuminance Light
   description: Turn on lights on low natural illumance light.
@@ -1424,6 +1443,10 @@
     event_type: zha_event
     event_data:
       device_id: 6933643e75b1542b3b5e5e24f34d8b0b
+  - platform: tag
+    tag_id: db8085df-0821-4dc4-89fe-803d4e7e6c7e
+  - platform: tag
+    tag_id: e9b766a4-c24f-4c68-81d7-6323a9cbca30
   condition:
   - condition: template
     value_template: "{{\n  trigger.event.data.command in [\n    'shake', 'flip', 'knock',

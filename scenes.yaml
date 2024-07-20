@@ -1481,3 +1481,77 @@
       state: 'on'
   icon: mdi:file-cabinet
   metadata: {}
+- id: '1712515659158'
+  name: Terrace Night
+  entities:
+    light.terrace_plant_spot_1_light:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode: xy
+      brightness: 189
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      - 354.919
+      - 97.255
+      rgb_color:
+      - 255
+      - 7
+      - 28
+      xy_color:
+      - 0.693996
+      - 0.296986
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:flower
+      friendly_name: Terrace Plant Spot 1 Light
+      supported_features: 44
+      state: 'on'
+    light.terrace_plant_spot_2_light:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode: xy
+      brightness: 143
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      - 232.14
+      - 89.804
+      rgb_color:
+      - 26
+      - 56
+      - 255
+      xy_color:
+      - 0.139
+      - 0.057
+      off_with_transition: false
+      off_brightness:
+      icon: mdi:flower
+      friendly_name: Terrace Plant Spot 2 Light
+      supported_features: 44
+      state: 'on'
+    switch.parlor_shutter_up_relay:
+      icon: mdi:arrow-up
+      friendly_name: Parlor Shutter Up Relay
+      state: 'off'
+    switch.parlor_shutter_down_relay:
+      icon: mdi:arrow-down
+      friendly_name: Parlor Shutter Down Relay
+      state: 'on'
+  metadata: {}

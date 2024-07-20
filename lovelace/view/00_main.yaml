@@ -24,7 +24,7 @@ cards:
             hold_action:
               entity: input_select.office_desk_scenes
           - type: custom:button-card
-            entity: light.bedroom_lights
+            entity: light.bedroom_bed_light
             template: icon_only_more_info
             double_tap_action:
               action: call-service
@@ -413,19 +413,21 @@ cards:
               navigation_path: /config/logs
             lock: disabled
           - type: custom:button-card
+            template: icon_only
             entity: switch.wake_on_lan_server
-            template: icon_only_more_info
             tab_action:
-              action: more-info
+              action: url
+              navigation_path: https://casch:9090/
             double_tap_action:
               action: toggle
               confirmation:
                 text: Do you really want to suspend/wake the server?
           - type: custom:button-card
+            template: icon_only
             entity: switch.wake_on_lan_tower
-            template: icon_only_more_info
             tab_action:
-              action: more-info
+              action: url
+              navigation_path: http://localhost:9090/
             double_tap_action:
               action: toggle
               confirmation:
