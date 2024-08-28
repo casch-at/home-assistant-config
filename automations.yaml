@@ -2358,23 +2358,23 @@
       entity_id: input_boolean.alarm_enabled
       state: 'off'
     then:
-    - service: input_boolean.turn_on
-      data: {}
+    - data: {}
       target:
         entity_id: input_boolean.alarm_enabled
-    - device_id: 977d03248b84aba3934e48976ccaee3c
+      action: input_boolean.turn_on
+    - device_id: 1650e86362c9041a676bcf99244a2b3c
       domain: mobile_app
       type: notify
-      message: Alarm Enabled
+      message: Alarm enabled!
     else:
-    - service: input_boolean.turn_off
-      data: {}
+    - data: {}
       target:
         entity_id: input_boolean.alarm_enabled
-    - device_id: 977d03248b84aba3934e48976ccaee3c
+      action: input_boolean.turn_off
+    - device_id: 1650e86362c9041a676bcf99244a2b3c
       domain: mobile_app
       type: notify
-      message: Alarm Disabled
+      message: Alarm disabled!
   mode: single
 - id: '1673538263929'
   alias: Office Ceiling Lights Backup Office Parlor State
