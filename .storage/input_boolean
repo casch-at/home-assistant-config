@@ -68,6 +68,11 @@
         "id": "wallpanel_screensaver",
         "name": "Wallpanel Screensaver",
         "icon": "mdi:tablet"
+      },
+      {
+        "id": "christian_schwarzgruber_alarm_set",
+        "name": "Christian Schwarzgruber Alarm Set",
+        "icon": "mdi:alarm-light-outline"
       }
     ]
   }

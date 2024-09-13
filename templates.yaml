@@ -76,17 +76,20 @@
           or
             state_attr('weather.home', 'wind_speed') | float(0.0) > 50.0
         }}
-    - name: Christian Schwarzgruber Alaram
+    - name: Christian Schwarzgruber Alarm
       unique_id: binary_sensor0003
       state: >-
         {{
           not
-            is_state('sensor.phone_christian_next_alarm', 'unavailable')
-          and
-            (as_timestamp(states('sensor.phone_christian_next_alarm')) - 60) | timestamp_custom('%F, %H:%M')
-              == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%F, %H:%M')
+            is_state('input_datetime.christian_schwarzgruber_next_alarm', 'unavailable')
+          and (
+            (as_timestamp(states('input_datetime.christian_schwarzgruber_next_alarm')) - 60) | timestamp_custom('%f, %h:%m')
+              == as_timestamp(states('sensor.date_time_iso')) | timestamp_custom('%f, %h:%m')
           and
             states('person.christian_schwarzgruber') == 'home'
+          and
+            states('input_boolean.christian_schwarzgruber_alarm_set') == 'on'
+          )
         }}
     - name: Update Available Sensor
       unique_id: binary_sensor0005
