@@ -9,17 +9,11 @@ cards:
       - type: grid
         columns: 6
         cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
           - type: custom:button-card
             entity: binary_sensor.workday_sensor
             name: Work
-            template: name_card_round
-          - type: custom:button-card
-            entity: calendar.work_holiday
-            name: Vacation
-            template: name_card_round
-          - type: custom:button-card
-            entity: calendar.work_home_office
-            name: HO
             template: name_card_round
           - type: custom:button-card
             entity: input_boolean.presence
@@ -38,7 +32,7 @@ cards:
             hold_action:
               action: more-info
           - type: custom:button-card
-            entity: sensor.hacs
+            entity: update.hacs_update
             name: HACS U.
             template: name_card_round
             tap_action:
@@ -52,6 +46,8 @@ cards:
                 color: var(--paper-item-icon-active-color)
               - value: 0
                 color: var( --ha-card-background, var(--card-background-color, white) )
+          - type: 'custom:button-card'
+            color_type: blank-card
 
           - type: custom:button-card
             entity: device_tracker.lap_work_router

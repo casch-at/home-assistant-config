@@ -107,13 +107,6 @@ calendar:
     url: !secret nextcloud_webdav_url
     username: !secret nextcloud_user
     password: !secret nextcloud_password
-    custom_calendars:
-      - name: Holiday
-        calendar: Work
-        search: "^Schwarzgruber_(UR|GT)"
-      - name: Home Office
-        calendar: Work
-        search: "^Schwarzgruber_HO"
 
 # https://www.home-assistant.io/integrations/influxdb
 influxdb: !include influxdb.yaml
